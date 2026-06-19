@@ -1,0 +1,25 @@
+faiss:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  index_type: "IndexFlatIP"   # inner product after L2 normalisation → cosine
+  top_k: 10
+  batch_size: 64
+  normalize_embeddings: true
+  index_path: "indexes/faiss/faiss.index"
+  meta_path: "indexes/faiss/faiss_meta.jsonl"
+
+bm25:
+  backend: "rank_bm25"        # rank_bm25 (pure Python, no Java dep)
+  k1: 1.5
+  b: 0.75
+  top_k: 10
+  index_path: "indexes/bm25/bm25_index.pkl"
+
+graphrag:
+  entity_model: "en_core_web_sm"   # spaCy model
+  relation_window: 2               # sentence window for co-occurrence edges
+  max_hop: 2                       # graph traversal depth
+  top_k: 10
+  min_entity_freq: 2               # prune rare entities
+  graph_path: "indexes/graphrag/graph.gpickle"
+  nodes_path: "indexes/graphrag/nodes.jsonl"
+  edges_path: "indexes/graphrag/edges.jsonl"

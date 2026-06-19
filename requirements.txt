@@ -1,0 +1,22 @@
+# Core retrieval
+numpy>=1.24
+rank-bm25>=0.2.2
+faiss-cpu>=1.7
+sentence-transformers>=2.2
+
+# Graph
+spacy>=3.6
+networkx>=3.1
+
+# Document ingestion
+PyMuPDF>=1.23
+python-docx>=0.8
+beautifulsoup4>=4.12
+
+# Config & utilities
+pyyaml>=6.0
+tqdm>=4.65
+
+# Testing
+pytest>=7.4
+pytest-cov>=4.1

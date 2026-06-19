@@ -1,0 +1,7 @@
+retriever,query_category,num_queries,mrr,avg_latency_ms,recall@1,recall@3,recall@5,recall@10,ndcg@1,ndcg@3,ndcg@5,ndcg@10,precision@1,precision@3,precision@5,precision@10
+bm25,all,5,0.0,0.08,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+bm25,exact_match,1,0.0,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+bm25,terminology_heavy,1,0.0,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+bm25,paraphrase,1,0.0,0.08,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+bm25,entity_relation,1,0.0,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+bm25,multi_hop,1,0.0,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

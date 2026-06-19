@@ -1,0 +1,15 @@
+corpus:
+  name: "rag_dissertation_corpus"
+  version: "v1"
+  domain: "artificial_intelligence_information_retrieval"
+  snapshot_dir: "data/raw/snapshot_v1"
+  processed_dir: "data/processed"
+  supported_formats:
+    - pdf
+    - docx
+    - txt
+    - html
+    - json
+  dedup_threshold: 0.95   # Jaccard similarity above this → duplicate
+  min_doc_length: 100     # characters
+  max_doc_length: 500000  # characters

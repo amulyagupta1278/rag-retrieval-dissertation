@@ -1,0 +1,12 @@
+chunking:
+  strategy: "sliding_window"    # options: sliding_window | sentence | paragraph | section
+  chunk_size: 512               # tokens (approximate word-based)
+  chunk_overlap: 64             # tokens overlap between consecutive chunks
+  min_chunk_length: 50          # discard chunks shorter than this (characters)
+  max_chunk_length: 1024        # split oversized chunks
+  respect_sentence_boundaries: true
+  output_dir: "data/chunks"
+
+ablations:
+  chunk_sizes: [256, 512, 1024]
+  chunk_overlaps: [0, 64, 128]

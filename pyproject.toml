@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "rag-dissertation"
+version = "0.1.0"
+description = "Comparative Analysis of Vector-Free Retrieval Strategies for RAG"
+authors = [{ name = "Amulya Gupta", email = "amulyagupta2001@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=2.2",
+    "faiss-cpu>=1.7",
+    "spacy>=3.6",
+    "networkx>=3.1",
+    "PyMuPDF>=1.23",          # PDF extraction
+    "python-docx>=0.8",       # DOCX extraction
+    "beautifulsoup4>=4.12",   # HTML extraction
+    "pyyaml>=6.0",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+]
+pyserini = [
+    "pyserini>=0.21",         # Lucene-backed BM25 (requires Java)
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

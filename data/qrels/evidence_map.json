@@ -1,0 +1,57 @@
+{
+  "q_0001": {
+    "question": "What is BM25?",
+    "gold_evidence_ids": [
+      "chunk_demo0001"
+    ],
+    "source_doc_ids": [
+      "doc_demo"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0002": {
+    "question": "What does FAISS stand for?",
+    "gold_evidence_ids": [
+      "chunk_demo0001"
+    ],
+    "source_doc_ids": [
+      "doc_demo"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0003": {
+    "question": "What information is provided about similarity search and dense vectors?",
+    "gold_evidence_ids": [
+      "chunk_demo0001"
+    ],
+    "source_doc_ids": [
+      "doc_demo"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0004": {
+    "question": "How does GraphRAG relate to entity and relation knowledge?",
+    "gold_evidence_ids": [
+      "chunk_demo0001"
+    ],
+    "source_doc_ids": [
+      "doc_demo"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0005": {
+    "question": "How are BM25 probabilistic retrieval and FAISS dense vectors connected?",
+    "gold_evidence_ids": [
+      "chunk_demo0001"
+    ],
+    "source_doc_ids": [
+      "doc_demo"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  }
+}
