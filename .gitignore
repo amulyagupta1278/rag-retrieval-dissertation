@@ -12,3 +12,5 @@ venv/
 indexes/faiss/*.index
 indexes/faiss/*.jsonl
 indexes/graphrag/*.gpickle
+**/__pycache__/
+**/*.pyc
