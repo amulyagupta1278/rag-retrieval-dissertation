@@ -1,57 +1,103 @@
 {
-  "q_0001": {
-    "question": "What is BM25?",
-    "gold_evidence_ids": [
-      "chunk_demo0001"
-    ],
-    "source_doc_ids": [
-      "doc_demo"
-    ],
-    "category": "exact_match",
-    "difficulty": "easy"
-  },
-  "q_0002": {
-    "question": "What does FAISS stand for?",
-    "gold_evidence_ids": [
-      "chunk_demo0001"
-    ],
-    "source_doc_ids": [
-      "doc_demo"
-    ],
-    "category": "terminology_heavy",
-    "difficulty": "easy"
-  },
-  "q_0003": {
-    "question": "What information is provided about similarity search and dense vectors?",
-    "gold_evidence_ids": [
-      "chunk_demo0001"
-    ],
-    "source_doc_ids": [
-      "doc_demo"
-    ],
-    "category": "paraphrase",
-    "difficulty": "medium"
-  },
-  "q_0004": {
-    "question": "How does GraphRAG relate to entity and relation knowledge?",
-    "gold_evidence_ids": [
-      "chunk_demo0001"
-    ],
-    "source_doc_ids": [
-      "doc_demo"
-    ],
-    "category": "entity_relation",
-    "difficulty": "medium"
-  },
-  "q_0005": {
-    "question": "How are BM25 probabilistic retrieval and FAISS dense vectors connected?",
-    "gold_evidence_ids": [
-      "chunk_demo0001"
-    ],
-    "source_doc_ids": [
-      "doc_demo"
-    ],
-    "category": "multi_hop",
-    "difficulty": "hard"
-  }
+  "q_0001": [
+    "chunk_24c5744e"
+  ],
+  "q_0002": [
+    "chunk_24c5744e"
+  ],
+  "q_0003": [
+    "chunk_434ecf2f"
+  ],
+  "q_0004": [
+    "chunk_547c46be"
+  ],
+  "q_0005": [
+    "chunk_24c5744e"
+  ],
+  "q_0006": [
+    "chunk_24c5744e"
+  ],
+  "q_0007": [
+    "chunk_434ecf2f"
+  ],
+  "q_0008": [
+    "chunk_547c46be"
+  ],
+  "q_0009": [
+    "chunk_434ecf2f"
+  ],
+  "q_0010": [
+    "chunk_434ecf2f"
+  ],
+  "q_0011": [
+    "chunk_34ceaa4c"
+  ],
+  "q_0012": [
+    "chunk_24c5744e"
+  ],
+  "q_0013": [
+    "chunk_ddc1db00"
+  ],
+  "q_0014": [
+    "chunk_b6920a5f"
+  ],
+  "q_0015": [
+    "chunk_547c46be"
+  ],
+  "q_0016": [
+    "chunk_434ecf2f"
+  ],
+  "q_0017": [
+    "chunk_34ceaa4c"
+  ],
+  "q_0018": [
+    "chunk_24c5744e",
+    "chunk_434ecf2f"
+  ],
+  "q_0019": [
+    "chunk_434ecf2f",
+    "chunk_b6920a5f"
+  ],
+  "q_0020": [
+    "chunk_b6920a5f",
+    "chunk_028e5115"
+  ],
+  "q_0021": [
+    "chunk_028e5115",
+    "chunk_547c46be"
+  ],
+  "q_0022": [
+    "chunk_547c46be",
+    "chunk_24c5744e"
+  ],
+  "q_0023": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ],
+  "q_0024": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ],
+  "q_0025": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ],
+  "q_0026": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ],
+  "q_0027": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ],
+  "q_0028": [
+    "chunk_24c5744e",
+    "chunk_ddc1db00",
+    "chunk_434ecf2f"
+  ]
 }

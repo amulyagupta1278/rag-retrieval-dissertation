@@ -125,6 +125,9 @@ class BM25Retriever(BaseRetriever):
             self.load_index()
 
         tokens = _tokenize(query)
+        if not tokens:
+            return []
+
         scores = self._bm25.get_scores(tokens)
 
         # Argsort descending, take top_k
@@ -132,8 +135,9 @@ class BM25Retriever(BaseRetriever):
 
         ranked = np.argsort(scores)[::-1][:top_k]
         results: list[RetrievalResult] = []
-        for rank, idx in enumerate(ranked, start=1):
-            if scores[idx] <= 0:
+        for actual_rank, idx in enumerate(ranked, start=1):
+            score = scores[idx]
+            if score < 0:
                 continue
             meta = self._meta[idx]
             results.append(
@@ -141,8 +145,8 @@ class BM25Retriever(BaseRetriever):
                     chunk_id=meta["chunk_id"],
                     doc_id=meta["doc_id"],
                     text=meta["text"],
-                    score=float(scores[idx]),
-                    rank=rank,
+                    score=float(score),
+                    rank=len(results) + 1,
                     latency_ms=0.0,
                     retriever=self.name,
                 )

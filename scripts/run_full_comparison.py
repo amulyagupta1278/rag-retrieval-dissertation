@@ -84,7 +84,7 @@ def compute_metrics_at_k(runs: list[dict], qrels: dict, k_values=[5, 10]) -> dic
         ranked_ids = [r["chunk_id"] for r in run.get("results", [])]
 
         for k in k_values:
-            mrr = compute_mrr(ranked_ids, gold_ids)
+            mrr = compute_mrr(ranked_ids[:k], gold_ids)
             recall = compute_recall_at_k(ranked_ids, gold_ids, k)
             ndcg = compute_ndcg_at_k(ranked_ids, gold_ids, k)
 

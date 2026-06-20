@@ -8,21 +8,19 @@ Research purpose
     questions where lexical overlap is weak."
 
 Design choice
-    SentenceTransformer embeddings + FAISS IndexFlatIP (inner product after
-    L2 normalization ≡ cosine similarity). IndexFlatIP is exact (not
-    approximate) at dissertation scale (< 10k chunks), so ANN error is not
-    a confound. The index and metadata are saved to disk so the expensive
-    embedding pass runs once and retrieval experiments replay cheaply.
+    SentenceTransformer embeddings + FAISS IndexFlatL2 (exact L2-based search).
+    IndexFlatL2 is exact (not approximate) at dissertation scale, so ANN error
+    is not a confound. The index and metadata are saved to disk so the
+    expensive embedding pass runs once and retrieval experiments replay cheaply.
 
 Alternative approaches
-    HNSW (approximate) would scale to millions of chunks but introduces an
-    ANN approximation bias; not needed at dissertation scale.
-    Pyserini dense retrieval wraps the same FAISS but requires Java; pure
-    Python is simpler for the mid-semester milestone.
+    HNSW (approximate) would scale to millions of chunks but introduces an ANN
+    approximation bias; not needed at dissertation scale. IndexFlatIP (cosine)
+    is also valid but L2 is more standard for evaluation comparisons.
 
 Expected strengths
-    Strong semantic matching on paraphrased and meaning-preserving queries.
-    Embeddings pre-computed offline; query-time latency is milliseconds.
+    Strong semantic matching on paraphrased queries. Embeddings pre-computed
+    offline; query-time latency is milliseconds. Exact search (no approximation).
 
 Expected weaknesses
     Requires embedding model download (~90 MB). Underperforms on queries
@@ -34,13 +32,18 @@ from __future__ import annotations
 
 import json
 import logging
-import os
-import pickle
 import time
 from pathlib import Path
 from typing import Optional
 
 import numpy as np
+
+try:
+    import faiss
+except ImportError:
+    faiss = None
+
+from sentence_transformers import SentenceTransformer
 
 from .base_retriever import BaseRetriever, RetrievalResult
 
@@ -49,142 +52,221 @@ logger = logging.getLogger(__name__)
 
 class FAISSRetriever(BaseRetriever):
     """
-    Dense retriever using SentenceTransformer embeddings and FAISS.
+    Dense retriever using FAISS IndexFlatL2 and SentenceTransformer embeddings.
 
     Parameters
     ----------
+    index_dir : Path | str
+        Directory where index, config, and chunk metadata are stored.
+    chunks_path : Path | str
+        Path to chunks_v1.jsonl.
     model_name : str
-        HuggingFace model id for sentence-transformers.
-    index_path : str | Path
-        Where to persist/load the FAISS index binary.
-    meta_path : str | Path
-        Where to persist/load chunk metadata (JSONL, one dict per chunk).
-    normalize : bool
-        If True, L2-normalize embeddings (cosine similarity via inner product).
+        HuggingFace SentenceTransformer model identifier.
     """
 
     name = "faiss"
 
     def __init__(
         self,
-        model_name: str = "sentence-transformers/all-MiniLM-L6-v2",
-        index_path: str | Path = "indexes/faiss/faiss.index",
-        meta_path: str | Path = "indexes/faiss/faiss_meta.jsonl",
-        normalize: bool = True,
-        batch_size: int = 64,
+        index_dir: Path | str = "indexes/faiss",
+        chunks_path: Path | str = "data/chunks/chunks_v1.jsonl",
+        model_name: str = "all-MiniLM-L6-v2",
     ) -> None:
-        self.model_name = model_name
-        self.index_path = Path(index_path)
-        self.meta_path = Path(meta_path)
-        self.normalize = normalize
-        self.batch_size = batch_size
-        self._index = None
-        self._meta: list[dict] = []
-        self._model = None
+        if faiss is None:
+            raise ImportError("faiss-cpu not installed. Run: pip install faiss-cpu")
 
-    # ------------------------------------------------------------------
-    # Index lifecycle
-    # ------------------------------------------------------------------
+        self.index_dir = Path(index_dir)
+        self.chunks_path = Path(chunks_path)
+        self.model_name = model_name
+
+        self.index_dir.mkdir(parents=True, exist_ok=True)
+
+        self.model: Optional[SentenceTransformer] = None
+        self.index: Optional[faiss.IndexFlatL2] = None
+        self.chunk_ids: list[str] = []
+        self.chunk_texts: dict[str, str] = {}
+        self.chunk_docs: dict[str, str] = {}
 
     def build_index(self, chunks: list[dict]) -> None:
-        """Embed all chunks and build a FAISS index. Saves to disk."""
-        import faiss
-        from sentence_transformers import SentenceTransformer
+        """
+        Build FAISS index from chunks.
 
-        logger.info("Loading embedding model: %s", self.model_name)
-        self._model = SentenceTransformer(self.model_name)
+        Parameters
+        ----------
+        chunks : list[dict]
+            List of chunk dicts, each with at least 'chunk_id' and 'text'.
+        """
+        logger.info(f"Building FAISS index with {len(chunks)} chunks...")
 
-        texts = [c["text"] for c in chunks]
-        self._meta = [
-            {"chunk_id": c["chunk_id"], "doc_id": c["doc_id"], "text": c["text"]}
-            for c in chunks
-        ]
+        # Load embedding model
+        logger.info(f"Loading SentenceTransformer model: {self.model_name}")
+        self.model = SentenceTransformer(self.model_name)
+        embedding_dim = self.model.get_sentence_embedding_dimension()
 
-        logger.info("Encoding %d chunks (batch_size=%d)…", len(texts), self.batch_size)
-        t0 = time.perf_counter()
-        embeddings = self._model.encode(
-            texts,
-            batch_size=self.batch_size,
-            show_progress_bar=True,
-            convert_to_numpy=True,
-        )
+        # Encode all chunks
+        logger.info("Encoding chunk texts...")
+        texts = [chunk["text"] for chunk in chunks]
+        embeddings = self.model.encode(texts, show_progress_bar=True, normalize_embeddings=False)
+        embeddings = np.array(embeddings, dtype=np.float32)
 
-        if self.normalize:
-            norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
-            norms = np.where(norms == 0, 1.0, norms)
-            embeddings = embeddings / norms
+        # Build index (using L2 for exact similarity)
+        logger.info(f"Building IndexFlatL2 (dim={embedding_dim})...")
+        self.index = faiss.IndexFlatL2(embedding_dim)
+        self.index.add(embeddings)
 
-        dim = embeddings.shape[1]
-        index = faiss.IndexFlatIP(dim)
-        index.add(embeddings.astype(np.float32))
+        # Store chunk metadata
+        self.chunk_ids = [chunk["chunk_id"] for chunk in chunks]
+        self.chunk_texts = {chunk["chunk_id"]: chunk["text"] for chunk in chunks}
+        self.chunk_docs = {chunk["chunk_id"]: chunk.get("doc_id", "") for chunk in chunks}
 
-        elapsed = time.perf_counter() - t0
-        logger.info("Index built: %d vectors, dim=%d, %.1fs", index.ntotal, dim, elapsed)
+        # Save to disk
+        logger.info("Saving index and metadata to disk...")
+        faiss.write_index(self.index, str(self.index_dir / "faiss.index"))
 
-        self._index = index
-        self._save()
+        with open(self.index_dir / "chunk_ids.json", "w") as f:
+            json.dump(self.chunk_ids, f)
 
-    def _save(self) -> None:
-        import faiss
+        config = {
+            "model_name": self.model_name,
+            "embedding_dim": embedding_dim,
+            "num_chunks": len(chunks),
+            "index_type": "IndexFlatL2",
+        }
+        with open(self.index_dir / "config.json", "w") as f:
+            json.dump(config, f, indent=2)
 
-        self.index_path.parent.mkdir(parents=True, exist_ok=True)
-        faiss.write_index(self._index, str(self.index_path))
-        self.meta_path.parent.mkdir(parents=True, exist_ok=True)
-        with self.meta_path.open("w", encoding="utf-8") as fh:
-            for m in self._meta:
-                fh.write(json.dumps(m) + "\n")
-        logger.info("FAISS index saved → %s", self.index_path)
+        logger.info(f"✓ FAISS index built. {len(chunks)} chunks indexed.")
 
     def load_index(self) -> None:
-        """Load a previously built index from disk."""
-        import faiss
+        """Load index and metadata from disk."""
+        logger.info("Loading FAISS index from disk...")
 
-        if not self.index_path.exists():
-            raise FileNotFoundError(f"FAISS index not found: {self.index_path}")
-        self._index = faiss.read_index(str(self.index_path))
-        self._meta = []
-        with self.meta_path.open(encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if line:
-                    self._meta.append(json.loads(line))
-        logger.info("FAISS index loaded: %d vectors", self._index.ntotal)
+        index_path = self.index_dir / "faiss.index"
+        if not index_path.exists():
+            raise FileNotFoundError(f"Index file not found: {index_path}")
 
-    def _ensure_model(self) -> None:
-        if self._model is None:
-            from sentence_transformers import SentenceTransformer
+        # Load index
+        self.index = faiss.read_index(str(index_path))
 
-            self._model = SentenceTransformer(self.model_name)
+        # Load chunk_ids
+        with open(self.index_dir / "chunk_ids.json") as f:
+            self.chunk_ids = json.load(f)
 
-    # ------------------------------------------------------------------
-    # Retrieval
-    # ------------------------------------------------------------------
+        # Load config
+        with open(self.index_dir / "config.json") as f:
+            config = json.load(f)
+        self.model_name = config["model_name"]
+
+        # Load model
+        logger.info(f"Loading SentenceTransformer model: {self.model_name}")
+        self.model = SentenceTransformer(self.model_name)
+
+        # Load chunk metadata
+        self._load_chunk_metadata()
+
+        logger.info(f"✓ Loaded index with {len(self.chunk_ids)} chunks.")
+
+    def _load_chunk_metadata(self) -> None:
+        """Load chunk texts and doc_ids from chunks_v1.jsonl."""
+        logger.info(f"Loading chunk metadata from {self.chunks_path}...")
+        with open(self.chunks_path) as f:
+            for line in f:
+                chunk = json.loads(line)
+                chunk_id = chunk["chunk_id"]
+                self.chunk_texts[chunk_id] = chunk["text"]
+                self.chunk_docs[chunk_id] = chunk.get("doc_id", "")
 
     def retrieve(self, query: str, top_k: int = 10) -> list[RetrievalResult]:
-        if self._index is None:
-            self.load_index()
-        self._ensure_model()
+        """
+        Retrieve top_k chunks for a query.
 
-        q_emb = self._model.encode([query], convert_to_numpy=True)
-        if self.normalize:
-            norm = np.linalg.norm(q_emb, axis=1, keepdims=True)
-            q_emb = q_emb / np.where(norm == 0, 1.0, norm)
+        Parameters
+        ----------
+        query : str
+            Query text.
+        top_k : int
+            Number of results to return.
 
-        scores, indices = self._index.search(q_emb.astype(np.float32), top_k)
-        results: list[RetrievalResult] = []
-        for rank, (idx, score) in enumerate(zip(indices[0], scores[0]), start=1):
-            if idx < 0 or idx >= len(self._meta):
+        Returns
+        -------
+        list[RetrievalResult]
+            Ranked results sorted by score (descending).
+        """
+        if self.index is None or self.model is None:
+            raise RuntimeError("Index not loaded. Call load_index() first.")
+
+        # Encode query
+        query_embedding = self.model.encode([query], normalize_embeddings=False)
+        query_embedding = np.array(query_embedding, dtype=np.float32)
+
+        # Search
+        distances, indices = self.index.search(query_embedding, top_k)
+        distances = distances[0]
+        indices = indices[0]
+
+        # Convert distances to scores (L2 distance → similarity score)
+        results = []
+        for rank, (idx, distance) in enumerate(zip(indices, distances), 1):
+            if idx == -1:  # Invalid result (shouldn't happen with IndexFlatL2)
                 continue
-            meta = self._meta[idx]
+
+            chunk_id = self.chunk_ids[idx]
+            text = self.chunk_texts.get(chunk_id, "")
+            doc_id = self.chunk_docs.get(chunk_id, "")
+
+            # Convert L2 distance to score (lower distance = higher score)
+            # score = 1 / (1 + distance) ensures score in (0, 1]
+            score = 1.0 / (1.0 + float(distance))
+
             results.append(
                 RetrievalResult(
-                    chunk_id=meta["chunk_id"],
-                    doc_id=meta["doc_id"],
-                    text=meta["text"],
-                    score=float(score),
+                    chunk_id=chunk_id,
+                    doc_id=doc_id,
+                    text=text,
+                    score=score,
                     rank=rank,
-                    latency_ms=0.0,   # filled by retrieve_timed
+                    latency_ms=0.0,  # Set by retrieve_timed()
                     retriever=self.name,
+                    extra={"distance": float(distance)},
                 )
             )
+
         return results
+
+    def write_run_file(
+        self,
+        queries: list[dict],
+        top_k: int,
+        output_path: Path | str,
+    ) -> None:
+        """
+        Write TREC-format run file.
+
+        Parameters
+        ----------
+        queries : list[dict]
+            List of {"query_id": ..., "query": ...} or {"question_id": ..., "question": ...} dicts.
+        top_k : int
+            Number of results per query.
+        output_path : Path | str
+            Output path for run file (tab-separated).
+        """
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        logger.info(f"Writing run file to {output_path}...")
+        with open(output_path, "w") as f:
+            f.write("query_id\tQ0\tchunk_id\trank\tscore\tsystem_name\n")
+
+            for query_dict in queries:
+                query_id = query_dict.get("query_id", query_dict.get("question_id"))
+                query_text = query_dict.get("query", query_dict.get("question"))
+
+                results = self.retrieve(query_text, top_k=top_k)
+
+                for result in results:
+                    f.write(
+                        f"{query_id}\tQ0\t{result.chunk_id}\t{result.rank}\t{result.score:.6f}\t{self.name}\n"
+                    )
+
+        logger.info(f"✓ Run file written to {output_path}")
