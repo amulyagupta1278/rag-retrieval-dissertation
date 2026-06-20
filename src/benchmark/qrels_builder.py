@@ -72,7 +72,10 @@ class QRelsBuilder:
                 if len(parts) != 4:
                     continue
                 qid, _, did, rel = parts
-                qrels.setdefault(qid, {})[did] = int(rel)
+                try:
+                    qrels.setdefault(qid, {})[did] = int(rel)
+                except ValueError:
+                    continue
         return qrels
 
     @staticmethod
