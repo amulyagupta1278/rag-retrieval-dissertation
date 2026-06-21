@@ -1,0 +1,13 @@
+=== OVERALL METRICS ===
+Retriever=BM25 | MRR@5=0.8304 | MRR@10=0.8304 | Recall@5=0.8214 | Recall@10=1.0000 | nDCG@5=0.7804 | nDCG@10=0.8683 | Avg Latency (ms)=0.06
+Retriever=FAISS | MRR@5=0.7958 | MRR@10=0.7958 | Recall@5=0.8571 | Recall@10=0.8571 | nDCG@5=0.7742 | nDCG@10=0.7742 | Avg Latency (ms)=92.06
+Retriever=GRAPHRAG | MRR@5=0.6095 | MRR@10=0.6095 | Recall@5=0.6875 | Recall@10=0.6875 | nDCG@5=0.5909 | nDCG@10=0.5909 | Avg Latency (ms)=3.29
+
+=== PER-CATEGORY METRICS ===
+Category,BM25,FAISS,GRAPHRAG
+entity_relation,1.0000,1.0000,1.0000
+exact_lookup,0.9444,0.6389,0.5407
+multi_hop,0.5500,0.6067,0.3333
+paraphrase,1.0000,1.0000,0.2667
+synthesis,0.6667,0.9167,0.9167
+terminology,1.0000,1.0000,0.6250

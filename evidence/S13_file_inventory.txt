@@ -1,0 +1,25 @@
+=== INDEX FILES ===
+indexes/graphrag/chunk_lookup.json: 15,587 bytes
+indexes/graphrag/graph.json: 752,218 bytes
+indexes/bm25/bm25_index.pkl: 41,762 bytes
+indexes/faiss/faiss.index: 15,405 bytes
+indexes/faiss/config.json: 113 bytes
+indexes/faiss/chunk_ids.json: 180 bytes
+
+=== RUN FILES ===
+runs/metrics/comparison_summary.csv: 240 bytes
+runs/metrics/metrics.csv: 633 bytes
+runs/metrics/bm25_metrics.csv: 633 bytes
+runs/metrics/per_category.csv: 234 bytes
+runs/retrieval/graphrag_run.tsv: 5,946 bytes
+runs/retrieval/faiss_run.jsonl: 231,464 bytes
+runs/retrieval/faiss_run.tsv: 5,924 bytes
+runs/retrieval/bm25_run.jsonl: 450,235 bytes
+runs/retrieval/graphrag_run.jsonl: 254,308 bytes
+runs/reports/comparison_report.md: 1,343 bytes
+runs/reports/retrieval_results.json: 2,970 bytes
+runs/reports/bm25_top5_k11.5_b0.75_metrics.json: 3,094 bytes
+runs/reports/bm25_top5_k11.5_b0.75_summary.md: 1,951 bytes
+runs/reports/comparison_all_retrievers_metrics.json: 3,091 bytes
+runs/reports/comparison_all_retrievers_summary.md: 1,950 bytes
+runs/reports/sample_queries.md: 529 bytes

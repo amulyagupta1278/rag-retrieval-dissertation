@@ -1,0 +1,4 @@
+BM25 index built successfully
+Chunks indexed: 10
+Index saved to: indexes/bm25/
+  bm25_index.pkl: 41,762 bytes

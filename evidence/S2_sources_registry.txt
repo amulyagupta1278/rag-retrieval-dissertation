@@ -1,0 +1,6 @@
+source_id,source_name,source_type,source_url,crawl_date,doc_count,chunk_count
+1,Wikipedia: Pradhan Mantri Awas Yojana,wiki,https://en.wikipedia.org/wiki/Pradhan_Mantri_Awas_Yojana,2026-06-21,1,2
+2,Wikipedia: MGNREGA,wiki,https://en.wikipedia.org/wiki/Mahatma_Gandhi_National_Rural_Employment_Guarantee_Act,2026-06-21,1,2
+3,Wikipedia: PMJDY,wiki,https://en.wikipedia.org/wiki/Pradhan_Mantri_Jan_Dhan_Yojana,2026-06-21,1,2
+4,Wikipedia: PMMY,wiki,https://en.wikipedia.org/wiki/Pradhan_Mantri_Mudra_Yojana,2026-06-21,1,2
+5,Wikipedia: PMFBY,wiki,https://en.wikipedia.org/wiki/Pradhan_Mantri_Fasal_Bima_Yojana,2026-06-21,1,2

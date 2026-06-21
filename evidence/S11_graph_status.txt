@@ -1,0 +1,5 @@
+GraphRAG index directory exists
+  chunk_lookup.json: 15,587 bytes
+  graph.json: 752,218 bytes
+    - Nodes: 165
+    - Edges: 5013

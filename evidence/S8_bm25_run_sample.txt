@@ -1,0 +1,29 @@
+Total queries in run file: 28
+Queries with results: 28
+
+First 5 query results:
+Query: How often are payments made under Awas?
+Results: 10 retrieved
+  - chunk_434ecf2f: score=3.4522
+  - chunk_24c5744e: score=2.1330
+
+Query: What is the main objective of Awas?
+Results: 10 retrieved
+  - chunk_24c5744e: score=3.9993
+  - chunk_ddc1db00: score=3.8561
+
+Query: What is the main objective of MGNREGA?
+Results: 10 retrieved
+  - chunk_434ecf2f: score=4.1672
+  - chunk_34ceaa4c: score=3.7261
+
+Query: What is the main objective of Fasal?
+Results: 10 retrieved
+  - chunk_547c46be: score=4.3574
+  - chunk_746803ec: score=2.4034
+
+Query: Who are the target beneficiaries of Awas?
+Results: 10 retrieved
+  - chunk_24c5744e: score=5.0390
+  - chunk_ddc1db00: score=3.2150
+

@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.2, pytest-9.0.3, pluggy-1.6.0 -- /Users/amulyagupta/.pyenv/versions/3.12.2/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/amulyagupta/Desktop/rag-retrieval-dissertation
+configfile: pyproject.toml
+plugins: typeguard-4.5.2, anyio-4.13.0
+collecting ... collected 31 items
+
+tests/test_evaluation.py::TestMRR::test_first_position PASSED            [  3%]
+tests/test_evaluation.py::TestMRR::test_second_position PASSED           [  6%]
+tests/test_evaluation.py::TestMRR::test_not_found PASSED                 [  9%]
+tests/test_evaluation.py::TestMRR::test_empty_gold PASSED                [ 12%]
+tests/test_evaluation.py::TestRecallAtK::test_full_recall PASSED         [ 16%]
+tests/test_evaluation.py::TestRecallAtK::test_partial_recall PASSED      [ 19%]
+tests/test_evaluation.py::TestRecallAtK::test_zero_recall PASSED         [ 22%]
+tests/test_evaluation.py::TestRecallAtK::test_k_less_than_gold PASSED    [ 25%]
+tests/test_evaluation.py::TestNDCGAtK::test_perfect_ranking PASSED       [ 29%]
+tests/test_evaluation.py::TestNDCGAtK::test_gold_at_rank_2 PASSED        [ 32%]
+tests/test_evaluation.py::TestNDCGAtK::test_no_gold_retrieved PASSED     [ 35%]
+tests/test_evaluation.py::TestPrecisionAtK::test_all_relevant PASSED     [ 38%]
+tests/test_evaluation.py::TestPrecisionAtK::test_half_relevant PASSED    [ 41%]
+tests/test_evaluation.py::TestPrecisionAtK::test_k_zero PASSED           [ 45%]
+tests/test_evaluation.py::TestComputeAllMetrics::test_aggregate PASSED   [ 48%]
+tests/test_ingestion.py::TestTextCleaner::test_unicode_normalisation PASSED [ 51%]
+tests/test_ingestion.py::TestTextCleaner::test_removes_page_numbers PASSED [ 54%]
+tests/test_ingestion.py::TestTextCleaner::test_collapses_whitespace PASSED [ 58%]
+tests/test_ingestion.py::TestChunker::test_basic_chunking PASSED         [ 61%]
+tests/test_ingestion.py::TestChunker::test_chunk_ids_unique PASSED       [ 64%]
+tests/test_ingestion.py::TestChunker::test_overlap_creates_continuity PASSED [ 67%]
+tests/test_ingestion.py::TestChunker::test_invalid_overlap_raises PASSED [ 70%]
+tests/test_ingestion.py::TestChunker::test_to_dict_roundtrip PASSED      [ 74%]
+tests/test_ingestion.py::TestMetadataEnricher::test_adds_required_fields PASSED [ 77%]
+tests/test_ingestion.py::TestMetadataEnricher::test_domain_tag_ir PASSED [ 80%]
+tests/test_retrievers.py::TestBM25Retriever::test_build_and_retrieve PASSED [ 83%]
+tests/test_retrievers.py::TestBM25Retriever::test_top_result_for_bm25_query PASSED [ 87%]
+tests/test_retrievers.py::TestBM25Retriever::test_save_and_load PASSED   [ 90%]
+tests/test_retrievers.py::TestBM25Retriever::test_rank_ordering PASSED   [ 93%]
+tests/test_retrievers.py::TestBM25Retriever::test_run_benchmark PASSED   [ 96%]
+tests/test_retrievers.py::TestBM25Retriever::test_empty_query_returns_results PASSED [100%]
+
+============================== 31 passed in 5.62s ==============================

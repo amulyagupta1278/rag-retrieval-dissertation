@@ -1,0 +1,11 @@
+GraphRAG run file exists
+Total queries: 28
+Queries with results: 27
+
+First 3 results:
+  Q: How often are payments made under Awas?
+  Results: 5 retrieved
+  Q: What is the main objective of Awas?
+  Results: 5 retrieved
+  Q: What is the main objective of MGNREGA?
+  Results: 5 retrieved

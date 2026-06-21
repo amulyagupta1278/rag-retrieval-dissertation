@@ -1,0 +1,5 @@
+FAISS index directory exists
+Files:
+  faiss.index: 15,405 bytes
+  config.json: 113 bytes
+  chunk_ids.json: 180 bytes
