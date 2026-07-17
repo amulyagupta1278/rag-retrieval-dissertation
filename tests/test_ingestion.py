@@ -85,3 +85,12 @@ class TestMetadataEnricher:
         chunk = {"chunk_id": "c1", "doc_id": "d1", "text": "BM25 retrieval ranking recall precision", "word_count": 6}
         result = enricher.enrich(chunk)
         assert "information_retrieval" in result["domain_tags"]
+
+    def test_provenance_survives_enrichment(self):
+        provenance = {"document_id": "scheme_guideline", "ministry": "Ministry of Test"}
+        chunk = {
+            "chunk_id": "c1", "doc_id": "d1", "text": "Eligibility is defined by government.",
+            "word_count": 5, "extra_meta": provenance,
+        }
+        result = MetadataEnricher().enrich(chunk)
+        assert result["extra_meta"] == provenance

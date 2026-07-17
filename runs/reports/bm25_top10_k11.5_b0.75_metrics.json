@@ -1,0 +1,168 @@
+{
+  "run_name": "bm25_top10_k11.5_b0.75",
+  "generated_at": "2026-07-17T07:39:31.508989+00:00",
+  "config": {
+    "retriever": "bm25",
+    "top_k": 10,
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "metrics": [
+    {
+      "retriever": "bm25",
+      "query_category": "all",
+      "num_queries": 100,
+      "mrr": 0.4265,
+      "recall_at_k": {
+        "1": 0.205,
+        "3": 0.425,
+        "5": 0.575,
+        "10": 0.72
+      },
+      "ndcg_at_k": {
+        "1": 0.25,
+        "3": 0.3563,
+        "5": 0.4253,
+        "10": 0.4778
+      },
+      "precision_at_k": {
+        "1": 0.25,
+        "3": 0.19,
+        "5": 0.156,
+        "10": 0.099
+      },
+      "avg_latency_ms": 1.38,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "exact_match",
+      "num_queries": 20,
+      "mrr": 0.7396,
+      "recall_at_k": {
+        "1": 0.6,
+        "3": 0.85,
+        "5": 0.95,
+        "10": 1.0
+      },
+      "ndcg_at_k": {
+        "1": 0.6,
+        "3": 0.7446,
+        "5": 0.7877,
+        "10": 0.8035
+      },
+      "precision_at_k": {
+        "1": 0.6,
+        "3": 0.2833,
+        "5": 0.19,
+        "10": 0.1
+      },
+      "avg_latency_ms": 1.03,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "terminology_heavy",
+      "num_queries": 20,
+      "mrr": 0.4042,
+      "recall_at_k": {
+        "1": 0.2,
+        "3": 0.45,
+        "5": 0.7,
+        "10": 0.85
+      },
+      "ndcg_at_k": {
+        "1": 0.2,
+        "3": 0.3577,
+        "5": 0.461,
+        "10": 0.5113
+      },
+      "precision_at_k": {
+        "1": 0.2,
+        "3": 0.15,
+        "5": 0.14,
+        "10": 0.085
+      },
+      "avg_latency_ms": 0.47,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "paraphrase",
+      "num_queries": 20,
+      "mrr": 0.0972,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.1,
+        "5": 0.2,
+        "10": 0.4
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0565,
+        "5": 0.0996,
+        "10": 0.1681
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0333,
+        "5": 0.04,
+        "10": 0.04
+      },
+      "avg_latency_ms": 1.33,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "entity_relation",
+      "num_queries": 20,
+      "mrr": 0.483,
+      "recall_at_k": {
+        "1": 0.15,
+        "3": 0.375,
+        "5": 0.5,
+        "10": 0.7
+      },
+      "ndcg_at_k": {
+        "1": 0.3,
+        "3": 0.338,
+        "5": 0.404,
+        "10": 0.4836
+      },
+      "precision_at_k": {
+        "1": 0.3,
+        "3": 0.25,
+        "5": 0.2,
+        "10": 0.14
+      },
+      "avg_latency_ms": 2.03,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "multi_hop",
+      "num_queries": 20,
+      "mrr": 0.4083,
+      "recall_at_k": {
+        "1": 0.075,
+        "3": 0.35,
+        "5": 0.525,
+        "10": 0.65
+      },
+      "ndcg_at_k": {
+        "1": 0.15,
+        "3": 0.2847,
+        "5": 0.3744,
+        "10": 0.4225
+      },
+      "precision_at_k": {
+        "1": 0.15,
+        "3": 0.2333,
+        "5": 0.21,
+        "10": 0.13
+      },
+      "avg_latency_ms": 2.02,
+      "extra": {}
+    }
+  ]
+}

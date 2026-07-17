@@ -1,8 +1,9 @@
 corpus:
   name: "rag_dissertation_corpus"
-  version: "v1"
-  domain: "artificial_intelligence_information_retrieval"
-  snapshot_dir: "data/raw/snapshot_v1"
+  version: "v2"
+  domain: "indian_government_welfare_schemes"
+  catalog_path: "data/sources/source_catalog_v2.jsonl"
+  snapshot_dir: "data/raw/snapshot_v2"
   processed_dir: "data/processed"
   supported_formats:
     - pdf
@@ -13,3 +14,13 @@ corpus:
   dedup_threshold: 0.95   # Jaccard similarity above this → duplicate
   min_doc_length: 100     # characters
   max_doc_length: 500000  # characters
+  min_documents: 100
+  max_documents: 150
+  min_chunks: 800
+  max_chunks: 1500
+  min_ministries: 8
+  min_english_ratio: 0.80
+  min_pdf_chars_per_page: 80
+  explicit_authority_hosts:
+    - "mygov.in"
+    - "www.mygov.in"

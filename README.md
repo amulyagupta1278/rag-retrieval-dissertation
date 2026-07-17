@@ -61,8 +61,8 @@ Demonstrate whether FAISS (dense), BM25 (sparse), and GraphRAG (graph-based) ret
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 
-# 2. Add your corpus
-#    Drop PDF/DOCX/TXT files into data/raw/snapshot_v1/
+# 2. Acquire reviewed authoritative v2 sources
+python scripts/download_corpus.py
 
 # 3. Build corpus + benchmark
 python experiments/build_dataset.py
@@ -74,6 +74,7 @@ python experiments/run_graphrag.py --top-k 10 --rebuild
 
 # 5. Compare all retrievers
 python experiments/compare_retrievers.py
+python scripts/generate_corpus_statistics.py
 # → runs/reports/experiment_summary.md
 # → runs/metrics/metrics.csv
 # → runs/reports/retrieval_results.json
@@ -85,6 +86,7 @@ Or use the Makefile:
 make install        # pip install
 make spacy-model    # download en_core_web_sm
 make all            # dataset + faiss + bm25 + graphrag + compare
+make all-v2         # acquire v2 + full rebuild + statistics + comparison
 make test           # 31 unit tests
 ```
 
@@ -111,6 +113,24 @@ make test           # 31 unit tests
 - **Latency (ms)** — avg per query
 
 All metrics are computed per-retriever **and** per-query-category for sliced analysis.
+
+---
+
+## Authoritative Corpus v2
+
+`data/sources/source_catalog_v2.jsonl` is the reviewed source registry. Acquisition stores
+official myScheme scheme content, FAQs, and document metadata with checksums in
+`data/raw/snapshot_v2/`. Canonical ingestion remains `experiments/build_dataset.py` and keeps
+the established 512-word chunks with 64-word overlap. Builds fail closed when document/chunk
+bounds, provenance, ministry diversity, document-type coverage, deduplication, or qrels lineage
+checks fail. Versioned v1 artifacts remain untouched.
+
+Audit outputs:
+
+- `data/metadata/acquisition_audit_v2.jsonl`
+- `data/metadata/deduplication_report_v2.jsonl`
+- `data/metadata/corpus_statistics_v2.json`
+- `data/metadata/corpus_statistics_v2.md`
 
 ---
 

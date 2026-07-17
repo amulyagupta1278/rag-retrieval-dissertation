@@ -73,6 +73,13 @@ def compute_mrr(ranked_ids: list[str], gold_ids: set[str]) -> float:
     return 0.0
 
 
+def compute_mrr_at_k(ranked_ids: list[str], gold_ids: set[str], k: int) -> float:
+    """Reciprocal rank after explicitly truncating the ranked list at *k*."""
+    if k < 0:
+        raise ValueError("k must be non-negative")
+    return compute_mrr(ranked_ids[:k], gold_ids)
+
+
 def compute_recall_at_k(ranked_ids: list[str], gold_ids: set[str], k: int) -> float:
     """Recall@k: fraction of gold chunks retrieved in the top-k."""
     if not gold_ids:

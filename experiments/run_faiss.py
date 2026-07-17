@@ -71,15 +71,13 @@ def main() -> None:
     logger.info("Loaded %d QA items", len(qa_items))
 
     # Build / load FAISS index
+    index_path = Path(cfg.get("index_path", "indexes/faiss/faiss.index"))
     retriever = FAISSRetriever(
+        index_dir=index_path.parent,
+        chunks_path=chunks_path,
         model_name=cfg.get("model_name", "sentence-transformers/all-MiniLM-L6-v2"),
-        index_path=cfg.get("index_path", "indexes/faiss/faiss.index"),
-        meta_path=cfg.get("meta_path", "indexes/faiss/faiss_meta.jsonl"),
-        normalize=cfg.get("normalize_embeddings", True),
-        batch_size=cfg.get("batch_size", 64),
     )
 
-    index_path = Path(cfg.get("index_path", "indexes/faiss/faiss.index"))
     if args.rebuild or not index_path.exists():
         logger.info("Building FAISS index…")
         retriever.build_index(chunks)

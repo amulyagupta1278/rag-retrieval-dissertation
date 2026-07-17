@@ -1,26 +1,501 @@
 {
   "q_0001": {
-    "question": "What is BM25?",
+    "question": "What is Pradhan Mantri Shram Yogi Maan-dhan?",
     "category": "exact_match",
     "confidence": "stored"
   },
   "q_0002": {
-    "question": "What does FAISS stand for?",
-    "category": "terminology_heavy",
+    "question": "What is Pradhan Mantri Viksit Bharat Rozgar Yojana?",
+    "category": "exact_match",
     "confidence": "stored"
   },
   "q_0003": {
-    "question": "What information is provided about similarity search and dense vectors?",
-    "category": "paraphrase",
+    "question": "What is Agri-Clinics And Agri-Business Centres Scheme?",
+    "category": "exact_match",
     "confidence": "stored"
   },
   "q_0004": {
-    "question": "How does GraphRAG relate to entity and relation knowledge?",
-    "category": "entity_relation",
+    "question": "What is Internship Programme Of The Department Of Expenditure?",
+    "category": "exact_match",
     "confidence": "stored"
   },
   "q_0005": {
-    "question": "How are BM25 probabilistic retrieval and FAISS dense vectors connected?",
+    "question": "What is National Mission on Natural Farming?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0006": {
+    "question": "What is Agricultural Marketing Infrastructure?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0007": {
+    "question": "What is Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0008": {
+    "question": "What is ICAR Emeritus Professor?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0009": {
+    "question": "What is AICTE e-Shodh Sindhu Scheme (eSS)?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0010": {
+    "question": "What is Indira Gandhi National Widow Pension Scheme?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0011": {
+    "question": "What is Dr Ambedkar Central Sector Scheme of Interest Subsidy on Educational Loans for Overseas Studies for Other Backward Classes (OBCs) and Economically Backward Classes (EBCs)?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0012": {
+    "question": "What is ICMR- Post Doctoral Fellowship?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0013": {
+    "question": "What is Credit Based Schemes For SC - Term Loan (TL)?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0014": {
+    "question": "What is Kera Suraksha Insurance Scheme?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0015": {
+    "question": "What is Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0016": {
+    "question": "What is PM Street Vendor\u2019s AtmaNirbhar Nidhi (PM SVANidhi)?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0017": {
+    "question": "What is Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0018": {
+    "question": "What is Pradhan Mantri Surakshit Matritva Abhiyan?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0019": {
+    "question": "What is Centrally Sponsored Scheme of Pre-matric Scholarship to Other Backward Classes (OBC) for Studies in India?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0020": {
+    "question": "What is Janani Shishu Suraksha Karyakram?",
+    "category": "exact_match",
+    "confidence": "stored"
+  },
+  "q_0021": {
+    "question": "What does DGT stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0022": {
+    "question": "What does PRI stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0023": {
+    "question": "What does ULB stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0024": {
+    "question": "What does NTA stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0025": {
+    "question": "What does OCPS stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0026": {
+    "question": "What does CCPS stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0027": {
+    "question": "What does VLE stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0028": {
+    "question": "What does AMRUT stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0029": {
+    "question": "What does CSC stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0030": {
+    "question": "What does SHA stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0031": {
+    "question": "What does SCP stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0032": {
+    "question": "What does CFLD stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0033": {
+    "question": "What does AAY stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0034": {
+    "question": "What does NFRS stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0035": {
+    "question": "What does MSDE stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0036": {
+    "question": "What does NCSC stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0037": {
+    "question": "What does IP stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0038": {
+    "question": "What does PDB stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0039": {
+    "question": "What does AMI stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0040": {
+    "question": "What does ISAM stand for?",
+    "category": "terminology_heavy",
+    "confidence": "stored"
+  },
+  "q_0041": {
+    "question": "What detail does the source provide about Indirect Tax Internship Scheme In Central Board Of Indirect Taxes And Customs (CBIC)?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0042": {
+    "question": "What detail does the source provide about ICMR- Post Doctoral Fellowship?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0043": {
+    "question": "What detail does the source provide about Pradhan Mantri Surakshit Matritva Abhiyan?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0044": {
+    "question": "What detail does the source provide about PM Street Vendor\u2019s AtmaNirbhar Nidhi (PM SVANidhi)?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0045": {
+    "question": "What detail does the source provide about Flexible Memorandum of Understanding (Flexi-MoU) Scheme?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0046": {
+    "question": "What detail does the source provide about AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0047": {
+    "question": "What detail does the source provide about Pradhan Mantri Viksit Bharat Rozgar Yojana?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0048": {
+    "question": "What detail does the source provide about Kisan Vikas Patra Scheme?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0049": {
+    "question": "What detail does the source provide about Pradhan Mantri Shram Yogi Maan-dhan?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0050": {
+    "question": "What detail does the source provide about ICAR Senior Research Fellowship For Post-Graduate Studies In Agricultural Sciences?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0051": {
+    "question": "What detail does the source provide about Centrally Sponsored Scheme for Implementation of the Protection of Civil Rights Act, 1955 and the Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0052": {
+    "question": "What detail does the source provide about Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0053": {
+    "question": "What detail does the source provide about Pradhan Mantri Adi Adarsh Gram Yojana (PMAAGY)?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0054": {
+    "question": "What detail does the source provide about Ambedkar Social Innovation and Incubation Mission (ASIIM)?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0055": {
+    "question": "What detail does the source provide about Agri-Clinics And Agri-Business Centres Scheme?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0056": {
+    "question": "What detail does the source provide about Rastriya Arogya Nidhi - Health Minister\u2019s Cancer Patient Fund?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0057": {
+    "question": "What detail does the source provide about National Agriculture Market?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0058": {
+    "question": "What detail does the source provide about Janani Suraksha Yojana (JSY)?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0059": {
+    "question": "What detail does the source provide about National Savings (Monthly Income Account) Scheme?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0060": {
+    "question": "What detail does the source provide about Atal Mission For Rejuvenation And Urban Transformation?",
+    "category": "paraphrase",
+    "confidence": "stored"
+  },
+  "q_0061": {
+    "question": "How are Indira Gandhi National Disability Pension Scheme and National Family Benefit Scheme related through below poverty line?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0062": {
+    "question": "How are ICMR-Junior Research Fellowship and ICMR- Post Doctoral Fellowship related through ministry of health & family welfare?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0063": {
+    "question": "How are PM Janjati Adivasi Nyaya Maha Abhiyan (PM JANMAN) and Pradhan Mantri Janjatiya Vikas Mission (PMJVM) related through ministry of tribal affairs?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0064": {
+    "question": "How are Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric and National Mission on Natural Farming related through direct benefit transfer?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0065": {
+    "question": "How are Mahatma Gandhi National Rural Employment Guarantee Act and Pradhan Mantri Awaas Yojana - Gramin related through ministry of rural development?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0066": {
+    "question": "How are Janani Suraksha Yojana (JSY) and Pradhan Mantri Surakshit Matritva Abhiyan related through primary health centres?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0067": {
+    "question": "How are Flexible Memorandum of Understanding (Flexi-MoU) Scheme and National Award to Teachers (For Excellence in Vocational Training and Entrepreneurship Development) related through ministry of skill development and entrepreneurship?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0068": {
+    "question": "How are Credit Enhancement Guarantee Scheme For The Scheduled Castes and National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) related through scheduled caste?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0069": {
+    "question": "How are Mahatma Gandhi National Rural Employment Guarantee Act and National Food Security Mission NFSM related through gram panchayat?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0070": {
+    "question": "How are Kisan Vikas Patra Scheme and National Savings Certificates (VIII-Issue) Scheme related through department of economic affairs?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0071": {
+    "question": "How are Kisan Credit Card and Micro Finance Scheme of NMDFC related through self help groups?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0072": {
+    "question": "How are Coaching Schemes For Sc/st/obc (non-creamy Layer) & Minority Students For Universities and National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) related through scheduled tribe?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0073": {
+    "question": "How are Construction of Hostels for OBC Boys and Girls and Micro Finance Scheme of NMDFC related through backward classes?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0074": {
+    "question": "How are NSAP - Indira Gandhi National Old Age Pension Scheme and Pradhan Mantri Awaas Yojana - Gramin related through the persons with disabilities act?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0075": {
+    "question": "How are PM Janjati Adivasi Nyaya Maha Abhiyan (PM JANMAN) and Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India related through ministry of tribal affairs?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0076": {
+    "question": "How are Kera Suraksha Insurance Scheme and National Agriculture Market related through ministry of agriculture and farmers welfare?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0077": {
+    "question": "How are Centrally Sponsored Scheme of Pre-matric Scholarship to Other Backward Classes (OBC) for Studies in India and Disha - Early Intervention and School Readiness Scheme related through ministry of social justice and empowerment?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0078": {
+    "question": "How are Central Sector Scheme for Rehabilitation of Bonded Labourer and Labour Welfare Scheme (Health) related through ministry of labour and employment?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0079": {
+    "question": "How are Flexible Memorandum of Understanding (Flexi-MoU) Scheme and National Apprenticeship Promotion Scheme-2 related through ministry of skill development and entrepreneurship?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0080": {
+    "question": "How are National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) and Pradhan Mantri Adi Adarsh Gram Yojana (PMAAGY) related through scheduled tribe?",
+    "category": "entity_relation",
+    "confidence": "stored"
+  },
+  "q_0081": {
+    "question": "What combined evidence connects Indira Gandhi National Disability Pension Scheme and Indira Gandhi National Widow Pension Scheme through the gram panchayat / block office?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0082": {
+    "question": "What combined evidence connects IVRI Institute Scholarship For M.V.Sc. And Ph.D. and Kera Suraksha Insurance Scheme through ministry of agriculture and farmers welfare?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0083": {
+    "question": "What combined evidence connects Assistance to Voluntary Organizations Working for Welfare of OBCs and AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens through the societies registration act?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0084": {
+    "question": "What combined evidence connects Central Sector Scheme for Rehabilitation of Bonded Labourer and National Pension Scheme For Traders And Self Employed Persons through ministry of labour and employment?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0085": {
+    "question": "What combined evidence connects Ambedkar Social Innovation and Incubation Mission (ASIIM) and Construction of Hostels for OBC Boys and Girls through ministry of social justice and empowerment?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0086": {
+    "question": "What combined evidence connects Disha - Early Intervention and School Readiness Scheme and NSAP - Indira Gandhi National Old Age Pension Scheme through national trust?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0087": {
+    "question": "What combined evidence connects ICAR - Post Matric Scholarship for Scheduled Caste / Scheduled Tribes Candidates and IVRI Institute Scholarship For M.V.Sc. And Ph.D. through indian council of agricultural research?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0088": {
+    "question": "What combined evidence connects Agricultural Extension and MANAGE Internship Programme through the national institute of agricultural extension management?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0089": {
+    "question": "What combined evidence connects Deen Dayal Disabled Rehabilitation Scheme and Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India through the state/union territory?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0090": {
+    "question": "What combined evidence connects Internship Scheme Of The Department Of Economic Affairs and Kisan Vikas Patra Scheme through ministry of finance?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0091": {
+    "question": "What combined evidence connects Disha - Early Intervention and School Readiness Scheme and Divyangjan Kaushal Yojana through department of empowerment of persons with disabilities?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0092": {
+    "question": "What combined evidence connects Coconut Palm Insurance Scheme and Kera Suraksha Insurance Scheme through coconut development board?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0093": {
+    "question": "What combined evidence connects Indira Gandhi National Disability Pension Scheme and NSAP - Indira Gandhi National Old Age Pension Scheme through the national social assistance programme?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0094": {
+    "question": "What combined evidence connects Janani Suraksha Yojana (JSY) and Mahatma Gandhi National Rural Employment Guarantee Act through below poverty line?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0095": {
+    "question": "What combined evidence connects Long Term Fellowship under the Human Resource Development Programme for Health Research and Pradhan Mantri Surakshit Matritva Abhiyan through ministry of health family welfare?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0096": {
+    "question": "What combined evidence connects Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric and National Apprenticeship Promotion Scheme-2 through direct benefit transfer?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0097": {
+    "question": "What combined evidence connects Deen Dayal Upadhyay Grameen Kaushalya Yojana and Deendayal Antyodaya Yojana - National Rural Livelihoods Mission through ministry of rural development?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0098": {
+    "question": "What combined evidence connects Coaching Schemes For Sc/st/obc (non-creamy Layer) & Minority Students For Universities and Credit Enhancement Guarantee Scheme For The Scheduled Castes through scheduled caste?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0099": {
+    "question": "What combined evidence connects AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens and Micro Finance Scheme of NMDFC through self help groups?",
+    "category": "multi_hop",
+    "confidence": "stored"
+  },
+  "q_0100": {
+    "question": "What combined evidence connects Assistance to Voluntary Organizations Working for Welfare of OBCs and Deen Dayal Disabled Rehabilitation Scheme through the societies registration act?",
     "category": "multi_hop",
     "confidence": "stored"
   }

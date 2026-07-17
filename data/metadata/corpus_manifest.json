@@ -1,31 +1,22 @@
 {
-  "crawl_date": "2026-06-21",
-  "total_documents": 5,
-  "total_chunks": 10,
-  "avg_chunk_length_words": 201.9,
-  "chunk_size": 300,
-  "chunk_overlap": 60,
-  "source_breakdown": {
-    "Wikipedia: Pradhan Mantri Awas Yojana": {
-      "doc_count": 1,
-      "chunk_count": 2
-    },
-    "Wikipedia: MGNREGA": {
-      "doc_count": 1,
-      "chunk_count": 2
-    },
-    "Wikipedia: PMJDY": {
-      "doc_count": 1,
-      "chunk_count": 2
-    },
-    "Wikipedia: PMMY": {
-      "doc_count": 1,
-      "chunk_count": 2
-    },
-    "Wikipedia: PMFBY": {
-      "doc_count": 1,
-      "chunk_count": 2
-    }
+  "corpus_version": "v2",
+  "total_documents": 120,
+  "total_chunks": 1074,
+  "chunk_size": 512,
+  "chunk_overlap": 64,
+  "documents_by_ministry": {
+    "Ministry of Education": 10,
+    "Ministry Of Labour and Employment": 12,
+    "Ministry Of Health & Family Welfare": 15,
+    "Ministry Of Agriculture and Farmers Welfare": 25,
+    "Ministry Of Housing & Urban Affairs": 5,
+    "Ministry Of Finance": 12,
+    "Ministry Of Social Justice and Empowerment": 15,
+    "Ministry Of Skill Development And Entrepreneurship": 5,
+    "Ministry Of Minority Affairs": 5,
+    "Ministry Of Tribal Affairs": 6,
+    "Ministry Of Rural Development": 10
   },
-  "domain": "indian_government_welfare_schemes"
+  "duplicates_removed": 0,
+  "extraction_rejections": 0
 }
