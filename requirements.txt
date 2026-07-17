@@ -15,7 +15,7 @@ beautifulsoup4>=4.12
 
 # Config & utilities
 pyyaml>=6.0
-tqdm>=4.65
+requests>=2.31
 
 # Testing
 pytest>=7.4

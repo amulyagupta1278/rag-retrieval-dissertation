@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import sys
 import tempfile
+import json
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -11,6 +12,8 @@ import pytest
 
 from src.retrievers.bm25_retriever import BM25Retriever
 from src.retrievers.base_retriever import RetrievalResult
+from src.retrievers.faiss_retriever import FAISSRetriever
+from src.retrievers.graphrag_retriever import GraphRAGRetriever
 
 SAMPLE_CHUNKS = [
     {
@@ -101,3 +104,36 @@ class TestBM25Retriever:
         # Empty query → all scores 0 → list may be empty
         results = retriever.retrieve("", top_k=3)
         assert isinstance(results, list)
+
+
+def test_faiss_cosine_contract_requires_normalization(tmp_path):
+    with pytest.raises(ValueError, match="requires normalized"):
+        FAISSRetriever(index_dir=tmp_path, similarity_metric="cosine", normalize_embeddings=False)
+
+
+def test_graph_human_label_is_not_legacy_machine_key():
+    assert GraphRAGRetriever.name == "graphrag"
+    assert GraphRAGRetriever.human_name == "Entity-Co-occurrence Graph Retrieval"
+    assert GraphRAGRetriever.human_name.lower() != GraphRAGRetriever.name
+
+
+def test_faiss_load_rejects_runtime_index_type_mismatch(tmp_path):
+    import faiss
+    import numpy as np
+
+    index = faiss.IndexFlatL2(2)
+    index.add(np.array([[0.0, 1.0]], dtype="float32"))
+    faiss.write_index(index, str(tmp_path / "faiss.index"))
+    (tmp_path / "chunk_ids.json").write_text('["c1"]', encoding="utf-8")
+    (tmp_path / "config.json").write_text(json.dumps({
+        "model_name": "unused", "num_chunks": 1, "index_type": "IndexFlatIP",
+        "similarity_metric": "cosine", "normalize_embeddings": True,
+    }), encoding="utf-8")
+    chunks = tmp_path / "chunks.jsonl"
+    chunks.write_text('{"chunk_id":"c1","doc_id":"d1","text":"text"}\n', encoding="utf-8")
+    retriever = FAISSRetriever(
+        index_dir=tmp_path, chunks_path=chunks,
+        similarity_metric="cosine", normalize_embeddings=True,
+    )
+    with pytest.raises(RuntimeError, match="config/runtime mismatch"):
+        retriever.load_index()

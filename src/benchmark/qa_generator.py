@@ -259,7 +259,7 @@ def _source_scheme_name(chunk: dict, cache: dict[str, str]) -> str:
         try:
             payload = json.loads(Path(path).read_text(encoding="utf-8"))
             name = _find_string_field(payload, "schemeName") or ""
-        except (OSError, json.JSONDecodeError):
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
             name = ""
     cache[path] = name or str(chunk.get("scheme_name") or chunk.get("section_title") or "")
     return cache[path]
@@ -302,7 +302,7 @@ def _source_relationship_values(chunk: dict, cache: dict[str, set[str]]) -> set[
                 {"nodalministryname", "nodaldepartmentname", "implementingagency"},
             )
             values = {_normalise_evidence(value) for value in raw_values if _normalise_evidence(value)}
-        except (OSError, json.JSONDecodeError):
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
             values = set()
     cache[path] = values
     return values
@@ -668,6 +668,25 @@ class QAGenerator:
         self._rng = random.Random(seed)
         self.last_generation_stats: dict = {}
 
+    @staticmethod
+    def assign_stratified_splits(
+        items: list[QAItem], *, dev_ratio: float = 0.2, seed: int = 42,
+    ) -> None:
+        """Assign deterministic per-category splits without changing item order."""
+        if not 0 < dev_ratio < 1:
+            raise ValueError("dev_ratio must be between 0 and 1")
+        by_category: dict[str, list[QAItem]] = defaultdict(list)
+        for item in items:
+            by_category[item.category].append(item)
+        rng = random.Random(seed)
+        for category in sorted(by_category):
+            values = sorted(by_category[category], key=lambda item: item.question_id)
+            rng.shuffle(values)
+            dev_count = max(1, int(len(values) * dev_ratio))
+            dev_ids = {item.question_id for item in values[:dev_count]}
+            for item in values:
+                item.split = "dev" if item.question_id in dev_ids else "test"
+
     def generate(self, chunks: list[dict], max_per_category: int = 20) -> list[QAItem]:
         """
         Generate QA items from *chunks*.
@@ -744,11 +763,8 @@ class QAGenerator:
         for index, item in enumerate(all_items, 1):
             item.question_id = f"q_{index:04d}"
 
-        # Assign splits
-        self._rng.shuffle(all_items)
-        dev_count = max(1, int(len(all_items) * self.dev_ratio))
-        for i, item in enumerate(all_items):
-            item.split = "dev" if i < dev_count else "test"
+        self.assign_stratified_splits(all_items, dev_ratio=self.dev_ratio, seed=self.seed)
+        all_items.sort(key=lambda item: item.question_id)
 
         self.last_generation_stats = {
             "candidates_generated": candidate_count,

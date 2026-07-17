@@ -21,20 +21,24 @@ Expected strengths
     offs are visible without a separate step.
 
 Expected weaknesses
-    Does not produce statistical significance annotations (p-values);
-    significance testing is planned for the final semester ablation report.
+    Significance results are emitted by the separate query-level statistical
+    evaluator rather than embedded in every baseline report.
 """
 
 from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone
 from pathlib import Path
 
 from .metrics import MetricBundle
 
 logger = logging.getLogger(__name__)
+
+DISPLAY_NAMES = {
+    "graphrag": "Entity-Co-occurrence Graph Retrieval",
+    "structured_graph": "Structured Metadata Graph Retrieval",
+}
 
 
 class ReportGenerator:
@@ -73,7 +77,6 @@ class ReportGenerator:
         # --- JSON output ---
         output = {
             "run_name": run_name,
-            "generated_at": datetime.now(timezone.utc).isoformat(),
             "config": config or {},
             "metrics": [b.to_dict() for b in bundles],
         }
@@ -84,7 +87,6 @@ class ReportGenerator:
         lines: list[str] = []
         lines += [
             f"# Experiment Report: `{run_name}`",
-            f"_Generated: {output['generated_at']}_",
             "",
         ]
 
@@ -124,14 +126,15 @@ class ReportGenerator:
 
         k_values = sorted(bundles[0].recall_at_k.keys())
 
-        headers = ["Retriever", "N", "MRR"] + [f"R@{k}" for k in k_values] + [f"nDCG@{k}" for k in k_values]
+        headers = ["Retriever", "N", "MRR"] + [f"MRR@{k}" for k in k_values] + [f"R@{k}" for k in k_values] + [f"nDCG@{k}" for k in k_values]
         rows = []
         for b in sorted(bundles, key=lambda x: x.retriever):
             row = [
-                b.retriever,
+                DISPLAY_NAMES.get(b.retriever, b.retriever),
                 str(b.num_queries),
                 f"{b.mrr:.4f}",
             ]
+            row += [f"{b.mrr_at_k.get(k, 0):.4f}" for k in k_values]
             row += [f"{b.recall_at_k.get(k, 0):.4f}" for k in k_values]
             row += [f"{b.ndcg_at_k.get(k, 0):.4f}" for k in k_values]
             rows.append(row)
@@ -154,6 +157,6 @@ class ReportGenerator:
         lines.append("| Retriever | Avg Latency (ms) |")
         lines.append("| --- | --- |")
         for b in sorted(aggregate, key=lambda x: x.avg_latency_ms):
-            lines.append(f"| {b.retriever} | {b.avg_latency_ms:.2f} |")
+            lines.append(f"| {DISPLAY_NAMES.get(b.retriever, b.retriever)} | {b.avg_latency_ms:.2f} |")
         lines.append("")
         return lines

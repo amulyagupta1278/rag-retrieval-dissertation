@@ -1,4 +1,4 @@
-"""Quality, provenance, deduplication, and statistics helpers for corpus v2."""
+"""Version-neutral corpus quality, provenance, deduplication, and statistics helpers."""
 
 from __future__ import annotations
 
@@ -8,7 +8,6 @@ import re
 import statistics
 import unicodedata
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
@@ -25,10 +24,34 @@ REQUIRED_DOCUMENT_TYPES = {
 _ID_RE = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
 _WORD_RE = re.compile(r"[a-z0-9]+")
 _EXPLICIT_HOSTS = {"mygov.in", "www.mygov.in"}
+_SERIALIZATION_PATTERNS = {
+    "json_field": re.compile(r'"(?:children|answer_md|process_md|schemeId|_id)"\s*:', re.I),
+    "markdown_copy_field": re.compile(r"\b(?:answer_md|process_md|benefits_md|documentsRequired_md)\b", re.I),
+    "html_tag": re.compile(r"</?[a-z][^>]*>", re.I),
+    "escaped_markup": re.compile(r"&(?:amp|lt|gt|quot|#\d+);", re.I),
+}
 
 
 class CorpusValidationError(ValueError):
     """Raised when catalog or corpus invariants fail."""
+
+
+def serialization_artifacts(text: str) -> dict[str, int]:
+    """Count machine-serialization leakage in retrieval-facing text."""
+    return {name: len(pattern.findall(text)) for name, pattern in _SERIALIZATION_PATTERNS.items()}
+
+
+def validate_clean_projection(documents: list[dict], chunks: list[dict]) -> None:
+    """Fail closed when retrieval text contains JSON schema or markup leakage."""
+    failures: list[str] = []
+    for item in [*documents, *chunks]:
+        text = item.get("cleaned_text") if "cleaned_text" in item else item.get("text", "")
+        leaked = {key: value for key, value in serialization_artifacts(str(text or "")).items() if value}
+        if leaked:
+            identifier = item.get("document_id") or item.get("chunk_id") or item.get("doc_id", "?")
+            failures.append(f"{identifier}: {leaked}")
+    if failures:
+        raise CorpusValidationError("serialization leakage: " + "; ".join(failures[:20]))
 
 
 def canonicalize_url(url: str) -> str:
@@ -210,10 +233,11 @@ def validate_corpus(documents: list[dict], chunks: list[dict], config: dict) -> 
         errors.append(f"missing document types {sorted(missing_types)}")
     if errors:
         raise CorpusValidationError("; ".join(errors[:30]))
+    validate_clean_projection(documents, chunks)
 
 
 def build_statistics(
-    documents: list[dict], chunks: list[dict], *, corpus_version: str = "v2",
+    documents: list[dict], chunks: list[dict], *, corpus_version: str = "unknown",
     catalog_entries: int = 0, acquisition: list[dict] | None = None,
     duplicate_count: int = 0, graph_nodes: list[dict] | None = None,
     graph_edges: list[dict] | None = None,
@@ -236,7 +260,11 @@ def build_statistics(
     hosts = Counter((urlsplit(doc.get("url", "")).hostname or "unknown").lower() for doc in documents)
     return {
         "corpus_version": corpus_version,
-        "build_timestamp": datetime.now(timezone.utc).isoformat(),
+        # Frozen source provenance makes statistics reproducible across builds.
+        "build_timestamp": max(
+            (str(doc.get("ingested_at")) for doc in documents if doc.get("ingested_at")),
+            default=None,
+        ),
         "catalog_entries": catalog_entries,
         "download_successes": sum(a.get("outcome") in {"downloaded", "reused"} for a in acquisition),
         "download_failures": sum(a.get("outcome") == "rejected" for a in acquisition),
@@ -270,7 +298,7 @@ def write_statistics(stats: dict, json_path: str | Path, markdown_path: str | Pa
     json_path.parent.mkdir(parents=True, exist_ok=True)
     json_path.write_text(json.dumps(stats, indent=2, sort_keys=False) + "\n", encoding="utf-8")
     lines = [
-        "# Corpus Statistics v2", "",
+        f"# Corpus Statistics {stats['corpus_version']}", "",
         f"- Documents: {stats['accepted_documents']}",
         f"- Chunks: {stats['total_chunks']}",
         f"- Average chunk size: {stats['average_chunk_size_words']} words",

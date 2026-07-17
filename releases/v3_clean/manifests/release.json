@@ -1,0 +1,24 @@
+{
+  "categories": {
+    "entity_relation": 20,
+    "exact_match": 20,
+    "multi_hop": 20,
+    "paraphrase": 20,
+    "terminology_heavy": 20
+  },
+  "chunks": 856,
+  "chunks_sha256": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+  "corpus_manifest_sha256": "6d01492cdd9aba23f97d1cbbbc0b0f1b3b4eb1d6d6132a76c1cbd39587bd6177",
+  "corpus_version": "v3_clean",
+  "creation_command": "python scripts/release_pipeline.py --version v3_clean --stage all",
+  "documents": 130,
+  "graph_edges": 25127,
+  "graph_nodes": 3666,
+  "human_graph_name": "Entity-Co-occurrence Graph Retrieval",
+  "legacy_graph_key": "graphrag",
+  "qa_sha256": "588de4621ed1428aa252d7a1f4925ee816ec477f9316c5c23ed85b3f29655c21",
+  "qrels": 140,
+  "qrels_sha256": "9029571778ea22eef1fa3864ec12d1bb41d54f66e624cfa82fa47626c1ec06d4",
+  "queries": 100,
+  "source_catalog_sha256": "2454c1b58553ac836f5ec2880b77746d3b68b5a5a0b92817a03261e2d9d83811"
+}

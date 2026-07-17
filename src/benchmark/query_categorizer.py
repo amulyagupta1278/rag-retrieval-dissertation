@@ -5,7 +5,7 @@ Research purpose
     Per-category metric breakdowns are what elevate this dissertation above
     a standard average-score comparison. The categorizer assigns each query
     to one of five categories so that results tables can show, for example,
-    that BM25 leads on exact_match while GraphRAG leads on multi_hop.
+    that BM25 leads on exact_match while Entity-Co-occurrence Graph Retrieval leads on multi_hop.
 
 Design choice
     Heuristic rule-based categorizer operating on question surface form.

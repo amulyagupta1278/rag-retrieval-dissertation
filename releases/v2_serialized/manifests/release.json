@@ -1,0 +1,9 @@
+{
+  "artifact_status": "immutable_historical_baseline",
+  "chunks": 1074,
+  "config_provenance": "partially recovered; unknowns preserved explicitly",
+  "corpus_version": "v2_serialized",
+  "documents": 120,
+  "qrels": 140,
+  "queries": 100
+}

@@ -2,19 +2,15 @@
 
 import json
 from collections import Counter
-from pathlib import Path
-
-import pytest
-
 from src.benchmark.qa_generator import (
     QAGenerator, QAItem, _clean_leaf_text, _validate_item,
-    _terminology_heavy_templates, _multi_hop_template, _is_semantic_bridge, _bridge_identity,
+    QUERY_CATEGORIES, _terminology_heavy_templates, _multi_hop_template,
+    _is_semantic_bridge, _bridge_identity,
 )
 from src.benchmark.qrels_builder import QRelsBuilder
 from src.ingestion.chunker import Chunker
 from src.ingestion.metadata_enricher import MetadataEnricher
 from src.retrievers.bm25_retriever import BM25Retriever
-from src.utils.io_utils import load_jsonl
 
 
 def enriched_chunks():
@@ -55,6 +51,19 @@ def test_qa_generation_is_byte_deterministic():
     first = [item.to_dict() for item in QAGenerator(seed=42).generate(chunks, 3)]
     second = [item.to_dict() for item in QAGenerator(seed=42).generate(chunks, 3)]
     assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
+
+
+def test_split_assignment_is_stratified_and_deterministic():
+    items = [
+        QAItem(f"q_{category}_{index}", f"Question {index}", category, "easy", "Answer", ["c1"], ["d1"])
+        for category in ("exact_match", "terminology_heavy", "paraphrase", "entity_relation", "multi_hop")
+        for index in range(20)
+    ]
+    QAGenerator.assign_stratified_splits(items, dev_ratio=0.2, seed=42)
+    assert Counter((item.category, item.split) for item in items) == Counter({
+        **{(category, "dev"): 4 for category in QUERY_CATEGORIES},
+        **{(category, "test"): 16 for category in QUERY_CATEGORIES},
+    })
 
 
 def test_json_keys_and_markup_are_not_generation_text():
@@ -144,12 +153,31 @@ def test_schema_noise_and_generic_bridges_are_rejected():
     assert not _is_semantic_bridge("the head of the institute")
 
 
-def test_full_cross_scheme_gate_is_balanced_and_diverse():
-    chunks_path = Path("data/chunks/chunks.jsonl")
-    graph_path = Path("indexes/graphrag/graph.gpickle")
-    if not chunks_path.exists() or not graph_path.exists():
-        pytest.skip("full v2 artifacts are not available")
-    items, _ = QAGenerator(seed=42).generate_cross_scheme(load_jsonl(chunks_path), graph_path)
+def test_full_cross_scheme_gate_is_balanced_and_diverse(tmp_path):
+    import networkx as nx
+    import pickle
+
+    chunks = []
+    graph = nx.Graph()
+    for index in range(40):
+        bridge = f"Scheduled Caste Group {index}"
+        entity = bridge.lower()
+        graph.add_node(entity, type="entity", label=entity)
+        for side in ("a", "b"):
+            chunk_id = f"c{index:02d}{side}"
+            scheme = f"Distinct Welfare Scheme {index:02d}{side.upper()}"
+            text = f"{scheme} provides independently verified assistance through {bridge} for eligible households across districts."
+            chunk = {
+                "chunk_id": chunk_id, "doc_id": f"d{index:02d}{side}", "text": text,
+                "scheme_name": scheme, "source_path": str(tmp_path / f"{chunk_id}.json"), "chunk_index": 0,
+            }
+            chunks.append(chunk)
+            graph.add_node(chunk_id, type="chunk", label=chunk_id)
+            graph.add_edge(entity, chunk_id, relation="contains", weight=1.0)
+    graph_path = tmp_path / "graph.gpickle"
+    with graph_path.open("wb") as handle:
+        pickle.dump({"graph": graph, "chunk_meta": {}}, handle)
+    items, _ = QAGenerator(seed=42).generate_cross_scheme(chunks, graph_path)
     assert Counter(item.category for item in items) == {"entity_relation": 20, "multi_hop": 20}
     pairs_by_category = {
         category: {

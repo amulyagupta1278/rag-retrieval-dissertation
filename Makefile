@@ -1,4 +1,10 @@
-.PHONY: install spacy-model acquire dataset faiss bm25 graphrag statistics compare test clean all-v2
+.PHONY: install spacy-model acquire dataset faiss bm25 graphrag statistics compare test clean all \
+	release-corpus release-indexes release-benchmark release-evaluate release-statistics \
+	release-verify release-v3-clean verify-v2-baseline
+
+VERSION ?= v3_clean
+WORK_DIR ?= releases/.work-$(VERSION)
+RELEASE_ARGS = --version $(VERSION) --work-dir $(WORK_DIR)
 
 install:
 	pip install -r requirements.txt
@@ -6,10 +12,9 @@ install:
 spacy-model:
 	python -m spacy download en_core_web_sm
 
-# Full pipeline: ingest docs → build benchmark → run all experiments → compare
-all: dataset faiss bm25 graphrag compare
-
-all-v2: acquire dataset bm25 faiss graphrag statistics compare
+# The default build is the gated, atomic v3 release.  Legacy one-off targets
+# below remain available for local diagnostics only.
+all: release-v3-clean
 
 acquire:
 	python scripts/download_corpus.py
@@ -32,19 +37,37 @@ statistics:
 compare:
 	python experiments/compare_retrievers.py
 
-# Ablation sweeps
-ablation-chunks:
-	for size in 256 512 1024; do \
-		python experiments/run_bm25.py --top-k 10 --rebuild; \
-		python experiments/run_faiss.py --top-k 10 --rebuild; \
-	done
+# Deterministic release pipeline. Each stage consumes only the preceding
+# staging paths; publication happens only after release-verify succeeds.
+release-corpus:
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage corpus --clean-work
 
-ablation-topk:
-	for k in 1 3 5 10; do \
-		python experiments/run_bm25.py --top-k $$k; \
-		python experiments/run_faiss.py --top-k $$k; \
-		python experiments/run_graphrag.py --top-k $$k; \
-	done
+release-indexes: release-corpus
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage indexes
+
+release-benchmark: release-indexes
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage benchmark
+
+release-evaluate: release-benchmark
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage evaluate
+
+release-statistics: release-evaluate
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage statistics
+
+release-verify: release-statistics
+	python scripts/release_pipeline.py $(RELEASE_ARGS) --stage verify --replace --publish-canonical --verify-determinism
+
+release-v3-clean: release-verify
+
+verify-v2-baseline:
+	python scripts/release_manifest.py \
+		--include-root data/baselines/serialized_json_baseline \
+		--include-root indexes/baselines/serialized_json_baseline \
+		--include-root runs/baselines/serialized_json_baseline \
+		--base-dir . \
+		--manifest data/baselines/serialized_json_baseline/release_manifest.jsonl \
+		--sums data/baselines/serialized_json_baseline/BASELINE_SHA256SUMS \
+		--verify
 
 test:
 	python -m pytest tests/ -v --tb=short

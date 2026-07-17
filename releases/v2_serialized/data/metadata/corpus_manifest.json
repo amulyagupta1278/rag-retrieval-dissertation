@@ -1,0 +1,22 @@
+{
+  "corpus_version": "v2",
+  "total_documents": 120,
+  "total_chunks": 1074,
+  "chunk_size": 512,
+  "chunk_overlap": 64,
+  "documents_by_ministry": {
+    "Ministry of Education": 10,
+    "Ministry Of Labour and Employment": 12,
+    "Ministry Of Health & Family Welfare": 15,
+    "Ministry Of Agriculture and Farmers Welfare": 25,
+    "Ministry Of Housing & Urban Affairs": 5,
+    "Ministry Of Finance": 12,
+    "Ministry Of Social Justice and Empowerment": 15,
+    "Ministry Of Skill Development And Entrepreneurship": 5,
+    "Ministry Of Minority Affairs": 5,
+    "Ministry Of Tribal Affairs": 6,
+    "Ministry Of Rural Development": 10
+  },
+  "duplicates_removed": 0,
+  "extraction_rejections": 0
+}

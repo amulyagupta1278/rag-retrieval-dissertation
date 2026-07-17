@@ -1,0 +1,40 @@
+{
+  "corpus_version": "v3_clean",
+  "created_at": "2026-07-17T08:20:12.155884+00:00",
+  "num_documents": 130,
+  "total_tokens_approx": 361254,
+  "avg_doc_length_tokens": 2778.9,
+  "source_type_distribution": {
+    "pdf": 10,
+    "json": 120
+  },
+  "domain_tag_distribution": {
+    "indian_government_welfare_schemes": 130
+  },
+  "ministry_distribution": {
+    "Ministry of Health and Family Welfare": 1,
+    "Ministry of Social Justice and Empowerment": 7,
+    "Ministry of Women and Child Development": 2,
+    "Ministry of Education": 10,
+    "Ministry Of Labour and Employment": 12,
+    "Ministry Of Health & Family Welfare": 15,
+    "Ministry Of Agriculture and Farmers Welfare": 25,
+    "Ministry Of Housing & Urban Affairs": 5,
+    "Ministry Of Finance": 12,
+    "Ministry Of Social Justice and Empowerment": 15,
+    "Ministry Of Skill Development And Entrepreneurship": 5,
+    "Ministry Of Minority Affairs": 5,
+    "Ministry Of Tribal Affairs": 6,
+    "Ministry Of Rural Development": 10
+  },
+  "document_type_distribution": {
+    "operational_guideline": 19,
+    "scheme_description": 16,
+    "funding_guideline": 16,
+    "implementation_manual": 18,
+    "eligibility_beneficiary": 16,
+    "faq": 15,
+    "application_procedure": 15,
+    "act_rule_notification": 15
+  }
+}

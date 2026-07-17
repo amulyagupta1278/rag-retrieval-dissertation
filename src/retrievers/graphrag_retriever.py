@@ -1,8 +1,8 @@
 """
-GraphRAG Retriever — Retrieval Layer
+Entity-Co-occurrence Graph Retriever — Retrieval Layer
 ======================================
 Research purpose
-    Tests H3: "GraphRAG will outperform flat retrieval methods on relational
+    Tests H3: "Entity-Co-occurrence Graph Retrieval will outperform flat retrieval methods on relational
     and multi-hop questions where graph structure exposes evidence paths more
     effectively."
 
@@ -17,10 +17,10 @@ Research purpose
 
 Design choice
     Custom lightweight pipeline over spaCy + NetworkX rather than the
-    microsoft/graphrag package. The microsoft package requires an Azure OpenAI
-    key for community summarisation, which introduces API cost and
-    non-reproducibility. The custom pipeline is auditable, free, and produces
-    the same graph structure relevant to the dissertation's evaluation.
+    microsoft/graphrag package. This is entity co-occurrence retrieval, not
+    Microsoft's LLM-based GraphRAG: it has no typed relations, communities,
+    summaries, or global/local GraphRAG query modes. The custom pipeline is
+    auditable, free, and reproducible.
 
 Alternative approaches
     LlamaIndex PropertyGraphIndex; Neo4j for persistent graph storage.
@@ -41,6 +41,7 @@ from __future__ import annotations
 import json
 import logging
 import pickle
+import re
 from collections import defaultdict, deque
 from pathlib import Path
 from typing import Optional
@@ -102,19 +103,21 @@ class _EntityExtractor:
         self._load()
         if self._nlp is not None:
             doc = self._nlp(text[:50_000])  # cap for speed
-            return list({
+            # spaCy emits entities in source order. dict.fromkeys removes
+            # repeats without destroying the textual co-occurrence order.
+            return list(dict.fromkeys(
                 ent.text.strip().lower()
                 for ent in doc.ents
                 if ent.label_ in self._NER_TYPES and len(ent.text.strip()) > 1
-            })
+            ))
         # Regex fallback: capitalised phrases
         import re
 
-        return list({
+        return list(dict.fromkeys(
             m.group().lower()
             for m in re.finditer(r"[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*", text)
             if len(m.group()) > 3
-        })
+        ))
 
 
 # ---------------------------------------------------------------------------
@@ -233,6 +236,7 @@ class GraphRAGRetriever(BaseRetriever):
     """
 
     name = "graphrag"
+    human_name = "Entity-Co-occurrence Graph Retrieval"
 
     def __init__(
         self,
@@ -283,7 +287,27 @@ class GraphRAGRetriever(BaseRetriever):
             for edge in edges_list:
                 fh.write(json.dumps(edge) + "\n")
 
-        logger.info("GraphRAG artifacts saved → %s", self.graph_path)
+        # Portable, inspectable companions to the pickle.  They are derived
+        # from the same in-memory graph and do not change retrieval behavior.
+        graph_json = self.graph_path.with_name("graph.json")
+        graph_payload = {
+            "nodes": [
+                {"node_id": node, **dict(data)}
+                for node, data in self._graph.nodes(data=True)
+            ],
+            "edges": [
+                {"src": src, "dst": dst, **dict(data)}
+                for src, dst, data in self._graph.edges(data=True)
+            ],
+        }
+        graph_json.write_text(json.dumps(graph_payload, ensure_ascii=False) + "\n", encoding="utf-8")
+        chunk_lookup = self.graph_path.with_name("chunk_lookup.json")
+        chunk_lookup.write_text(
+            json.dumps(self._chunk_meta, ensure_ascii=False, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+        logger.info("Entity-co-occurrence graph artifacts saved → %s", self.graph_path)
 
     def load_index(self) -> None:
         if not self.graph_path.exists():
@@ -293,7 +317,7 @@ class GraphRAGRetriever(BaseRetriever):
         self._graph = payload["graph"]
         self._chunk_meta = payload["chunk_meta"]
         logger.info(
-            "GraphRAG index loaded: %d nodes, %d edges",
+            "Entity-co-occurrence graph index loaded: %d nodes, %d edges",
             self._graph.number_of_nodes(),
             self._graph.number_of_edges(),
         )
@@ -314,35 +338,35 @@ class GraphRAGRetriever(BaseRetriever):
             query_lower = query.lower()
             seed_nodes = [
                 n for n in self._graph.nodes
-                if self._graph.nodes[n].get("type") == "entity" and n in query_lower
+                if self._graph.nodes[n].get("type") == "entity"
+                and re.search(rf"\b{re.escape(n)}\b", query_lower)
             ][:5]
 
-        # BFS traversal to collect chunk nodes within max_hop
-        visited: set[str] = set()
+        # BFS from each seed independently so a chunk reachable from several
+        # query entities accumulates one hop-decayed contribution per seed.
         chunk_scores: dict[str, float] = {}
-        queue: deque[tuple[str, int]] = deque((n, 0) for n in seed_nodes)
+        for seed in seed_nodes:
+            visited: set[str] = set()
+            queue: deque[tuple[str, int]] = deque([(seed, 0)])
 
-        while queue:
-            node, hop = queue.popleft()
-            if node in visited or hop > self.max_hop:
-                continue
-            visited.add(node)
+            while queue:
+                node, hop = queue.popleft()
+                if node in visited or hop > self.max_hop:
+                    continue
+                visited.add(node)
 
-            node_data = self._graph.nodes.get(node, {})
-            if node_data.get("type") == "chunk":
-                # Score decays with hop distance
-                score = 1.0 / (hop + 1)
-                chunk_scores[node] = chunk_scores.get(node, 0.0) + score
-            elif node_data.get("type") == "entity":
-                # Entity match contributes to connected chunks
-                for neighbour in self._graph.neighbors(node):
-                    if neighbour not in visited:
-                        edge_data = self._graph.edges.get((node, neighbour), {})
-                        weight = edge_data.get("weight", 1.0)
-                        queue.append((neighbour, hop + 1))
+                node_data = self._graph.nodes.get(node, {})
+                if node_data.get("type") == "chunk":
+                    # Score decays with hop distance
+                    score = 1.0 / (hop + 1)
+                    chunk_scores[node] = chunk_scores.get(node, 0.0) + score
+                elif node_data.get("type") == "entity":
+                    for neighbour in self._graph.neighbors(node):
+                        if neighbour not in visited:
+                            queue.append((neighbour, hop + 1))
 
         # Rank by score descending
-        ranked = sorted(chunk_scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
+        ranked = sorted(chunk_scores.items(), key=lambda item: (-item[1], item[0]))[:top_k]
 
         results: list[RetrievalResult] = []
         for rank, (chunk_id, score) in enumerate(ranked, start=1):

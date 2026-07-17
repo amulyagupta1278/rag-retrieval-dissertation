@@ -7,7 +7,7 @@ import pytest
 from src.ingestion.corpus_quality import (
     CorpusValidationError, canonicalize_url, deduplicate_documents,
     is_authoritative_url, jaccard_similarity, validate_catalog, validate_corpus,
-    word_shingles,
+    serialization_artifacts, validate_clean_projection, word_shingles,
 )
 
 
@@ -97,3 +97,16 @@ def test_corpus_lineage_validation_with_relaxed_fixture_bounds():
         chunks.append({"chunk_id": f"chunk_{index}", "doc_id": current["doc_id"], "text": "scheme content", "word_count": 2})
     config.update({"max_documents": 10, "max_chunks": 10})
     validate_corpus(docs, chunks, config)
+
+
+def test_serialization_leakage_is_rejected():
+    doc = document("leaky", 'Useful text {"children": [{"text": "duplicate"}]}')
+    chunk = {"chunk_id": "c1", "doc_id": doc["doc_id"], "text": doc["cleaned_text"], "word_count": 5}
+    assert serialization_artifacts(chunk["text"])["json_field"] > 0
+    with pytest.raises(CorpusValidationError, match="serialization leakage"):
+        validate_clean_projection([doc], [chunk])
+
+
+def test_plain_prose_with_natural_word_children_is_allowed():
+    text = "Benefits support women and their children through community services."
+    validate_clean_projection([document("clean", text)], [])

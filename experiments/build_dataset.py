@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical corpus v2 and unchanged benchmark build pipeline."""
+"""Build only canonical documents/chunks; benchmark and indexes are separate stages."""
 
 from __future__ import annotations
 
@@ -15,13 +15,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.benchmark.qa_generator import QAGenerator
-from src.benchmark.qrels_builder import QRelsBuilder
-from src.benchmark.query_categorizer import QueryCategorizer
 from src.ingestion.chunker import Chunker
-from src.ingestion.corpus_quality import (
-    CorpusValidationError, deduplicate_documents, validate_corpus,
-)
+from src.ingestion.corpus_quality import deduplicate_documents, validate_corpus
 from src.ingestion.corpus_versioner import CorpusVersioner
 from src.ingestion.document_loader import DocumentLoader
 from src.ingestion.metadata_enricher import MetadataEnricher
@@ -33,13 +28,14 @@ LOGGER = get_logger("build_dataset")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build authoritative corpus v2 and benchmark")
+    parser = argparse.ArgumentParser(description="Build authoritative corpus documents and chunks only")
     parser.add_argument("--snapshot-dir", default=None)
     parser.add_argument("--metadata", default=None)
     parser.add_argument("--corpus-config", default="configs/corpus.yaml")
     parser.add_argument("--chunking-config", default="configs/chunking.yaml")
-    parser.add_argument("--version", default="v2")
-    parser.add_argument("--max-qa-per-category", type=int, default=20)
+    parser.add_argument("--version", default=None)
+    parser.add_argument("--output-root", default="data")
+    parser.add_argument("--publish-canonical", action="store_true")
     parser.add_argument("--skip-size-gates", action="store_true", help="Tests/development only")
     parser.add_argument("--log-level", default="INFO")
     return parser.parse_args()
@@ -108,6 +104,7 @@ def main() -> None:
     setup_logging(args.log_level)
     corpus_cfg = load_yaml(args.corpus_config).get("corpus", {})
     chunk_cfg = load_yaml(args.chunking_config).get("chunking", {})
+    args.version = args.version or corpus_cfg.get("version", "v3_clean")
     snapshot = Path(args.snapshot_dir or corpus_cfg.get("snapshot_dir", "data/raw/snapshot_v2"))
     metadata_path = Path(args.metadata or snapshot / "metadata.jsonl")
     if not metadata_path.exists():
@@ -138,6 +135,7 @@ def main() -> None:
             continue
         document = raw_doc.to_dict()
         document.update(_metadata_fields(meta))
+        document["ingested_at"] = meta.get("retrieved_at") or raw_doc.ingested_at
         document["cleaned_text"] = cleaned
         document["extra_meta"] = {**raw_doc.extra_meta, **_metadata_fields(meta)}
         candidates.append(document)
@@ -164,23 +162,12 @@ def main() -> None:
         validation_cfg = corpus_cfg
     validate_corpus(documents, chunks, validation_cfg)
 
-    generator = QAGenerator(seed=42)
-    qa_items = generator.generate(chunks, max_per_category=args.max_qa_per_category)
-    qrels = QRelsBuilder.build_qrels(qa_items)
-    chunk_ids = {chunk["chunk_id"] for chunk in chunks}
-    missing_evidence = {evidence for _, evidence, _ in qrels} - chunk_ids
-    if missing_evidence:
-        raise CorpusValidationError(f"qrels reference missing chunks: {sorted(missing_evidence)}")
-    categorized = QueryCategorizer().categorize_dataset([item.to_dict() for item in qa_items])
-
-    staging = Path(tempfile.mkdtemp(prefix="corpus-v2-", dir="data"))
+    output_root = Path(args.output_root)
+    output_root.mkdir(parents=True, exist_ok=True)
+    staging = Path(tempfile.mkdtemp(prefix=f"corpus-{args.version}-", dir=output_root))
     try:
         save_jsonl(documents, staging / "documents.jsonl")
         save_jsonl(chunks, staging / "chunks.jsonl")
-        QAGenerator.save(qa_items, staging / "qa_dataset.jsonl")
-        QRelsBuilder.save_qrels_tsv(qrels, staging / "qrels.tsv")
-        QRelsBuilder.save_evidence_map(qa_items, staging / "evidence_map.json")
-        QueryCategorizer.save(categorized, staging / "query_categories.json")
         save_jsonl(extraction_rejections + duplicate_reports, staging / "deduplication_report.jsonl")
         _write_sources(documents, chunks, staging / "sources.csv")
         manifest = {
@@ -193,27 +180,30 @@ def main() -> None:
         }
         (staging / "corpus_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
         mapping = {
-            "documents.jsonl": "data/processed/documents.jsonl",
-            "chunks.jsonl": "data/chunks/chunks.jsonl",
-            "qa_dataset.jsonl": "data/queries/qa_dataset.jsonl",
-            "qrels.tsv": "data/qrels/qrels.tsv",
-            "evidence_map.json": "data/qrels/evidence_map.json",
-            "query_categories.json": "data/queries/query_categories.json",
-            "deduplication_report.jsonl": f"data/metadata/deduplication_report_{args.version}.jsonl",
-            "sources.csv": "data/metadata/sources.csv",
-            "corpus_manifest.json": "data/metadata/corpus_manifest.json",
+            "documents.jsonl": str(output_root / "processed" / "documents.jsonl"),
+            "chunks.jsonl": str(output_root / "chunks" / "chunks.jsonl"),
+            "deduplication_report.jsonl": str(output_root / "metadata" / f"deduplication_report_{args.version}.jsonl"),
+            "sources.csv": str(output_root / "metadata" / "sources.csv"),
+            "corpus_manifest.json": str(output_root / "metadata" / "corpus_manifest.json"),
         }
         _publish(staging, mapping)
-        shutil.copy2(staging / "chunks.jsonl", f"data/chunks/chunks_{args.version}.jsonl")
-        shutil.copy2(staging / "qa_dataset.jsonl", f"data/queries/qa_dataset_{args.version}.jsonl")
-        shutil.copy2(staging / "qrels.tsv", f"data/qrels/qrels_{args.version}.tsv")
+        _publish(staging, {"chunks.jsonl": str(output_root / "chunks" / f"chunks_{args.version}.jsonl")})
+        if args.publish_canonical and output_root != Path("data"):
+            _publish(staging, {
+                "documents.jsonl": "data/processed/documents.jsonl",
+                "chunks.jsonl": "data/chunks/chunks.jsonl",
+                "deduplication_report.jsonl": f"data/metadata/deduplication_report_{args.version}.jsonl",
+                "sources.csv": "data/metadata/sources.csv",
+                "corpus_manifest.json": "data/metadata/corpus_manifest.json",
+            })
+            _publish(staging, {"chunks.jsonl": f"data/chunks/chunks_{args.version}.jsonl"})
     finally:
         shutil.rmtree(staging, ignore_errors=True)
 
-    versioner = CorpusVersioner("data/raw", version=args.version)
+    versioner = CorpusVersioner(Path(args.output_root) / "raw", version=args.version)
     versioner.save_manifest(documents)
     versioner.save_corpus_profile(documents)
-    LOGGER.info("Pipeline complete: %d documents | %d chunks | %d QA | %d qrels", len(documents), len(chunks), len(qa_items), len(qrels))
+    LOGGER.info("Corpus stage complete: %d documents | %d chunks", len(documents), len(chunks))
 
 
 if __name__ == "__main__":

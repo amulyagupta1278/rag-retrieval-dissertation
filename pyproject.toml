@@ -20,7 +20,7 @@ dependencies = [
     "python-docx>=0.8",       # DOCX extraction
     "beautifulsoup4>=4.12",   # HTML extraction
     "pyyaml>=6.0",
-    "tqdm>=4.65",
+    "requests>=2.31",
 ]
 
 [project.optional-dependencies]
@@ -28,10 +28,6 @@ dev = [
     "pytest>=7.4",
     "pytest-cov>=4.1",
 ]
-pyserini = [
-    "pyserini>=0.21",         # Lucene-backed BM25 (requires Java)
-]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

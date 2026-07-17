@@ -30,7 +30,6 @@ from __future__ import annotations
 import json
 import hashlib
 import logging
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -92,9 +91,15 @@ class CorpusVersioner:
             document_type = doc.get("document_type", "unknown")
             document_types[document_type] = document_types.get(document_type, 0) + 1
 
+        # A release profile must be byte-reproducible.  Use frozen acquisition
+        # provenance instead of the wall clock so two builds of the same raw
+        # snapshot produce identical output.
+        provenance_times = sorted(
+            str(doc.get("ingested_at")) for doc in documents if doc.get("ingested_at")
+        )
         profile: dict[str, Any] = {
             "corpus_version": self.version,
-            "created_at": datetime.now(timezone.utc).isoformat(),
+            "created_at": provenance_times[-1] if provenance_times else None,
             "num_documents": len(documents),
             "total_tokens_approx": total_tokens,
             "avg_doc_length_tokens": round(avg_length, 1),

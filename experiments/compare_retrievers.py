@@ -105,7 +105,7 @@ def main() -> None:
     md_path = reporter.generate(
         all_bundles,
         run_name="comparison_all_retrievers",
-        config={"run_files": [str(f) for f in run_files]},
+        config={"run_files": [f.name for f in run_files]},
     )
     logger.info("Comparison report → %s", md_path)
 
@@ -115,7 +115,7 @@ def main() -> None:
     results_json_path.write_text(
         json.dumps(
             {
-                "run_files": [str(f) for f in run_files],
+                "run_files": [f.name for f in run_files],
                 "metrics": [b.to_dict() for b in all_bundles],
             },
             indent=2,

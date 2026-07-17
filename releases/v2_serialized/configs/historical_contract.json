@@ -1,0 +1,28 @@
+{
+  "bm25": {
+    "b": 0.75,
+    "k1": 1.5
+  },
+  "chunk_overlap": 64,
+  "chunk_size": 512,
+  "chunks": 1074,
+  "corpus_version": "v2_serialized",
+  "documents": 120,
+  "entity_graph": {
+    "human_name": "Entity-Co-occurrence Graph Retrieval",
+    "legacy_machine_key": "graphrag"
+  },
+  "faiss": {
+    "index_type": "IndexFlatL2",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_revision": "not_recorded_in_historical_config",
+    "normalization": "not_recorded_in_historical_config"
+  },
+  "limitations": [
+    "Original raw documents and exact historical YAML snapshots were not present in the archive.",
+    "Unknown configuration fields remain explicit instead of being inferred."
+  ],
+  "qrels": 140,
+  "queries": 100,
+  "status": "historical_artifact_contract_recovered_from_archived_metadata"
+}

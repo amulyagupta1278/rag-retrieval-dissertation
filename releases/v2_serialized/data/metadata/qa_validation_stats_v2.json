@@ -1,0 +1,25 @@
+{
+  "cross_scheme_candidates_available": 273,
+  "candidates_considered": 273,
+  "accepted": 40,
+  "rejected": 233,
+  "rejection_rate": 0.8535,
+  "selection_attempts": 752,
+  "selection_rejections": 712,
+  "selection_rejection_reasons": {
+    "bridge_diversity_cap": 608,
+    "invalid_question": 40,
+    "pair_reused_across_categories": 64
+  },
+  "accepted_by_category": {
+    "exact_match": 20,
+    "terminology_heavy": 20,
+    "paraphrase": 20,
+    "entity_relation": 20,
+    "multi_hop": 20
+  },
+  "distinct_scheme_pairs": 40,
+  "preserved_questions": 60,
+  "total_questions": 100,
+  "audit_items": 40
+}
