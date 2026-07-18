@@ -27,3 +27,15 @@ def test_holdout_lock_detects_new_system_file(tmp_path):
     (tmp_path / "src/new_retriever.py").write_text("VALUE = 2\n", encoding="utf-8")
     with pytest.raises(RuntimeError, match="new tracked file"):
         verify_lock(lock_path, tmp_path)
+
+
+def test_holdout_lock_tracks_index_binary(tmp_path):
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src/system.py").write_text("VALUE = 1\n", encoding="utf-8")
+    index = tmp_path / "faiss.index"
+    index.write_bytes(b"index-v1")
+    lock_path = tmp_path / "lock.json"
+    create_lock(tmp_path, ["src"], ["faiss.index"], lock_path)
+    index.write_bytes(b"index-v2")
+    with pytest.raises(RuntimeError, match="changed: faiss.index"):
+        verify_lock(lock_path, tmp_path)

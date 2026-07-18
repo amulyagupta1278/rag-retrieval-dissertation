@@ -59,29 +59,116 @@ class RetrievalEvaluator:
         k_values: list[int] | None = None,
         qa_dataset_path: str | Path | None = None,
         split: str | None = None,
+        chunks_path: str | Path | None = None,
+        strict: bool = True,
     ) -> None:
         self.qrels = QRelsBuilder.load_qrels_tsv(qrels_path)
         self.k_values = k_values or [1, 3, 5, 10]
+        self.strict = strict
         self.query_categories: dict[str, str] = {}
         self.allowed_query_ids: set[str] | None = None
-        if split and split != "all":
-            if not qa_dataset_path:
-                raise ValueError("qa_dataset_path is required when filtering by split")
+        self.qa_text_by_id: dict[str, str] = {}
+        self.known_chunk_ids: set[str] | None = None
+        if qa_dataset_path:
             qa_items = [
                 json.loads(line) for line in Path(qa_dataset_path).read_text(encoding="utf-8").splitlines()
                 if line.strip()
             ]
+            qa_ids = [item["question_id"] for item in qa_items]
+            if len(qa_ids) != len(set(qa_ids)):
+                raise ValueError("QA dataset contains duplicate question IDs")
             self.allowed_query_ids = {
-                item["question_id"] for item in qa_items if item.get("split") == split
+                item["question_id"] for item in qa_items
+                if not split or split == "all" or item.get("split") == split
+            }
+            self.qa_text_by_id = {
+                item["question_id"]: item.get("question", "")
+                for item in qa_items if item["question_id"] in self.allowed_query_ids
             }
             if not self.allowed_query_ids:
-                raise ValueError(f"No queries found for split={split}")
-            self.qrels = {qid: value for qid, value in self.qrels.items() if qid in self.allowed_query_ids}
+                raise ValueError(f"No queries found for split={split or 'all'}")
+            self.qrels = {
+                qid: value for qid, value in self.qrels.items()
+                if qid in self.allowed_query_ids
+            }
+        elif split and split != "all":
+            if not qa_dataset_path:
+                raise ValueError("qa_dataset_path is required when filtering by split")
+        if chunks_path:
+            self.known_chunk_ids = {
+                json.loads(line)["chunk_id"]
+                for line in Path(chunks_path).read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            }
+        if self.strict:
+            self._validate_qrels()
         if query_categories_path:
             p = Path(query_categories_path)
             if p.exists():
                 data = json.loads(p.read_text(encoding="utf-8"))
                 self.query_categories = {qid: v["category"] for qid, v in data.items()}
+
+    def _validate_qrels(self) -> None:
+        if self.allowed_query_ids is not None:
+            missing = self.allowed_query_ids - set(self.qrels)
+            if missing:
+                raise ValueError(f"Queries lack qrels: {sorted(missing)[:10]}")
+        for query_id, judgments in self.qrels.items():
+            invalid = {
+                chunk_id: relevance for chunk_id, relevance in judgments.items()
+                if relevance not in (0, 1)
+            }
+            if invalid:
+                raise ValueError(f"Non-binary qrels for {query_id}: {invalid}")
+            if not any(relevance == 1 for relevance in judgments.values()):
+                raise ValueError(f"Query lacks relevant judgment: {query_id}")
+            if self.known_chunk_ids is not None:
+                unknown = set(judgments) - self.known_chunk_ids
+                if unknown:
+                    raise ValueError(f"Qrels reference unknown chunks for {query_id}: {sorted(unknown)}")
+
+    def _validate_runs(self, runs: list[dict]) -> None:
+        query_ids = [run.get("query_id") for run in runs]
+        duplicates = sorted({qid for qid in query_ids if query_ids.count(qid) > 1})
+        if duplicates:
+            raise ValueError(f"Duplicate query IDs in run: {duplicates[:10]}")
+        if self.allowed_query_ids is not None and set(query_ids) != self.allowed_query_ids:
+            missing = sorted(self.allowed_query_ids - set(query_ids))
+            unexpected = sorted(set(query_ids) - self.allowed_query_ids)
+            raise ValueError(
+                f"Run query coverage mismatch: missing={missing[:10]} unexpected={unexpected[:10]}"
+            )
+        for run in runs:
+            query_id = run.get("query_id")
+            query_text = run.get("query_text", run.get("question"))
+            if not isinstance(query_text, str) or not query_text.strip():
+                raise ValueError(f"Missing query text for query {query_id}")
+            expected_text = self.qa_text_by_id.get(query_id)
+            if expected_text is not None and query_text != expected_text:
+                raise ValueError(f"Run query text differs from benchmark for query {query_id}")
+            if not str(run.get("retriever") or "").strip():
+                raise ValueError(f"Missing retriever name for query {query_id}")
+            config = run.get("config_snapshot", run.get("config"))
+            if not isinstance(config, dict) or not config:
+                raise ValueError(f"Missing configuration snapshot for query {query_id}")
+            results = run.get("results", [])
+            chunk_ids = [result.get("chunk_id") for result in results]
+            if len(chunk_ids) != len(set(chunk_ids)):
+                raise ValueError(f"Duplicate retrieved chunks for query {query_id}")
+            ranks = [result.get("rank") for result in results]
+            if ranks != list(range(1, len(results) + 1)):
+                raise ValueError(f"Invalid rank sequence for query {query_id}: {ranks}")
+            top_k = int(run.get("top_k", len(results)))
+            if top_k < 1:
+                raise ValueError(f"Invalid top_k for query {query_id}: {top_k}")
+            if len(results) > top_k:
+                raise ValueError(f"Result count exceeds top_k for query {query_id}")
+            if self.known_chunk_ids is not None:
+                unknown = set(chunk_ids) - self.known_chunk_ids
+                if unknown:
+                    raise ValueError(
+                        f"Run references unknown chunks for {query_id}: {sorted(unknown)}"
+                    )
 
     def evaluate_run_file(
         self,
@@ -114,6 +201,8 @@ class RetrievalEvaluator:
             runs = [run for run in runs if run.get("query_id") in self.allowed_query_ids]
             if not runs:
                 raise ValueError("Run contains no queries from the selected split")
+        if self.strict:
+            self._validate_runs(runs)
 
         ret_name = retriever_name or runs[0].get("retriever", "unknown")
 

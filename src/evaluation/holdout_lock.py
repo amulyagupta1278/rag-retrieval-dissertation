@@ -6,7 +6,10 @@ import hashlib
 import json
 from pathlib import Path
 
-TRACKED_SUFFIXES = {".py", ".yaml", ".yml", ".json"}
+TRACKED_SUFFIXES = {
+    ".py", ".yaml", ".yml", ".json", ".jsonl", ".tsv", ".csv",
+    ".pkl", ".pickle", ".index", ".txt", ".lock",
+}
 
 
 def _sha256(path: Path) -> str:
@@ -38,12 +41,13 @@ def create_lock(base: str | Path, roots: list[str | Path], selection_files: list
     root_paths = [Path(root) for root in roots]
     source_files = _files(base_path, root_paths)
     selections = [Path(path) if Path(path).is_absolute() else base_path / path for path in selection_files]
+    all_files = sorted(set(source_files + selections), key=lambda path: path.resolve().relative_to(base_path).as_posix())
     records = [
         {
             "relative_path": path.resolve().relative_to(base_path).as_posix(),
             "sha256": _sha256(path), "byte_size": path.stat().st_size,
         }
-        for path in source_files + selections
+        for path in all_files
     ]
     records.sort(key=lambda record: record["relative_path"])
     digest = hashlib.sha256(json.dumps(records, sort_keys=True).encode()).hexdigest()

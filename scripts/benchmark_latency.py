@@ -51,7 +51,10 @@ def _load(system: str, args: argparse.Namespace, config: dict):
     start = time.perf_counter_ns()
     if system == "bm25":
         cfg = config["bm25"]
-        retriever = BM25Retriever(cfg.get("k1", 1.5), cfg.get("b", 0.75), args.bm25_index)
+        retriever = BM25Retriever(
+            cfg.get("k1", 1.5), cfg.get("b", 0.75), args.bm25_index,
+            chunks_path=args.chunks,
+        )
     elif system == "faiss":
         cfg = config["faiss"]
         retriever = FAISSRetriever(
@@ -70,6 +73,13 @@ def _load(system: str, args: argparse.Namespace, config: dict):
             min_entity_freq=cfg.get("min_entity_freq", 2),
             graph_path=graph_dir / "graph.gpickle", nodes_path=graph_dir / "nodes.jsonl",
             edges_path=graph_dir / "edges.jsonl",
+            chunks_path=args.chunks,
+            seed_filtering=cfg.get("seed_filtering", False),
+            use_aliases=cfg.get("use_aliases", False),
+            hub_penalty=cfg.get("hub_penalty", False),
+            dual_entity_coverage=cfg.get("dual_entity_coverage", False),
+            lexical_fallback=cfg.get("lexical_fallback", False),
+            max_seeds=cfg.get("max_seeds", 5), hop_decay=cfg.get("hop_decay", 0.5),
         )
     retriever.load_index()
     _sync_device()
@@ -93,6 +103,7 @@ def main() -> None:
     parser.add_argument("--warmups", type=int, default=5)
     parser.add_argument("--repetitions", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--require-index-provenance", action="store_true")
     args = parser.parse_args()
     if args.warmups < 1 or args.repetitions < 1:
         raise ValueError("warmups and repetitions must be positive")
@@ -110,6 +121,7 @@ def main() -> None:
         )
         if cardinality != len(chunks):
             raise RuntimeError(f"{system} index cardinality mismatch")
+        retriever.validate_provenance(chunks, require_complete=args.require_index_provenance)
         first_query_ms = _timed(retriever, qa[0]["question"], args.top_k)
         for index in range(args.warmups):
             _timed(retriever, qa[index % len(qa)]["question"], args.top_k)

@@ -5,14 +5,17 @@ import pytest
 from src.evaluation.evaluator import RetrievalEvaluator
 from src.evaluation.metrics import compute_all_metrics
 from src.evaluation.statistics import (
-    bootstrap_mean_ci, paired_bootstrap, paired_randomization_test, query_level_metrics,
+    bootstrap_mean_ci, holm_bonferroni, paired_bootstrap, paired_noninferiority,
+    paired_randomization_test, query_level_metrics,
 )
 
 
 def _run(qid, ranked):
     return {
         "query_id": qid, "retriever": "test", "total_latency_ms": 1.0,
-        "results": [{"chunk_id": value} for value in ranked],
+        "top_k": max(len(ranked), 1), "query_text": f"Question {qid}",
+        "config_snapshot": {"fixture": True},
+        "results": [{"chunk_id": value, "rank": rank} for rank, value in enumerate(ranked, 1)],
     }
 
 
@@ -30,11 +33,21 @@ def test_query_metrics_and_paired_tests_are_deterministic():
     assert bootstrap_mean_ci(left, "mrr_at_10", samples=200, seed=7)["num_queries"] == 2
 
 
+def test_noninferiority_and_holm_are_deterministic():
+    left = {f"q{i}": {"ndcg_at_10": 0.80} for i in range(10)}
+    right = {f"q{i}": {"ndcg_at_10": 0.81} for i in range(10)}
+    result = paired_noninferiority(left, right, "ndcg_at_10", margin=0.03, samples=200, seed=7)
+    assert result["noninferior"] is True
+    adjusted = holm_bonferroni({"H2": 0.01, "H3": 0.04})
+    assert adjusted["H2"]["adjusted_p_value"] == pytest.approx(0.02)
+    assert adjusted["H3"]["adjusted_p_value"] == pytest.approx(0.04)
+
+
 def test_evaluator_filters_frozen_split(tmp_path):
     qa = tmp_path / "qa.jsonl"
     qa.write_text(
-        json.dumps({"question_id": "q1", "split": "dev"}) + "\n"
-        + json.dumps({"question_id": "q2", "split": "test"}) + "\n",
+        json.dumps({"question_id": "q1", "question": "Question q1", "split": "dev"}) + "\n"
+        + json.dumps({"question_id": "q2", "question": "Question q2", "split": "test"}) + "\n",
         encoding="utf-8",
     )
     qrels = tmp_path / "qrels.tsv"

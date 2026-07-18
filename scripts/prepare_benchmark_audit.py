@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Prepare the fixed 60-question audit and top-3 pooled judgment workbook."""
+"""Prepare full benchmark audit and blind top-k pooled judgment workbook."""
 
 from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
+import random
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -15,12 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.benchmark.qrels_builder import QRelsBuilder
+from src.benchmark.benchmark_contract import validate_question
 from src.utils.io_utils import load_jsonl
 
 
 AUDIT_COUNTS = {
-    "entity_relation": 20, "multi_hop": 20, "paraphrase": 10,
-    "exact_match": 5, "terminology_heavy": 5,
+    "exact_match": 20, "terminology_heavy": 20, "paraphrase": 20,
+    "entity_relation": 20, "multi_hop": 20,
 }
 
 
@@ -39,7 +42,7 @@ def _write_review_csv(records: list[dict], path: Path, *, pooled: bool = False) 
     path.parent.mkdir(parents=True, exist_ok=True)
     if pooled:
         fields = [
-            "query_id", "category", "question", "chunk_id", "systems", "original_relevance",
+            "candidate_id", "query_id", "category", "question", "chunk_id",
             "candidate_text", "review_status", "reviewer", "relevance", "rationale",
             "second_reviewer_relevance",
         ]
@@ -47,9 +50,11 @@ def _write_review_csv(records: list[dict], path: Path, *, pooled: bool = False) 
         fields = [
             "question_id", "category", "question", "reference_answer", "gold_chunk_ids",
             "source_doc_ids", "scheme_names", "bridge_entity", "evidence_snippets",
-            "automatic_checks", "status", "reviewer", "question_natural", "category_correct",
+            "automatic_checks", "second_review_required", "status", "reviewer", "question_natural", "category_correct",
             "answer_supported", "gold_chunks_correct", "scheme_documents_correct", "bridge_valid",
-            "two_chunk_necessity", "lexical_leakage_acceptable", "duplicate_intent", "rationale",
+            "two_chunk_necessity", "lexical_leakage_acceptable", "schema_leakage_absent",
+            "boilerplate_absent", "duplicate_intent", "rationale", "second_reviewer",
+            "second_reviewer_decision", "second_reviewer_rationale",
         ]
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
@@ -74,6 +79,9 @@ def main() -> None:
     parser.add_argument("--chunks", required=True)
     parser.add_argument("--run", action="append", required=True, help="NAME=run.jsonl")
     parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--pool-depth", type=int, default=5)
+    parser.add_argument("--benchmark-version", default="v3_clean_benchmark_r1")
+    parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
     qa = load_jsonl(args.qa)
     chunks = {chunk["chunk_id"]: chunk for chunk in load_jsonl(args.chunks)}
@@ -87,6 +95,24 @@ def main() -> None:
             raise RuntimeError(f"Insufficient {category} questions for audit")
         selected.extend(by_category[category][:count])
     selected.sort(key=lambda value: value["question_id"])
+    # Existing 100 questions are exploratory development data. Assign balanced
+    # folds before review; replacements inherit rejected item's fold.
+    rng = random.Random(args.seed)
+    for category in sorted(by_category):
+        values = sorted(by_category[category], key=lambda value: value["question_id"])
+        rng.shuffle(values)
+        for index, item in enumerate(values):
+            item["parent_question_id"] = item["question_id"]
+            item["benchmark_version"] = args.benchmark_version
+            item["review_status"] = "pending"
+            item["review_revision"] = 0
+            item["split"] = "dev"
+            item["fold_id"] = index % 5
+    second_review_ids: set[str] = set()
+    sample_rng = random.Random(args.seed + 1)
+    for category in sorted(by_category):
+        values = sorted(by_category[category], key=lambda value: value["question_id"])
+        second_review_ids.update(item["question_id"] for item in sample_rng.sample(values, 4))
 
     question_keys = defaultdict(list)
     for item in qa:
@@ -117,6 +143,8 @@ def main() -> None:
             "two_chunks_for_cross_scheme": item["category"] not in {"entity_relation", "multi_hop"} or len(gold) == 2,
             "question_intent_unique": len(question_keys[_normalized(item["question"])]) == 1,
         }
+        contract_errors = validate_question(item, chunks)
+        automatic["category_contract_passes"] = not contract_errors
         audit_records.append({
             "question_id": item["question_id"], "category": item["category"],
             "question": item["question"], "reference_answer": item.get("reference_answer", ""),
@@ -125,13 +153,18 @@ def main() -> None:
             "bridge_entity": item.get("extra_meta", {}).get("bridge_entity"),
             "evidence_snippets": [text[:500] for text in evidence],
             "automatic_checks": automatic,
+            "contract_errors": contract_errors,
+            "second_review_required": item["question_id"] in second_review_ids,
             "human_review": {
                 "status": "pending", "reviewer": None,
                 "question_natural": None, "category_correct": None,
                 "answer_supported": None, "gold_chunks_correct": None,
                 "scheme_documents_correct": None, "bridge_valid": None,
                 "two_chunk_necessity": None, "lexical_leakage_acceptable": None,
+                "schema_leakage_absent": None, "boilerplate_absent": None,
                 "duplicate_intent": None, "rationale": None,
+                "second_reviewer": None, "second_reviewer_decision": None,
+                "second_reviewer_rationale": None,
             },
         })
 
@@ -143,32 +176,44 @@ def main() -> None:
         for run in load_jsonl(path):
             if run["query_id"] not in {item["question_id"] for item in selected}:
                 continue
-            for result in run.get("results", [])[:3]:
+            for result in run.get("results", [])[: args.pool_depth]:
                 run_pools[run["query_id"]].setdefault(result["chunk_id"], {})[system] = {
                     "rank": result.get("rank"), "score": result.get("score"),
                 }
     pooled: list[dict] = []
     for item in selected:
         query_id = item["question_id"]
-        for chunk_id, systems in sorted(run_pools[query_id].items()):
+        for chunk_id in sorted(qrels.get(query_id, {})):
+            run_pools[query_id].setdefault(chunk_id, {})["existing_gold"] = {
+                "rank": None, "score": None,
+            }
+        for candidate_index, (chunk_id, systems) in enumerate(sorted(run_pools[query_id].items()), 1):
             original = qrels.get(query_id, {}).get(chunk_id)
             pooled.append({
+                "candidate_id": f"{query_id}_candidate_{candidate_index:03d}",
                 "query_id": query_id, "category": item["category"], "question": item["question"],
                 "chunk_id": chunk_id, "systems": systems,
                 "original_relevance": original,
-                "candidate_text": chunks.get(chunk_id, {}).get("text", "")[:700],
+                "candidate_text": chunks.get(chunk_id, {}).get("text", ""),
                 "review_status": "pending", "reviewer": None, "relevance": None,
                 "rationale": None, "second_reviewer_relevance": None,
             })
 
     output = Path(args.output_dir)
-    _write_jsonl(audit_records, output / "question_audit_60.jsonl")
-    _write_jsonl(pooled, output / "pooled_top3_judgments.jsonl")
-    _write_review_csv(audit_records, output / "question_audit_60.csv")
-    _write_review_csv(pooled, output / "pooled_top3_judgments.csv", pooled=True)
+    _write_jsonl(selected, output / "benchmark_draft_r1.jsonl")
+    _write_jsonl(audit_records, output / "question_audit_100.jsonl")
+    _write_jsonl([
+        {key: value for key, value in record.items() if key not in {"candidate_text", "question"}}
+        for record in pooled
+    ], output / "pooled_top5_internal.jsonl")
+    _write_review_csv(audit_records, output / "question_audit_100.csv")
+    _write_review_csv(pooled, output / "pooled_top5_blind.csv", pooled=True)
     summary = {
-        "audit_status": "pending_human_review", "questions": len(audit_records),
+        "audit_status": "pending_human_review", "benchmark_version": args.benchmark_version,
+        "questions": len(audit_records),
         "selection": AUDIT_COUNTS, "pooled_candidates": len(pooled),
+        "pool_depth": args.pool_depth, "second_review_questions": len(second_review_ids),
+        "pool_status": "diagnostic_only_until_rejected_questions_are_replaced",
         "automatic_failures": {
             key: sum(not record["automatic_checks"][key] for record in audit_records)
             for key in next(iter(audit_records))["automatic_checks"]
@@ -177,14 +222,26 @@ def main() -> None:
     (output / "audit_summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     (output / "REVIEW_INSTRUCTIONS.md").write_text(
         "# Benchmark Audit Instructions\n\n"
-        "The audit remains blocked until a reviewer completes all 60 question rows and all pooled "
+        "Audit remains blocked until primary reviewer completes all 100 question rows and all pooled "
         "judgment rows. Do not change question IDs or chunk IDs.\n\n"
-        "For `question_audit_60.csv`, set `status=complete`, record the reviewer, complete every "
-        "boolean review field, and explain every rejection or correction in `rationale`.\n\n"
-        "For `pooled_top3_judgments.csv`, set `review_status=complete`, reviewer, and relevance "
-        "(`0`, `1`, or `2`) for every candidate. Explain any judgment that differs from "
-        "`original_relevance`. Convert the reviewed sheet back to JSONL before running "
+        "For `question_audit_100.csv`, set `status=complete`, record reviewer, complete every "
+        "boolean field, and explain every rejection in `rationale`. Replace rejected questions "
+        "before publication; do not mark invalid questions complete. Second reviewer completes "
+        "20 rows marked `second_review_required`.\n\n"
+        "For `pooled_top5_blind.csv`, assign binary relevance (`0` or `1`). System names and ranks "
+        "are intentionally absent. Explain judgment changes from original relevance. Run "
         "`scripts/finalize_qrels_audit.py`.\n",
+        encoding="utf-8",
+    )
+    packet_files = sorted(
+        path for path in output.iterdir()
+        if path.is_file() and path.name != "AUDIT_SHA256SUMS"
+    )
+    (output / "AUDIT_SHA256SUMS").write_text(
+        "".join(
+            f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n"
+            for path in packet_files
+        ),
         encoding="utf-8",
     )
     print(json.dumps(summary, indent=2))

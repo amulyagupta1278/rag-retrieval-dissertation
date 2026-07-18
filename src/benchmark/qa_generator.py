@@ -4,7 +4,7 @@ QA Generator — Benchmark Layer
 Research purpose
     A stratified ground-truth QA dataset is the foundation of reproducible
     retrieval evaluation. Without gold evidence mappings, MRR, Recall@k, and
-    nDCG@k cannot be computed. The benchmark directly operationalises H1–H5.
+    nDCG@k cannot be computed. The benchmark directly operationalises H1–H3.
 
 Design choice
     Template-based question generation from chunks combined with a manual
@@ -325,6 +325,11 @@ class QAItem:
     gold_evidence_ids: list[str]
     source_doc_ids: list[str]
     split: str = "test"           # dev | test
+    benchmark_version: str | None = None
+    parent_question_id: str | None = None
+    review_status: str = "unreviewed"
+    review_revision: int = 0
+    fold_id: int | None = None
     extra_meta: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
@@ -337,6 +342,11 @@ class QAItem:
             "gold_evidence_ids": self.gold_evidence_ids,
             "source_doc_ids": self.source_doc_ids,
             "split": self.split,
+            "benchmark_version": self.benchmark_version,
+            "parent_question_id": self.parent_question_id,
+            "review_status": self.review_status,
+            "review_revision": self.review_revision,
+            "fold_id": self.fold_id,
             "extra_meta": self.extra_meta,
         }
 
@@ -686,6 +696,29 @@ class QAGenerator:
             dev_ids = {item.question_id for item in values[:dev_count]}
             for item in values:
                 item.split = "dev" if item.question_id in dev_ids else "test"
+
+    @staticmethod
+    def assign_stratified_folds(
+        items: list[QAItem], *, folds: int = 5, seed: int = 42,
+        split: str = "dev",
+    ) -> None:
+        """Assign balanced deterministic folds for exploratory model selection."""
+        if folds < 2:
+            raise ValueError("folds must be at least 2")
+        by_category: dict[str, list[QAItem]] = defaultdict(list)
+        for item in items:
+            by_category[item.category].append(item)
+        rng = random.Random(seed)
+        for category in sorted(by_category):
+            values = sorted(by_category[category], key=lambda item: item.question_id)
+            if len(values) % folds:
+                raise ValueError(
+                    f"Category {category} count {len(values)} is not divisible by {folds}"
+                )
+            rng.shuffle(values)
+            for index, item in enumerate(values):
+                item.split = split
+                item.fold_id = index % folds
 
     def generate(self, chunks: list[dict], max_per_category: int = 20) -> list[QAItem]:
         """

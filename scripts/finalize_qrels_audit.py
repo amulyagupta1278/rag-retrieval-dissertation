@@ -27,7 +27,7 @@ def _load_reviewed(path: str) -> list[dict]:
             record = dict(row)
             for key in ("original_relevance", "relevance", "second_reviewer_relevance"):
                 value = str(record.get(key) or "").strip()
-                record[key] = int(value) if value in {"0", "1", "2"} else None
+                record[key] = int(value) if value in {"0", "1"} else None
             if record.get("systems"):
                 record["systems"] = json.loads(record["systems"])
             records.append(record)
@@ -51,18 +51,32 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original-qrels", required=True)
     parser.add_argument("--reviewed-pool", required=True)
+    parser.add_argument("--pool-provenance", default=None, help="Internal pool JSONL containing hidden system/rank provenance")
+    parser.add_argument("--chunks", required=True)
+    parser.add_argument("--pool-stage", choices=("initial", "residual", "holdout"), default="initial")
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
     records = _load_reviewed(args.reviewed_pool)
+    if args.pool_provenance:
+        provenance = {
+            record["candidate_id"]: record for record in load_jsonl(args.pool_provenance)
+        }
+        if {record.get("candidate_id") for record in records} != set(provenance):
+            raise RuntimeError("Reviewed blind pool does not match internal pool provenance")
+        records = [
+            {**provenance[record["candidate_id"]], **record}
+            for record in records
+        ]
     incomplete = [
         record for record in records
         if record.get("review_status") != "complete"
         or record.get("reviewer") in (None, "")
-        or record.get("relevance") not in (0, 1, 2)
+        or record.get("relevance") not in (0, 1)
     ]
     if incomplete:
         raise RuntimeError(f"Cannot publish audited qrels: {len(incomplete)} pooled judgments incomplete")
     qrels = QRelsBuilder.load_qrels_tsv(args.original_qrels)
+    known_chunks = {chunk["chunk_id"] for chunk in load_jsonl(args.chunks)}
     additions: list[dict] = []
     second_pairs: list[tuple[int, int]] = []
     for record in records:
@@ -73,8 +87,20 @@ def main() -> None:
             if not str(record.get("rationale") or "").strip():
                 raise RuntimeError(f"Changed judgment lacks rationale: {query_id}/{chunk_id}")
             additions.append({**record, "previous_relevance": original})
-        if record.get("second_reviewer_relevance") in (0, 1, 2):
+        if record.get("second_reviewer_relevance") in (0, 1):
             second_pairs.append((relevance, int(record["second_reviewer_relevance"])))
+    unknown = {
+        chunk_id for judgments in qrels.values() for chunk_id in judgments
+        if chunk_id not in known_chunks
+    }
+    if unknown:
+        raise RuntimeError(f"Audited qrels reference unknown chunks: {sorted(unknown)[:20]}")
+    no_relevant = [
+        query_id for query_id, judgments in qrels.items()
+        if not any(relevance == 1 for relevance in judgments.values())
+    ]
+    if no_relevant:
+        raise RuntimeError(f"Audited qrels leave queries without relevant evidence: {no_relevant[:20]}")
     output = Path(args.output_dir)
     output.mkdir(parents=True, exist_ok=True)
     triples = [
@@ -97,6 +123,8 @@ def main() -> None:
     completion = {
         "qrels_audit_status": "complete", "pooled_judgments_reviewed": len(records),
         "changed_judgments": len(additions),
+        "pool_stage": args.pool_stage,
+        "relevance_scale": "binary_0_1",
         "audited_qrels_sha256": hashlib.sha256(audited_path.read_bytes()).hexdigest(),
     }
     (output / "qrels_audit_completion.json").write_text(

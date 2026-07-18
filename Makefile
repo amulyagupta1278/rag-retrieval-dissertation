@@ -1,6 +1,6 @@
 .PHONY: install spacy-model acquire dataset faiss bm25 graphrag statistics compare test clean all \
 	release-corpus release-indexes release-benchmark release-evaluate release-statistics \
-	release-verify release-v3-clean verify-v2-baseline
+	release-verify release-v3-clean verify-v2-baseline benchmark-audit-r1
 
 VERSION ?= v3_clean
 WORK_DIR ?= releases/.work-$(VERSION)
@@ -35,7 +35,19 @@ statistics:
 	python scripts/generate_corpus_statistics.py
 
 compare:
-	python experiments/compare_retrievers.py
+	python experiments/compare_retrievers.py --qa-dataset data/queries/qa_dataset.jsonl --chunks data/chunks/chunks.jsonl
+
+# Creates review workbooks only. Publication/model selection remain blocked
+# until real reviewers complete them.
+benchmark-audit-r1:
+	python scripts/prepare_benchmark_audit.py \
+		--qa releases/v3_clean/data/queries/qa_dataset_v3_clean.jsonl \
+		--qrels releases/v3_clean/data/qrels/qrels_v3_clean.tsv \
+		--chunks releases/v3_clean/data/chunks/chunks_v3_clean.jsonl \
+		--run bm25=releases/v3_clean/runs/retrieval/bm25_run.jsonl \
+		--run faiss=releases/v3_clean/runs/retrieval/faiss_run.jsonl \
+		--run entity_graph=releases/v3_clean/runs/retrieval/graphrag_run.jsonl \
+		--output-dir audits/v3_clean_benchmark_r1
 
 # Deterministic release pipeline. Each stage consumes only the preceding
 # staging paths; publication happens only after release-verify succeeds.
