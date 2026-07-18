@@ -46,6 +46,14 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--output-root", default="runs")
     p.add_argument("--split", choices=("all", "dev", "test", "holdout"), default="all")
     p.add_argument("--configuration-lock", default=None)
+    p.add_argument("--require-index-provenance", action="store_true")
+    p.add_argument("--seed-filtering", action=argparse.BooleanOptionalAction, default=None)
+    p.add_argument("--use-aliases", action=argparse.BooleanOptionalAction, default=None)
+    p.add_argument("--hub-penalty", action=argparse.BooleanOptionalAction, default=None)
+    p.add_argument("--dual-entity-coverage", action=argparse.BooleanOptionalAction, default=None)
+    p.add_argument("--lexical-fallback", action=argparse.BooleanOptionalAction, default=None)
+    p.add_argument("--max-seeds", type=int, default=None)
+    p.add_argument("--hop-decay", type=float, default=None)
     p.add_argument("--log-level", default="INFO")
     return p.parse_args()
 
@@ -83,6 +91,14 @@ def main() -> None:
         graph_path=graph_path,
         nodes_path=graph_dir / "nodes.jsonl",
         edges_path=graph_dir / "edges.jsonl",
+        chunks_path=chunks_path,
+        seed_filtering=args.seed_filtering if args.seed_filtering is not None else cfg.get("seed_filtering", False),
+        use_aliases=args.use_aliases if args.use_aliases is not None else cfg.get("use_aliases", False),
+        hub_penalty=args.hub_penalty if args.hub_penalty is not None else cfg.get("hub_penalty", False),
+        dual_entity_coverage=args.dual_entity_coverage if args.dual_entity_coverage is not None else cfg.get("dual_entity_coverage", False),
+        lexical_fallback=args.lexical_fallback if args.lexical_fallback is not None else cfg.get("lexical_fallback", False),
+        max_seeds=args.max_seeds if args.max_seeds is not None else cfg.get("max_seeds", 5),
+        hop_decay=args.hop_decay if args.hop_decay is not None else cfg.get("hop_decay", 0.5),
     )
 
     if args.rebuild or not graph_path.exists():
@@ -91,6 +107,7 @@ def main() -> None:
     else:
         logger.info("Loading existing entity-co-occurrence graph index…")
         retriever.load_index()
+    retriever.validate_provenance(chunks, require_complete=args.require_index_provenance or args.split == "holdout")
 
     if args.build_only:
         if len(retriever._chunk_meta) != len(chunks):
@@ -120,6 +137,13 @@ def main() -> None:
         "relation_window": cfg.get("relation_window", 2),
         "min_entity_freq": cfg.get("min_entity_freq", 2),
         "split": args.split,
+        "seed_filtering": retriever.seed_filtering,
+        "use_aliases": retriever.use_aliases,
+        "hub_penalty": retriever.hub_penalty,
+        "dual_entity_coverage": retriever.dual_entity_coverage,
+        "lexical_fallback": retriever.lexical_fallback,
+        "max_seeds": retriever.max_seeds,
+        "hop_decay": retriever.hop_decay,
     }
     runs = retriever.run_benchmark(qa_items, top_k=top_k, config_snapshot=config_snapshot)
 
@@ -137,6 +161,7 @@ def main() -> None:
         qrels_path=qrels_path,
         query_categories_path=args.query_categories if Path(args.query_categories).exists() else None,
         qa_dataset_path=qa_path, split=args.split,
+        chunks_path=chunks_path,
     )
     bundles = evaluator.evaluate_run_file(run_file, retriever_name="graphrag")
     evaluator.save_metrics_csv(bundles, output_root / "metrics" / "graphrag_metrics.csv")

@@ -2,10 +2,9 @@
 FAISS Dense Retriever — Retrieval Layer
 =========================================
 Research purpose
-    Dense retrieval is the de-facto default in modern RAG pipelines.
-    Including it as a controlled baseline allows the dissertation to answer
-    H2: "Dense retrieval performs strongly on semantically paraphrased
-    questions where lexical overlap is weak."
+    Dense retrieval is the de-facto default in modern RAG pipelines and serves
+    as the controlled dense baseline. Tests H2 — canonical definition in
+    README.md §Canonical Hypotheses (H1–H5).
 
 Design choice
     SentenceTransformer embeddings + configurable exact L2/cosine search.
@@ -33,6 +32,7 @@ from __future__ import annotations
 import json
 import logging
 import time
+import importlib.metadata
 from pathlib import Path
 from typing import Optional
 
@@ -46,8 +46,16 @@ except ImportError:
 from sentence_transformers import SentenceTransformer
 
 from .base_retriever import BaseRetriever, RetrievalResult
+from ..utils.artifact_provenance import chunk_provenance, stable_json_hash, validate_chunk_provenance, validate_config_hash
 
 logger = logging.getLogger(__name__)
+
+
+def _package_version(name: str) -> str | None:
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
 
 
 class FAISSRetriever(BaseRetriever):
@@ -100,6 +108,8 @@ class FAISSRetriever(BaseRetriever):
         self.chunk_ids: list[str] = []
         self.chunk_texts: dict[str, str] = {}
         self.chunk_docs: dict[str, str] = {}
+        self.index_config: dict = {}
+        self.provenance: dict = {}
 
     def build_index(self, chunks: list[dict]) -> None:
         """
@@ -143,7 +153,8 @@ class FAISSRetriever(BaseRetriever):
         with open(self.index_dir / "chunk_ids.json", "w") as f:
             json.dump(self.chunk_ids, f)
 
-        config = {
+        self.provenance = chunk_provenance(chunks, self.chunks_path)
+        base_config = {
             "model_name": self.model_name,
             "embedding_dim": embedding_dim,
             "num_chunks": len(chunks),
@@ -153,9 +164,18 @@ class FAISSRetriever(BaseRetriever):
             "query_prefix": self.query_prefix,
             "passage_prefix": self.passage_prefix,
             "model_revision": self.model_revision,
+            "provenance": self.provenance,
+            "package_versions": {
+                "faiss-cpu": _package_version("faiss-cpu"),
+                "sentence-transformers": _package_version("sentence-transformers"),
+                "numpy": _package_version("numpy"),
+            },
         }
+        config = {**base_config, "configuration_hash": stable_json_hash(base_config)}
+        self.index_config = config
+        validate_config_hash(config)
         with open(self.index_dir / "config.json", "w") as f:
-            json.dump(config, f, indent=2)
+            json.dump(config, f, indent=2, sort_keys=True)
 
         logger.info(f"✓ FAISS index built. {len(chunks)} chunks indexed.")
 
@@ -177,6 +197,8 @@ class FAISSRetriever(BaseRetriever):
         # Load config
         with open(self.index_dir / "config.json") as f:
             config = json.load(f)
+        self.index_config = config
+        self.provenance = config.get("provenance", {})
         self.model_name = config["model_name"]
         actual_index_type = type(self.index).__name__
         index_type = config.get("index_type", actual_index_type)
@@ -209,6 +231,18 @@ class FAISSRetriever(BaseRetriever):
         self._load_chunk_metadata()
 
         logger.info(f"✓ Loaded index with {len(self.chunk_ids)} chunks.")
+
+    def validate_provenance(self, chunks: list[dict], *, require_complete: bool = False) -> dict:
+        """Validate vector row order and parent corpus fingerprints."""
+        validate_config_hash(self.index_config, required=require_complete)
+        actual = validate_chunk_provenance(
+            self.provenance, chunks, self.chunks_path,
+            require_complete=require_complete,
+        )
+        actual_ids = [chunk["chunk_id"] for chunk in chunks]
+        if self.chunk_ids != actual_ids:
+            raise RuntimeError("FAISS chunk_ids.json order differs from corpus chunk order")
+        return actual
 
     def _load_chunk_metadata(self) -> None:
         """Load chunk texts and document IDs from the configured corpus JSONL."""

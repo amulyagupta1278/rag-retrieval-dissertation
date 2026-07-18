@@ -24,7 +24,7 @@ def reciprocal_rank_fusion(
         question = ""
         for system in sorted(indexed):
             run = indexed[system][query_id]
-            question = question or run.get("question", "")
+            question = question or run.get("query_text", run.get("question", ""))
             for rank, result in enumerate(run.get("results", [])[:input_depth], 1):
                 chunk_id = result["chunk_id"]
                 scores[chunk_id] = scores.get(chunk_id, 0.0) + 1.0 / (rrf_k + rank)
@@ -40,11 +40,11 @@ def reciprocal_rank_fusion(
                 "extra": {"component_ranks": contributions[chunk_id], "rrf_k": rrf_k},
             })
         fused_runs.append({
-            "query_id": query_id, "question": question, "retriever": "rrf",
+            "query_id": query_id, "query_text": question, "retriever": "rrf",
             "top_k": output_depth, "total_latency_ms": sum(
                 float(indexed[system][query_id].get("total_latency_ms", 0.0)) for system in indexed
             ),
             "results": results,
-            "config": {"systems": sorted(indexed), "rrf_k": rrf_k, "input_depth": input_depth},
+            "config_snapshot": {"systems": sorted(indexed), "rrf_k": rrf_k, "input_depth": input_depth},
         })
     return fused_runs

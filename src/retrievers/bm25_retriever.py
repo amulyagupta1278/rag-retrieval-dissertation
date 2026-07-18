@@ -2,10 +2,8 @@
 BM25 Retriever — Retrieval Layer
 ===================================
 Research purpose
-    BM25 is the primary vector-free baseline. The dissertation tests H1:
-    "BM25 will remain competitive on exact-match, terminology-heavy, and
-    entity-specific questions because lexical signals preserve explicit term
-    constraints."
+    BM25 is the primary vector-free baseline. Tests H1 — canonical definition
+    in README.md §Canonical Hypotheses (H1–H5).
 
 Design choice
     rank-bm25 (pure Python) is chosen over Pyserini (Java dependency) for
@@ -41,6 +39,7 @@ from pathlib import Path
 from typing import Optional
 
 from .base_retriever import BaseRetriever, RetrievalResult
+from ..utils.artifact_provenance import chunk_provenance, package_versions, stable_json_hash, validate_chunk_provenance, validate_config_hash
 
 logger = logging.getLogger(__name__)
 
@@ -73,12 +72,16 @@ class BM25Retriever(BaseRetriever):
         k1: float = 1.5,
         b: float = 0.75,
         index_path: str | Path = "indexes/bm25/bm25_index.pkl",
+        chunks_path: str | Path | None = None,
     ) -> None:
         self.k1 = k1
         self.b = b
         self.index_path = Path(index_path)
+        self.chunks_path = Path(chunks_path) if chunks_path else None
         self._bm25 = None
         self._meta: list[dict] = []   # parallel to BM25 corpus
+        self.provenance: dict = {}
+        self.index_config: dict = {}
 
     # ------------------------------------------------------------------
     # Index lifecycle
@@ -97,14 +100,35 @@ class BM25Retriever(BaseRetriever):
         ]
         tokenized = [_tokenize(c["text"]) for c in chunks]
         self._bm25 = BM25Okapi(tokenized, k1=self.k1, b=self.b)
+        self.provenance = chunk_provenance(chunks, self.chunks_path)
+        base_config = {
+            "retriever": self.name,
+            "backend": "rank_bm25",
+            "k1": self.k1,
+            "b": self.b,
+            "provenance": self.provenance,
+            "package_versions": package_versions(("rank-bm25", "numpy")),
+        }
+        self.index_config = {
+            **base_config,
+            "configuration_hash": stable_json_hash(base_config),
+        }
         logger.info("BM25 index built: %d documents", len(tokenized))
         self._save()
 
     def _save(self) -> None:
         self.index_path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {"bm25": self._bm25, "meta": self._meta}
+        payload = {
+            "bm25": self._bm25,
+            "meta": self._meta,
+            "config": self.index_config,
+        }
         with self.index_path.open("wb") as fh:
             pickle.dump(payload, fh, protocol=pickle.HIGHEST_PROTOCOL)
+        self.index_path.with_suffix(self.index_path.suffix + ".config.json").write_text(
+            json.dumps(self.index_config, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
         logger.info("BM25 index saved → %s", self.index_path)
 
     def load_index(self) -> None:
@@ -114,7 +138,24 @@ class BM25Retriever(BaseRetriever):
             payload = pickle.load(fh)
         self._bm25 = payload["bm25"]
         self._meta = payload["meta"]
+        config_path = self.index_path.with_suffix(self.index_path.suffix + ".config.json")
+        self.index_config = payload.get("config", {})
+        if not self.index_config and config_path.exists():
+            self.index_config = json.loads(config_path.read_text(encoding="utf-8"))
+        self.provenance = self.index_config.get("provenance", {})
+        if self.index_config:
+            validate_config_hash(self.index_config)
+            self.k1 = float(self.index_config.get("k1", self.k1))
+            self.b = float(self.index_config.get("b", self.b))
         logger.info("BM25 index loaded: %d documents", len(self._meta))
+
+    def validate_provenance(self, chunks: list[dict], *, require_complete: bool = False) -> dict:
+        """Validate index parent corpus and row order."""
+        validate_config_hash(self.index_config, required=require_complete)
+        return validate_chunk_provenance(
+            self.provenance, chunks, self.chunks_path,
+            require_complete=require_complete,
+        )
 
     # ------------------------------------------------------------------
     # Retrieval

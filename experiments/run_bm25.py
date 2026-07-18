@@ -45,6 +45,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--output-root", default="runs")
     p.add_argument("--split", choices=("all", "dev", "test", "holdout"), default="all")
     p.add_argument("--configuration-lock", default=None)
+    p.add_argument("--require-index-provenance", action="store_true")
     p.add_argument("--log-level", default="INFO")
     return p.parse_args()
 
@@ -77,6 +78,7 @@ def main() -> None:
         k1=k1,
         b=b,
         index_path=index_path,
+        chunks_path=chunks_path,
     )
 
     if args.rebuild or not index_path.exists():
@@ -85,6 +87,7 @@ def main() -> None:
     else:
         logger.info("Loading existing BM25 index…")
         retriever.load_index()
+    retriever.validate_provenance(chunks, require_complete=args.require_index_provenance or args.split == "holdout")
 
     if args.build_only:
         if len(retriever._meta) != len(chunks):
@@ -120,6 +123,7 @@ def main() -> None:
         qrels_path=qrels_path,
         query_categories_path=args.query_categories if Path(args.query_categories).exists() else None,
         qa_dataset_path=qa_path, split=args.split,
+        chunks_path=chunks_path,
     )
     bundles = evaluator.evaluate_run_file(run_file, retriever_name="bm25")
     evaluator.save_metrics_csv(bundles, output_root / "metrics" / "bm25_metrics.csv")

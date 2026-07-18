@@ -51,6 +51,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--output-root", default="runs")
     p.add_argument("--split", choices=("all", "dev", "test", "holdout"), default="all")
     p.add_argument("--configuration-lock", default=None)
+    p.add_argument("--require-index-provenance", action="store_true")
     p.add_argument("--log-level", default="INFO")
     return p.parse_args()
 
@@ -99,6 +100,7 @@ def main() -> None:
     else:
         logger.info("Loading existing FAISS index…")
         retriever.load_index()
+    retriever.validate_provenance(chunks, require_complete=args.require_index_provenance or args.split == "holdout")
 
     if args.build_only:
         if retriever.index.ntotal != len(chunks) or len(retriever.chunk_ids) != len(chunks):
@@ -146,6 +148,7 @@ def main() -> None:
         qrels_path=qrels_path,
         query_categories_path=args.query_categories if Path(args.query_categories).exists() else None,
         qa_dataset_path=qa_path, split=args.split,
+        chunks_path=chunks_path,
     )
     bundles = evaluator.evaluate_run_file(run_file, retriever_name="faiss")
     evaluator.save_metrics_csv(bundles, output_root / "metrics" / "faiss_metrics.csv")
