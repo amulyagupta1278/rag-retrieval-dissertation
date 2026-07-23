@@ -1,0 +1,22 @@
+{
+  "chunk_file_sha256": "46209d833055a2d0668660b11661adbfdc6722c97a87eae844913539cde18532",
+  "configuration": {
+    "chunk_overlap_words": 60,
+    "chunk_size_words": 300,
+    "min_chunk_length_characters": 50,
+    "respect_sentence_boundaries": true,
+    "tokenization": "Python str.split whitespace words"
+  },
+  "documents": {
+    "wiki_mgnrega": {"chunk_words": [302, 131], "exact_overlap_words": 62},
+    "wiki_pmfby": {"chunk_words": [306, 83], "exact_overlap_words": 66},
+    "wiki_pmjdy": {"chunk_words": [317, 131], "exact_overlap_words": 77},
+    "wiki_pmmy": {"chunk_words": [289, 49], "exact_overlap_words": 49},
+    "wiki_pradhan_mantri_awas_yojana": {"chunk_words": [300, 111], "exact_overlap_words": 60}
+  },
+  "reproduction": {
+    "all_chunk_ids_equal": true,
+    "all_chunk_texts_equal": true,
+    "separate_cleaned_document_artifact": false
+  }
+}

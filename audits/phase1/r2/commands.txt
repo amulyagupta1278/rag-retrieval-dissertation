@@ -1,0 +1,6 @@
+python scripts/build_v2_benchmark_r2.py --pilot-root data/v2/pilot --audit-root audits/phase1/r2
+pytest -q tests/test_graph_path_validator.py
+pytest -q tests/test_v2_human_review.py
+pytest -q
+git diff --check
+git status --short --branch

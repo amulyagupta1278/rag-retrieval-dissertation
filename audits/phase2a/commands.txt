@@ -1,0 +1,7 @@
+cp -R runs/v2/phase2a runs/v2/phase2a_v1
+python scripts/correct_phase2a_validity.py --pilot-root data/v2/pilot --v1 runs/v2/phase2a_v1 --output runs/v2/phase2a_v2 --audit audits/phase2a
+python scripts/measure_phase2a_latency.py --chunks data/v2/pilot/chunks/chunks.jsonl --qa data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r3.jsonl --output runs/v2/phase2a_v2/latency
+pytest -q tests/test_phase2a_evaluation.py
+pytest -q
+git diff --check
+git status --short --branch

@@ -1,0 +1,29 @@
+query_id	category	question	gold_evidence_ids
+q_0001	exact_lookup	How often are payments made under Awas?	chunk_24c5744e
+q_0002	exact_lookup	What is the main objective of Awas?	chunk_24c5744e
+q_0003	exact_lookup	What is the main objective of MGNREGA?	chunk_434ecf2f
+q_0004	exact_lookup	What is the main objective of Fasal?	chunk_547c46be
+q_0005	exact_lookup	Who are the target beneficiaries of Awas?	chunk_24c5744e
+q_0006	exact_lookup	What is the coverage area of Awas?	chunk_24c5744e
+q_0007	exact_lookup	What is the coverage area of MGNREGA?	chunk_434ecf2f
+q_0008	exact_lookup	What is the coverage area of Fasal?	chunk_547c46be
+q_0009	exact_lookup	What is the implementation mechanism for MGNREGA?	chunk_434ecf2f
+q_0010	terminology	How does MGNREGA work?	chunk_434ecf2f
+q_0011	terminology	What is MGNREGA?	chunk_34ceaa4c
+q_0012	terminology	What is the purpose of Awas Yojana?	chunk_24c5744e
+q_0013	terminology	Explain Awas Yojana.	chunk_ddc1db00
+q_0014	paraphrase	What is the banking initiative for financial inclusion?	chunk_b6920a5f
+q_0015	paraphrase	Who can benefit from the farmer income scheme?	chunk_547c46be
+q_0016	entity_relation	Who are eligible for MGNREGA?	chunk_434ecf2f
+q_0017	entity_relation	What is the benefit structure of MGNREGA?	chunk_34ceaa4c
+q_0018	multi_hop	What is the scope of government welfare schemes in India?	chunk_24c5744e|chunk_434ecf2f
+q_0019	multi_hop	How do different schemes address poverty and welfare?	chunk_434ecf2f|chunk_b6920a5f
+q_0020	multi_hop	What are the common eligibility patterns across welfare schemes?	chunk_b6920a5f|chunk_028e5115
+q_0021	multi_hop	How do government schemes support different sections of society?	chunk_028e5115|chunk_547c46be
+q_0022	multi_hop	What are the key implementation patterns across welfare schemes?	chunk_547c46be|chunk_24c5744e
+q_0023	synthesis	What are the main categories of beneficiaries across government welfare schemes?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f
+q_0024	synthesis	How do different welfare schemes ensure inclusive development?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f
+q_0025	synthesis	What are the core principles underlying Indian welfare schemes?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f
+q_0026	synthesis	How are government welfare schemes funded and implemented?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f
+q_0027	synthesis	What is the common structure across multiple welfare schemes?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f
+q_0028	synthesis	How do welfare schemes balance coverage with targeted assistance?	chunk_24c5744e|chunk_ddc1db00|chunk_434ecf2f

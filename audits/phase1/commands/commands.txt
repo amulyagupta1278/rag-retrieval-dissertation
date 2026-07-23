@@ -1,0 +1,13 @@
+git status --short --branch
+git log -1 --oneline
+pytest -q tests/test_v2_contracts.py tests/test_v2_pipeline.py tests/test_v2_benchmark.py
+python scripts/build_v2_pilot.py --output-root data/v2/pilot
+python scripts/build_v2_benchmark_draft.py --pilot-root data/v2/pilot
+python scripts/audit_v2_pilot.py --pilot-root data/v2/pilot --audit-root audits/phase1
+python scripts/build_v2_pilot.py --output-root data/v2/pilot --overwrite
+python scripts/build_v2_benchmark_draft.py --pilot-root data/v2/pilot --overwrite
+python scripts/audit_v2_pilot.py --pilot-root data/v2/pilot --audit-root audits/phase1 --overwrite
+pytest -q
+git diff --check
+git diff --name-only -- FINAL_COMPILED_MIDSEM_REPORT.md data/raw/snapshot_v1 data/chunks/chunks_v1.jsonl data/queries/qa_dataset_v1.jsonl data/qrels/qrels.tsv runs evidence
+git status --short --branch

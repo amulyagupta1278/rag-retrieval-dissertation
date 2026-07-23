@@ -1,0 +1,7 @@
+Focused command:
+pytest -q tests/test_phase2a_evaluation.py
+7 passed in 0.20s
+
+Full command:
+pytest -q
+92 passed in 4.29s

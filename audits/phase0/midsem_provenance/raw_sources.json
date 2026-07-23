@@ -1,0 +1,35 @@
+{
+  "first_commit": "123932df629cd7e6379721b449baacd44557d5a1",
+  "sources": [
+    {
+      "path": "data/raw/snapshot_v1/wiki_mgnrega.txt",
+      "recorded_scheme": "MGNREGA",
+      "recorded_url": "https://en.wikipedia.org/wiki/Mahatma_Gandhi_National_Rural_Employment_Guarantee_Act",
+      "sha256": "614558df4c57b9b361ccb2685c11a654da5caefe44e76a101d7ef6f893fc5180"
+    },
+    {
+      "path": "data/raw/snapshot_v1/wiki_pmfby.txt",
+      "recorded_scheme": "PMFBY",
+      "recorded_url": "https://en.wikipedia.org/wiki/Pradhan_Mantri_Fasal_Bima_Yojana",
+      "sha256": "04ec7100179ecc405efbef7332e20f78f1e6e59dcd4c33405e81c1fe19e800f5"
+    },
+    {
+      "path": "data/raw/snapshot_v1/wiki_pmjdy.txt",
+      "recorded_scheme": "PMJDY",
+      "recorded_url": "https://en.wikipedia.org/wiki/Pradhan_Mantri_Jan_Dhan_Yojana",
+      "sha256": "2395d18d8d7da63aac38da8c0e0d3a29e14d9a058167eedbf8de05f4bf0753de"
+    },
+    {
+      "path": "data/raw/snapshot_v1/wiki_pmmy.txt",
+      "recorded_scheme": "PMMY",
+      "recorded_url": "https://en.wikipedia.org/wiki/Pradhan_Mantri_Mudra_Yojana",
+      "sha256": "1b4bdbf81e9d8647e1f512c53701599ee3f1f18610970b57e255c01a7c9593dd"
+    },
+    {
+      "path": "data/raw/snapshot_v1/wiki_pradhan_mantri_awas_yojana.txt",
+      "recorded_scheme": "Pradhan Mantri Awas Yojana",
+      "recorded_url": "https://en.wikipedia.org/wiki/Pradhan_Mantri_Awas_Yojana",
+      "sha256": "a2f8c6fab2d31b7812ec970bce1d48eaee618ee61c70654a7ca511cb7deec5fd"
+    }
+  ]
+}

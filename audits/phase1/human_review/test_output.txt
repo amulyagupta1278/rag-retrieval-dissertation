@@ -1,0 +1,11 @@
+Focused command:
+pytest -q tests/test_v2_human_review.py
+
+Result:
+3 passed in 0.03s
+
+Full command:
+pytest -q
+
+Result:
+71 passed in 5.17s

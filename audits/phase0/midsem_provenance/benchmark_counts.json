@@ -1,0 +1,27 @@
+{
+  "categories": {
+    "entity_relation": 2,
+    "exact_lookup": 9,
+    "multi_hop": 5,
+    "paraphrase": 2,
+    "synthesis": 6,
+    "terminology": 4
+  },
+  "qa_records": 28,
+  "qa_sha256": "f98776865ff6632b24035b8e76551d96f5b89e3e9acadaaf953d7543d34f862b",
+  "qrels": {
+    "all_chunk_ids_resolve": true,
+    "judgments": 78,
+    "queries": 28,
+    "relevance_1": 33,
+    "relevance_2": 45,
+    "sha256": "f1de481174345987cd4c40019993eb5c166bb8465e833e7695580547d6ec777b"
+  },
+  "regeneration_probe": {
+    "category_counts_equal": true,
+    "exact_rows_equal": false,
+    "generated_qa_records": 28,
+    "generated_qrels": 78,
+    "reason": "Python hash() selects some templates without fixed PYTHONHASHSEED"
+  }
+}
