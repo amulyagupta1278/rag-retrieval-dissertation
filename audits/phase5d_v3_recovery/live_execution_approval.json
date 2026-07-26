@@ -1,0 +1,8 @@
+{
+  "approved_recovery_commit": null,
+  "freeze_manifest_sha256": null,
+  "owner_statement": null,
+  "recovery_config_sha256": null,
+  "schema_version": 1,
+  "status": "pending_owner_live_approval"
+}

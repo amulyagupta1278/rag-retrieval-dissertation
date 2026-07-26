@@ -1,0 +1,32 @@
+{
+  "ambiguous_failed_attempt": {
+    "input_reserve_tokens": 40000,
+    "input_reserve_usd": 0.04,
+    "maximum_output_tokens": 2048,
+    "maximum_output_usd": 0.01024,
+    "reserved_total_usd": 0.05024
+  },
+  "basis": {
+    "largest_observed_trace_request_input_tokens": 30645,
+    "reserve_headroom_over_largest_trace_input_tokens": 9355,
+    "reserve_headroom_percent": 30.52699951052374,
+    "v2_failed_request_provider_usage": "unavailable",
+    "v2_failed_request_recorded_billing": "ambiguous"
+  },
+  "calculation": {
+    "cumulative_budgeted_worst_case_usd": 2.149328,
+    "cumulative_hard_cap_usd": 2.15,
+    "hard_cap_margin_usd": 0.000672,
+    "recorded_prior_cumulative_usd": 1.040028,
+    "recovery_budgeted_worst_case_usd": 1.05906,
+    "reserved_prior_exposure_usd": 1.090268
+  },
+  "interpretation": "Ambiguous attempt may have been billed despite zero returned usage. Reserve assumes up to 40,000 input tokens and contract maximum 2,048 output tokens. Exact billing remains unverified.",
+  "live_api_calls_during_budget_design": 0,
+  "prices": {
+    "input_usd_per_million": 1.0,
+    "output_usd_per_million": 5.0
+  },
+  "schema_version": 1,
+  "status": "proposed_cap_contains_ambiguous_reserve_and_recovery_worst_case"
+}
