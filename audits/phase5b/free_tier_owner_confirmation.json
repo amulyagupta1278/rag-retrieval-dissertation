@@ -1,18 +1,18 @@
 {
   "artifact_type": "phase5b_free_tier_owner_confirmation",
   "attestation": {
-    "google_ai_studio_plan": null,
-    "linked_billing_account": null,
+    "google_ai_studio_plan": "Free",
+    "linked_billing_account": false,
     "monetary_charge_authorized": false
   },
-  "confirmed_at": null,
+  "confirmed_at": "2026-07-26T19:15:49+05:30",
   "context_attestation": {
-    "active_execution_environment_confirmed": null,
-    "credential_or_environment_changed_since_confirmation": null,
+    "active_execution_environment_confirmed": true,
+    "credential_or_environment_changed_since_confirmation": true,
     "reconfirmation_required_after_any_change": true,
     "scope": "current process environment and active GEMINI_API_KEY context"
   },
   "frozen_config_sha256": "251e8ea1948eb20b03f1e259742d9b9933e88aaafc0897ff16905a4d16c69fde",
   "schema_version": 1,
-  "status": "pending_manual_owner_confirmation"
+  "status": "invalidated_after_credential_exposure"
 }
