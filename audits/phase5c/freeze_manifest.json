@@ -1,36 +1,38 @@
 {
   "artifact_hashes": {
-    "audits/phase5b/freeze_manifest.json": "d96f782c71045288928ae399f6086a98d91ccff685474857c1d3ff7d7f78e10b",
+    "audits/phase5b/freeze_manifest.json": "45f3ecd8f3742795aa7cceecd32b6a823053364591ad0c5af0adec2e68ec852b",
     "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
     "audits/phase5b/token_budget_audit.json": "ff13f5e46b1629f914ce0f0d3fbc81b3c09d7eb96193046e966e304cc069ac40",
     "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
-    "audits/phase5c/freeze_readiness.json": "2ce63ed46455eb6da7598733d20995e5b415bbaa27dfc46925d1dc3cc4518eac",
+    "audits/phase5c/api_version_404_checkpoint.json": "9d7817c03f82221f62901f0a6c5ba3fa919f7cccdf444309fa6fd5b01691faa5",
+    "audits/phase5c/api_version_validity_correction.json": "0b8bf13c5b66ec189a26a9bdfd5ddca6987791278cdabe25179a41c57ef05791",
+    "audits/phase5c/freeze_readiness.json": "e6e5e94c178b164d2b24589ace6329c757a888662f21c350cc44ef815fcffd87",
     "audits/phase5c/schema_contract_validity_correction.json": "f4e1c3b9fa824667c291910fecea94bc0244a820e7ea402772b7029684a712ab",
-    "audits/phase5c/trace_plan.json": "00df421e4febb05725197851ec41b97a2b2b364d6c470fae8a19e52a02a830be",
-    "configs/prompt_rag_v1_frozen.json": "14738105bcfff025a68259b22765d62ea2482d4d24559adaf5433578ac3df47b",
+    "audits/phase5c/trace_plan.json": "df3a795cb5582cfaf78444ba394474448ff680f03e93fdd815a1acc562123c24",
+    "configs/prompt_rag_v1_frozen.json": "87247fc5bab12e9f174e19fdbe8a237c4a910d215eaa6cbbe1b19d852914f2d7",
     "docs/DISSERTATION_PHASE_PLAN_RECOVERED.md": "f386e14afd08aa3b2f34850d84bfae5988448db5696ed1315c9167f0378de39a",
-    "docs/PHASE5C_TRACE_PROTOCOL.md": "2ea43e9fb3b08dea54413b6e2e4677aa796b28e7fb32bea770a4c71944bac20b",
+    "docs/PHASE5C_TRACE_PROTOCOL.md": "d7a1788cda09435ea2f3194b9b3b4dfd3837616292d5aca7c0a4149ca509d2d4",
     "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
-    "scripts/evaluate_phase5c_trace.py": "ceb97f6ceecef7c5f2e00cd661f7e34420bb572b81d1da9b4cc0fb8d851f1306",
-    "scripts/run_phase5b_prompt_rag.py": "49397a9e615a63e0b2793715308ecc2b3d795ece358f41328c6abe5a9016591c",
-    "src/retrievers/prompt_rag_gemini_v1.py": "d0a2b6420a3e0d8073e4ff23bb7ff092b3c93ff1a27109ae2c3d583f1756e57b",
-    "tests/test_phase5c_trace.py": "4c33b6953e247db2b501922c210a1d4557972035288f0387b94126ac44694e4f"
+    "scripts/evaluate_phase5c_trace.py": "ae23bfe10de3675df0ff889190403f768479a1f7d721a607c7d733b03bfeac4d",
+    "scripts/run_phase5b_prompt_rag.py": "33002e005e8072bb20636449390ce10b38f9251ac615798bdab2c7dea379b182",
+    "src/retrievers/prompt_rag_gemini_v1.py": "f9f5512a5abcd15be5ec5cbff49707a8aef09c16b04717cd9c5f75b66f8c208e",
+    "tests/test_phase5c_trace.py": "5034c97c2efc1d1ac85bee8a1a5bbf3391066f22a2c7fbf4deca3d4a903f466f"
   },
   "artifact_type": "phase5c_offline_freeze_manifest",
   "completeness": {
-    "artifact_count": 15,
+    "artifact_count": 17,
     "manifest_self_hash_excluded": true
   },
   "live_execution": {
     "owner_free_tier_confirmation_status": "pending",
     "trace_approval_status": "pending",
-    "verified_api_call_n": 1,
+    "verified_api_call_n": 2,
     "verified_valid_response_n": 0
   },
   "mutable_runtime_controls_excluded": [
     "audits/phase5b/free_tier_owner_confirmation.json",
     "audits/phase5b/trace_execution_approval.json"
   ],
-  "schema_version": 2,
-  "status": "offline_schema_corrected_pending_owner_live_gates"
+  "schema_version": 3,
+  "status": "offline_v1beta_corrected_pending_owner_live_gates"
 }

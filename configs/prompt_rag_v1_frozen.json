@@ -1,8 +1,8 @@
 {
   "api": {
-    "api_version": "v1",
+    "api_version": "v1beta",
     "endpoint_family": "generateContent",
-    "endpoint_template": "https://generativelanguage.googleapis.com/v1/models/{model}:generateContent",
+    "endpoint_template": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
     "provider": "Google Gemini Developer API",
     "stateless_single_turn": true
   },
@@ -63,15 +63,19 @@
     "source": "environment_only"
   },
   "implementation_validity_correction": {
-    "classification": "pre-result API schema-field correction; not benchmark-sensitive tuning",
+    "api_version_after_correction": "v1beta",
+    "api_version_before_correction": "v1",
+    "classification": "pre-result API schema-field and API-version corrections; not benchmark-sensitive tuning",
     "invalid_v1_output_root": "runs/v2/phase5b_prompt_rag",
     "invalid_v1_successful_response_n": 0,
+    "invalid_v2_output_root": "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
+    "invalid_v2_successful_response_n": 0,
     "provider_wire_field_after_correction": "responseJsonSchema",
     "provider_wire_field_before_correction": "responseSchema"
   },
   "execution_authorized": true,
   "execution_control": {
-    "canonical_output_root": "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
+    "canonical_output_root": "runs/v2/phase5b_prompt_rag_v1beta_v3",
     "full_execution_approval_path": "audits/phase5b/full_execution_approval.json",
     "full_requires_verified_trace_decision": true,
     "mode_specific_owner_approval_required": true,
@@ -198,7 +202,7 @@
     "sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9"
   },
   "request_contract": {
-    "implementation_revision": 2,
+    "implementation_revision": 3,
     "provider_wire_schema_field": "responseJsonSchema",
     "full_plan_sha256": "25fb56b0f8aaf3bdeb33c35fd80f0520100fb0c48d84f941a4d9e5e15af4ca11",
     "request_hash_source_path": "audits/phase5b/token_budget_audit.json",
@@ -245,5 +249,5 @@
     "selection_rule": "select eight lexicographically smallest SHA-256 digests",
     "trace_query_n": 8
   },
-  "version": "prompt-rag-retrieval-v1-gemini-response-json-schema-r2"
+  "version": "prompt-rag-retrieval-v1-gemini-v1beta-r3"
 }

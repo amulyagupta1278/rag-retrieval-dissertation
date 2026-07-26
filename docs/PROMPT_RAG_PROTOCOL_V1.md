@@ -65,7 +65,7 @@ score, and category before the API boundary.
 |---|---|
 | Provider | Google Gemini Developer API |
 | Model request string | `gemini-2.5-flash` |
-| API version | stable `v1` |
+| API version | `v1beta` |
 | Endpoint family | `models.generateContent` |
 | SDK | `google-genai[local-tokenizer]==2.13.0` |
 | Request style | stateless, non-streaming, one request/query |
@@ -127,6 +127,15 @@ execution uses `runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; it cannot
 resume or overwrite V1 ledger. Correction occurred with zero valid responses and
 before any relevance metrics, making it implementation-validity repair rather
 than benchmark-sensitive tuning.
+
+First V2 request then returned terminal HTTP `404` with zero valid responses.
+Official SDK defaults Gemini Developer API to `v1beta`; current
+`generateContent` examples use `v1beta`, while current stable `v1` guidance
+demonstrates Interactions API. Owner approved narrow API-version correction to
+`v1beta` without changing model, prompt, candidates, schema, scoring, ranking, or
+trace selection. V2 remains immutable under
+`runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; V3 writes only under
+`runs/v2/phase5b_prompt_rag_v1beta_v3/`.
 
 Malformed JSON; missing, extra, duplicate, or changed IDs; boolean/float or
 out-of-range scores; blocks; refusals; truncation; missing metadata; non-text

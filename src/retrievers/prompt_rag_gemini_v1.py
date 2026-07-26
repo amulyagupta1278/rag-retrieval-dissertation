@@ -26,7 +26,7 @@ from src.utils.hashing import sha256_file, sha256_text
 
 
 MODEL = "gemini-2.5-flash"
-API_VERSION = "v1"
+API_VERSION = "v1beta"
 SDK_VERSION = "2.13.0"
 CANDIDATE_N = 50
 SCORE_MIN = 0

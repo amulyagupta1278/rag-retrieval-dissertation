@@ -1,8 +1,8 @@
 {
   "api": {
-    "api_version": "v1",
+    "api_version": "v1beta",
     "endpoint_family": "models.generateContent",
-    "stable_api": true,
+    "stable_api": false,
     "stateless_method": "client.models.generate_content"
   },
   "evidence": [
@@ -17,7 +17,7 @@
       "source_type": "official Google model-version documentation"
     },
     {
-      "claim": "Gemini API v1 is stable and can be selected explicitly in SDK HttpOptions.",
+      "claim": "Gemini Developer API SDK defaults to v1beta; current generateContent examples use v1beta. Frozen v1 generateContent returned HTTP 404 before any valid response.",
       "source": "https://ai.google.dev/gemini-api/docs/api-versions",
       "source_type": "official Google API-version documentation"
     },

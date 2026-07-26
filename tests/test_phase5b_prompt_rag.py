@@ -141,13 +141,15 @@ def test_frozen_config_and_prompt_hash() -> None:
     assert config["status"] == "offline_frozen_ready_pending_mode_specific_owner_approval"
     assert config["execution_authorized"] is True
     assert config["api"] == {
-        "api_version": "v1",
+        "api_version": "v1beta",
         "endpoint_family": "generateContent",
-        "endpoint_template": "https://generativelanguage.googleapis.com/v1/models/{model}:generateContent",
+        "endpoint_template": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
         "provider": "Google Gemini Developer API",
         "stateless_single_turn": True,
     }
     assert config["generation"]["model"] == contract.MODEL == "gemini-2.5-flash"
+    assert config["api"]["api_version"] == contract.API_VERSION == "v1beta"
+    assert config["request_contract"]["implementation_revision"] == 3
     assert config["sdk"]["version"] == metadata.version("google-genai") == "2.13.0"
     assert sha256(PROMPT_PATH) == config["prompt"]["sha256"]
     assert config["prompt"]["sha256"] == "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9"
@@ -362,7 +364,7 @@ def test_retries_use_identical_payload_and_validation_failure_never_retries() ->
     assert calls == 1
 
 
-def test_environment_client_is_v1_and_secret_never_enters_artifacts() -> None:
+def test_environment_client_is_v1beta_and_secret_never_enters_artifacts() -> None:
     captured: dict = {}
     sentinel = object()
 
@@ -374,7 +376,7 @@ def test_environment_client_is_v1_and_secret_never_enters_artifacts() -> None:
         environ={"GEMINI_API_KEY": "test-secret-never-log"}, client_factory=factory
     )
     assert client is sentinel
-    assert captured["http_options"].api_version == "v1"
+    assert captured["http_options"].api_version == "v1beta"
     assert captured["http_options"].timeout == 120000
     assert captured["http_options"].retry_options.attempts == 1
     assert "test-secret-never-log" not in stable_json(synthetic_request())
@@ -706,16 +708,16 @@ def test_quota_resume_allows_only_exact_canonical_checkpoint_files() -> None:
     free = ROOT / "audits/phase5b/free_tier_owner_confirmation.json"
     trace = ROOT / "audits/phase5b/trace_execution_approval.json"
     resume = ROOT / "audits/phase5b/quota_reset_resume_approval.json"
-    output_root = ROOT / "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace"
+    output_root = ROOT / "runs/v2/phase5b_prompt_rag_v1beta_v3/trace"
     safe_names = {"v2q-017__primary", "v2q-016__replicate-1"}
     valid_status = (
         " M audits/phase5b/free_tier_owner_confirmation.json\n"
         " M audits/phase5b/trace_execution_approval.json\n"
         " M audits/phase5b/quota_reset_resume_approval.json\n"
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/control/ledger.json\n"
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/raw/v2q-017__primary.json\n"
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/attempts/v2q-016__replicate-1/attempt-001.json\n"
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/failures/v2q-016__replicate-1__quota-stop.json\n"
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/control/ledger.json\n"
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/raw/v2q-017__primary.json\n"
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/attempts/v2q-016__replicate-1/attempt-001.json\n"
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/failures/v2q-016__replicate-1__quota-stop.json\n"
     )
     runner._validate_worktree_status(
         valid_status,
@@ -724,11 +726,11 @@ def test_quota_resume_allows_only_exact_canonical_checkpoint_files() -> None:
         allowed_resume_safe_names=safe_names,
     )
     for invalid in (
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/full/control/ledger.json\n",
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/raw/v2q-999__primary.json\n",
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/attempts/v2q-017__primary/attempt-004.json\n",
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/failures/v2q-017__primary__terminal.json\n",
-        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/unexpected.json\n",
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/full/control/ledger.json\n",
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/raw/v2q-999__primary.json\n",
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/attempts/v2q-017__primary/attempt-004.json\n",
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/failures/v2q-017__primary__terminal.json\n",
+        "?? runs/v2/phase5b_prompt_rag_v1beta_v3/trace/unexpected.json\n",
     ):
         with pytest.raises(ExecutionApprovalError, match="differs from HEAD"):
             runner._validate_worktree_status(

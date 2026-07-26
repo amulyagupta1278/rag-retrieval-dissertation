@@ -18,7 +18,7 @@
   ],
   "frozen_inputs": {
     "config_path": "configs/prompt_rag_v1_frozen.json",
-    "config_sha256": "14738105bcfff025a68259b22765d62ea2482d4d24559adaf5433578ac3df47b",
+    "config_sha256": "87247fc5bab12e9f174e19fdbe8a237c4a910d215eaa6cbbe1b19d852914f2d7",
     "prompt_path": "prompts/prompt_rag_retrieval_v1.txt",
     "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
     "repeatability_protocol_path": "audits/phase5b/repeatability_protocol.json",
@@ -49,13 +49,13 @@
     "trace_maximum_contract_output_tokens": 45186
   },
   "outputs": {
-    "artifact_manifest": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/artifact_manifest.json",
-    "checkpoint": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/phase5c_checkpoint.json",
-    "durable_ledger": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/control/ledger.json",
-    "operational_summary": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/operational_summary.json",
-    "raw_response_directory": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/raw",
-    "repeatability_decision": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/repeatability_decision.json",
-    "repeatability_summary": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/repeatability_summary.json"
+    "artifact_manifest": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/artifact_manifest.json",
+    "checkpoint": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/phase5c_checkpoint.json",
+    "durable_ledger": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/control/ledger.json",
+    "operational_summary": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/operational_summary.json",
+    "raw_response_directory": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/raw",
+    "repeatability_decision": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/repeatability_decision.json",
+    "repeatability_summary": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/repeatability_summary.json"
   },
   "permissions": {
     "answer_generation": false,
@@ -76,5 +76,5 @@
     "v2q-004",
     "v2q-027"
   ],
-  "status": "offline_schema_corrected_pending_owner_free_tier_confirmation_and_trace_approval"
+  "status": "offline_v1beta_corrected_pending_owner_free_tier_confirmation_and_trace_approval"
 }

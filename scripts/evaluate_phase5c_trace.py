@@ -95,7 +95,7 @@ def _verify_freeze_manifest() -> dict[str, Any]:
 
     manifest = _json(FREEZE_MANIFEST_PATH)
     hashes = manifest.get("artifact_hashes")
-    if not isinstance(hashes, dict) or len(hashes) != 15:
+    if not isinstance(hashes, dict) or len(hashes) != 17:
         raise PromptRAGContractError("Phase 5C freeze manifest is incomplete")
     if str(FREEZE_MANIFEST_PATH.relative_to(ROOT)) in hashes:
         raise PromptRAGContractError("Phase 5C freeze manifest must not hash itself")

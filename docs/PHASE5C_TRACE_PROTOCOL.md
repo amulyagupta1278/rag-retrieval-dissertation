@@ -10,6 +10,9 @@ System remains frozen BM25 top-50 to Gemini relevance reranker. No prompt, model
 provider, candidate, ordering, scoring, retry, or ranking parameter may change.
 Pre-result implementation-validity correction changes only Gemini structured-
 output wire field from `responseSchema` to `responseJsonSchema`.
+Second pre-result correction changes API version from `v1` to `v1beta` after
+`v1` `generateContent` returned terminal HTTP `404`. Model, prompt, candidates,
+schema, scoring, ranking, and trace selection remain unchanged.
 
 ## Preconditions
 
@@ -32,7 +35,7 @@ Every precondition must pass before client creation:
 ## Frozen execution
 
 - Provider: Google Gemini Developer API.
-- API: stable `v1` `generateContent`.
+- API: `v1beta` `generateContent`.
 - SDK: `google-genai==2.13.0`.
 - Requested model: `gemini-2.5-flash`.
 - Temperature: 0.
@@ -89,7 +92,9 @@ Runner preserves:
 
 Terminal HTTP `400` V1 attempt remains preserved under
 `runs/v2/phase5b_prompt_rag/`. Corrected run writes only under
-`runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; V1 ledger cannot resume.
+`runs/v2/phase5b_prompt_rag_v1beta_v3/`; V1 ledger cannot resume. Terminal HTTP
+`404` V2 attempt remains preserved under
+`runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; V2 ledger cannot resume.
 
 All returned `modelVersion` values must match. Any missing/extra/duplicate chunk,
 changed ID, invalid score, malformed output, refusal, block, truncation, metadata
