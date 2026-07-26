@@ -1,0 +1,36 @@
+{
+  "attempted_request_n": 24,
+  "automatic_retry_n": 0,
+  "completed_request_n": 24,
+  "cost": {
+    "cumulative_hard_cap_usd": 1.9,
+    "cumulative_observed_usd": 1.040028,
+    "phase5d_v1_observed_usd": 0.177402,
+    "phase5d_v2_trace_observed_usd": 0.862626,
+    "remaining_under_cap_usd": 0.859972
+  },
+  "execution_commit": "65a3721bb4994ebb48925bbe4fd93245a5679579",
+  "failure_n": 0,
+  "latency_ms": {
+    "maximum": 36168.07545800111,
+    "mean": 18085.75464045619,
+    "median": 14484.736812002666,
+    "minimum": 13337.112540990347,
+    "p95_method": "nearest rank",
+    "p95": 30106.274749996373
+  },
+  "model": "claude-haiku-4-5-20251001",
+  "output_root": "runs/v2/phase5d_prompt_rag_claude_v2",
+  "provider_usage": {
+    "actual_input_tokens": 706011,
+    "actual_output_tokens": 31323,
+    "frozen_preexecution_input_envelope": 705963,
+    "input_delta_actual_minus_preexecution": 48,
+    "interpretation": "Actual provider response usage is authoritative. Preexecution token count understated input by two tokens per request; no post-result contract change was made."
+  },
+  "response_id_unique_n": 24,
+  "schema_version": 1,
+  "status": "trace_complete",
+  "terminal_failure_n": 0,
+  "unique_request_payload_n": 8
+}

@@ -1,0 +1,46 @@
+{
+  "comparison_n": 24,
+  "gate_status": "repeatability_gate_passed",
+  "metrics": {
+    "candidate_score_agreement": {
+      "maximum": 1.0,
+      "mean": 0.995,
+      "median": 1.0,
+      "minimum": 0.96,
+      "threshold": 0.9
+    },
+    "kendall_tau_b": {
+      "maximum": 1.0,
+      "mean": 0.9990204672815773,
+      "median": 1.0,
+      "minimum": 0.993550684592053,
+      "threshold": 0.9
+    },
+    "ranking_position_agreement": {
+      "maximum": 1.0,
+      "mean": 0.9883333333333333,
+      "median": 1.0,
+      "minimum": 0.92,
+      "threshold": 0.8
+    },
+    "spearman_rho": {
+      "maximum": 1.0,
+      "mean": 0.9999599839935974,
+      "median": 1.0,
+      "minimum": 0.9997118847539016,
+      "threshold": 0.95
+    },
+    "top_10_overlap": {
+      "maximum": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "minimum": 1.0,
+      "threshold": 0.9
+    }
+  },
+  "passed_comparison_n": 24,
+  "relevance_metrics_calculated": false,
+  "schema_version": 1,
+  "trace_query_n": 8,
+  "trace_record_n": 24
+}
