@@ -673,6 +673,26 @@ def test_mode_approval_is_strict_config_prompt_plan_git_and_mode_bound(tmp_path:
         )
 
 
+def test_frozen_worktree_allows_only_exact_unstaged_runtime_controls() -> None:
+    free = ROOT / "audits/phase5b/free_tier_owner_confirmation.json"
+    trace = ROOT / "audits/phase5b/trace_execution_approval.json"
+    runner._validate_worktree_status(
+        " M audits/phase5b/free_tier_owner_confirmation.json\n"
+        " M audits/phase5b/trace_execution_approval.json\n",
+        allowed_runtime_controls={free, trace},
+    )
+    for invalid in (
+        " M scripts/run_phase5b_prompt_rag.py\n",
+        "M  audits/phase5b/trace_execution_approval.json\n",
+        "?? audits/phase5b/trace_execution_approval.json\n",
+        " M audits/phase5b/full_execution_approval.json\n",
+    ):
+        with pytest.raises(ExecutionApprovalError, match="differs from HEAD"):
+            runner._validate_worktree_status(
+                invalid, allowed_runtime_controls={free, trace}
+            )
+
+
 def test_canonical_ledger_rejects_concurrency_forgery_and_redispatch(tmp_path: Path) -> None:
     lock_path = tmp_path / "execution.lock"
     with ExecutionLock(lock_path):
@@ -903,14 +923,10 @@ def test_freeze_manifest_hashes_and_zero_live_actions() -> None:
         "audits/phase5b/credential_rotation_owner_attestation.json",
         "audits/phase5b/evaluation_protocol.json",
         "audits/phase5b/failure_and_retry_policy.json",
-        "audits/phase5b/free_tier_owner_confirmation.json",
-        "audits/phase5b/full_execution_approval.json",
         "audits/phase5b/model_and_sdk_evidence.json",
         "audits/phase5b/prompt_freeze.json",
-        "audits/phase5b/quota_reset_resume_approval.json",
         "audits/phase5b/repeatability_protocol.json",
         "audits/phase5b/token_budget_audit.json",
-        "audits/phase5b/trace_execution_approval.json",
         "audits/phase5b/trace_selection.json",
         "configs/prompt_rag_v1_candidate.json",
         "configs/prompt_rag_v1_frozen.json",
@@ -930,6 +946,13 @@ def test_freeze_manifest_hashes_and_zero_live_actions() -> None:
         "tests/test_phase5b_prompt_rag.py",
     }
     assert set(manifest["artifact_hashes"]) == expected_paths
+    assert manifest["mutable_runtime_controls"] == [
+        "audits/phase5b/free_tier_owner_confirmation.json",
+        "audits/phase5b/full_execution_approval.json",
+        "audits/phase5b/quota_reset_resume_approval.json",
+        "audits/phase5b/trace_execution_approval.json",
+    ]
+    assert not set(manifest["mutable_runtime_controls"]) & set(manifest["artifact_hashes"])
     assert "audits/phase5b/freeze_manifest.json" not in manifest["artifact_hashes"]
     for path, expected_hash in manifest["artifact_hashes"].items():
         assert sha256(ROOT / path) == expected_hash, path
@@ -943,7 +966,7 @@ def test_freeze_manifest_hashes_and_zero_live_actions() -> None:
 
 
 def test_offline_preflight_rebuilds_all_34_frozen_payloads_before_client_access(monkeypatch) -> None:
-    monkeypatch.setattr(runner, "_require_clean_worktree", lambda: None)
+    monkeypatch.setattr(runner, "_require_frozen_worktree", lambda **_kwargs: None)
     monkeypatch.setattr(runner, "_git_identity", lambda: ("a" * 40, "b" * 40))
     monkeypatch.setattr(runner, "_require_rotation_attestation", lambda _path: {})
     monkeypatch.setattr(runner, "require_free_tier_owner_confirmation", lambda *_args, **_kwargs: {})

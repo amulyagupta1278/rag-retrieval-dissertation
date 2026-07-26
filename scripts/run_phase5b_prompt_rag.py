@@ -49,6 +49,14 @@ RESUME_APPROVAL_PATH = ROOT / "audits/phase5b/quota_reset_resume_approval.json"
 TRACE_DECISION_PATH = ROOT / "runs/v2/phase5b_prompt_rag/trace/repeatability_decision.json"
 OUTPUT_ROOT = ROOT / "runs/v2/phase5b_prompt_rag"
 EXPECTED_QUERY_IDS = tuple(f"v2q-{index:03d}" for index in range(1, 35))
+RUNTIME_CONTROL_PATHS = frozenset(
+    {
+        FREE_TIER_CONFIRMATION_PATH,
+        TRACE_APPROVAL_PATH,
+        FULL_APPROVAL_PATH,
+        RESUME_APPROVAL_PATH,
+    }
+)
 
 
 def _json(path: Path) -> dict[str, Any]:
@@ -139,12 +147,28 @@ def _git_identity() -> tuple[str, str]:
     return commit, tree
 
 
-def _require_clean_worktree() -> None:
+def _validate_worktree_status(status: str, *, allowed_runtime_controls: set[Path]) -> None:
+    """Allow only exact unstaged runtime-control edits over committed HEAD."""
+
+    allowed = {str(path.relative_to(ROOT)) for path in allowed_runtime_controls}
+    for line in status.splitlines():
+        if len(line) < 4 or line[:2] != " M" or line[3:] not in allowed:
+            raise ExecutionApprovalError(
+                "frozen implementation differs from HEAD outside allowed runtime controls"
+            )
+
+
+def _require_frozen_worktree(*, mode: str, resume_after_quota_reset: bool) -> None:
+    """Require committed frozen code while permitting explicit owner-control records."""
+
+    approval_path = TRACE_APPROVAL_PATH if mode == "trace" else FULL_APPROVAL_PATH
+    allowed = {FREE_TIER_CONFIRMATION_PATH, approval_path}
+    if resume_after_quota_reset:
+        allowed.add(RESUME_APPROVAL_PATH)
     status = subprocess.check_output(
         ["git", "status", "--porcelain=v1", "--untracked-files=all"], cwd=ROOT, text=True
     )
-    if status:
-        raise ExecutionApprovalError("live execution requires clean committed worktree")
+    _validate_worktree_status(status, allowed_runtime_controls=allowed)
 
 
 def _require_rotation_attestation(path: Path) -> dict[str, Any]:
@@ -171,6 +195,10 @@ def _verify_manifest(config_hash: str) -> dict[str, Any]:
     hashes = manifest.get("artifact_hashes")
     if not isinstance(hashes, dict) or hashes.get("configs/prompt_rag_v1_frozen.json") != config_hash:
         raise PromptRAGContractError("freeze manifest does not bind exact frozen config")
+    runtime_controls = manifest.get("mutable_runtime_controls")
+    expected_controls = sorted(str(path.relative_to(ROOT)) for path in RUNTIME_CONTROL_PATHS)
+    if runtime_controls != expected_controls or set(runtime_controls) & set(hashes):
+        raise PromptRAGContractError("freeze manifest mutable runtime controls are invalid")
     for relative, expected in hashes.items():
         path = _canonical(relative)
         if path == MANIFEST_PATH:
@@ -202,7 +230,7 @@ def _safe_name(logical_id: str, expected_ids: set[str]) -> str:
     return f"{query_id}__{role}"
 
 
-def preflight(mode: str) -> dict[str, Any]:
+def preflight(mode: str, *, resume_after_quota_reset: bool = False) -> dict[str, Any]:
     """Verify every frozen byte and request before credential access/client creation."""
 
     config = _json(CONFIG_PATH)
@@ -306,7 +334,9 @@ def preflight(mode: str) -> dict[str, Any]:
         trace_decision_hash = sha256_file(TRACE_DECISION_PATH)
         established_model_version = recomputed["model_version"]
 
-    _require_clean_worktree()
+    _require_frozen_worktree(
+        mode=mode, resume_after_quota_reset=resume_after_quota_reset
+    )
     git_commit, git_tree = _git_identity()
     _require_rotation_attestation(ROTATION_ATTESTATION_PATH)
     require_free_tier_owner_confirmation(
@@ -365,7 +395,9 @@ def run(
 
     if not args.require_free_tier_owner_confirmation:
         raise FreeTierConfirmationError("--require-free-tier-owner-confirmation is mandatory")
-    frozen = preflight(args.mode)
+    frozen = preflight(
+        args.mode, resume_after_quota_reset=args.resume_after_quota_reset
+    )
     mode_root = OUTPUT_ROOT / args.mode
     ledger_path = mode_root / "control" / "ledger.json"
     lock_path = mode_root / "control" / "execution.lock"

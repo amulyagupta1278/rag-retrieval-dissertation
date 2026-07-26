@@ -128,6 +128,15 @@ environment, or process-context change. Current free-tier artifact remains pendi
 so runtime refuses execution. Billing status is procedurally owner-attested;
 identifier prohibition prevents cryptographic project-to-key binding.
 
+Free-tier confirmation, trace/full approval, and quota-reset approval are mutable
+runtime-control records, not immutable freeze inputs. Freeze manifest names but
+does not hash them. Live preflight permits only exact unstaged edits to free-tier
+confirmation and selected mode approval (plus quota-reset approval during explicit
+resume); every code, prompt, config, input, and other artifact must match committed
+HEAD. Approval binds committed HEAD/tree plus frozen config, prompt, request plan,
+and current confirmation hash. This separation avoids circular requirement where
+approval must name commit containing approval itself.
+
 Runtime requires `--require-free-tier-owner-confirmation`. Trace and full modes
 are separate commands and never run implicitly together:
 
