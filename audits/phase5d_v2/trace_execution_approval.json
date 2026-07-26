@@ -1,8 +1,9 @@
 {
-  "approved_freeze_commit": null,
-  "config_sha256": null,
-  "freeze_manifest_sha256": null,
-  "owner_statement": null,
+  "approved_at_utc": "2026-07-26T16:59:56Z",
+  "approved_freeze_commit": "73b9a40af9ebe724dff19a76205302ecf4f562a8",
+  "config_sha256": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+  "freeze_manifest_sha256": "4a9a16eb71ade448541f04aff530eb1c9a89a2b2ef4df45b578763488ed75daf",
+  "owner_statement": "Approve Phase 5D V2 24-call trace at commit 73b9a40af9ebe724dff19a76205302ecf4f562a8, using fixed-key object schema, claude-haiku-4-5-20251001, no retries, separate V2 outputs, and cumulative $1.90 hard cap ($0.177402 spent; $1.722598 remaining before V2).",
   "schema_version": 1,
-  "status": "pending_owner_approval"
+  "status": "owner_approved"
 }
