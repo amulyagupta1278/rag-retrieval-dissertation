@@ -23,10 +23,27 @@
   "schema_version": 1,
   "status": "phase6_owner_judging_frozen",
   "frozen_at": "2026-07-26T19:52:48.637085+00:00",
-  "intra_rater_agreement": 0.982301,
+  "intra_rater_agreement": 0.9823,
   "grade_distribution": {
     "0": 547,
     "1": 95,
     "2": 113
-  }
+  },
+  "phase6_status": "phase6_owner_judging_frozen_and_adjudicated",
+  "adjudication_performed": true,
+  "adjudication_timestamp_utc": "2026-07-26T20:34:38.930500Z",
+  "total_rows": 755,
+  "final_grade_distribution": {
+    "0": 572,
+    "1": 88,
+    "2": 95,
+    "U": 0
+  },
+  "audit_disagreements_total": 27,
+  "audit_disagreements_resolved": 27,
+  "owner_judging_package_sha256": "b955dc4007466e4adda73fdabc96e9dcd8fc04fc33bc47f3265f0a148883f8f8",
+  "qrels_sha256": "b17b606f95be1dd50bf935380d8d2281dd08e9fd63fbb8cb70156ae4625f3309",
+  "adjudication_record_sha256": "13a8040203857c6dd3fe15a182d8c8ba90d17845e44cf7362f8ee23a17aa0792",
+  "phase7_gate": "OPEN",
+  "phase7_gate_note": "All 755 rows judged, 15% reseed QC passed (98.2%), 27 audit disagreements adjudicated, qrels rebuilt. Phase 7 may proceed."
 }

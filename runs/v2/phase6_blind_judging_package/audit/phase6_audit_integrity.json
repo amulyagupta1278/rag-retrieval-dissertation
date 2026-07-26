@@ -1,0 +1,47 @@
+{
+  "label": "AI-assisted consistency audit; not owner judgment and not final qrels",
+  "generated_at": "2026-07-26T20:26:31.929214+00:00",
+  "owner_csv_sha256": "d02c08df6cfc5a43dedfbbcd3248e199671c067654f8971cae63f2342c2faaf8",
+  "audited_rows": 755,
+  "unique_display_ids": 755,
+  "missing_rows": 0,
+  "duplicate_rows": 0,
+  "total_agreements": 728,
+  "total_disagreements": 27,
+  "agreement_rate": 0.9642,
+  "grade_distribution_owner": {
+    "0": 566,
+    "1": 97,
+    "2": 92
+  },
+  "grade_distribution_audit": {
+    "0": 573,
+    "1": 70,
+    "2": 112
+  },
+  "grade_transition_matrix": {
+    "0": {
+      "0": 566
+    },
+    "1": {
+      "1": 70,
+      "2": 20,
+      "0": 7
+    },
+    "2": {
+      "2": 92
+    }
+  },
+  "disagreements_by_owner_grade": {
+    "1": 27
+  },
+  "audit_csv_sha256": "5b92193c3bb3950fb0fcaff7a4ac326480044b6c40137c9b9ad8502085aeed84",
+  "disagreements_csv_sha256": "c8e50655a02f96b22e7065022604dc306135a4826c6fd6e466b8628e5f1ce78f",
+  "checks_passed": {
+    "row_count_755": true,
+    "no_missing": true,
+    "no_duplicates": true,
+    "no_u_overuse": true,
+    "owner_file_unchanged": true
+  }
+}
