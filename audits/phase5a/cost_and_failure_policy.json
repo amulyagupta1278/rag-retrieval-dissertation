@@ -1,0 +1,111 @@
+{
+  "accounting_contract": {
+    "cost": [
+      "provider-reported input tokens multiplied by the frozen model's execution-date input price",
+      "provider-reported output tokens multiplied by the frozen model's execution-date output price",
+      "cached-token and batch discounts recorded separately when applicable",
+      "currency and pricing-source snapshot preserved"
+    ],
+    "errors": [
+      "transport errors",
+      "timeouts",
+      "rate-limit responses",
+      "provider server errors",
+      "authentication errors",
+      "content-policy refusals",
+      "invalid JSON",
+      "schema failures",
+      "missing candidates",
+      "duplicate candidates",
+      "non-finite scores"
+    ],
+    "latency": "Record monotonic wall time per attempted request and end-to-end per query; report failed and successful attempts separately.",
+    "retries": "Record every attempt, reason, delay, provider status, and terminal outcome. Failed attempts still count toward tokens, cost, latency, retry rate, and error rate when billable or measurable.",
+    "tokens": "Preserve provider usage fields exactly and aggregate input, output, cached, reasoning, and total tokens separately when exposed."
+  },
+  "exact_cost_status": {
+    "dollar_cost_available": false,
+    "reason": "Provider, exact model/version, tokenizer, actual prompt, batching, and price snapshot are unresolved. Choosing a price or tokenizer now would silently choose an architecture.",
+    "required_before_execution": "Freeze provider/model and preserve its authoritative price snapshot; then calculate the preregistered estimate without benchmark-sensitive changes."
+  },
+  "failure_policy": {
+    "authentication_or_permission_failure": "terminal_run_failure",
+    "fallback": "none",
+    "invalid_or_missing_response": "record_query_failure_and_do_not_backfill",
+    "partial_batch_response": "fail_the_entire_affected_batch_unless_the_frozen_provider_contract supplies independently verifiable per-item responses",
+    "rate_limit_handling": "bounded retry policy must be frozen before execution; exhaustion is a recorded failure",
+    "retry_count": null,
+    "retry_jitter": null,
+    "retry_schedule": null,
+    "secret_policy": "Read secrets only from environment/provider credential store; never serialize them in requests, raw-response files, logs, manifests, errors, or Git.",
+    "timeout_seconds": null,
+    "unexpected_context_overflow": "failure; no silent truncation or candidate dropping"
+  },
+  "planning_estimates": {
+    "assumptions": {
+      "candidate_payload_token_range_per_chunk": [
+        300,
+        600
+      ],
+      "excludes": [
+        "system and instruction prompt tokens",
+        "query tokens repeated per batch",
+        "chunk identifiers and JSON framing",
+        "output tokens",
+        "retry traffic"
+      ],
+      "purpose": "Capacity planning only; not an execution or pricing estimate."
+    },
+    "alternative_A_or_B_depth_50": {
+      "candidate_judgment_n": 1700,
+      "candidate_payload_input_token_range": [
+        510000,
+        1020000
+      ],
+      "calls_by_batch_size": {
+        "10": 170,
+        "25": 68,
+        "50": 34
+      },
+      "formula": "34 queries * ceiling(50 candidates / batch_size) calls"
+    },
+    "alternative_C_all_140": {
+      "candidate_judgment_n": 4760,
+      "candidate_payload_input_token_range": [
+        1428000,
+        2856000
+      ],
+      "calls_by_batch_size": {
+        "10": 476,
+        "25": 204,
+        "50": 102
+      },
+      "formula": "34 queries * ceiling(140 candidates / batch_size) calls"
+    },
+    "selected_estimate": null
+  },
+  "raw_response_and_redaction": {
+    "preserve": [
+      "exact raw response bytes",
+      "exact request body after credential exclusion",
+      "provider/model/version",
+      "timestamps and monotonic durations",
+      "HTTP status and provider error body",
+      "usage accounting",
+      "retry sequence"
+    ],
+    "redact": [
+      "API keys and authorization headers",
+      "credential-bearing URLs",
+      "security-sensitive provider request identifiers if policy requires"
+    ],
+    "redaction_log_required": true
+  },
+  "repeatability_audit": {
+    "comparison": "Compare exact parsed score/rank outputs, raw response hashes, failure state, token usage, and latency for structurally selected trace queries across the frozen repetition count.",
+    "known_limit": "A provider may change hosted model behavior despite a stable model name; exact model version and response fingerprints must be recorded where available.",
+    "repetition_count": null,
+    "status": "unresolved_until_provider_and_model_are_selected"
+  },
+  "status": "policy_partially_frozen_execution_parameters_unresolved"
+}

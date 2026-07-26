@@ -1,0 +1,10 @@
+UNFROZEN PLACEHOLDER — DO NOT SEND TO ANY MODEL OR API.
+
+Reachable repository evidence describes Prompt-RAG only as “LLM-guided
+reranking.” It does not uniquely specify a provider, model, candidate generator,
+candidate depth, batching strategy, or scoring prompt. Phase 5A therefore stops
+at the owner-choice gate. This placeholder prevents an unsupported prompt from
+being mistaken for an executable frozen protocol.
+
+Execution is prohibited until the owner approves one architecture alternative
+and every unresolved field in configs/prompt_rag_v1_candidate.json is frozen.
