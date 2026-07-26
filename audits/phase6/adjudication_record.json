@@ -1,0 +1,26 @@
+{
+  "reseed_n": 113,
+  "reseed_seed": 42,
+  "reseed_pct": 0.15,
+  "agreements": 111,
+  "disagreements": 2,
+  "exact_match_agreement": 0.982301,
+  "disagreement_cases": [
+    {
+      "display_id": "v2q-026-candidate-09",
+      "first_pass": "2",
+      "second_pass": "1",
+      "adjudicated_final": "2",
+      "rationale": "Chunk states PMAY-G addresses rural housing shortage and provides financial assistance to build a permanent house. Directly supports reference answer re PMAY-G supplying pucca houses. Second pass missed 'rural housing' trigger."
+    },
+    {
+      "display_id": "v2q-034-candidate-14",
+      "first_pass": "2",
+      "second_pass": "1",
+      "adjudicated_final": "2",
+      "rationale": "Same chunk as v2q-026-candidate-09. Directly supports PMAY-G rural housing element of the reference answer. Second pass undercounted triggers."
+    }
+  ],
+  "u_rows_requiring_adjudication": [],
+  "grade_changes_from_adjudication": 0
+}
