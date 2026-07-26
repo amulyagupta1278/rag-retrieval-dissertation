@@ -147,18 +147,73 @@ def _git_identity() -> tuple[str, str]:
     return commit, tree
 
 
-def _validate_worktree_status(status: str, *, allowed_runtime_controls: set[Path]) -> None:
+def _is_allowed_resume_output(
+    relative: str, *, output_root: Path, allowed_safe_names: set[str]
+) -> bool:
+    """Accept only canonical durable files created by an interrupted mode run."""
+
+    root_relative = output_root.relative_to(ROOT)
+    path = Path(relative)
+    try:
+        suffix = path.relative_to(root_relative)
+    except ValueError:
+        return False
+    parts = suffix.parts
+    if parts == ("control", "ledger.json"):
+        return True
+    if len(parts) == 2 and parts[0] == "raw":
+        return parts[1].endswith(".json") and parts[1][:-5] in allowed_safe_names
+    if len(parts) == 3 and parts[0] == "attempts" and parts[1] in allowed_safe_names:
+        name = parts[2]
+        return name.startswith("attempt-") and name.endswith(".json") and name[8:-5] in {
+            "001",
+            "002",
+            "003",
+        }
+    if len(parts) == 2 and parts[0] == "failures":
+        return any(parts[1] == f"{safe}__quota-stop.json" for safe in allowed_safe_names)
+    return False
+
+
+def _validate_worktree_status(
+    status: str,
+    *,
+    allowed_runtime_controls: set[Path],
+    resume_output_root: Path | None = None,
+    allowed_resume_safe_names: set[str] | None = None,
+) -> None:
     """Allow only exact unstaged runtime-control edits over committed HEAD."""
 
     allowed = {str(path.relative_to(ROOT)) for path in allowed_runtime_controls}
     for line in status.splitlines():
-        if len(line) < 4 or line[:2] != " M" or line[3:] not in allowed:
+        if len(line) < 4:
+            raise ExecutionApprovalError(
+                "frozen implementation differs from HEAD outside allowed runtime controls"
+            )
+        state, relative = line[:2], line[3:]
+        control_allowed = state == " M" and relative in allowed
+        resume_allowed = (
+            resume_output_root is not None
+            and allowed_resume_safe_names is not None
+            and state in {" M", "??"}
+            and _is_allowed_resume_output(
+                relative,
+                output_root=resume_output_root,
+                allowed_safe_names=allowed_resume_safe_names,
+            )
+        )
+        if not control_allowed and not resume_allowed:
             raise ExecutionApprovalError(
                 "frozen implementation differs from HEAD outside allowed runtime controls"
             )
 
 
-def _require_frozen_worktree(*, mode: str, resume_after_quota_reset: bool) -> None:
+def _require_frozen_worktree(
+    *,
+    mode: str,
+    resume_after_quota_reset: bool,
+    plan: list[tuple[str, str]],
+) -> None:
     """Require committed frozen code while permitting explicit owner-control records."""
 
     approval_path = TRACE_APPROVAL_PATH if mode == "trace" else FULL_APPROVAL_PATH
@@ -168,7 +223,14 @@ def _require_frozen_worktree(*, mode: str, resume_after_quota_reset: bool) -> No
     status = subprocess.check_output(
         ["git", "status", "--porcelain=v1", "--untracked-files=all"], cwd=ROOT, text=True
     )
-    _validate_worktree_status(status, allowed_runtime_controls=allowed)
+    mode_root = OUTPUT_ROOT / mode
+    safe_names = {_safe_name(logical_id, {item[0] for item in plan}) for logical_id, _ in plan}
+    _validate_worktree_status(
+        status,
+        allowed_runtime_controls=allowed,
+        resume_output_root=mode_root if resume_after_quota_reset else None,
+        allowed_resume_safe_names=safe_names if resume_after_quota_reset else None,
+    )
 
 
 def _require_rotation_attestation(path: Path) -> dict[str, Any]:
@@ -335,7 +397,9 @@ def preflight(mode: str, *, resume_after_quota_reset: bool = False) -> dict[str,
         established_model_version = recomputed["model_version"]
 
     _require_frozen_worktree(
-        mode=mode, resume_after_quota_reset=resume_after_quota_reset
+        mode=mode,
+        resume_after_quota_reset=resume_after_quota_reset,
+        plan=plan,
     )
     git_commit, git_tree = _git_identity()
     _require_rotation_attestation(ROTATION_ATTESTATION_PATH)

@@ -693,6 +693,43 @@ def test_frozen_worktree_allows_only_exact_unstaged_runtime_controls() -> None:
             )
 
 
+def test_quota_resume_allows_only_exact_canonical_checkpoint_files() -> None:
+    free = ROOT / "audits/phase5b/free_tier_owner_confirmation.json"
+    trace = ROOT / "audits/phase5b/trace_execution_approval.json"
+    resume = ROOT / "audits/phase5b/quota_reset_resume_approval.json"
+    output_root = ROOT / "runs/v2/phase5b_prompt_rag/trace"
+    safe_names = {"v2q-017__primary", "v2q-016__replicate-1"}
+    valid_status = (
+        " M audits/phase5b/free_tier_owner_confirmation.json\n"
+        " M audits/phase5b/trace_execution_approval.json\n"
+        " M audits/phase5b/quota_reset_resume_approval.json\n"
+        "?? runs/v2/phase5b_prompt_rag/trace/control/ledger.json\n"
+        "?? runs/v2/phase5b_prompt_rag/trace/raw/v2q-017__primary.json\n"
+        "?? runs/v2/phase5b_prompt_rag/trace/attempts/v2q-016__replicate-1/attempt-001.json\n"
+        "?? runs/v2/phase5b_prompt_rag/trace/failures/v2q-016__replicate-1__quota-stop.json\n"
+    )
+    runner._validate_worktree_status(
+        valid_status,
+        allowed_runtime_controls={free, trace, resume},
+        resume_output_root=output_root,
+        allowed_resume_safe_names=safe_names,
+    )
+    for invalid in (
+        "?? runs/v2/phase5b_prompt_rag/full/control/ledger.json\n",
+        "?? runs/v2/phase5b_prompt_rag/trace/raw/v2q-999__primary.json\n",
+        "?? runs/v2/phase5b_prompt_rag/trace/attempts/v2q-017__primary/attempt-004.json\n",
+        "?? runs/v2/phase5b_prompt_rag/trace/failures/v2q-017__primary__terminal.json\n",
+        "?? runs/v2/phase5b_prompt_rag/trace/unexpected.json\n",
+    ):
+        with pytest.raises(ExecutionApprovalError, match="differs from HEAD"):
+            runner._validate_worktree_status(
+                invalid,
+                allowed_runtime_controls={free, trace, resume},
+                resume_output_root=output_root,
+                allowed_resume_safe_names=safe_names,
+            )
+
+
 def test_canonical_ledger_rejects_concurrency_forgery_and_redispatch(tmp_path: Path) -> None:
     lock_path = tmp_path / "execution.lock"
     with ExecutionLock(lock_path):

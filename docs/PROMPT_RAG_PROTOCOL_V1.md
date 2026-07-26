@@ -160,6 +160,11 @@ checkpoint, and stops without retry. Resume requires owner confirmation that
 quota reset occurred. Payloads remain frozen; no result may be selected or
 discarded based on outcome.
 
+Explicit quota-reset resume permits only canonical durable files from selected
+mode's interrupted request plan: ledger, validated raw records, attempt evidence,
+and quota-stop record. Unknown paths, other-mode files, terminal-failure records,
+non-plan IDs, staged controls, or changed frozen implementation remain blocked.
+
 ## 7. Token budget and cost
 
 `google.genai.local_tokenizer.LocalTokenizer` with frozen Gemma-3 tokenizer asset

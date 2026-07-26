@@ -1,6 +1,6 @@
 {
   "artifact_hashes": {
-    "audits/phase5b/freeze_manifest.json": "92336c60a4be05b5996020b1483afb689e0c9c8ac227a03e7e7c141958c16e1a",
+    "audits/phase5b/freeze_manifest.json": "b6e5e624584ee69393d13db6a3018fd890ad456546fe7402cadaab8827c1d48d",
     "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
     "audits/phase5b/token_budget_audit.json": "fade68a498fa0aa56585c72574a53be17f96de334eae49f98288682c05ab2338",
     "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
@@ -11,7 +11,7 @@
     "docs/PHASE5C_TRACE_PROTOCOL.md": "9761827dcc935b940f3aee54f159dbcd8d6d90ed5f0fc6997105be8d4f113183",
     "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
     "scripts/evaluate_phase5c_trace.py": "7f2213eb67daf3c4675b49b2edc0288923958e5206de9e73bbadebe14a7aa4f2",
-    "scripts/run_phase5b_prompt_rag.py": "b040691eb00c5a16fe5970d09a27c1b4ca3fe7d657a411e009b42d983547b495",
+    "scripts/run_phase5b_prompt_rag.py": "fdcc6fe9c9c8882061bf4f1b2f019e2903a2ed7257a99135a4bee851ac0227fa",
     "src/retrievers/prompt_rag_gemini_v1.py": "179a3ebba643cfbac3dfab369e15a33c42eb18ecec9f03b59d67ffea2d80237b",
     "tests/test_phase5c_trace.py": "609daaa8cf2dccabc09fbb162247716884d94f3cc8dd306672ef91a8b2d5744f"
   },
