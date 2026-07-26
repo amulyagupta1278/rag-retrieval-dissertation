@@ -1,0 +1,1 @@
+{"candidate_cutoff":10,"deduplication_key":["query_id","chunk_id"],"existing_pair_count":620,"final_pair_count":755,"final_qrels":false,"owner_judging_completed":false,"prompt_rag_top10_pair_count":340,"prompt_rag_unseen_pair_count":135,"schema_version":1,"status":"phase5f_frozen_pending_phase6_owner_package_approval"}
