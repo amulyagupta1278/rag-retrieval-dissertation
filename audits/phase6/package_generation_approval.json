@@ -1,0 +1,9 @@
+{
+  "approved_base_commit": "3a9633340ae215e6d6fbee1621a1afe4370975c5",
+  "approved_blind_pool_path": "runs/v2/phase5f_prompt_rag_pool/blind/provisional_all_systems_pool.jsonl",
+  "approved_blind_pool_row_n": 755,
+  "approved_blind_pool_sha256": "ff48c3413e891377b3b7e035a35902146d2e9e3be088457f9d37f91d0b6c468f",
+  "owner_statement": "Approve Phase 6 blind judging-package generation at commit 3a9633340ae215e6d6fbee1621a1afe4370975c5, using only runs/v2/phase5f_prompt_rag_pool/blind/provisional_all_systems_pool.jsonl with SHA-256 ff48c3413e891377b3b7e035a35902146d2e9e3be088457f9d37f91d0b6c468f and its 755 unique blank pairs. Enrich rows only from frozen R5 QA and committed chunk/document metadata with query ID, question, reference answer, candidate chunk, source-document title, and blank grade/rationale fields. Preserve display IDs and deterministic blinded order. Do not read or expose sealed provenance, system identity, rank, score, qrels, current-gold status, predicted relevance, retrieval metrics, or existing owner labels. Do not perform judging, adjudication, agreement calculation, relevance metrics, hypothesis tests, answer generation, or API calls. Freeze and commit offline judging package, protocol, integrity audit, hashes, and tests. Stop before owner judging.",
+  "schema_version": 1,
+  "status": "owner_approved_offline_package_generation_only"
+}
