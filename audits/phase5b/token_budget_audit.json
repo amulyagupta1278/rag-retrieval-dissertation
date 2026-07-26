@@ -58,6 +58,8 @@
     "local_tokenizer": "google.genai.local_tokenizer.LocalTokenizer",
     "local_tokenizer_asset_sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
     "model": "gemini-2.5-flash",
+    "schema_counting_projection": "google-genai 2.13.0 local tokenizer omits response_json_schema, so identical schema is projected through response_schema only during offline counting",
+    "schema_live_wire_field": "responseJsonSchema",
     "sdk": "google-genai 2.13.0",
     "status": "exact under frozen experimental local tokenizer asset; compare against provider usage metadata after authorized execution"
   },
@@ -82,7 +84,7 @@
       "input_tokens": 25419,
       "max_contract_output_tokens": 1881,
       "query_id": "v2q-001",
-      "request_sha256": "43d5f6cdf43a1ec0a1136ec816045edf29a06331b5e82050875d4a9b5e7dd67e",
+      "request_sha256": "aff4c7663f82979620739e35c9f280100b60eefd674591bd8436d3690a0ed5ac",
       "response_schema_tokens": 1440,
       "system_instruction_tokens": 256
     },
@@ -91,7 +93,7 @@
       "input_tokens": 25800,
       "max_contract_output_tokens": 1883,
       "query_id": "v2q-002",
-      "request_sha256": "1d434130005f93715b0f5ae6df306fec13fedb7a31011f895cb193449298b653",
+      "request_sha256": "76cfdbce9dabd4aa3744be3109dcbe98beb1eb8882e2fec7b78d5d2ef410b6e7",
       "response_schema_tokens": 1442,
       "system_instruction_tokens": 256
     },
@@ -100,7 +102,7 @@
       "input_tokens": 25681,
       "max_contract_output_tokens": 1893,
       "query_id": "v2q-003",
-      "request_sha256": "71b944234c88020b434d41cbcfe12f10f4c4df549d46d71039e6f9f2ae3387fd",
+      "request_sha256": "814af58d4642c7feba669d515840844d0ac3e688f04436e0b5b03ebad77fac7d",
       "response_schema_tokens": 1452,
       "system_instruction_tokens": 256
     },
@@ -109,7 +111,7 @@
       "input_tokens": 25439,
       "max_contract_output_tokens": 1880,
       "query_id": "v2q-004",
-      "request_sha256": "cb14955b58a2ee3fa1829fb9d377aef51bc133cbf6cfe5d6a5ab8003c0a052b1",
+      "request_sha256": "62326587630ae89a961266944e74c0723cc18b9fa6d648f53974fd22850db99d",
       "response_schema_tokens": 1439,
       "system_instruction_tokens": 256
     },
@@ -118,7 +120,7 @@
       "input_tokens": 25198,
       "max_contract_output_tokens": 1872,
       "query_id": "v2q-005",
-      "request_sha256": "a57d13dd67ffb08b27b4ae14e2680ea5e4eaa378f0b1f923cdd8a8cf3eb07d68",
+      "request_sha256": "a8e9e72ed1b52714b002edecf489d681da9f51ffa954848f245b58203dc80b5a",
       "response_schema_tokens": 1431,
       "system_instruction_tokens": 256
     },
@@ -127,7 +129,7 @@
       "input_tokens": 25355,
       "max_contract_output_tokens": 1880,
       "query_id": "v2q-006",
-      "request_sha256": "ca516ce24e19ae1e8670319569f61caf72b2a19a1bbfb74cb57e898bbae083c8",
+      "request_sha256": "0d8d10425518c5a771fc1c43cba79139ed41e48c8d3624ec62bafbccabf1d9b8",
       "response_schema_tokens": 1439,
       "system_instruction_tokens": 256
     },
@@ -136,7 +138,7 @@
       "input_tokens": 25485,
       "max_contract_output_tokens": 1876,
       "query_id": "v2q-007",
-      "request_sha256": "1da30fa676d91cc9cb02e9c2ddf06101819ef34c7dc2fc00bc979481fb25752a",
+      "request_sha256": "52889d93833a5a1bc302ef240a1779556221e7ba3016abd6b4308a7f730a4809",
       "response_schema_tokens": 1435,
       "system_instruction_tokens": 256
     },
@@ -145,7 +147,7 @@
       "input_tokens": 25394,
       "max_contract_output_tokens": 1886,
       "query_id": "v2q-008",
-      "request_sha256": "311f318b8f7de7b2165939b50cbd39b2c27cfc630c14f70b6b66e0a4a0b12a36",
+      "request_sha256": "20164a7efa965356ae9abb7146c228ae74550a4889127c7c423add3607a8dc8d",
       "response_schema_tokens": 1445,
       "system_instruction_tokens": 256
     },
@@ -154,7 +156,7 @@
       "input_tokens": 25870,
       "max_contract_output_tokens": 1896,
       "query_id": "v2q-009",
-      "request_sha256": "de303e2b954a1d7e193a105e448ef5854975889aacdacdf50e6b9b0f39a31da5",
+      "request_sha256": "c9a7cfd9276706187ab6265cda64a99a097ef3da846b52427cb08212445b96fe",
       "response_schema_tokens": 1455,
       "system_instruction_tokens": 256
     },
@@ -163,7 +165,7 @@
       "input_tokens": 25984,
       "max_contract_output_tokens": 1911,
       "query_id": "v2q-010",
-      "request_sha256": "e124e38ec3b93774913c0d8bd6baa5944030366fda26013c3c2e16e78353f64e",
+      "request_sha256": "06912aa12c9a1b47586b7171c4b4d1eaae086f1e7ec8722ba6bfad9532fcb605",
       "response_schema_tokens": 1470,
       "system_instruction_tokens": 256
     },
@@ -172,7 +174,7 @@
       "input_tokens": 26369,
       "max_contract_output_tokens": 1903,
       "query_id": "v2q-011",
-      "request_sha256": "ae64104ef57b2902a924f5769b9cc274aa0d462a5d7be7aff41e9640ad68a993",
+      "request_sha256": "78eda03450063faa117b5e5ecc3a06ade6546d54349bc167f6e05827f597e4fe",
       "response_schema_tokens": 1462,
       "system_instruction_tokens": 256
     },
@@ -181,7 +183,7 @@
       "input_tokens": 26160,
       "max_contract_output_tokens": 1904,
       "query_id": "v2q-012",
-      "request_sha256": "ea81d367f31d12f41cefd6082861270b8eb15a1365f47af7f9de36b368f8a950",
+      "request_sha256": "f491ae545503f4189011e7b71292e6fbe7ad427ab0d0aad0f5fa56fced3a155e",
       "response_schema_tokens": 1463,
       "system_instruction_tokens": 256
     },
@@ -190,7 +192,7 @@
       "input_tokens": 25700,
       "max_contract_output_tokens": 1871,
       "query_id": "v2q-013",
-      "request_sha256": "8b2ba23f9203b955d2e22b1669fc054458aa18b989ab952be44256e999383e33",
+      "request_sha256": "ed1982c2e641dffa6a18daa450b7c26fd913dbbd1941379ab3ff84ff276fa380",
       "response_schema_tokens": 1430,
       "system_instruction_tokens": 256
     },
@@ -199,7 +201,7 @@
       "input_tokens": 25078,
       "max_contract_output_tokens": 1890,
       "query_id": "v2q-014",
-      "request_sha256": "5a4988b4ab61787552dab3152e89af8ac1bd8e81e04fc4d66e223aaecdd968b6",
+      "request_sha256": "2b6a17d8f309c1616f7227a7132da6c4eb10f256335230802cb2033c64f8ab1f",
       "response_schema_tokens": 1449,
       "system_instruction_tokens": 256
     },
@@ -208,7 +210,7 @@
       "input_tokens": 25498,
       "max_contract_output_tokens": 1902,
       "query_id": "v2q-015",
-      "request_sha256": "54921ee198c36049dff5e7f6075612f1e03bae1c177a870b0efb04b3d55adda3",
+      "request_sha256": "3ba6841aef4fea72d45d7ef86972ca2ff387cea3f858591e2bc7845218d5dccf",
       "response_schema_tokens": 1461,
       "system_instruction_tokens": 256
     },
@@ -217,7 +219,7 @@
       "input_tokens": 24100,
       "max_contract_output_tokens": 1874,
       "query_id": "v2q-016",
-      "request_sha256": "bcb99ce2386dc610ec9ec3898eccdec42e95609ddef2159a15bc8f756ecb63ff",
+      "request_sha256": "6aa3cee5f0404faedab619f070a6da6099cfd3a45611587da91be849c1a10b8a",
       "response_schema_tokens": 1433,
       "system_instruction_tokens": 256
     },
@@ -226,7 +228,7 @@
       "input_tokens": 23977,
       "max_contract_output_tokens": 1902,
       "query_id": "v2q-017",
-      "request_sha256": "63b1b5824542de0fca926b612225a5285297f2fd5ce9cdb10b9fbdb7c4aaccb6",
+      "request_sha256": "7b5579cf30c364c5a568bf8b9be29f3c947455d3c862205306dc360dc8277b25",
       "response_schema_tokens": 1461,
       "system_instruction_tokens": 256
     },
@@ -235,7 +237,7 @@
       "input_tokens": 25678,
       "max_contract_output_tokens": 1863,
       "query_id": "v2q-018",
-      "request_sha256": "55bdaf34842e62335f983c6254a776a3766bff76f3c5deef361ccd5ebbd76ee3",
+      "request_sha256": "7d8ecb892fe45ee9197a6be7040446a6f0b1b89651a666a7e08cec9cb614f3ae",
       "response_schema_tokens": 1422,
       "system_instruction_tokens": 256
     },
@@ -244,7 +246,7 @@
       "input_tokens": 25690,
       "max_contract_output_tokens": 1891,
       "query_id": "v2q-019",
-      "request_sha256": "227e68317fbf458d2f41b227cfd6ad8f6f879249f7867cf1a93ab66965cbe7db",
+      "request_sha256": "bf04d747850d297a4c94c3302d3441054401dbd7591f0c8595df14a0c43ee56b",
       "response_schema_tokens": 1450,
       "system_instruction_tokens": 256
     },
@@ -253,7 +255,7 @@
       "input_tokens": 24591,
       "max_contract_output_tokens": 1887,
       "query_id": "v2q-020",
-      "request_sha256": "29285d20fe9196deb460f836e6f92814acc415f544f0916149aeccb2292df72e",
+      "request_sha256": "fd2e91b224ebed7cce6406a24794e15a1f29ef12d2a5d8c7dee668427f311172",
       "response_schema_tokens": 1446,
       "system_instruction_tokens": 256
     },
@@ -262,7 +264,7 @@
       "input_tokens": 25136,
       "max_contract_output_tokens": 1878,
       "query_id": "v2q-021",
-      "request_sha256": "aa804f9d34e8d4577f93b6a121b48ea2e9fc047d08332260e4924a4ee17d8f09",
+      "request_sha256": "e7599be6fb7b94b4c0d349179f1503641224157f6a76adafbf823fec7ac2a7a5",
       "response_schema_tokens": 1437,
       "system_instruction_tokens": 256
     },
@@ -271,7 +273,7 @@
       "input_tokens": 25122,
       "max_contract_output_tokens": 1873,
       "query_id": "v2q-022",
-      "request_sha256": "cffa94c9ade30c9b45a2b7add2615068c35caa921e22899513aa3b13eac26040",
+      "request_sha256": "6d8ef449102dca31e5ec5c7c1d7733cb55a6642907e67b12efbc8dad22f0e146",
       "response_schema_tokens": 1432,
       "system_instruction_tokens": 256
     },
@@ -280,7 +282,7 @@
       "input_tokens": 24850,
       "max_contract_output_tokens": 1895,
       "query_id": "v2q-023",
-      "request_sha256": "191d0f28446ad2c1e6c15ee48d55a0fca31a3fd04a990263a14d3824b5909a2c",
+      "request_sha256": "d7b0826a29d031d2b534e2ac6baae02ced9520c663d1f11879479cd440317dee",
       "response_schema_tokens": 1454,
       "system_instruction_tokens": 256
     },
@@ -289,7 +291,7 @@
       "input_tokens": 25614,
       "max_contract_output_tokens": 1896,
       "query_id": "v2q-024",
-      "request_sha256": "34d88543a1fe8d1c371f4f568d08ffda52b49575f470dea8289d288c0579bd7f",
+      "request_sha256": "52c8836726d6febd610804f71f0b67e5f7691fa11dadf3356094dc308bb524e9",
       "response_schema_tokens": 1455,
       "system_instruction_tokens": 256
     },
@@ -298,7 +300,7 @@
       "input_tokens": 25468,
       "max_contract_output_tokens": 1867,
       "query_id": "v2q-025",
-      "request_sha256": "51feb47c281ba7607887fe4f1cc43db536061ca4575953c761dd9bac26b6edf0",
+      "request_sha256": "ec817b86c297f7a032d490201c132e07a944a1333e136c4917482311e3178a59",
       "response_schema_tokens": 1426,
       "system_instruction_tokens": 256
     },
@@ -307,7 +309,7 @@
       "input_tokens": 25503,
       "max_contract_output_tokens": 1871,
       "query_id": "v2q-026",
-      "request_sha256": "d9fbf298abee7bd29627fe354150861d8b92e50b3de3908d446b480b4cb1bfdc",
+      "request_sha256": "461b34378c30167d9dda89ffb89a4a030103a51463e936925c285fd70765ef55",
       "response_schema_tokens": 1430,
       "system_instruction_tokens": 256
     },
@@ -316,7 +318,7 @@
       "input_tokens": 26120,
       "max_contract_output_tokens": 1880,
       "query_id": "v2q-027",
-      "request_sha256": "b345ba60773f0d7e30d50ece745fd579a5f65707dc817f06d8adbb1fb4f02748",
+      "request_sha256": "43785c98bcf46d55ba878da0ccd4404c61394d4980cfad1f2eb49ce3827b32c1",
       "response_schema_tokens": 1439,
       "system_instruction_tokens": 256
     },
@@ -325,7 +327,7 @@
       "input_tokens": 24895,
       "max_contract_output_tokens": 1887,
       "query_id": "v2q-028",
-      "request_sha256": "e49a007df3fa8513ba29cde7692ebffcb163370b66fcf11fb45ab8594be18f47",
+      "request_sha256": "52b620191661ed621d17c1f5b0edf227a3ee5bf4509fd2b5eaae8502ace78280",
       "response_schema_tokens": 1446,
       "system_instruction_tokens": 256
     },
@@ -334,7 +336,7 @@
       "input_tokens": 25311,
       "max_contract_output_tokens": 1879,
       "query_id": "v2q-029",
-      "request_sha256": "c23c6b2a19da5919aab90ce58fc903e6bfa03a9635dcf6f8f96ba360d7566e2a",
+      "request_sha256": "558442fa9366d929b142a6c3d72679b644b5cca88b313bbd59156a5bdec777e9",
       "response_schema_tokens": 1438,
       "system_instruction_tokens": 256
     },
@@ -343,7 +345,7 @@
       "input_tokens": 25742,
       "max_contract_output_tokens": 1908,
       "query_id": "v2q-030",
-      "request_sha256": "0d40421a6be23e98006215e126a0b02bb689a12bb8f995b5ac890ed9aa9f3238",
+      "request_sha256": "1eb0af3078d02729c1949aa37ad4611fab30b6d7070cb5657df72a16004acdb3",
       "response_schema_tokens": 1467,
       "system_instruction_tokens": 256
     },
@@ -352,7 +354,7 @@
       "input_tokens": 24786,
       "max_contract_output_tokens": 1857,
       "query_id": "v2q-031",
-      "request_sha256": "52c77f443841b7da03febf5bc198287433304c5f56b689f247d9442fcfcbe52b",
+      "request_sha256": "6ee85599a4882c86ceacc72f5f1cb5994e39c1b06017eac6f1324cd31fc45942",
       "response_schema_tokens": 1416,
       "system_instruction_tokens": 256
     },
@@ -361,7 +363,7 @@
       "input_tokens": 24944,
       "max_contract_output_tokens": 1862,
       "query_id": "v2q-032",
-      "request_sha256": "5b582535a7442eb9a68fc31181c51c8ecaa83b80fc4093d426fd9d33ce1a2429",
+      "request_sha256": "d9e89ad5f135e2e5422713d6cb946b7b16e61c859ae22e798ea1bbfe4b522d8b",
       "response_schema_tokens": 1421,
       "system_instruction_tokens": 256
     },
@@ -370,7 +372,7 @@
       "input_tokens": 25405,
       "max_contract_output_tokens": 1863,
       "query_id": "v2q-033",
-      "request_sha256": "7773760787e25fa3d1f60de338871b55a5e3c6146755e074a25ff6bf9ae27732",
+      "request_sha256": "512e4fb20a6a0877a484bb43ac9220ab1052f8936b632d919e2240cbef49bd6f",
       "response_schema_tokens": 1422,
       "system_instruction_tokens": 256
     },
@@ -379,7 +381,7 @@
       "input_tokens": 24916,
       "max_contract_output_tokens": 1848,
       "query_id": "v2q-034",
-      "request_sha256": "8b09e9d53462d008cc7a4bd0fbbf471f9d1ea4120b9709774883cef358377ecd",
+      "request_sha256": "71178bce9c4443671a13162e29c97e91fbcac5350b54670a6dc164a2c2dd206f",
       "response_schema_tokens": 1407,
       "system_instruction_tokens": 256
     }

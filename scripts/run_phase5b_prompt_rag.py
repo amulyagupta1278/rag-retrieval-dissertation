@@ -46,8 +46,8 @@ FREE_TIER_CONFIRMATION_PATH = ROOT / "audits/phase5b/free_tier_owner_confirmatio
 TRACE_APPROVAL_PATH = ROOT / "audits/phase5b/trace_execution_approval.json"
 FULL_APPROVAL_PATH = ROOT / "audits/phase5b/full_execution_approval.json"
 RESUME_APPROVAL_PATH = ROOT / "audits/phase5b/quota_reset_resume_approval.json"
-TRACE_DECISION_PATH = ROOT / "runs/v2/phase5b_prompt_rag/trace/repeatability_decision.json"
-OUTPUT_ROOT = ROOT / "runs/v2/phase5b_prompt_rag"
+OUTPUT_ROOT = ROOT / "runs/v2/phase5b_prompt_rag_response_json_schema_v2"
+TRACE_DECISION_PATH = OUTPUT_ROOT / "trace/repeatability_decision.json"
 EXPECTED_QUERY_IDS = tuple(f"v2q-{index:03d}" for index in range(1, 35))
 RUNTIME_CONTROL_PATHS = frozenset(
     {

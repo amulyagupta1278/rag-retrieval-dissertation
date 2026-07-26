@@ -110,6 +110,24 @@ IDs through a dynamic enum, integer score `0..3`, required fields, and no extra
 properties. Client still validates candidate completeness and uniqueness because
 JSON Schema cannot prove all enum values occur once.
 
+### Pre-result schema-field validity correction
+
+First authorized network attempt returned terminal HTTP `400` before any valid
+response. V1 had passed standard lower-case JSON Schema through SDK field
+`response_schema`, serialized as API field `responseSchema`. `google-genai`
+documents `response_schema` as its OpenAPI-subset path and assigns standard JSON
+Schema to `response_json_schema`, serialized as `responseJsonSchema`. Corrected
+contract uses `responseJsonSchema`; schema content, prompt, model, candidates,
+score scale, and ranking remain unchanged. Exact provider error detail is not
+available because frozen secret-safe policy discards provider error bodies, so
+this cause is strongly supported rather than independently proven from body.
+
+Failed V1 run stays immutable under `runs/v2/phase5b_prompt_rag/`. Corrected
+execution uses `runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; it cannot
+resume or overwrite V1 ledger. Correction occurred with zero valid responses and
+before any relevance metrics, making it implementation-validity repair rather
+than benchmark-sensitive tuning.
+
 Malformed JSON; missing, extra, duplicate, or changed IDs; boolean/float or
 out-of-range scores; blocks; refusals; truncation; missing metadata; non-text
 parts; and unexpected tool calls are terminal failures. Failed queries receive
@@ -169,7 +187,10 @@ non-plan IDs, staged controls, or changed frozen implementation remain blocked.
 
 `google.genai.local_tokenizer.LocalTokenizer` with frozen Gemma-3 tokenizer asset
 SHA-256 `1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c`
-counts contents, system instruction, and dynamic response schema offline.
+counts contents, system instruction, and dynamic response schema offline. SDK
+2.13.0 local tokenizer omits `response_json_schema`; audit therefore projects
+identical schema through tokenizer-supported `response_schema` solely for token
+counting. Live request still contains only `responseJsonSchema`.
 
 - Primary input: 862,278 tokens across 34 requests.
 - Per request: 23,977 minimum; 26,369 maximum; 25,361.117647 mean.

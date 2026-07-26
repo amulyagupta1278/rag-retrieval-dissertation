@@ -216,6 +216,8 @@ def test_request_has_exact_controls_and_no_forbidden_capability() -> None:
     assert config["thinking_config"] == {"thinking_budget": 0}
     assert config["max_output_tokens"] == 4096
     assert config["response_mime_type"] == "application/json"
+    assert "response_json_schema" in config
+    assert "response_schema" not in config
     forbidden = {
         "tools",
         "tool_config",
@@ -246,6 +248,13 @@ def test_strict_dynamic_response_schema() -> None:
     assert item["properties"]["chunk_id"]["enum"] == sorted(ids)
     assert item["properties"]["score"] == {"type": "integer", "minimum": 0, "maximum": 3}
     types.Schema.model_validate(schema)
+
+
+def test_standard_json_schema_uses_response_json_schema_wire_field() -> None:
+    config = types.GenerateContentConfig.model_validate(synthetic_request()["config"])
+    serialized = config.model_dump(mode="json", by_alias=True, exclude_none=True)
+    assert "responseJsonSchema" in serialized
+    assert "responseSchema" not in serialized
 
 
 def test_deterministic_score_then_chunk_id_ranking() -> None:
@@ -697,16 +706,16 @@ def test_quota_resume_allows_only_exact_canonical_checkpoint_files() -> None:
     free = ROOT / "audits/phase5b/free_tier_owner_confirmation.json"
     trace = ROOT / "audits/phase5b/trace_execution_approval.json"
     resume = ROOT / "audits/phase5b/quota_reset_resume_approval.json"
-    output_root = ROOT / "runs/v2/phase5b_prompt_rag/trace"
+    output_root = ROOT / "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace"
     safe_names = {"v2q-017__primary", "v2q-016__replicate-1"}
     valid_status = (
         " M audits/phase5b/free_tier_owner_confirmation.json\n"
         " M audits/phase5b/trace_execution_approval.json\n"
         " M audits/phase5b/quota_reset_resume_approval.json\n"
-        "?? runs/v2/phase5b_prompt_rag/trace/control/ledger.json\n"
-        "?? runs/v2/phase5b_prompt_rag/trace/raw/v2q-017__primary.json\n"
-        "?? runs/v2/phase5b_prompt_rag/trace/attempts/v2q-016__replicate-1/attempt-001.json\n"
-        "?? runs/v2/phase5b_prompt_rag/trace/failures/v2q-016__replicate-1__quota-stop.json\n"
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/control/ledger.json\n"
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/raw/v2q-017__primary.json\n"
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/attempts/v2q-016__replicate-1/attempt-001.json\n"
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/failures/v2q-016__replicate-1__quota-stop.json\n"
     )
     runner._validate_worktree_status(
         valid_status,
@@ -715,11 +724,11 @@ def test_quota_resume_allows_only_exact_canonical_checkpoint_files() -> None:
         allowed_resume_safe_names=safe_names,
     )
     for invalid in (
-        "?? runs/v2/phase5b_prompt_rag/full/control/ledger.json\n",
-        "?? runs/v2/phase5b_prompt_rag/trace/raw/v2q-999__primary.json\n",
-        "?? runs/v2/phase5b_prompt_rag/trace/attempts/v2q-017__primary/attempt-004.json\n",
-        "?? runs/v2/phase5b_prompt_rag/trace/failures/v2q-017__primary__terminal.json\n",
-        "?? runs/v2/phase5b_prompt_rag/trace/unexpected.json\n",
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/full/control/ledger.json\n",
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/raw/v2q-999__primary.json\n",
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/attempts/v2q-017__primary/attempt-004.json\n",
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/failures/v2q-017__primary__terminal.json\n",
+        "?? runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/unexpected.json\n",
     ):
         with pytest.raises(ExecutionApprovalError, match="differs from HEAD"):
             runner._validate_worktree_status(

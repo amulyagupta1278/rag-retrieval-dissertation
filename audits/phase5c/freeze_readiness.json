@@ -9,7 +9,7 @@
     "model_or_provider": false,
     "prompt": false,
     "ranking_or_tie_break": false,
-    "request_payload": false,
+    "request_payload": "implementation-validity correction only: responseSchema changed to responseJsonSchema; schema content unchanged",
     "retry_or_attempt_cap": false,
     "score_scale": false,
     "trace_selection": false
@@ -31,7 +31,8 @@
     "relevance_metrics": false,
     "trace_mode_after_all_live_gates": true
   },
-  "schema_version": 1,
-  "status": "offline_implementation_ready_pending_owner_live_gates",
-  "verified_live_gemini_api_call_n": 0
+  "schema_version": 2,
+  "status": "offline_schema_correction_pending_revalidation_and_owner_live_gates",
+  "verified_live_gemini_api_call_n": 1,
+  "verified_valid_gemini_response_n": 0
 }

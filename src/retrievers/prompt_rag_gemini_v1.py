@@ -181,7 +181,7 @@ def build_request(
             "candidate_count": 1,
             "max_output_tokens": MAX_OUTPUT_TOKENS,
             "response_mime_type": "application/json",
-            "response_schema": build_response_schema(chunk_ids),
+            "response_json_schema": build_response_schema(chunk_ids),
             "system_instruction": system_instruction,
             "temperature": 0,
             "thinking_config": {"thinking_budget": 0},
@@ -194,10 +194,17 @@ def count_request_tokens(
     *,
     tokenizer: local_tokenizer.LocalTokenizer,
 ) -> int:
-    """Count contents, system instruction, and response schema locally."""
+    """Count contents, system instruction, and response schema locally.
+
+    Live generation sends standard JSON Schema through ``responseJsonSchema``.
+    google-genai 2.13.0's experimental local tokenizer omits that field from
+    counting, so token accounting projects the identical schema through its
+    supported OpenAPI ``responseSchema`` counting path. This changes no live
+    request bytes and preserves conservative schema-token accounting.
+    """
 
     config = request["config"]
-    schema = types.Schema.model_validate(config["response_schema"])
+    schema = types.Schema.model_validate(config["response_json_schema"])
     count_config = types.CountTokensConfig(
         system_instruction=config["system_instruction"],
         generation_config=types.GenerationConfig(response_schema=schema),

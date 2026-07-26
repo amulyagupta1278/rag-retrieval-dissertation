@@ -62,9 +62,16 @@
     "log_or_serialize_secret": false,
     "source": "environment_only"
   },
+  "implementation_validity_correction": {
+    "classification": "pre-result API schema-field correction; not benchmark-sensitive tuning",
+    "invalid_v1_output_root": "runs/v2/phase5b_prompt_rag",
+    "invalid_v1_successful_response_n": 0,
+    "provider_wire_field_after_correction": "responseJsonSchema",
+    "provider_wire_field_before_correction": "responseSchema"
+  },
   "execution_authorized": true,
   "execution_control": {
-    "canonical_output_root": "runs/v2/phase5b_prompt_rag",
+    "canonical_output_root": "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
     "full_execution_approval_path": "audits/phase5b/full_execution_approval.json",
     "full_requires_verified_trace_decision": true,
     "mode_specific_owner_approval_required": true,
@@ -144,7 +151,7 @@
   "output_contract": {
     "output_depth": 50,
     "response_mime_type": "application/json",
-    "response_schema": {
+    "response_json_schema": {
       "additionalProperties": false,
       "properties": {
         "candidate_scores": {
@@ -191,9 +198,11 @@
     "sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9"
   },
   "request_contract": {
+    "implementation_revision": 2,
+    "provider_wire_schema_field": "responseJsonSchema",
     "full_plan_sha256": "25fb56b0f8aaf3bdeb33c35fd80f0520100fb0c48d84f941a4d9e5e15af4ca11",
     "request_hash_source_path": "audits/phase5b/token_budget_audit.json",
-    "request_hash_source_sha256": "fade68a498fa0aa56585c72574a53be17f96de334eae49f98288682c05ab2338",
+    "request_hash_source_sha256": "ff13f5e46b1629f914ce0f0d3fbc81b3c09d7eb96193046e966e304cc069ac40",
     "trace_plan_sha256": "196b1e76703b135c901dc67e14a46e43ba0a49308dd0c7595f8ba34e4d80c01b",
     "trace_selection_path": "audits/phase5b/trace_selection.json",
     "trace_selection_sha256": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac"
@@ -236,5 +245,5 @@
     "selection_rule": "select eight lexicographically smallest SHA-256 digests",
     "trace_query_n": 8
   },
-  "version": "prompt-rag-retrieval-v1-gemini-offline-freeze"
+  "version": "prompt-rag-retrieval-v1-gemini-response-json-schema-r2"
 }

@@ -76,10 +76,10 @@ def test_phase5c_freeze_manifest_is_complete_and_exact() -> None:
         (ROOT / "audits/phase5c/freeze_manifest.json").read_text(encoding="utf-8")
     )
     assert manifest["completeness"] == {
-        "artifact_count": 14,
+        "artifact_count": 15,
         "manifest_self_hash_excluded": True,
     }
-    assert len(manifest["artifact_hashes"]) == 14
+    assert len(manifest["artifact_hashes"]) == 15
     assert "audits/phase5c/freeze_manifest.json" not in manifest["artifact_hashes"]
     assert not set(manifest["mutable_runtime_controls_excluded"]) & set(
         manifest["artifact_hashes"]
@@ -87,6 +87,28 @@ def test_phase5c_freeze_manifest_is_complete_and_exact() -> None:
     for relative, expected in manifest["artifact_hashes"].items():
         assert sha256(ROOT / relative) == expected, relative
     assert phase5c._verify_freeze_manifest() == manifest
+
+
+def test_failed_v1_attempt_is_preserved_and_schema_correction_is_narrow() -> None:
+    correction = json.loads(
+        (ROOT / "audits/phase5c/schema_contract_validity_correction.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    failed = correction["failed_v1_attempt"]
+    for path_key, hash_key in (
+        ("attempt_path", "attempt_sha256"),
+        ("failure_path", "failure_sha256"),
+        ("ledger_path", "ledger_sha256"),
+    ):
+        assert sha256(ROOT / failed[path_key]) == failed[hash_key]
+    assert failed["attempted_network_request_n"] == 1
+    assert failed["successful_response_n"] == 0
+    corrected = correction["corrected_contract"]
+    assert corrected["wire_field"] == "responseJsonSchema"
+    assert corrected["request_schema_content_changed"] is False
+    assert corrected["prompt_changed"] is False
+    assert correction["owner_gate"]["live_execution_authorized_by_this_artifact"] is False
 
 
 def test_phase5c_evaluator_has_no_benchmark_sensitive_inputs() -> None:

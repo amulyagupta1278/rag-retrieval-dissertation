@@ -95,7 +95,7 @@ def _verify_freeze_manifest() -> dict[str, Any]:
 
     manifest = _json(FREEZE_MANIFEST_PATH)
     hashes = manifest.get("artifact_hashes")
-    if not isinstance(hashes, dict) or len(hashes) != 14:
+    if not isinstance(hashes, dict) or len(hashes) != 15:
         raise PromptRAGContractError("Phase 5C freeze manifest is incomplete")
     if str(FREEZE_MANIFEST_PATH.relative_to(ROOT)) in hashes:
         raise PromptRAGContractError("Phase 5C freeze manifest must not hash itself")
@@ -255,7 +255,7 @@ def _validate_ledger(
         expected_logical_request_ids=[logical_id for logical_id, _ in plan],
         expected_request_hashes=logical_hashes,
         model=config["generation"]["model"],
-        output_root="runs/v2/phase5b_prompt_rag/trace",
+        output_root=str(TRACE_ROOT.relative_to(ROOT)),
     )
     expected_logical = sorted(logical_hashes)
     state = ledger.state

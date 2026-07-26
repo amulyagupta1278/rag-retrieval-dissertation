@@ -8,6 +8,8 @@ answers, or expose owner judgments.
 
 System remains frozen BM25 top-50 to Gemini relevance reranker. No prompt, model,
 provider, candidate, ordering, scoring, retry, or ranking parameter may change.
+Pre-result implementation-validity correction changes only Gemini structured-
+output wire field from `responseSchema` to `responseJsonSchema`.
 
 ## Preconditions
 
@@ -39,6 +41,7 @@ Every precondition must pass before client creation:
 - Streaming/tools/search/grounding/caching/file access: disabled.
 - One query plus all frozen 50 BM25 candidates per request.
 - Strict 50-item candidate-score response schema.
+- Standard JSON Schema sent through `responseJsonSchema`.
 - Score range: integer 0–3.
 - Ranking: score descending, then chunk ID ascending.
 - No fallback, backfill, answer generation, or BM25-rank tie-break.
@@ -83,6 +86,10 @@ Runner preserves:
 - timestamps and sanitized attempt history;
 - request/response hashes;
 - durable attempt ledger.
+
+Terminal HTTP `400` V1 attempt remains preserved under
+`runs/v2/phase5b_prompt_rag/`. Corrected run writes only under
+`runs/v2/phase5b_prompt_rag_response_json_schema_v2/`; V1 ledger cannot resume.
 
 All returned `modelVersion` values must match. Any missing/extra/duplicate chunk,
 changed ID, invalid score, malformed output, refusal, block, truncation, metadata
