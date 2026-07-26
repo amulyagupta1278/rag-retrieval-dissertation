@@ -1,0 +1,17 @@
+{
+  "classification": "pre-V2-generation implementation-validity correction; not benchmark-sensitive tuning",
+  "preserved": [
+    "model claude-haiku-4-5-20251001",
+    "prompt bytes and SHA-256",
+    "BM25 top-50 candidates and ordering",
+    "0..3 integer scoring anchors",
+    "score-descending then chunk-ID-ascending ranking",
+    "eight structural trace query IDs",
+    "three executions per trace query",
+    "zero automatic retries"
+  ],
+  "schema_version": 1,
+  "status": "offline_corrected_no_v2_generation",
+  "v1_failure": "Array schema could not require exactly 50 rows under provider-supported JSON Schema subset; one V1 response returned 49 rows and was rejected.",
+  "v2_change_only": "candidate_scores is a fixed-key object. Every exact supplied chunk ID is one required property with integer value; additional properties are rejected. Offline parser retains 0..3 range enforcement."
+}

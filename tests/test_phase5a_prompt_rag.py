@@ -215,8 +215,8 @@ def test_hypotheses_and_protected_phase4_checkpoint_are_unchanged() -> None:
     assert sha256(HYPOTHESIS_PATH) == "78547d0fc4a81ae64303103b22f577366a0d7895d8e5dbe94b0e417e366115b7"
     count, manifest_hash = checkpoint_manifest_sha256()
     assert count == 532
-    # Updated only for explicitly authorized REC-016..REC-027 code/metadata repairs.
-    assert manifest_hash == "1231bc942b7ac62ad50a6ebf31d480eb2aae354396087bed53e9a13ba7e38832"
+    # Updated for authorized repairs plus Phase 5D Gemini dependency archival.
+    assert manifest_hash == "727c2fe2553c2686f9130fbd995bee9fa43c9ccca992ec542c8fae50cd3ec7f5"
 
 
 def test_history_audit_uses_only_permitted_classifications() -> None:

@@ -1,0 +1,33 @@
+{
+  "artifact_hashes": {
+    "archive/phase5_gemini_failed/README.md": "097c4cddb664539d32e38a3c1315d99b0eb151bc462449228cb0324bc56d6b50",
+    "archive/phase5_gemini_failed/manifest.json": "a8a163da7bfd428286ac52d55e880dbd68203683e6a7d37d5d5452d4dec7042c",
+    "audits/phase5b/bm25_top50_query_chunk_only.jsonl": "323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390",
+    "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
+    "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
+    "audits/phase5d_v2/offline_verification.json": "60ed4182bcf72286504f4951e4dd2137db940552e03fd022ca3b7b7e8acb52e4",
+    "audits/phase5d_v2/request_plan.json": "775ed5dd9d40dd198bd17614d99ca422cc75d487389c2659f4f8a1e7c9948020",
+    "audits/phase5d_v2/schema_correction.json": "1e5d73100e22e030e6c40a1ebbdcd9dccbc5c57897d84138fd47533c89666fed",
+    "audits/phase5d_v2/token_budget_audit.json": "c819b22e7f2523bd771942b444fe9b9bc12bb48ddcf28b9a33a610e246901d7a",
+    "audits/phase5d_v2/v1_preservation.json": "6aca971ed599a30ca575b612263bdf7747c836569b8d70625cafad9661468955",
+    "configs/prompt_rag_claude_v2_frozen.json": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+    "docs/DISSERTATION_PHASE_PLAN_RECOVERED.md": "b287b365b9028716d1bc2da3a038b53b588ca1518c5be18c8364904862b37527",
+    "docs/PHASE5D_V2_FIXED_KEY_PROTOCOL.md": "7acde8fe7b294bb61204e862c0bd1721b7275c14fabfb90d558bc41667edd637",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "pyproject.toml": "f8850963a0d6628c96659c19cd5567abd0f5ea79b7c6fe1bdf615397deb1039e",
+    "requirements.txt": "810f74a35b272501bc3b465305d325d81631a61145dbc0aa6e241afd7fffdc60",
+    "scripts/evaluate_phase5d_v2_claude_trace.py": "c6502aa8e69d8050d6af0022e75cd0dfa0a6a16a1afb24c84892396571fab726",
+    "scripts/run_phase5d_v2_prompt_rag_claude.py": "4ed8fdbb75fecb55a3e46c76d72fb00d8ede78693f6cfc8cb43ced1b97584d57",
+    "src/retrievers/prompt_rag_claude_v2.py": "686ea7c35287a203dd99280a9c8a45d82efdd43cb6532e25b920c86177c03b76",
+    "tests/test_phase5a_prompt_rag.py": "66d364f067ca4ed83bbadb008028b7231e167a27642dee560d1720e44d08dd6b",
+    "tests/test_phase5d_v2_prompt_rag_claude.py": "e2724c294bb422a13fa8733e71a0cc0a4c958b505ea8f40951ba01f61532d216"
+  },
+  "credential_fields_stored": false,
+  "excluded_mutable_artifacts": [
+    "audits/phase5d_v2/trace_execution_approval.json"
+  ],
+  "live_api_calls_during_correction": 0,
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_approval",
+  "v2_generation_calls_during_freeze": 0
+}

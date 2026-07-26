@@ -34,9 +34,10 @@ Later approved corrections control wherever they differ. Important supersessions
 - Graph became corrected v3.2 implementation;
 - Hybrid default became fixed RRF `k=60`, without result-driven tuning;
 - Prompt-RAG changed from direct-answer Gemini CoT over BM25 top-20 to retrieval-
-  only Gemini relevance reranking over frozen BM25 top-50;
-- Prompt-RAG uses `gemini-2.5-flash`, stable API `v1`, `google-genai==2.13.0`,
-  temperature 0, thinking budget 0, and strict structured JSON;
+  only reranking over frozen BM25 top-50;
+- Gemini Phase 5B/5C route was attempted, failed before valid rankings, and is
+  archived. Current Phase 5D V2 uses `claude-haiku-4-5-20251001`, unchanged
+  prompt/candidates/scoring/ranking, and fixed-key structured JSON;
 - owner judgments wait for union of candidates from every compared system;
 - current 34-query work is pilot/development evidence, not final dissertation
   inference.
@@ -318,7 +319,7 @@ Prompt-RAG is retrieval/reranking only. Answer generation belongs to Phase 7.
 
 Status: complete; committed in `d9689ae`.
 
-### Phase 5B: executable Gemini offline freeze
+### Phase 5B: executable Gemini offline freeze — historical, abandoned
 
 Frozen contract:
 
@@ -343,9 +344,11 @@ Frozen contract:
 
 Status: offline freeze committed in `49bd0ba`. Pre-execution audit found circular
 runtime-control/clean-tree gate; narrow repair committed in `c5e05b8`. Frozen
-prompt, model, candidates, request payloads, and ranking rules remain unchanged.
+prompt, model, candidates, request payloads, and ranking rules remained unchanged.
+Subsequent attempts produced no valid Gemini ranking. Artifacts now live under
+`archive/phase5_gemini_failed/` with byte-preservation hashes.
 
-### Phase 5C: trace and repeatability gate — next network phase
+### Phase 5C: Gemini trace and repeatability gate — historical, failed
 
 Preconditions:
 
@@ -387,10 +390,22 @@ Prohibited during 5C:
 - answer generation;
 - owner judging.
 
-Checkpoint: show 24-call evidence and repeatability only, then stop for owner
-approval.
+Checkpoint was not reached: preserved Gemini failures blocked valid trace output.
 
-### Phase 5D: remaining primary retrieval run
+### Phase 5D V1/V2: Claude provider recovery and trace
+
+Owner-directed provider recovery preserved BM25 top-50, prompt, scoring, ranking,
+trace selection, and no-retry policy. V1 array schema produced four valid primary
+records, then omitted one of 50 candidates on fifth HTTP-200 response. V1 stopped
+fail-closed and remains immutable. V2 changes only response serialization to a
+fixed-key object requiring every exact chunk ID and rejecting extras. V2 starts
+in separate output root and never selects from V1.
+
+V1 observed spend is $0.177402. V2 retains cumulative $1.90 hard cap. Offline V2
+freeze and commit precede exact owner approval for 24-call trace. Trace computes
+repeatability only; no relevance metrics or pool expansion.
+
+### Phase 5E: remaining primary retrieval run
 
 After separate approval:
 
@@ -401,7 +416,7 @@ After separate approval:
 5. Preserve failures without fallback/backfill.
 6. Freeze complete 34-query top-50 rankings.
 
-### Phase 5E: Prompt-RAG pool contribution
+### Phase 5F: Prompt-RAG pool contribution
 
 1. Add unseen Prompt-RAG top-10 query/chunk pairs.
 2. Deduplicate by query/chunk pair against existing blind pool.
@@ -421,7 +436,7 @@ Union of top-10 candidates from every system intended for comparison:
 - FAISS-windowed-max;
 - corrected Graph v3.2;
 - frozen Hybrid RRF;
-- Prompt-RAG Gemini reranker.
+- Prompt-RAG Claude Haiku 4.5 reranker.
 
 Deduplicate by `(query_id, chunk_id)`. Existing 504-pair Phase 2B package remains
 unchanged; Graph, Hybrid, and Prompt-RAG contribute only unseen pairs.
@@ -587,6 +602,6 @@ metrics and limitations remain visible.
 
 ## Current next action
 
-Obtain fresh free-tier/no-billing/current-context owner attestation, record exact
-trace approval, then execute Phase 5C trace gate only. No relevance metrics, pool
-expansion, full run, generation, or owner judging during Phase 5C.
+Commit Phase 5D V2 fixed-key offline freeze, obtain exact commit-bound owner
+approval, then execute 24-call Claude trace only. No relevance metrics, pool
+expansion, remaining-primary run, generation, or owner judging during trace.

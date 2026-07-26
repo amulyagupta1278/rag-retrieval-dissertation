@@ -1,0 +1,41 @@
+{
+  "archive_verification": {
+    "artifact_n": 36,
+    "byte_hash_mismatches": 0,
+    "obsolete_active_paths_remaining": 0
+  },
+  "commands": [
+    "python -m py_compile src/retrievers/prompt_rag_claude_v2.py scripts/run_phase5d_v2_prompt_rag_claude.py scripts/evaluate_phase5d_v2_claude_trace.py",
+    "pytest -q tests/test_phase5d_v2_prompt_rag_claude.py tests/test_phase5d_prompt_rag_claude.py tests/test_phase5a_prompt_rag.py",
+    "pytest -q",
+    "offline SHA-256 manifest/V1/archive verifier",
+    "tracked and untracked secret-pattern scan",
+    "git diff --check"
+  ],
+  "focused_tests": {
+    "failed": 0,
+    "passed": 91
+  },
+  "freeze_manifest_artifact_n_before_this_record": 20,
+  "full_tests": {
+    "failed": 0,
+    "passed": 295
+  },
+  "live_api_calls_during_v2_correction": 0,
+  "manifest_hash_mismatches": 0,
+  "offline_serialization": {
+    "query_request_n": 34,
+    "trace_request_n": 24
+  },
+  "schema_version": 1,
+  "secret_scan": {
+    "credential_values_printed": false,
+    "secret_like_token_hits": 0,
+    "scope": "Git tracked plus untracked nonignored files"
+  },
+  "status": "passed",
+  "v1_preservation": {
+    "artifact_n": 9,
+    "hash_mismatches": 0
+  }
+}
