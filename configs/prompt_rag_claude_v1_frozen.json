@@ -1,0 +1,67 @@
+{
+  "api_version": "2023-06-01",
+  "architecture": "frozen Phase 2A BM25 top-50 then LLM relevance reranker",
+  "candidate_count": 50,
+  "cost_control": {
+    "automatic_retries": 0,
+    "hard_total_cost_cap_usd": 1.9,
+    "input_usd_per_million_tokens": 1.0,
+    "output_usd_per_million_tokens": 5.0,
+    "pre_generation_provider_token_count_required": true,
+    "stop_after_any_failed_or_ambiguous_generation": true
+  },
+  "generation": {
+    "cache": false,
+    "max_output_tokens": 2048,
+    "service_tier": "standard_only",
+    "stream": false,
+    "temperature": 0,
+    "thinking": "disabled_by_omission",
+    "tools": [],
+    "top_k": "omitted",
+    "top_p": "omitted"
+  },
+  "inputs": {
+    "chunk_path": "data/v2/pilot/chunks/chunks.jsonl",
+    "chunk_sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "query_path": "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl",
+    "query_sha256": "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488",
+    "sanitized_ranking_path": "audits/phase5b/bm25_top50_query_chunk_only.jsonl",
+    "sanitized_ranking_sha256": "323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390",
+    "source_ranking_path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl",
+    "source_ranking_sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a"
+  },
+  "model": "claude-haiku-4-5-20251001",
+  "output_contract": {
+    "candidate_scores_required": 50,
+    "higher_score_first": true,
+    "score_maximum": 3,
+    "score_minimum": 0,
+    "score_type": "integer",
+    "structured_output": "output_config.format json_schema",
+    "tie_break": "ascending chunk_id; BM25 rank never used"
+  },
+  "prompt": {
+    "path": "prompts/prompt_rag_retrieval_v1.txt",
+    "sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9"
+  },
+  "provider": "Anthropic Claude API",
+  "request_plan_path": "audits/phase5d/request_plan.json",
+  "sdk": {
+    "name": "anthropic",
+    "version": "0.116.0"
+  },
+  "status": "offline_frozen_pending_anthropic_key_and_provider_token_count",
+  "system_name": "Prompt-RAG-Claude-Haiku-4.5-BM25-50",
+  "trace_query_ids": [
+    "v2q-017",
+    "v2q-016",
+    "v2q-003",
+    "v2q-023",
+    "v2q-013",
+    "v2q-025",
+    "v2q-004",
+    "v2q-027"
+  ],
+  "version": "prompt-rag-retrieval-v1-claude-provider-recovery"
+}

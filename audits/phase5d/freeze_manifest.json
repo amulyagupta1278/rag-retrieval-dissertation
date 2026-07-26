@@ -1,0 +1,19 @@
+{
+  "artifact_hashes": {
+    "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
+    "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
+    "audits/phase5d/provider_switch_audit.json": "17b4435aeafc859c7b26d4009004f7b1ceabc8cadf26a800483f3c8531af44c1",
+    "audits/phase5d/request_plan.json": "20bdcff224c0e744b92ce04078ee2044c7d143724c5bd755a289d46e78ef7666",
+    "configs/prompt_rag_claude_v1_frozen.json": "fa8dab38a0107160b9d0f52230d18a7bac4485cd58fb00cfc9d12b969f204373",
+    "docs/PHASE5D_CLAUDE_PROVIDER_RECOVERY.md": "1e193a95328d248d7a273ce74820af8bcfeecfdad5d5fc0955a96b6f51a5b638",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "scripts/evaluate_phase5d_claude_trace.py": "b0a019fc88bb6fd81c330f3289a1776b6a373e75f928ad9cb2cdb5e2993cf4ec",
+    "scripts/run_phase5d_prompt_rag_claude.py": "213f42feecab1b4db7155114bea7dab80254bc070c82e9df5e9268c88eaeb66e",
+    "src/retrievers/prompt_rag_claude_v1.py": "08748f92f91c5e507095c46e6f78ae1df5bfeaf6fb791e43c869644a0448141c",
+    "tests/test_phase5d_prompt_rag_claude.py": "10606281055f5e345ef8e383784f9e5d2bea130f2fdc589644b5a057fd0bf645"
+  },
+  "credential_fields_stored": false,
+  "generation_calls_during_freeze": 0,
+  "schema_version": 1,
+  "status": "offline_frozen_pending_anthropic_key_and_token_count"
+}
