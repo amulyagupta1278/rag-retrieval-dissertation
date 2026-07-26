@@ -1,0 +1,36 @@
+{
+  "artifact_type": "phase5c_minimal_generation_quota_diagnostic",
+  "authorization": {
+    "owner_instruction": "yes",
+    "scope_requested_immediately_before_approval": "one tiny Gemini generation without corpus to isolate base generateContent"
+  },
+  "diagnostic": {
+    "api_version": "v1beta",
+    "benchmark_data_sent": false,
+    "candidate_data_sent": false,
+    "endpoint_family": "generateContent",
+    "model": "gemini-2.5-flash",
+    "prompt_sha256": "c072824f1aefd4a6f913d5c608b0d26a69ad62632adacbffca9127a0cb5e79c6",
+    "tools_enabled": false
+  },
+  "ended_at": "2026-07-26T15:32:23.728500+00:00",
+  "finding": {
+    "error_class": "ClientError",
+    "http_code": 429,
+    "provider_error_body_stored": false,
+    "provider_message_classification": "prepayment_credits_depleted",
+    "provider_status": "RESOURCE_EXHAUSTED",
+    "response_received": false,
+    "retry_n": 0,
+    "usage_metadata_received": false
+  },
+  "interpretation": {
+    "base_generate_content_route_reached": true,
+    "free_tier_or_project_billing_state_requires_owner_review": true,
+    "further_gemini_generation_authorized": false,
+    "paid_credit_purchase_or_billing_enablement_authorized": false,
+    "prompt_rag_trace_must_remain_stopped": true
+  },
+  "schema_version": 1,
+  "started_at": "2026-07-26T15:32:22.335554+00:00"
+}
