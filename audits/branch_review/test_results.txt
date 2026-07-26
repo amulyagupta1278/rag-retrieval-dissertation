@@ -1,0 +1,112 @@
+BRANCH REVIEW TEST RESULTS
+Recorded: 2026-07-26 Asia/Kolkata
+Branch: codex/dissertation-rebuild-v2
+HEAD: d9689aeae520ed24a5f0c409a18134f5f9042e0f
+Merge-base origin/main..HEAD: df1b37384738641691a5f993bbab3032f6394f62
+
+FOCUSED TESTS
+Command:
+pytest tests/test_phase5a_prompt_rag.py tests/test_phase5b_prompt_rag.py -q
+
+Result: FAIL (exit 1)
+Collected: 90
+Passed: 89
+Failed: 1
+
+Failure:
+tests/test_phase5b_prompt_rag.py:630
+test_freeze_manifest_hashes_and_zero_live_actions
+AssertionError: audits/phase5b/failure_and_retry_policy.json
+Expected: 98eaf551b7a91124804d45fb35b9e587b09b1192abfe884f40f8e7d73e46d97f
+Actual:   d6957e0e978267132943c437dca224a41f16731ecfb4d048fb31185c1e3458d7
+Summary: 1 failed, 89 passed in 8.22s
+
+FULL TEST SUITE
+Command:
+pytest -q
+
+Result: FAIL (exit 1)
+Collected: 280
+Passed: 279
+Failed: 1
+
+Per-file progress:
+tests/test_evaluation.py ................................ 15 passed
+tests/test_graph_path_validator.py ...................... 10 passed
+tests/test_ingestion.py ................................. 10 passed
+tests/test_phase0_recompute.py .......................... 17 passed
+tests/test_phase2a_evaluation.py ........................ 7 passed
+tests/test_phase2a_windowed.py .......................... 1 passed
+tests/test_phase2b_pool.py .............................. 2 passed
+tests/test_phase3_graph.py .............................. 1 passed
+tests/test_phase3_graph_v2.py ........................... 59 passed
+tests/test_phase3_graph_v3_2_evaluation.py .............. 5 passed
+tests/test_phase4_hybrid.py ............................. 29 passed
+tests/test_phase5a_prompt_rag.py ........................ 49 passed
+tests/test_phase5b_prompt_rag.py ........................ 39 passed, 1 failed
+tests/test_retrievers.py ................................ 6 passed
+tests/test_v2_benchmark.py .............................. 5 passed
+tests/test_v2_contracts.py .............................. 5 passed
+tests/test_v2_human_review.py ........................... 3 passed
+tests/test_v2_pipeline.py ............................... 10 passed
+tests/test_v2_r2_benchmark.py ........................... 3 passed
+tests/test_v2_r3_freeze.py .............................. 1 passed
+tests/test_v2_r5_freeze.py .............................. 1 passed
+
+Failure is identical to focused suite.
+Summary: 1 failed, 279 passed in 20.09s
+
+DIRECT RUNNER SMOKE CHECK
+Command:
+python scripts/run_phase5b_prompt_rag.py --help
+
+Result: FAIL (exit 1)
+Traceback endpoint:
+scripts/run_phase5b_prompt_rag.py:12
+ModuleNotFoundError: No module named 'src'
+
+DIFF CHECKS
+Commands:
+git diff --check
+git diff --cached --check
+
+Result before review-artifact creation: PASS; no output.
+
+FORMAT/INVENTORY CHECK
+Scope files: 419
+Python AST: 66/66 valid
+JSON: 220/220 valid
+JSONL: 103/103 valid
+Other permitted UTF-8 text: valid
+Binary/unreviewable: 5; bytes hashed
+Owner-judgment content: not opened; byte hash only
+
+HASH CHECK
+Machine-resolvable file-hash claims: 642
+Current matches: 612
+Contextual historical/relocated matches: 17
+Stale current Phase 5B claims: 7
+Missing obsolete Phase 2A R4 targets: 2
+Historical code claims without reachable matching bytes: 4
+Phase 0 checksum ledgers: 12/12 OK
+
+SECRET SCAN
+Scope: 419 branch files plus reachable branch commits.
+Rules: Google/OpenAI/GitHub/AWS credential formats and private-key headers.
+Candidate secret matches: 0
+Secret values were not printed or inspected.
+
+POOL STRUCTURE
+Phase 2A blind/sealed: 504/504 aligned, 504 unique pairs, zero forbidden blind fields.
+Phase 3 v3.2 blind/sealed: 610/610 aligned, 610 unique pairs, zero forbidden blind fields.
+Phase 4 blind/sealed: 620/620 aligned, 620 unique pairs, zero forbidden blind fields.
+
+PROHIBITED ACTIONS
+Live Gemini/OpenAI calls: 0
+Retrieval runs: 0
+New relevance metrics: 0
+Pool expansion: 0
+Generation: 0
+Owner judgment content inspection: 0
+Product/config/prompt/test/data fixes: 0
+Commit/stage/push: 0

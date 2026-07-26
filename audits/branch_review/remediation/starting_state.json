@@ -1,0 +1,53 @@
+{
+  "branch": "codex/dissertation-rebuild-v2",
+  "captured_at": "2026-07-26T16:21:52+05:30",
+  "dirty_inventory": {
+    "file_count": 25,
+    "inventory_source": "git status --porcelain=v1 -uall",
+    "paths": [
+      "docs/PROMPT_RAG_PROTOCOL_V1.md",
+      "prompts/prompt_rag_retrieval_v1.txt",
+      "tests/test_phase5a_prompt_rag.py",
+      "audits/branch_review/caveman_findings.json",
+      "audits/branch_review/file_inventory.json",
+      "audits/branch_review/final_report.md",
+      "audits/branch_review/hash_verification.json",
+      "audits/branch_review/ponytail_findings.json",
+      "audits/branch_review/reconciled_findings.json",
+      "audits/branch_review/test_results.txt",
+      "audits/phase5b/bm25_top50_query_chunk_only.jsonl",
+      "audits/phase5b/evaluation_protocol.json",
+      "audits/phase5b/failure_and_retry_policy.json",
+      "audits/phase5b/free_tier_owner_confirmation.json",
+      "audits/phase5b/freeze_manifest.json",
+      "audits/phase5b/model_and_sdk_evidence.json",
+      "audits/phase5b/prompt_freeze.json",
+      "audits/phase5b/repeatability_protocol.json",
+      "audits/phase5b/token_budget_audit.json",
+      "audits/phase5b/trace_selection.json",
+      "configs/prompt_rag_v1_frozen.json",
+      "scripts/run_phase5b_prompt_rag.py",
+      "src/retrievers/prompt_rag_gemini_v1.py",
+      "tests/test_phase5b_prompt_rag.py"
+    ],
+    "note": "Path list and per-file starting hashes are preserved in audits/branch_review/file_inventory.json and changed_files.json. Remediation directory did not exist when count was captured."
+  },
+  "head": "d9689aeae520ed24a5f0c409a18134f5f9042e0f",
+  "head_tree": "1573ba61760f577494df5a9c905d9c504228c713",
+  "merge_base_origin_main": "df1b37384738641691a5f993bbab3032f6394f62",
+  "prohibitions": {
+    "api_calls": true,
+    "commit_or_push": true,
+    "generation": true,
+    "metric_recalculation_except_independent_read_only_tests": true,
+    "owner_judgment_access": true,
+    "pool_expansion": true,
+    "retrieval_rerun": true
+  },
+  "review_artifact_hashes": {
+    "audits/branch_review/final_report.md": "edeb45a3dbaf38df08b3fc764d2f1b0c338120e3b8715ecdf685e2c50bab0d78",
+    "audits/branch_review/reconciled_findings.json": "8fd67021f9d95e7bc0c65b1cfc56857a28be6037244e88829e2f1e85b2fe5f69"
+  },
+  "schema_version": 1,
+  "starting_gate": "passed"
+}

@@ -1,0 +1,106 @@
+{
+  "credential_policy": {
+    "environment_variable": "GEMINI_API_KEY",
+    "key_in_config_or_request": false,
+    "key_in_logs_or_artifacts": false,
+    "source": "environment_only"
+  },
+  "failure_record": {
+    "failed_query_has_ranking": false,
+    "preserve": [
+      "query ID",
+      "request SHA-256",
+      "attempt number",
+      "safe error type",
+      "HTTP status when available",
+      "start/end timestamps",
+      "retry decision",
+      "response SHA-256 when present",
+      "finish reason",
+      "modelVersion",
+      "responseId SHA-256",
+      "schema failure classification",
+      "complete retry history"
+    ],
+    "secret_or_provider_error_body_logged": false
+  },
+  "no_retry_terminal_failures": [
+    "authentication or permission error",
+    "non-transient HTTP status",
+    "malformed JSON",
+    "schema or semantic contract failure",
+    "missing, extra, duplicate, or changed chunk ID",
+    "non-integer or out-of-range score",
+    "prompt block or candidate safety refusal",
+    "MAX_TOKENS or any finish reason other than STOP",
+    "missing responseId or modelVersion",
+    "modelVersion mismatch",
+    "unexpected tool or non-text part",
+    "429 RESOURCE_EXHAUSTED free-tier quota stop"
+  ],
+  "output_policy": {
+    "backfill": false,
+    "fallback": false,
+    "invalid_response_is_retrieval_failure": true
+  },
+  "preservation_policy": {
+    "durable_states": [
+      "planned",
+      "dispatched",
+      "response_received",
+      "validated",
+      "committed"
+    ],
+    "hash_algorithm": "SHA-256",
+    "preserve_on_success": [
+      "exact credential-free request",
+      "exact raw response",
+      "responseId",
+      "modelVersion",
+      "usage metadata",
+      "finish reason",
+      "safety metadata",
+      "UTC timestamps",
+      "attempt/retry history",
+      "request and response hashes"
+    ]
+  },
+  "retry_policy": {
+    "backoff_seconds": [
+      1,
+      2
+    ],
+    "jitter": 0,
+    "retry_payload_rule": "deserialize same frozen request bytes for every attempt; request SHA-256 must remain identical",
+    "sdk_internal_attempts": 1,
+    "timeout_milliseconds_per_attempt": 120000,
+    "transient_transport_classes": [
+      "httpx.TimeoutException",
+      "httpx.ConnectError",
+      "TimeoutError",
+      "ConnectionError"
+    ],
+    "total_attempts": 3,
+    "transient_http_statuses": [
+      408,
+      500,
+      502,
+      503,
+      504
+    ],
+    "http_429_policy": "never retry in same execution; record QuotaExhaustedError and status 429 without provider body; preserve checkpoint; require owner-approved quota reset before resume"
+  },
+  "runtime_attempt_caps": {
+    "authorized_network_attempt_cap_total": 50,
+    "count_before_dispatch": true,
+    "full": 26,
+    "full_scope": "remaining 26 primary requests after separate owner approval",
+    "retry_attempts_consume_cap": true,
+    "theoretical_retry_demand_without_caps": 150,
+    "theoretical_retry_demand_is_authorized": false,
+    "trace": 24,
+    "trace_scope": "8 primary plus 16 repeatability requests",
+    "trace_and_full_never_implicit": true
+  },
+  "status": "offline_frozen_live_execution_prohibited"
+}

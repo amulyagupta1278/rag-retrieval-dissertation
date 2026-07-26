@@ -1,0 +1,79 @@
+{
+  "branch": "codex/dissertation-rebuild-v2",
+  "branch_review_inputs": {
+    "audits/branch_review/final_report.md": "edeb45a3dbaf38df08b3fc764d2f1b0c338120e3b8715ecdf685e2c50bab0d78",
+    "audits/branch_review/reconciled_findings.json": "8fd67021f9d95e7bc0c65b1cfc56857a28be6037244e88829e2f1e85b2fe5f69"
+  },
+  "diff_checks": {
+    "git_diff_cached_check": "passed",
+    "git_diff_check": "passed"
+  },
+  "execution_readiness": {
+    "config_executable_contract": true,
+    "free_tier_owner_confirmation": "pending",
+    "full_execution_approval": "pending",
+    "live_execution_authorized": false,
+    "trace_execution_approval": "pending"
+  },
+  "finding_status": {
+    "blocked_pending_owner_attestation": 1,
+    "resolved": 26,
+    "total": 27,
+    "unresolved_id": "REC-015"
+  },
+  "git_head": "d9689aeae520ed24a5f0c409a18134f5f9042e0f",
+  "manifest": {
+    "claim_n": 35,
+    "mismatch_n": 0,
+    "path": "audits/phase5b/freeze_manifest.json",
+    "self_hash_excluded": true,
+    "sha256": "990e42ac9fa47376d5361b16821407c9024307b6972bc3fcea9115de6710de12"
+  },
+  "owner_judgment_boundary": {
+    "owner_judgment_values_read_by_remediation_agent": false,
+    "owner_labels_created_or_changed": 0,
+    "test_suite_blankness_integrity_checks_ran": true
+  },
+  "prohibited_actions": {
+    "answer_generation": 0,
+    "commit_or_push": 0,
+    "gemini_or_other_api_calls": 0,
+    "owner_judging": 0,
+    "pool_expansion": 0,
+    "retrieval_or_generation_runs": 0,
+    "stage_operations": 0
+  },
+  "protected_artifacts": {
+    "critical_file_n": 41,
+    "mismatch_n": 0,
+    "numeric_or_timing_result_changed": false,
+    "verification_sha256": "1791bafdc20e774edc713d52ab216c4285240ad1728d67776a0f75374ff9fb4e"
+  },
+  "remediation_artifact_hashes": {
+    "audits/branch_review/remediation/changed_files.json": "a4160c0910f422f800d4895be3fa1c1fd1da901c337137f6be879fe914a5513e",
+    "audits/branch_review/remediation/final_report.md": "7593e6719d1a73e37bb62169a49b1486aa3ee3cdcb8d5b1f0cd62649cf065f9d",
+    "audits/branch_review/remediation/finding_resolution_matrix.json": "11bd924b85efb375957fe9a6fe46df3ab43af7094e07b7cf15406cac1c209197",
+    "audits/branch_review/remediation/independent_metric_verification.json": "48b7ad3235947ff706da4d5429587eb85d330e5a0ead57ed6b121796d4b952ad",
+    "audits/branch_review/remediation/protected_artifact_comparison.json": "1791bafdc20e774edc713d52ab216c4285240ad1728d67776a0f75374ff9fb4e",
+    "audits/branch_review/remediation/secret_scan.json": "19b3d16d9fa79080b3d546c0040c2a5f2ea2438c2fd847ab05ab39efed0df525",
+    "audits/branch_review/remediation/starting_state.json": "0ece2ab23f4749042702c07c4d1a2c6627cdd8addd38652babd2438aea990a23",
+    "audits/branch_review/remediation/test_results.txt": "a570fb3df5392b1b8f35a049ea37a59e63aea13898da61bab572372de06fb4c5"
+  },
+  "runner_smoke": {
+    "command": "python scripts/run_phase5b_prompt_rag.py --help",
+    "result": "passed"
+  },
+  "schema_version": 1,
+  "secret_scan": {
+    "candidate_n": 0,
+    "sha256": "19b3d16d9fa79080b3d546c0040c2a5f2ea2438c2fd847ab05ab39efed0df525",
+    "status": "clean"
+  },
+  "tests": {
+    "focused": "178 passed",
+    "full": "308 passed",
+    "independent_metric_tests": "3 passed"
+  },
+  "verdict": "STOP",
+  "verdict_reason": "REC-015 remains blocked because owner has not yet supplied fresh confirmation that active Google AI Studio project is Free, has no linked billing account, and matches current execution context. No identifier or credential may be stored to infer this confirmation."
+}

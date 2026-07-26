@@ -1,0 +1,14 @@
+{
+  "approved": false,
+  "approved_at": null,
+  "artifact_type": "phase5b_full_execution_approval",
+  "free_tier_confirmation_sha256": null,
+  "frozen_config_sha256": "251e8ea1948eb20b03f1e259742d9b9933e88aaafc0897ff16905a4d16c69fde",
+  "git_commit": null,
+  "git_tree": null,
+  "mode": "full",
+  "plan_sha256": "25fb56b0f8aaf3bdeb33c35fd80f0520100fb0c48d84f941a4d9e5e15af4ca11",
+  "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+  "schema_version": 1,
+  "trace_decision_sha256": null
+}

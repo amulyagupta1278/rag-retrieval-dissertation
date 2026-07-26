@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import platform
 import statistics
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -30,6 +32,15 @@ APPROVED = {
     "queries": (ROOT / "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl").resolve(),
     "output": (ROOT / "runs/v2/phase3_graph_v3_2").resolve(),
 }
+FROZEN_INPUT_HASHES = {
+    "config": "7be005bef39b6fb971a130efc2470af80c67275ecc9ab7597a25f63ca82d0aea",
+    "registry": "725204c83a20d37d875419d888628970dfd80c511631b5b5c6bc158158876a34",
+    "nodes": "aa7fb60c6557c9b7ccc62ffae1d7c8d01345355f7bff7f5f27336408a32715a1",
+    "edges": "cd2203c233961d91c2deeb37ad8266ab0571e34942f628c97d4b5323e7741486",
+    "chunk_entities": "d42182a02696444e6ece314fea5ac45a4977e4ec39115ab51e6f4e2c8f24b6c6",
+    "freeze_manifest": "9195af5767cf9c637d614bc1845f56b56d5cc48d12e8e1236b277ba3e85ad8e0",
+    "queries": "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488",
+}
 
 
 def main() -> None:
@@ -48,6 +59,9 @@ def main() -> None:
     if paths != APPROVED:
         differences = {name: str(paths[name]) for name in paths if paths[name] != APPROVED[name]}
         raise ValueError(f"retrieval paths differ from frozen approved paths: {differences}")
+    for name, expected_hash in FROZEN_INPUT_HASHES.items():
+        if sha256_file(paths[name]) != expected_hash:
+            raise ValueError(f"frozen {name} bytes differ from expected SHA-256")
     output_files = [
         paths["output"] / "rankings/graph_v3_2_top50.jsonl",
         paths["output"] / "rankings/graph_v3_2_top10.jsonl",
@@ -189,6 +203,15 @@ def main() -> None:
         "previous_rankings_or_metrics_read": False,
         "categories_read": False,
         "raw_artifact_hashes": raw_hashes,
+        "execution_provenance": {
+            "command": [sys.executable, *sys.argv],
+            "git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+            "git_tree": subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip(),
+            "git_status_porcelain": subprocess.check_output(["git", "status", "--porcelain=v1", "-uall"], cwd=ROOT, text=True).splitlines(),
+            "platform": platform.platform(),
+            "python": sys.version,
+            "input_hashes": dict(sorted(FROZEN_INPUT_HASHES.items())),
+        },
     }
     write_json(paths["output"] / "retrieval_manifest.json", manifest, overwrite=args.overwrite)
     final_hashes = {**raw_hashes, str((paths["output"] / "retrieval_manifest.json").relative_to(ROOT)): sha256_file(paths["output"] / "retrieval_manifest.json")}

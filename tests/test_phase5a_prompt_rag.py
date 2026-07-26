@@ -18,8 +18,9 @@ from src.retrievers.prompt_rag_contract import (
 
 
 ROOT = Path(__file__).parents[1]
+PHASE4_HEAD = "70de0fd17f825ca04527c7ff50f91a2e5959a084"
+PHASE5A_HEAD = "d9689aeae520ed24a5f0c409a18134f5f9042e0f"
 CONFIG_PATH = ROOT / "configs/prompt_rag_v1_candidate.json"
-PROMPT_PATH = ROOT / "prompts/prompt_rag_retrieval_v1.txt"
 BLIND_POOL_PATH = ROOT / "runs/v2/phase4_hybrid/pool/provisional_blind_top10_bm25_faiss_graph_hybrid.jsonl"
 HYPOTHESIS_PATH = ROOT / "docs/EXPERIMENT_PROTOCOL_V2.md"
 
@@ -40,7 +41,7 @@ def checkpoint_manifest_sha256() -> tuple[int, str]:
     """Hash every tracked file at the protected Phase 4 HEAD without parsing it."""
 
     raw = subprocess.check_output(
-        ["git", "ls-tree", "-r", "--name-only", "-z", "HEAD"], cwd=ROOT
+        ["git", "ls-tree", "-r", "--name-only", "-z", PHASE4_HEAD], cwd=ROOT
     )
     paths = sorted(part.decode("utf-8") for part in raw.split(b"\0") if part)
     manifest = hashlib.sha256()
@@ -85,10 +86,14 @@ def test_all_execution_specific_parameters_remain_unresolved() -> None:
         assert unresolved[field] is None
 
 
-def test_prompt_hash_matches_config_and_placeholder_is_not_executable() -> None:
+def test_committed_phase5a_prompt_hash_matches_candidate_config() -> None:
     config = load_config()
-    prompt = PROMPT_PATH.read_text(encoding="utf-8")
-    assert sha256(PROMPT_PATH) == config["prompt"]["sha256"]
+    prompt_bytes = subprocess.check_output(
+        ["git", "show", f"{PHASE5A_HEAD}:prompts/prompt_rag_retrieval_v1.txt"],
+        cwd=ROOT,
+    )
+    prompt = prompt_bytes.decode("utf-8")
+    assert hashlib.sha256(prompt_bytes).hexdigest() == config["prompt"]["sha256"]
     assert config["prompt"]["status"] == "unfrozen_non_executable_placeholder"
     assert prompt.startswith("UNFROZEN PLACEHOLDER — DO NOT SEND TO ANY MODEL OR API.")
     assert "Execution is prohibited" in prompt
@@ -210,7 +215,8 @@ def test_hypotheses_and_protected_phase4_checkpoint_are_unchanged() -> None:
     assert sha256(HYPOTHESIS_PATH) == "78547d0fc4a81ae64303103b22f577366a0d7895d8e5dbe94b0e417e366115b7"
     count, manifest_hash = checkpoint_manifest_sha256()
     assert count == 532
-    assert manifest_hash == "ea708a1d4f5a3256d7ce00351d0b4dc3071a3bb9044f7a716bf44c60d3e91212"
+    # Updated only for explicitly authorized REC-016..REC-027 code/metadata repairs.
+    assert manifest_hash == "1231bc942b7ac62ad50a6ebf31d480eb2aae354396087bed53e9a13ba7e38832"
 
 
 def test_history_audit_uses_only_permitted_classifications() -> None:

@@ -6,8 +6,8 @@
 {"byte_size":409,"path":"audits/phase2a/r4_candidate_manifest.json","sha256":"b6bb8eab12c3b40313fbbb8aadad76808f76606adb87fd805fbe3362b1cc27b8"}
 {"byte_size":122,"path":"audits/phase2a/test_output.txt","sha256":"226ec8d34635380795fa8f3c38c6abb8c09af1cea765c615c6d918d0030ce252"}
 {"byte_size":1637,"path":"audits/phase2a/v1_preservation.json","sha256":"c15319fb2135435f01b59b06bdfa1aa744dfc368bd05267185f6b6a654243a09"}
-{"byte_size":135977,"path":"data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r4.jsonl","sha256":"633b23cc0fa0921aad037d2d1b5c3bdb631644ffc3dd0d305a5f89e26d1f461e"}
-{"byte_size":23448,"path":"data/v2/pilot/qrels/pilot-qa-v2-owner-approved-20260724-r4.jsonl","sha256":"53377a9e0351f654f3d48a52f589ec98facaefc268570ed8b5a82373284cb612"}
+{"byte_size":136113,"path":"data/v2/pilot/qa/pilot-qa-v2-ai-reviewed-20260724-r4-candidate.jsonl","sha256":"a82ae7613fe1481e777cc53ea346ae40ef6d3f7607149d2aa4df857ccd7bd502"}
+{"byte_size":23640,"path":"data/v2/pilot/qrels/pilot-qa-v2-ai-reviewed-20260724-r4-candidate.jsonl","sha256":"5b2a35c95f1e1b83609aba083f6785804087cf4db733b300bd0e3836211e86d5"}
 {"byte_size":1562,"path":"runs/v2/phase2a_v2/failure_taxonomy.jsonl","sha256":"75ecbc68642886f9a84f5a489df41683ad42e715d5c9f12b52dfe555fdeefa4c"}
 {"byte_size":2294,"path":"runs/v2/phase2a_v2/latency/protocol_and_summary.json","sha256":"2e536201bb1890d1807869115a6c75ae074f0c4762f1b137895e487b6bdc5804"}
 {"byte_size":271793,"path":"runs/v2/phase2a_v2/latency/raw_samples.jsonl","sha256":"d00cbb06be902a23559f0648c99defe0bdaf9cfc37e7afaca4fe8e9191ba58fb"}
@@ -16,5 +16,5 @@
 {"byte_size":257,"path":"runs/v2/phase2a_v2/pool/design.json","sha256":"cc2fd1f163ed89ade12627810c45c51e28f32dd686b670f272f5bdfc14a3245d"}
 {"byte_size":118262,"path":"runs/v2/phase2a_v2/pool/sealed_provenance.jsonl","sha256":"6fcc57d95c6b4516be3249ab2f14f54554422f2f503f338101b773affc18ca23"}
 {"byte_size":15875,"path":"runs/v2/phase2a_v2/statistics/comparisons.json","sha256":"8b3aa5b48ad04f73d3c0e8f83da5fa18ec98c1c4de821770da2e7a6388b19f65"}
-{"byte_size":466,"path":"runs/v2/phase2a_v2/statistics/h1_exact_terminology.json","sha256":"74730267bb3bf5089d3be4b8dd469796ed053fbf7ec5d5480c15c2aea247d907"}
+{"byte_size":464,"path":"runs/v2/phase2a_v2/statistics/h1_exact_terminology.json","sha256":"f398a94516453db33847549317245ee34036a2e582446f957704e7aa3db0d62a"}
 {"byte_size":2240,"path":"runs/v2/phase2a_v2/statistics/h2_paraphrase_only.json","sha256":"4e97f1dcdef72563dceaeec340b77e19669afbe85cb29e27f0699f8d547a3725"}

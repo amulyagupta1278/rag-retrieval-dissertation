@@ -1,0 +1,53 @@
+{
+  "acceptance_scope": {
+    "all_pairwise_thresholds_required": true,
+    "full_run_blocked_on_failure": true,
+    "model_version_exact_match_required": true,
+    "terminal_failure_count_allowed": 0,
+    "trace_query_n": 8
+  },
+  "comparisons": {
+    "candidate_score_agreement": {
+      "definition": "number of chunk IDs with identical integer score divided by 50",
+      "minimum": 0.9
+    },
+    "kendall_tau_b": {
+      "definition": "Kendall tau-b between per-chunk integer score vectors, retaining score ties",
+      "minimum": 0.9
+    },
+    "ranking_position_agreement": {
+      "definition": "number of identical chunk IDs at identical deterministic rank positions divided by 50",
+      "minimum": 0.8
+    },
+    "spearman_rho": {
+      "definition": "Spearman correlation between deterministic rank positions for all 50 chunk IDs",
+      "minimum": 0.95
+    },
+    "top_10_overlap": {
+      "definition": "size of intersection between primary and replicate top-10 sets divided by 10",
+      "minimum": 0.9
+    }
+  },
+  "execution_order": {
+    "audit_replicates_per_trace_query": 2,
+    "first_valid_execution_role": "primary; same result used in 34-query primary run",
+    "never_choose_best_replicate": true,
+    "network_attempt_cap": 24,
+    "retries_consume_attempt_cap": true,
+    "total_executions_per_trace_query": 3,
+    "total_extra_audit_requests": 16
+  },
+  "interpretation": "Thresholds are preregistered pilot validity gates, not universal reproducibility standards. Failure blocks full execution and metrics; it does not permit prompt/model tuning.",
+  "model_version_rule": "First valid trace response establishes returned modelVersion. Every trace replicate and later full-run response must match exactly or run aborts.",
+  "selected_query_ids": [
+    "v2q-017",
+    "v2q-016",
+    "v2q-003",
+    "v2q-023",
+    "v2q-013",
+    "v2q-025",
+    "v2q-004",
+    "v2q-027"
+  ],
+  "status": "frozen_before_any_live_api_call"
+}

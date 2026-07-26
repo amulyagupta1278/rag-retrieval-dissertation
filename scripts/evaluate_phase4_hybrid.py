@@ -463,6 +463,17 @@ def measure_latency(
             "cold_start_latency": False,
             "batch_size": 1,
             "component_indexes_rebuilt": False,
+            "validation_invocations": {
+                "combined_run_query_call_n": 34,
+                "combined_bm25_retrieval_call_n": 34,
+                "combined_graph_retrieval_call_n": 34,
+                "combined_rrf_fusion_call_n": 34,
+                "separate_bm25_validation_call_n": 34,
+                "separate_graph_validation_call_n": 34,
+                "total_bm25_calls_before_additional_warmup": 68,
+                "total_graph_calls_before_additional_warmup": 68,
+                "total_rrf_fusion_calls_before_additional_warmup": 34
+            },
         },
         "timings": {key: summarize([row[key] for row in samples]) for key in timing_keys},
         "h4_latency_endpoint": "measured sequential_end_to_end_ms",
@@ -724,13 +735,32 @@ def main() -> None:
     }
     hybrid_mrr = metrics["systems"]["hybrid_bm25_graph_rrf"]["aggregate"]["metrics"]["mrr_at_10"]
     strongest_mrr = constituents[strongest]
-    comparisons["equal_weight_fusion_vs_strongest"] = "improves" if hybrid_mrr > strongest_mrr else "matches" if hybrid_mrr == strongest_mrr else "dilutes"
+    strongest_mrr_effect = comparisons["comparisons"][f"hybrid_vs_{strongest}"]["aggregate"]["mrr_at_10"]
+    if strongest_mrr_effect["uncertainty_includes_zero"]:
+        comparisons["equal_weight_fusion_vs_strongest"] = (
+            "point_estimate_higher_but_inconclusive" if hybrid_mrr > strongest_mrr
+            else "no_point_difference_and_inconclusive" if hybrid_mrr == strongest_mrr
+            else "point_estimate_lower_but_inconclusive"
+        )
+    else:
+        comparisons["equal_weight_fusion_vs_strongest"] = (
+            "higher_with_interval_excluding_zero" if hybrid_mrr > strongest_mrr
+            else "no_point_difference" if hybrid_mrr == strongest_mrr
+            else "lower_with_interval_excluding_zero"
+        )
     comparisons["category_effect_on_mrr_at_10_vs_strongest"] = {}
     strongest_comparison = comparisons["comparisons"][f"hybrid_vs_{strongest}"]
     for category in CATEGORIES:
         effect = strongest_comparison["per_category"][category]["mrr_at_10"]
         comparisons["category_effect_on_mrr_at_10_vs_strongest"][category] = {
-            "classification": "improves" if effect["point_effect_hybrid_minus_comparator"] > 0 else "matches" if effect["point_effect_hybrid_minus_comparator"] == 0 else "dilutes",
+            "classification": (
+                "point_estimate_higher_but_inconclusive" if effect["uncertainty_includes_zero"] and effect["point_effect_hybrid_minus_comparator"] > 0
+                else "no_point_difference_and_inconclusive" if effect["uncertainty_includes_zero"] and effect["point_effect_hybrid_minus_comparator"] == 0
+                else "point_estimate_lower_but_inconclusive" if effect["uncertainty_includes_zero"]
+                else "higher_with_interval_excluding_zero" if effect["point_effect_hybrid_minus_comparator"] > 0
+                else "no_point_difference" if effect["point_effect_hybrid_minus_comparator"] == 0
+                else "lower_with_interval_excluding_zero"
+            ),
             "point_effect": effect["point_effect_hybrid_minus_comparator"],
             "ci95": effect["ci95"],
             "uncertainty_includes_zero": effect["uncertainty_includes_zero"],

@@ -1,203 +1,271 @@
-# Prompt-RAG Retrieval Protocol V1 — Phase 5A Candidate
+# Prompt-RAG Retrieval Protocol V1 — Phase 5B Offline Freeze
 
-Status: **NOT FROZEN; EXECUTION PROHIBITED; OWNER ARCHITECTURE CHOICE REQUIRED**
+Status: **OFFLINE FROZEN; LIVE API EXECUTION PROHIBITED PENDING OWNER APPROVAL**
+
+Phase 5A commit: `d9689aeae520ed24a5f0c409a18134f5f9042e0f`
 
 Recorded: 2026-07-26
 
-Repository HEAD at entry: `70de0fd17f825ca04527c7ff50f91a2e5959a084`
-
 Branch: `codex/dissertation-rebuild-v2`
 
-## 1. Scope and stop boundary
+## 1. Scope and boundary
 
-Phase 5A defines Prompt-RAG retrieval/reranking only. It does not authorize an
-API call, retrieval run, answer generation, metric calculation, pool expansion,
-owner-label inspection, H4/H5 verdict, or commit. H5 answer generation,
-faithfulness, and completeness require a separate protocol after retrieval
-systems and pooled judgments are complete.
+Prompt-RAG is a retrieval reranker, not answer generation. It reranks frozen
+Phase 2A BM25 top-50 chunks for each of the 34 frozen R5 questions. Phase 5B
+freezes its offline contract only. It does not authorize credentials, live API
+requests, retrieval results, metrics, pool expansion, owner judging, generation,
+H4/H5 verdicts, or commit.
 
-The repository does not define a unique Prompt-RAG architecture. This protocol
-therefore records the evidence, alternatives, recommendation, common safety
-contract, and unresolved choices, then stops for owner approval. The placeholder
-prompt must never be sent to a model.
+Hypotheses remain unchanged. Negative or weak future results must be preserved.
 
-## 2. Starting checkpoint
+## 2. Phase 5A lineage and provider correction
 
-- Phase 4 exists at commit `70de0fd17f825ca04527c7ff50f91a2e5959a084`
-  (`feat: complete Phase 4 hybrid RRF evaluation`).
-- The working tree was clean before Phase 5A files were created.
-- Python is CPython 3.12.2 at
-  `/Users/amulyagupta/.pyenv/versions/3.12.2/bin/python` on arm64 macOS.
-- Installed versions and the protected Phase 0–4 checkpoint manifest hash are recorded in
-  `audits/phase5a/leakage_boundary.json`.
-- `docs/EXPERIMENT_PROTOCOL_V2.md` has SHA-256
-  `78547d0fc4a81ae64303103b22f577366a0d7895d8e5dbe94b0e417e366115b7`
-  and is not modified; hypotheses remain unchanged.
-- The current blind pool has 620 unique query/chunk rows. All 620
-  `relevance_judgment` and `reviewer_notes` fields are blank. Its SHA-256 is
-  `5c424b6a0bbca1343499621c5fd705a904eaf11c1109824c3ec6094c0dc643e2`.
+Phase 5A found only a documentation-level historical meaning: “LLM-guided
+reranking.” No historical Prompt-RAG implementation uniquely defined provider,
+model, prompt, candidates, or API behavior. Phase 5A recommended architecture A
+for structural simplicity and committed its blocked design gate at `d9689ae`.
 
-## 3. Verified historical meaning
+Owner then approved architecture A. OpenAI was considered and rejected because
+no approved OpenAI credential infrastructure was available. Owner corrected the
+provider to Google Gemini Developer API, using existing Gemini credential
+infrastructure and free-tier availability. This was an owner-approved design
+correction based on cost, reproducibility controls, and operational access—not
+expected benchmark performance. No retrieval result informed the correction.
 
-Reachable documentation calls Prompt-RAG “Prompt-based retrieval (LLM-guided
-reranking).” This is a documentation-only intended meaning, not a verified
-implementation. No reachable provider integration, model selection, endpoint,
-prompt, candidate generator, depth, batching contract, response schema, run, or
-output artifact defines Prompt-RAG.
+## 3. Frozen architecture
 
-Reachable history contains local CrossEncoder reranking scripts. Those are
-verified implementations of a different system, not Prompt-RAG. They inspect
-qrels/categories and compare candidate modes/depths, making them obsolete and
-invalid as a design source for this benchmark-blind Phase 5A protocol.
+- System: `Prompt-RAG-Gemini-2.5-Flash-BM25-50`
+- First stage: byte-preserved Phase 2A BM25 top-50.
+- Second stage: one Gemini relevance-scoring request per query.
+- Request count: 34 primary requests; one query plus all 50 candidates each.
+- Candidate order: frozen BM25 rank order.
+- Candidate fields exposed: `chunk_id`, `text`.
+- Query fields exposed: `query_id`, `question`.
+- Hidden: BM25 rank/score, category, qrels, answers, gold evidence, metrics,
+  sealed provenance, owner labels, and system identity.
+- Output: 50 integer scores, then score-descending/chunk-ID-ascending ranking.
+- Exact ties never use BM25 rank.
 
-The evidence supports these classifications:
+BM25 order remains visible through position because architecture requires it.
+Prompt states position is not evidence. Potential order bias remains disclosed;
+no post-result reorder experiment or prompt tuning is permitted.
 
-| Meaning | Finding |
+Source ranking SHA-256:
+`93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a`.
+Its bytes remain unchanged. Because source rows also contain a forbidden
+`category` field, live preparation must use derived query/chunk-only ranking
+`audits/phase5b/bm25_top50_query_chunk_only.jsonl`, SHA-256
+`323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390`.
+The derivation preserves all 34 × 50 chunk orders exactly and discards rank,
+score, and category before the API boundary.
+
+## 4. Frozen Gemini controls
+
+| Control | Value |
 |---|---|
-| Query rewriting | No evidence found |
-| LLM relevance scoring | Guidance is implied, but scoring is undefined |
-| Reranking | Documentation-only intended family |
-| Direct corpus selection | No evidence found |
-| Multi-stage retrieval | Implied by reranking, but the first stage is undefined |
-| Combination | No uniquely supported combination |
+| Provider | Google Gemini Developer API |
+| Model request string | `gemini-2.5-flash` |
+| API version | stable `v1` |
+| Endpoint family | `models.generateContent` |
+| SDK | `google-genai[local-tokenizer]==2.13.0` |
+| Request style | stateless, non-streaming, one request/query |
+| Temperature | `0` |
+| Thinking budget | `0` |
+| Response candidate count | `1` |
+| Maximum output tokens | `4096` |
+| Response MIME type | `application/json` |
+| Tools/search/URL context/code/file search | absent/disabled |
+| Cached content | absent |
+| Safety settings | provider defaults; any block is terminal |
+| Timeout | 120,000 ms per attempt |
+| Attempts | maximum 3; SDK internal attempts fixed at 1 |
+| Retry delays | 1 s, then 2 s; no jitter |
+| Retried HTTP statuses | `408`, `500`, `502`, `503`, `504` |
+| HTTP 429 | immediate quota stop; never retried in same execution |
 
-Detailed commit, blob, path, and content hashes are in
-`audits/phase5a/history_and_claims_audit.json`. Any historical assertion of a
-working Prompt-RAG/API system is **unsupported by committed artifacts**.
+Top-p, top-k, and seed are omitted because owner did not freeze them. No value is
+invented. Credentials may come only from `GEMINI_API_KEY` in the environment and
+must never enter config, request, response archive, logs, errors, or Git.
 
-## 4. Architecture alternatives and recommendation
+`gemini-2.5-flash` is a stable model name, not a dated immutable snapshot.
+First valid trace response establishes returned `modelVersion`. Every later
+trace, replicate, and full-run response must match exactly; mismatch aborts run.
 
-No alternative is selected or frozen.
+## 5. Prompt and scoring contract
 
-| ID | Architecture | Candidate depth | Main validity consequence |
-|---|---|---:|---|
-| A | Frozen Phase 2A BM25 candidates, then LLM relevance reranking | 50 | Reranker is bounded by BM25 candidate recall |
-| B | Frozen Phase 4 Hybrid candidates, then LLM relevance reranking | 50 | Prompt-RAG inherits Hybrid and cannot isolate the reranker cleanly |
-| C | LLM relevance scoring over all frozen chunks | 140 | Avoids a first-stage ceiling but is direct corpus scoring, not the documented reranker |
-| D | LLM query rewriting followed by retrieval/reranking | unresolved | Unsupported by history and adds prompt/tuning degrees of freedom |
+Frozen prompt: `prompts/prompt_rag_retrieval_v1.txt`
 
-Recommendation: **A, pending explicit owner approval**. The basis is structural:
-it is the simplest auditable staged system consistent with “LLM-guided
-reranking,” with a deterministic first stage and an explicit candidate ceiling.
-The recommendation is not based on BM25, FAISS, Graph, or Hybrid performance.
+SHA-256: `64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9`
 
-The owner must select the architecture before an actual prompt is authored. The
-owner must also select the provider/model/version; likely benchmark gain is not a
-permitted selection criterion.
+Integer scale:
 
-## 5. Fair-comparison and leakage boundary
+- `0`: irrelevant, misleading, or no useful evidence.
+- `1`: related background, unlikely to answer a material part alone.
+- `2`: concrete evidence useful for a material part.
+- `3`: direct, specific evidence strongly addressing the question or an
+  essential answer element.
 
-Every authorized future run must:
+Per-request response schema requires exactly 50 objects, exact supplied chunk
+IDs through a dynamic enum, integer score `0..3`, required fields, and no extra
+properties. Client still validates candidate completeness and uniqueness because
+JSON Schema cannot prove all enum values occur once.
 
-1. Use the exact frozen 140-chunk corpus and all 34 R5 questions.
-2. Keep chunk IDs as retrieval units.
-3. Expose only `query_id` and `question` from a query, and only `chunk_id`,
-   `text`, and `source_title` from each candidate.
-4. Never expose qrels, reference answers, categories, gold evidence, metrics,
-   sealed provenance, owner judgments, system identity, or hidden gold status.
-5. Use no benchmark training, benchmark-sensitive tuning, manual query-specific
-   rules, or results-guided prompt changes.
-6. Label a staged system as a reranker and report its generator, depth, and
-   per-query/aggregate candidate-recall ceiling.
-7. Preserve missing/invalid responses as failures. Never backfill or substitute
-   BM25, Hybrid, or another system.
-8. Preserve negative or weak Prompt-RAG results.
+Malformed JSON; missing, extra, duplicate, or changed IDs; boolean/float or
+out-of-range scores; blocks; refusals; truncation; missing metadata; non-text
+parts; and unexpected tool calls are terminal failures. Failed queries receive
+no ranking, fallback, or backfill.
 
-An audit incident is recorded: a broad Git-history search displayed a current
-Phase 4 manifest containing metric material. No metric was used or copied into
-the architecture, prompt, provider/model choice, or config. Because this design
-is still blocked and non-executable, owner approval remains mandatory before any
-freeze. See `audits/phase5a/leakage_boundary.json`.
+## 6. Zero-charge execution gate
 
-## 6. Proposed common response contract
+Experiment monetary charge must remain exactly `$0`. Before any request, owner
+must manually confirm Google AI Studio project shows **Plan: Free** and has no
+linked billing account. Confirmation uses
+`audits/phase5b/free_tier_owner_confirmation.json`, tied to frozen config
+SHA-256. It stores no key, project ID, billing identifier, or screenshot.
+Confirmation must cover current process environment and active credential context,
+be renewed within 24 hours of execution, and be repeated after any credential,
+environment, or process-context change. Current free-tier artifact remains pending,
+so runtime refuses execution. Billing status is procedurally owner-attested;
+identifier prohibition prevents cryptographic project-to-key binding.
 
-This contract is proposed for the reranking alternatives and is testable before
-a provider is selected:
+Runtime requires `--require-free-tier-owner-confirmation`. Trace and full modes
+are separate commands and never run implicitly together:
 
-```json
-{
-  "candidate_scores": [
-    {"chunk_id": "<candidate chunk ID>", "score": 0.0}
-  ]
-}
-```
+- Trace: 24 network attempts maximum—8 primaries plus 16 replicates.
+- Full: 26 network attempts maximum—remaining primaries only, after separate
+  owner approval following repeatability review.
 
-- The response must contain every and only the supplied candidate ID exactly
-  once.
-- Scores must be finite JSON numbers; higher means more relevant.
-- Rank by descending score, breaking exact ties by ascending chunk ID.
-- Missing, extra, duplicate, malformed, or non-finite entries fail the affected
-  query/batch. There is no fallback.
-- The top-50 output has one row per frozen query; known unique chunk IDs; ranks
-  `1..min(50, candidate_depth)`; retained raw scores; and explicit failure state
-  without backfill.
+Every network attempt is atomically counted before dispatch. Retries consume
+cap. No model, key, project, provider, prompt, candidate depth, or payload may
+change to obtain quota. Billing, credits, and paid fallback are prohibited.
 
-`src/retrievers/prompt_rag_contract.py` contains only offline input validation,
-strict parsing, and deterministic ordering. It performs no retrieval or network
-activity.
+Terminology is distinct: 50 logical calls comprise 24 trace calls and 26 remaining
+full calls. Authorized network-attempt caps are likewise 24 and 26. Three-attempt
+retry policy creates counterfactual demand of up to 150 attempts only if hard caps
+did not exist; it does not authorize more than 50 network attempts. Quota-stopped
+attempts and successful responses are observed counts available only after approved
+execution.
 
-## 7. Parameters that must be frozen before execution
+HTTP `429 RESOURCE_EXHAUSTED` records sanitized error class/status, preserves
+checkpoint, and stops without retry. Resume requires owner confirmation that
+quota reset occurred. Payloads remain frozen; no result may be selected or
+discarded based on outcome.
 
-The following are deliberately unresolved: provider; exact immutable model and
-version; endpoint; declared SDK and version; candidate generator/depth; actual
-prompt; batch size; context window; temperature; seed; top-p; output token limit;
-timeout; retry count/schedule; rate-limit behavior; and repeatability repetitions.
+## 7. Token budget and cost
 
-Already fixed as design constraints:
+`google.genai.local_tokenizer.LocalTokenizer` with frozen Gemma-3 tokenizer asset
+SHA-256 `1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c`
+counts contents, system instruction, and dynamic response schema offline.
 
-- Candidate ordering, once a generator is approved: query ID ascending, then
-  first-stage rank ascending.
-- No silent truncation, dropped candidate, duplicate, fallback, or backfill.
-- No credentials in repository artifacts or logs.
-- Exact raw request/response preservation after credential exclusion, with a
-  redaction log.
-- Token, latency, cost, retry, and error accounting includes failed attempts.
-- No metrics until the structural trace gate passes.
+- Primary input: 862,278 tokens across 34 requests.
+- Per request: 23,977 minimum; 26,369 maximum; 25,361.117647 mean.
+- Largest request headroom under 1,048,576-token input limit: 1,022,207.
+- Maximum schema-contract output: 1,911 tokens/request, below frozen 4,096 cap.
+- Two extra replicates for eight trace queries: 16 requests and 402,670 input
+  tokens.
+- Planned total: 50 requests and 1,264,948 input tokens.
+- Trace envelope: 24 requests, 604,005 input tokens, maximum contract output
+  45,186 tokens.
+- Remaining full envelope: 26 requests, 660,943 input tokens, maximum contract
+  output 48,947 tokens.
+- Free-tier cost may be recorded as exactly `$0.00` only after fresh free-plan/no-
+  billing confirmation. Paid counterfactual cost is not calculated or authorized.
+  Rate-limit capacity is not guaranteed.
 
-The candidate config is `configs/prompt_rag_v1_candidate.json`. It has
-`execution_authorized: false`. The prompt file SHA-256 is
-`e95c6936d1b7a7e2dfed58c8cd753c1e58b8b77252d2eb462e0d28fb2074c35d`,
-but the file is an explicit non-executable placeholder, not a frozen prompt.
+Local tokenizer is an experimental SDK feature. Counts are exact under frozen
+SDK/tokenizer asset; future provider `usageMetadata` must be preserved and
+compared after authorized execution. Difference is reported, never retroactively
+used to alter prompt or limits.
 
-## 8. Trace and stop gates
+Free-tier Gemini terms permit Google product-improvement use of submitted input
+and output. Only approved public, non-sensitive corpus/query content may be sent.
 
-After owner architecture approval but before any results:
+If trace exceeds active free-tier TPM/RPD, split unchanged requests across quota
+reset periods after owner approval. Provider `usageMetadata` is authoritative.
 
-1. Select trace query IDs by a documented structural rule that cannot use
-   categories, qrels, answers, metrics, provenance, or performance traces.
-2. Freeze those IDs, the actual prompt/hash, and every provider/runtime field.
-3. Execute only the authorized trace gate.
-4. Stop on any candidate-set mismatch, truncation, parse/schema error, duplicate,
-   provider/model mismatch, secret exposure, invalid trace, or unexpected
-   fallback behavior.
-5. Calculate no retrieval metrics until the owner accepts the trace gate.
-6. Expand no pool until a valid complete ranking run exists.
-7. Begin no owner judging until Prompt-RAG candidates join the final system union.
+## 8. Structural trace and repeatability gate
 
-## 9. Calls, tokens, cost, latency, and failures
+Trace IDs use SHA-256 over UTF-8 `"42" + NUL + query_id`; select eight smallest
+digests. No query text, category, qrel, answer, metric, provenance, or trace was
+used.
 
-For alternatives A/B, 34 queries × 50 candidates = 1,700 candidate judgments.
-Calls would be 170, 68, or 34 for batch sizes 10, 25, or 50 respectively. At a
-planning-only 300–600 candidate-text tokens per chunk, candidate text alone is
-about 510,000–1,020,000 input tokens, excluding instructions, questions, JSON,
-outputs, and retries.
+Selected IDs, in digest order:
 
-For alternative C, 34 × 140 = 4,760 candidate judgments. Calls would be 476,
-204, or 102 for batch sizes 10, 25, or 50. Candidate text alone is about
-1,428,000–2,856,000 input tokens under the same planning range.
+1. `v2q-017`
+2. `v2q-016`
+3. `v2q-003`
+4. `v2q-023`
+5. `v2q-013`
+6. `v2q-025`
+7. `v2q-004`
+8. `v2q-027`
 
-An exact token or monetary estimate is not valid until provider/model/tokenizer,
-actual prompt, batching, and an authoritative price snapshot are frozen. No live
-price lookup or API call was made. Full accounting and fail-closed policies are
-in `audits/phase5a/cost_and_failure_policy.json`.
+Each receives three executions: first valid execution is primary; next two are
+audit replicates. Never select best replicate. Every primary/replicate pair must
+meet all preregistered thresholds:
 
-## 10. Freeze-readiness decision
+- exact candidate-score agreement ≥ 0.90;
+- identical rank-position fraction ≥ 0.80;
+- Kendall tau-b on score vectors ≥ 0.90;
+- Spearman rank correlation ≥ 0.95;
+- top-10 overlap fraction ≥ 0.90.
 
-Phase 5A is **not freeze-ready**. The owner must approve an architecture and
-first-stage generator, provider/model/version/SDK, batching, actual prompt,
-generation controls, timeout/retries, and repeatability plan. The detailed
-20-item decision is in `audits/phase5a/freeze_readiness.json`.
+All model versions must match and terminal failure count must be zero. Any gate
+failure blocks full run and metrics. Thresholds are pilot design gates, not
+universal standards.
 
-Until then, the mandatory stop remains in force: no Prompt-RAG execution, API
-call, retrieval result, metric, answer, pool addition, owner judgment, H4/H5
-verdict, or commit.
+## 9. Retry, preservation, and statelessness
+
+Only transport/timeouts and HTTP `408`, `500`, `502`, `503`, `504` may retry.
+Every retry deserializes identical frozen request bytes and retains same SHA-256.
+HTTP `429` and content/schema failures never retry.
+
+Authorized execution must preserve exact credential-free request and raw
+response; `responseId`; `modelVersion`; usage, finish, and safety metadata;
+timestamps; retries/errors; request/response hashes; and explicit failure rows.
+No chat, conversation state, caching, tools, fallback, or answer generation is
+allowed.
+
+## 10. Frozen evaluation protocol
+
+Trace phase calculates repeatability and operational validity only. Relevance
+metrics, pool expansion, and hypothesis verdicts remain prohibited.
+
+After complete rankings, pooled judging, and approval, report aggregate plus all
+six category slices for MRR@5/@10, Recall@5/@10, Hit Rate@5/@10,
+Precision@5/@10, binary and graded nDCG@10, Complete Evidence Recall@5/@10,
+and BM25 top-50 candidate recall ceiling. No composite score or prioritized
+metric.
+
+Primary comparator is frozen BM25. Use paired whole-query bootstrap with 10,000
+samples and seed 42. Report point effects, 95% intervals, and whether each
+interval includes zero. Pilot/non-exhaustive qrels cannot produce final
+hypothesis verdict.
+
+Operational reporting includes coverage, terminal failures, retries, quota
+stops, refusals, malformed responses, mean/median/p95 latency, provider
+input/output/thinking tokens, and cost. Sequence is immutable: commit freeze;
+trace only; repeatability only; owner approval; remaining 26 primaries; freeze
+rankings; add unseen top-10 to blind pool; owner judging; pooled metrics; later
+separate generation/H5 protocol.
+
+## 11. Offline freeze decision
+
+Offline contract is remediation-ready. Executable config still cannot trigger a
+request without separate trace/full approval bound to config, prompt, plan, clean
+committed Git identity, and fresh free-tier attestation. Trace approval never
+authorizes full mode. Live execution is not approved. Before any
+credential use or request, owner must approve:
+
+- frozen config and prompt hash;
+- token/cost audit;
+- trace IDs and thresholds;
+- mocked contract tests;
+- remaining stable-model and free-tier limitations;
+- manual Plan: Free and no-linked-billing confirmation;
+- dated confirmation that previously exposed Gemini key was revoked and replaced;
+  owner provided this non-secret confirmation on 2026-07-26 and replacement remains
+  environment-only. Key value and identifiers must never be shared or recorded.
+
+Until approval: zero live Gemini calls, zero retrieval results/metrics, zero
+pool additions, zero generated answers, zero owner judging, and zero commits.

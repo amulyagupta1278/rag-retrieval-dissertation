@@ -1,0 +1,81 @@
+{
+  "category_slices": [
+    "exact lookup",
+    "terminology",
+    "paraphrase",
+    "entity relation",
+    "synthesis",
+    "multi-hop"
+  ],
+  "decision_boundary": {
+    "composite_score": false,
+    "final_hypothesis_verdict_from_pilot_or_non_exhaustive_qrels": false,
+    "metric_priority": "none",
+    "report_contradictory_metrics": true
+  },
+  "evaluation_sequence": [
+    "A. Commit corrected offline freeze.",
+    "B. Run trace gate only.",
+    "C. Calculate repeatability metrics only.",
+    "D. Stop for owner approval.",
+    "E. Run remaining 26 primary queries.",
+    "F. Freeze complete rankings.",
+    "G. Add unseen Prompt-RAG top-10 candidates to blind pool.",
+    "H. Complete owner judging.",
+    "I. Calculate final pooled retrieval metrics.",
+    "J. Freeze generation/H5 separately."
+  ],
+  "operational_metrics": [
+    "successful-query coverage",
+    "terminal failures",
+    "retries",
+    "quota stops",
+    "refusals",
+    "malformed responses",
+    "mean latency",
+    "median latency",
+    "p95 latency",
+    "provider input tokens",
+    "provider output tokens",
+    "provider thinking tokens",
+    "monetary cost"
+  ],
+  "retrieval_metrics": [
+    "MRR@5",
+    "MRR@10",
+    "Recall@5",
+    "Recall@10",
+    "Hit Rate@5",
+    "Hit Rate@10",
+    "Precision@5",
+    "Precision@10",
+    "binary nDCG@10",
+    "graded nDCG@10",
+    "Complete Evidence Recall@5",
+    "Complete Evidence Recall@10",
+    "BM25 top-50 candidate recall ceiling"
+  ],
+  "reporting_scopes": [
+    "aggregate",
+    "each of six frozen category slices with query N"
+  ],
+  "statistical_protocol": {
+    "bootstrap_samples": 10000,
+    "confidence_interval": 0.95,
+    "paired_unit": "whole query",
+    "primary_comparator": "frozen Phase 2A BM25",
+    "report": [
+      "point effect",
+      "95% interval",
+      "whether interval includes zero"
+    ],
+    "seed": 42
+  },
+  "trace_phase_permissions": {
+    "operational_checkpointing": true,
+    "pool_expansion": false,
+    "relevance_metrics": false,
+    "repeatability_metrics_only": true
+  },
+  "zero_cost_rule": "Monetary cost may be recorded as exactly $0 only when frozen free-tier owner confirmation is valid and no paid billing/fallback is used."
+}

@@ -6,9 +6,11 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import platform
 import random
 import re
 import statistics
+import subprocess
 import sys
 from collections import defaultdict, deque
 from pathlib import Path
@@ -55,6 +57,21 @@ APPROVED = {
     "output": ROOT / "runs/v2/phase3_graph_v3_2",
     "audit_output": ROOT / "audits/phase3_graph_v3_2",
 }
+FROZEN_INPUT_HASHES = {
+    "qa": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
+    "qrels": "d335e034b517a4fe8810c8d09584991f2553dd985a3140524d99d20bcdc3faf4",
+    "chunks": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "bm25_ranking": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "faiss_ranking": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115",
+    "graph_config": "7be005bef39b6fb971a130efc2470af80c67275ecc9ab7597a25f63ca82d0aea",
+    "graph_registry": "725204c83a20d37d875419d888628970dfd80c511631b5b5c6bc158158876a34",
+    "graph_freeze": "9195af5767cf9c637d614bc1845f56b56d5cc48d12e8e1236b277ba3e85ad8e0",
+    "graph_nodes": "aa7fb60c6557c9b7ccc62ffae1d7c8d01345355f7bff7f5f27336408a32715a1",
+    "graph_edges": "cd2203c233961d91c2deeb37ad8266ab0571e34942f628c97d4b5323e7741486",
+    "graph_chunk_entities": "d42182a02696444e6ece314fea5ac45a4977e4ec39115ab51e6f4e2c8f24b6c6",
+}
+FROZEN_QUERY_ONLY_PATH = ROOT / "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl"
+FROZEN_QUERY_ONLY_SHA256 = "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488"
 OUTPUTS = (
     "metrics/balanced_known_gold_metrics.json",
     "metrics/per_query_metrics.jsonl",
@@ -92,6 +109,11 @@ def validate_cli_paths(args: argparse.Namespace) -> dict[str, Path]:
 
 def validate_frozen_graph(paths: dict[str, Path]) -> dict[str, Any]:
     """Fail if any v3.2 freeze, retrieval, or trace-gate invariant changed."""
+    for name, expected_hash in FROZEN_INPUT_HASHES.items():
+        if sha256_file(paths[name]) != expected_hash:
+            raise ValueError(f"frozen {name} bytes differ from expected SHA-256")
+    if sha256_file(FROZEN_QUERY_ONLY_PATH) != FROZEN_QUERY_ONLY_SHA256:
+        raise ValueError("frozen query-only R5 input bytes differ from expected SHA-256")
     freeze = json.loads(paths["graph_freeze"].read_text(encoding="utf-8"))
     retrieval = json.loads(paths["graph_retrieval_manifest"].read_text(encoding="utf-8"))
     decision = json.loads(paths["graph_trace_decision"].read_text(encoding="utf-8"))
@@ -160,7 +182,12 @@ def validate_benchmark(
     return qa, dict(gains), chunk_map
 
 
-def validate_rankings(rows: list[dict[str, Any]], qa: dict[str, dict[str, Any]], system: str) -> dict[str, dict[str, Any]]:
+def validate_rankings(
+    rows: list[dict[str, Any]],
+    qa: dict[str, dict[str, Any]],
+    known_chunk_ids: set[str],
+    system: str,
+) -> dict[str, dict[str, Any]]:
     """Validate deterministic unique ranking rows against R5 query IDs."""
     by_query = {str(row["query_id"]): row for row in rows}
     if len(rows) != len(by_query) or set(by_query) != set(qa):
@@ -171,6 +198,9 @@ def validate_rankings(rows: list[dict[str, Any]], qa: dict[str, dict[str, Any]],
         ranks = [item["rank"] for item in ranking]
         if len(ids) != len(set(ids)) or ranks != list(range(1, len(ranking) + 1)):
             raise ValueError(f"{system} duplicate chunk or malformed ranks for {query_id}")
+        unknown = sorted(set(ids) - known_chunk_ids)
+        if unknown:
+            raise ValueError(f"{system} ranking references unknown chunks for {query_id}: {unknown}")
     return by_query
 
 
@@ -529,7 +559,10 @@ def main() -> None:
         "faiss_windowed_max": parse_jsonl(paths["faiss_ranking"]),
         "entity_graph_v3_2": parse_jsonl(paths["graph_ranking"]),
     }
-    rankings = {system: validate_rankings(rows, qa, system) for system, rows in ranking_inputs.items()}
+    rankings = {
+        system: validate_rankings(rows, qa, set(chunks), system)
+        for system, rows in ranking_inputs.items()
+    }
     traces = {str(row["query_id"]): row for row in parse_jsonl(paths["graph_traces"])}
     if set(traces) != set(qa):
         raise ValueError("Graph trace query set differs from R5")
@@ -642,6 +675,16 @@ def main() -> None:
         "failure_taxonomy": failure_summary,
         "pool": pool_design,
         "input_hashes": input_hashes_before,
+        "execution_provenance": {
+            "command": [sys.executable, *sys.argv],
+            "git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+            "git_tree": subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip(),
+            "git_status_porcelain": subprocess.check_output(["git", "status", "--porcelain=v1", "-uall"], cwd=ROOT, text=True).splitlines(),
+            "platform": platform.platform(),
+            "python": sys.version,
+            "query_only_path": str(FROZEN_QUERY_ONLY_PATH.relative_to(ROOT)),
+            "query_only_sha256": FROZEN_QUERY_ONLY_SHA256,
+        },
         "outputs": {},
     }
     for relative in OUTPUTS[:7]:

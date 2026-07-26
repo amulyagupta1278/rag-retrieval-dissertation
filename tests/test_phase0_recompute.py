@@ -143,6 +143,21 @@ def test_empty_run_file_rejected(tmp_path: Path) -> None:
         MODULE.load_jsonl(path, "run bm25")
 
 
+def test_empty_per_query_results_rejected() -> None:
+    chunks, queries, qrels, runs = _valid_inputs(Path("unused"))
+    runs["bm25"][0]["results"] = []
+    with pytest.raises(MODULE.ValidationError, match="empty results list"):
+        MODULE.evaluate(chunks, queries, qrels, runs)
+
+
+@pytest.mark.parametrize("rank", [0, -1, 2, 1.0, True])
+def test_invalid_explicit_rank_rejected(rank: object) -> None:
+    chunks, queries, qrels, runs = _valid_inputs(Path("unused"))
+    runs["bm25"][0]["results"][0]["rank"] = rank
+    with pytest.raises(MODULE.ValidationError, match="invalid rank"):
+        MODULE.evaluate(chunks, queries, qrels, runs)
+
+
 def test_malformed_relevance_rejected(tmp_path: Path) -> None:
     path = tmp_path / "qrels.tsv"
     path.write_text("query_id\t0\tchunk_id\trelevance\nq1\t0\tc1\tnan-value\n", encoding="utf-8")

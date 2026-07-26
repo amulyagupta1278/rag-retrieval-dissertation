@@ -1,0 +1,38 @@
+{
+  "benchmark_contract": {
+    "benchmark_version": "pilot-qa-v2-owner-approved-20260724-r5",
+    "chunk_n": 140,
+    "qrel_n": 48,
+    "query_n": 34,
+    "unique_grade_2_qrel_n": 48
+  },
+  "frozen_configuration": {
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "faiss_index": "IndexFlatIP",
+    "faiss_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "faiss_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "normalized_embeddings": true,
+    "overlap_tokens": 32,
+    "pooling": "maximum window score; equal winning scores use ascending window_id",
+    "window_content_tokens": 254
+  },
+  "input_hashes": {
+    "data/v2/pilot/chunks/chunks.jsonl": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
+    "data/v2/pilot/qrels/pilot-qa-v2-owner-approved-20260724-r5.jsonl": "d335e034b517a4fe8810c8d09584991f2553dd985a3140524d99d20bcdc3faf4"
+  },
+  "method": "Read-only contract and byte reconciliation. Retrieval, latency, bootstrap, and metrics were not rerun.",
+  "preserved_output_hashes": {
+    "runs/v2/phase2a_r5_windowed/indexes/faiss_windowed/provenance.json": "ce1f4e1ed7f80395457e086f74bf12726c2f41f3734366058c788d33b849e4d8",
+    "runs/v2/phase2a_r5_windowed/metrics/balanced_metrics.json": "0265e67cab69cbfe6a3c9522668358e13ed56368e82a0aedb6e2a5212f0f92a2",
+    "runs/v2/phase2a_r5_windowed/metrics/paired_bootstrap.json": "8e8a26e33278f3377ebcd1af914eb5285d749b40bc181a51304c81f18ead2cfc",
+    "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "runs/v2/phase2a_r5_windowed/rankings/faiss_windowed_max_top50.jsonl": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115"
+  },
+  "preserved_run_file_n": 16,
+  "preserved_run_tree_sha256": "04debe19c548db40fbc2c1bf08224a7883764494b70e60b880a97193faf4a63f",
+  "ranking_or_metric_bytes_changed": false,
+  "schema_version": 1,
+  "status": "reconciled_read_only"
+}

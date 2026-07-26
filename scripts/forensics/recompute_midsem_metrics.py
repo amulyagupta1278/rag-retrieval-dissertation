@@ -273,6 +273,8 @@ def _validate_run(
         results = run.get("results")
         if not isinstance(results, list):
             raise ValidationError(f"run {system}/{query_id} has invalid results list")
+        if not results:
+            raise ValidationError(f"run {system}/{query_id} has empty results list")
         ranked: list[str] = []
         for position, result in enumerate(results, 1):
             if not isinstance(result, dict):
@@ -287,6 +289,11 @@ def _validate_run(
             if chunk_id not in known_chunks:
                 raise ValidationError(
                     f"run {system}/{query_id} references unknown chunk ID: {chunk_id}"
+                )
+            rank = result.get("rank")
+            if rank is not None and (isinstance(rank, bool) or not isinstance(rank, int) or rank != position):
+                raise ValidationError(
+                    f"run {system}/{query_id} result {position} has invalid rank: {rank!r}"
                 )
             ranked.append(chunk_id)
         if len(ranked) != len(set(ranked)):

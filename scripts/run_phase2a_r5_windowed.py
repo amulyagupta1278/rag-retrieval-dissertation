@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse,json,os,platform,random,resource,statistics,sys,time,tracemalloc
+import argparse,json,os,platform,random,resource,statistics,subprocess,sys,time,tracemalloc
 from collections import defaultdict
+from importlib import metadata
 from pathlib import Path
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
@@ -10,6 +11,51 @@ from src.utils.hashing import sha256_file
 from scripts.run_phase2a_bm25_faiss import MODEL,REVISION,METRICS,query_metrics,tokenize,percentile
 from scripts.correct_phase2a_validity import bootstrap
 WINDOW=254; OVERLAP=32; STEP=222; REPS=20; WARMUPS=5
+CANONICAL_CHUNKS=ROOT/'data/v2/pilot/chunks/chunks.jsonl'
+CANONICAL_QA=ROOT/'data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl'
+CANONICAL_QRELS=ROOT/'data/v2/pilot/qrels/pilot-qa-v2-owner-approved-20260724-r5.jsonl'
+CANONICAL_OUTPUT=ROOT/'runs/v2/phase2a_r5_windowed'
+FROZEN_HASHES={
+ 'chunks':'70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6',
+ 'qa':'0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b',
+ 'qrels':'d335e034b517a4fe8810c8d09584991f2553dd985a3140524d99d20bcdc3faf4',
+}
+EXPECTED_QUERY_IDS=[f'v2q-{i:03d}' for i in range(1,35)]
+
+def validate_frozen_inputs(chunks_path,qa_path,qrels_path,output_path):
+ """Reject any path, byte, count, ID, label, or qrel drift before retrieval."""
+ paths={'chunks':Path(chunks_path).resolve(),'qa':Path(qa_path).resolve(),'qrels':Path(qrels_path).resolve()}
+ expected={'chunks':CANONICAL_CHUNKS.resolve(),'qa':CANONICAL_QA.resolve(),'qrels':CANONICAL_QRELS.resolve()}
+ if paths!=expected: raise ValueError('Phase 2A R5 inputs must use exact canonical paths')
+ if Path(output_path).resolve()!=CANONICAL_OUTPUT.resolve(): raise ValueError('invalid output')
+ for name,path in paths.items():
+  if sha256_file(path)!=FROZEN_HASHES[name]: raise ValueError(f'frozen {name} SHA-256 mismatch')
+ chunks=[json.loads(x) for x in paths['chunks'].read_text().splitlines() if x.strip()]
+ qa=[json.loads(x) for x in paths['qa'].read_text().splitlines() if x.strip()]
+ qrels=[json.loads(x) for x in paths['qrels'].read_text().splitlines() if x.strip()]
+ chunk_ids=[x.get('chunk_id') for x in chunks]; query_ids=[x.get('question_id') for x in qa]
+ if len(chunk_ids)!=140 or len(set(chunk_ids))!=140: raise ValueError('frozen corpus requires 140 unique chunks')
+ if query_ids!=EXPECTED_QUERY_IDS or len(set(query_ids))!=34: raise ValueError('R5 requires exact ordered v2q-001..034')
+ if any(x.get('benchmark_version')!='pilot-qa-v2-owner-approved-20260724-r5' for x in qa+qrels): raise ValueError('R5 benchmark version mismatch')
+ if any(x.get('review_status')!='ai_assisted_owner_authorized' or x.get('owner_approval_status')!='authorized_for_pilot_development' for x in qa+qrels): raise ValueError('R5 approval labels mismatch')
+ pairs=[(x.get('query_id'),x.get('chunk_id')) for x in qrels]
+ if len(qrels)!=48 or len(set(pairs))!=48 or any(x.get('relevance')!=2 for x in qrels): raise ValueError('R5 requires 48 unique grade-2 qrels')
+ if any(q not in set(query_ids) or c not in set(chunk_ids) for q,c in pairs): raise ValueError('R5 qrel does not resolve')
+ by_query=defaultdict(set)
+ for q,c in pairs: by_query[q].add(c)
+ for row in qa:
+  if set(row.get('gold_evidence_ids',[]))!=by_query[row['question_id']]: raise ValueError('R5 QA gold IDs and qrels differ')
+ return chunks,qa,qrels
+
+def collapse_window_scores(scored_windows):
+ """Select score-max window per chunk; equal scores use ascending window ID."""
+ best={}
+ for score,window in scored_windows:
+  candidate=(float(score),str(window['window_id']),window)
+  previous=best.get(window['chunk_id'])
+  if previous is None or candidate[0]>previous[0] or (candidate[0]==previous[0] and candidate[1]<previous[1]):
+   best[window['chunk_id']]=candidate
+ return best
 def make_windows(text,tokenizer,chunk_id):
  encoded=tokenizer(text,add_special_tokens=False,return_offsets_mapping=True,truncation=False); ids=encoded['input_ids']; offsets=encoded['offset_mapping']; out=[]
  for i,start in enumerate(range(0,len(ids),STEP)):
@@ -20,7 +66,8 @@ def summarize(v): return {'n':len(v),'mean_ms':statistics.mean(v),'median_ms':st
 def main():
  p=argparse.ArgumentParser(); p.add_argument('--chunks',type=Path,required=True); p.add_argument('--qa',type=Path,required=True); p.add_argument('--qrels',type=Path,required=True); p.add_argument('--output',type=Path,required=True); p.add_argument('--overwrite',action='store_true'); a=p.parse_args(); out=a.output.resolve()
  if out!=(ROOT/'runs/v2/phase2a_r5_windowed').resolve(): raise ValueError('invalid output')
- chunks=[json.loads(x) for x in a.chunks.read_text().splitlines()]; qa=sorted([json.loads(x) for x in a.qa.read_text().splitlines()],key=lambda x:x['question_id']); qr=[json.loads(x) for x in a.qrels.read_text().splitlines()]; ids=[x['chunk_id'] for x in chunks]
+ chunks,qa,qr=validate_frozen_inputs(a.chunks,a.qa,a.qrels,a.output); qa=sorted(qa,key=lambda x:x['question_id']); ids=[x['chunk_id'] for x in chunks]
+ start_git={'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],cwd=ROOT,text=True).strip(),'status_porcelain':subprocess.check_output(['git','status','--porcelain=v1','-uall'],cwd=ROOT,text=True).splitlines()}
  gains=defaultdict(dict)
  for x in qr: gains[x['query_id']][x['chunk_id']]=x['relevance']
  import faiss
@@ -40,11 +87,9 @@ def main():
   toks=tokenize(q); scores=bm.get_scores(toks); order=sorted(range(len(ids)),key=lambda i:(-float(scores[i]),ids[i]))[:50]; return [{'chunk_id':ids[i],'rank':r,'score':float(scores[i])} for r,i in enumerate(order,1)]
  def frun(q):
   qe=np.asarray(model.encode([q],normalize_embeddings=True,show_progress_bar=False),dtype='float32'); scores,idx=index.search(qe,len(windows)); best={}
-  for wi,s in zip(idx[0],scores[0]):
-   w=windows[int(wi)]; candidate=(float(s),w)
-   if w['chunk_id'] not in best or candidate[0]>best[w['chunk_id']][0]: best[w['chunk_id']]=candidate
+  best=collapse_window_scores((float(s),windows[int(wi)]) for wi,s in zip(idx[0],scores[0]))
   ordered=sorted(best.items(),key=lambda x:(-x[1][0],x[0]))[:50]
-  return [{'chunk_id':cid,'rank':r,'score':v[0],'winning_window_id':v[1]['window_id'],'winning_window_start_token':v[1]['start_token'],'winning_window_end_token':v[1]['end_token'],'winning_window_start_char':v[1]['start_char'],'winning_window_end_char':v[1]['end_char']} for r,(cid,v) in enumerate(ordered,1)]
+  return [{'chunk_id':cid,'rank':r,'score':v[0],'winning_window_id':v[2]['window_id'],'winning_window_start_token':v[2]['start_token'],'winning_window_end_token':v[2]['end_token'],'winning_window_start_char':v[2]['start_char'],'winning_window_end_char':v[2]['end_char']} for r,(cid,v) in enumerate(ordered,1)]
  rankings={'bm25':[],'faiss_windowed_max':[]}
  for q in qa:
   rankings['bm25'].append({'query_id':q['question_id'],'category':q['category'],'ranking':bmrun(q['question'])}); rankings['faiss_windowed_max'].append({'query_id':q['question_id'],'category':q['category'],'ranking':frun(q['question'])})
@@ -87,5 +132,6 @@ def main():
     if hit: contrib.append({'system':s,'rank':hit['rank'],'score':hit['score']})
    sealed.append({'display_id':did,'query_id':q['question_id'],'chunk_id':cid,'contributions':contrib,'current_gold':cid in q['gold_evidence_ids']})
  write_jsonl(out/'pool/provisional_blind_top10.jsonl',reviewer,key='display_id',overwrite=a.overwrite); write_jsonl(out/'pool/sealed_provenance.jsonl',sealed,key='display_id',overwrite=a.overwrite); write_json(out/'pool/design.json',{'seed':42,'count':len(reviewer),'status':'provisional; Graph candidates required before final judging','hidden':['system','rank','score','gold status']},overwrite=a.overwrite)
+ provenance={'command':[sys.executable,*sys.argv],'git':start_git,'python':{'version':sys.version,'platform':platform.platform()},'packages':{name:metadata.version(name) for name in ('faiss-cpu','numpy','rank-bm25','sentence-transformers')},'input_hashes':FROZEN_HASHES,'config':{'bm25_k1':1.5,'bm25_b':0.75,'faiss_model':MODEL,'faiss_revision':REVISION,'window':WINDOW,'overlap':OVERLAP,'pooling':'maximum score; equal-score winning window uses ascending window_id'},'counts':{'chunks':140,'queries':34,'qrels':48,'grade_2_qrels':48},'benchmark_version':'pilot-qa-v2-owner-approved-20260724-r5'}; write_json(out/'provenance.json',provenance,overwrite=a.overwrite)
  files=[x for x in out.rglob('*') if x.is_file() and x.name!='hashes.json']; write_json(out/'hashes.json',{str(x.relative_to(ROOT)):sha256_file(x) for x in sorted(files)},overwrite=a.overwrite); print(json.dumps({'metrics':metrics,'windows':len(windows),'pool':len(reviewer),'h1':h1},sort_keys=True))
 if __name__=='__main__': main()

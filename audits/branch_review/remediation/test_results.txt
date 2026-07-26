@@ -1,0 +1,53 @@
+Phase 0-5B remediation verification
+Date: 2026-07-26 Asia/Kolkata
+
+Starting review baseline
+- Focused Phase 5: 89 passed, 1 failed.
+- Full suite: 279 passed, 1 failed.
+- Failure: stale audits/phase5b/freeze_manifest.json hashes.
+
+Direct runner smoke
+Command: python scripts/run_phase5b_prompt_rag.py --help
+Result: PASS; exit 0. Direct repository-root invocation imports successfully.
+
+Focused remediation suite
+Command: pytest -q tests/test_phase5a_prompt_rag.py tests/test_phase5b_prompt_rag.py tests/test_phase0_recompute.py tests/test_phase2a_windowed.py tests/test_phase2a_evaluation.py tests/test_v2_r5_freeze.py tests/test_phase3_graph_v3_2_evaluation.py tests/test_phase4_hybrid.py tests/test_independent_phase3_phase4_metrics.py
+Result: PASS; 178 passed in 14.80s.
+
+Full suite
+Command: pytest -q
+Result: PASS; 308 passed in 25.84s.
+
+Independent metric oracle
+Command: pytest -q tests/test_independent_phase3_phase4_metrics.py
+Result: included in focused/full runs; 3 passed. Independent implementation imported no production metric aggregation functions.
+
+Manifest verification
+- Phase 5 freeze claims: 35.
+- Hash mismatches: 0.
+- Manifest self-hash: excluded.
+
+Protected-byte verification
+- Critical corpus/QA/qrels/ranking/metric/pool/raw-latency/owner-package files checked: 41.
+- Mismatches: 0.
+- Phase 4 latency timing object unchanged.
+- Phase 4 bootstrap numeric sequence unchanged.
+- Phase 2 H1 numeric sequence unchanged.
+
+Secret scan
+- Working-tree credential-shaped candidate files: 0.
+- Reachable Git Google/AWS/private-key candidate paths: 0.
+- Broad OpenAI pattern produced corpus-word false positives; boundary-aware credential pattern: 0 candidate paths.
+- .env files and owner_judgments.csv excluded; no secret value printed.
+
+Diff checks
+- git diff --check: PASS.
+- git diff --cached --check: PASS.
+
+Prohibited actions
+- Gemini/API calls: 0; Phase 5B run path absent.
+- Retrieval reruns: 0.
+- Generation runs: 0.
+- Pool expansion: 0.
+- Owner labels created or changed: 0.
+- Commit/push/stage: 0.

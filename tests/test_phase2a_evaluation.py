@@ -12,9 +12,18 @@ def test_cutoff_and_missing_evidence():
  assert m['complete_evidence_recall_at_10']==0
 
 def test_frozen_bootstrap_protocol_and_determinism():
- rows=[{'metrics':{'mrr_at_10':x}} for x in (0.0,0.5,1.0)]
+ rows=[{'query_id':f'q{i}','metrics':{'mrr_at_10':x}} for i,x in enumerate((0.0,0.5,1.0))]
  assert (BOOT,SEED)==(10000,42)
- assert bootstrap(rows,list(reversed(rows)),'mrr_at_10')==bootstrap(rows,list(reversed(rows)),'mrr_at_10')
+ assert bootstrap(rows,rows,'mrr_at_10')==bootstrap(rows,rows,'mrr_at_10')
+
+def test_bootstrap_rejects_misaligned_missing_duplicate_and_empty_pairs():
+ import pytest
+ rows=[{'query_id':f'q{i}','metrics':{'mrr_at_10':x}} for i,x in enumerate((0.0,0.5,1.0))]
+ with pytest.raises(ValueError,match='order'): bootstrap(rows,list(reversed(rows)),'mrr_at_10')
+ with pytest.raises(ValueError,match='lengths'): bootstrap(rows,rows[:-1],'mrr_at_10')
+ duplicated=[rows[0],rows[0],rows[2]]
+ with pytest.raises(ValueError,match='duplicate'): bootstrap(duplicated,duplicated,'mrr_at_10')
+ with pytest.raises(ValueError,match='nonzero'): bootstrap([],[],'mrr_at_10')
 
 def test_correct_slices_and_non_exhaustive_labels():
  import json

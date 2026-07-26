@@ -12,6 +12,7 @@ from scripts.evaluate_phase3_graph_v3_2 import (
     METRICS,
     SEED,
     paired_bootstrap,
+    validate_rankings,
 )
 from src.utils.hashing import sha256_file
 
@@ -39,6 +40,18 @@ def test_phase3g_bootstrap_is_paired_deterministic_and_graph_minus_baseline() ->
     assert first["samples"] == BOOTSTRAPS == 10_000
     assert first["seed"] == SEED == 42
     assert first["unit"] == "whole query"
+
+
+def test_rankings_reject_unknown_chunk_above_and_below_top10() -> None:
+    import pytest
+    qa = {"q1": {"question_id": "q1"}}
+    known = {f"c{i}" for i in range(1, 51)}
+    base = {"query_id": "q1", "ranking": [{"chunk_id": f"c{i}", "rank": i} for i in range(1, 51)]}
+    for position in (0, 24):
+        row = json.loads(json.dumps(base))
+        row["ranking"][position]["chunk_id"] = "unknown"
+        with pytest.raises(ValueError, match="unknown chunks"):
+            validate_rankings([row], qa, known, "graph")
 
 
 def test_phase3g_balanced_panel_covers_all_systems_categories_and_metrics() -> None:

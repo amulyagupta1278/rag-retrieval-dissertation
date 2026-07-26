@@ -210,6 +210,11 @@ def test_balanced_metrics_and_bootstrap_cover_all_required_scopes() -> None:
     for comparison in comparisons["comparisons"].values():
         assert set(comparison["aggregate"]) == set(METRICS)
         assert set(comparison["per_category"]) == set(CATEGORIES)
+    assert comparisons["equal_weight_fusion_vs_strongest"] == "point_estimate_higher_but_inconclusive"
+    strongest = comparisons["comparisons"]["hybrid_vs_bm25"]["aggregate"]["mrr_at_10"]
+    assert strongest["ci95"] == [-0.024509803921568624, 0.10294117647058823]
+    assert strongest["uncertainty_includes_zero"] is True
+    assert "improves" not in json.dumps(comparisons)
 
 
 def test_live_latency_and_combined_pool_contracts() -> None:
@@ -225,6 +230,17 @@ def test_live_latency_and_combined_pool_contracts() -> None:
     assert protocol["cache_flushing_performed"] is False
     assert protocol["cold_start_latency"] is False
     assert protocol["component_indexes_rebuilt"] is False
+    assert protocol["validation_invocations"] == {
+        "combined_bm25_retrieval_call_n": 34,
+        "combined_graph_retrieval_call_n": 34,
+        "combined_rrf_fusion_call_n": 34,
+        "combined_run_query_call_n": 34,
+        "separate_bm25_validation_call_n": 34,
+        "separate_graph_validation_call_n": 34,
+        "total_bm25_calls_before_additional_warmup": 68,
+        "total_graph_calls_before_additional_warmup": 68,
+        "total_rrf_fusion_calls_before_additional_warmup": 34,
+    }
     assert "warmup_queries" not in protocol and "query_n" not in protocol and "sample_n" not in protocol
     assert latency["latency_interpretation"] == "Reported values are warm-cache operational latency and must not be presented as cold-start latency."
     assert set(latency["timings"]) == {
@@ -245,7 +261,12 @@ def test_latency_disclosure_correction_preserves_values_and_non_latency_artifact
     preserved_summary = json.loads((preserved / "latency/live_summary.json").read_text(encoding="utf-8"))
     assert current_summary["timings"] == preserved_summary["timings"]
     assert sha256_text((current / "latency/live_raw_samples.jsonl").read_text(encoding="utf-8")) == sha256_text((preserved / "latency/live_raw_samples.jsonl").read_text(encoding="utf-8"))
-    latency_dependent = {"latency/live_summary.json", "evaluation_manifest.json", "evaluation_hashes.json"}
+    latency_dependent = {
+        "latency/live_summary.json",
+        "evaluation_manifest.json",
+        "evaluation_hashes.json",
+        "statistics/paired_bootstrap_hybrid_vs_constituents.json",
+    }
     preserved_hashes = {
         str(path.relative_to(preserved)): sha256_text(path.read_text(encoding="utf-8"))
         for path in preserved.rglob("*") if path.is_file() and str(path.relative_to(preserved)) not in latency_dependent

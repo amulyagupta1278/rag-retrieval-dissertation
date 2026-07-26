@@ -21,6 +21,7 @@ dependencies = [
     "beautifulsoup4>=4.12",   # HTML extraction
     "pyyaml>=6.0",
     "tqdm>=4.65",
+    "google-genai[local-tokenizer]==2.13.0",
 ]
 
 [project.optional-dependencies]
