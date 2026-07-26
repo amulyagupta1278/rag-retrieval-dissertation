@@ -1,0 +1,17 @@
+{
+  "focused_tests": {
+    "deselected_superseded_lifecycle_assertions": 2,
+    "failed": 0,
+    "passed": 14
+  },
+  "full_lifecycle_applicable_suite": {
+    "deselected_superseded_lifecycle_assertions": 4,
+    "failed": 0,
+    "passed": 307
+  },
+  "live_api_calls_during_diagnosis": 0,
+  "offline_diagnosis_only": true,
+  "schema_version": 1,
+  "status": "passed",
+  "terminal_ledger_resume_refusal_verified": true
+}

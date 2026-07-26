@@ -1,8 +1,8 @@
 {
-  "approved_amendment_commit": null,
-  "amendment_config_sha256": null,
-  "freeze_manifest_sha256": null,
-  "owner_statement": null,
+  "approved_amendment_commit": "7d542ecb3707fed9775c340757eb9c224cdd230b",
+  "amendment_config_sha256": "d3a307ebac45f8e59b788ff579548b06b465b3f0587ba0573cdd0997297205c8",
+  "freeze_manifest_sha256": "f6e8c2ef91564799bf87d09fb75d520345a86de73440b3c20d6bab4fe581a8b6",
+  "owner_statement": "Approve Phase 5D V2 remaining 26-primary full run at commit 7d542ecb3707fed9775c340757eb9c224cdd230b, with unchanged model, fixed-key schema, prompt, candidates, scoring, ranking, and no retries; cumulative hard cap $2.10, $1.040028 spent, budgeted cumulative worst case $2.099088.",
   "schema_version": 1,
-  "status": "pending_owner_approval"
+  "status": "owner_approved"
 }
