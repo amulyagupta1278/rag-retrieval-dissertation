@@ -342,9 +342,8 @@ Frozen contract:
 - free tier only, no billing or paid fallback.
 
 Status: offline freeze committed in `49bd0ba`. Pre-execution audit found circular
-runtime-control/clean-tree gate. Narrow repair is in progress and must be committed
-before any API request. Frozen prompt, model, candidates, request payloads, and
-ranking rules remain unchanged.
+runtime-control/clean-tree gate; narrow repair committed in `c5e05b8`. Frozen
+prompt, model, candidates, request payloads, and ranking rules remain unchanged.
 
 ### Phase 5C: trace and repeatability gate — next network phase
 
@@ -588,7 +587,6 @@ metrics and limitations remain visible.
 
 ## Current next action
 
-Finish narrow Phase 5B runtime-control repair, review and commit it, obtain fresh
-free-tier/no-billing/current-context owner attestation, then execute Phase 5C trace
-gate only. No relevance metrics, pool expansion, full run, generation, or owner
-judging during Phase 5C.
+Obtain fresh free-tier/no-billing/current-context owner attestation, record exact
+trace approval, then execute Phase 5C trace gate only. No relevance metrics, pool
+expansion, full run, generation, or owner judging during Phase 5C.

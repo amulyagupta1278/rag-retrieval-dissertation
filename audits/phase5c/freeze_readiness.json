@@ -1,0 +1,37 @@
+{
+  "artifact_type": "phase5c_freeze_readiness",
+  "blocked_live_gates": [
+    "owner must freshly confirm active Google AI Studio Plan Free with no linked billing account and unchanged credential/environment context",
+    "trace execution approval must bind exact committed Git identity and fresh confirmation hash"
+  ],
+  "frozen_contract_changes_from_phase5b": {
+    "candidate_depth": false,
+    "model_or_provider": false,
+    "prompt": false,
+    "ranking_or_tie_break": false,
+    "request_payload": false,
+    "retry_or_attempt_cap": false,
+    "score_scale": false,
+    "trace_selection": false
+  },
+  "offline_components": {
+    "complete_trace_ledger_validation": true,
+    "exact_24_record_validation": true,
+    "fixed_path_cli": true,
+    "idempotent_atomic_output": true,
+    "operational_summary": true,
+    "repeatability_recomputation": true,
+    "result_manifest": true
+  },
+  "permissions": {
+    "answer_generation": false,
+    "full_mode": false,
+    "owner_judging": false,
+    "pool_expansion": false,
+    "relevance_metrics": false,
+    "trace_mode_after_all_live_gates": true
+  },
+  "schema_version": 1,
+  "status": "offline_implementation_ready_pending_owner_live_gates",
+  "verified_live_gemini_api_call_n": 0
+}

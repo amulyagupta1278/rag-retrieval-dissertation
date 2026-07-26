@@ -1,0 +1,80 @@
+{
+  "artifact_type": "phase5c_trace_plan",
+  "commands": {
+    "evaluate_repeatability_only": "python scripts/evaluate_phase5c_trace.py",
+    "trace_execution": "python scripts/run_phase5b_prompt_rag.py --mode trace --require-free-tier-owner-confirmation"
+  },
+  "execution_order": [
+    "validate committed frozen implementation and all frozen request bytes",
+    "validate fresh owner Free-plan/no-billing/current-context confirmation",
+    "validate trace approval bound to exact commit/tree/config/prompt/plan/confirmation",
+    "create client from GEMINI_API_KEY environment variable only",
+    "execute eight primary trace requests in frozen trace-selection order",
+    "execute first replicate for each trace query in frozen trace-selection order",
+    "execute second replicate for each trace query in frozen trace-selection order",
+    "validate durable ledger and exactly 24 raw records",
+    "calculate repeatability and operational summaries only",
+    "stop for owner approval"
+  ],
+  "frozen_inputs": {
+    "config_path": "configs/prompt_rag_v1_frozen.json",
+    "config_sha256": "251e8ea1948eb20b03f1e259742d9b9933e88aaafc0897ff16905a4d16c69fde",
+    "prompt_path": "prompts/prompt_rag_retrieval_v1.txt",
+    "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "repeatability_protocol_path": "audits/phase5b/repeatability_protocol.json",
+    "repeatability_protocol_sha256": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
+    "request_hash_source_path": "audits/phase5b/token_budget_audit.json",
+    "request_hash_source_sha256": "fade68a498fa0aa56585c72574a53be17f96de334eae49f98288682c05ab2338",
+    "trace_plan_sha256": "196b1e76703b135c901dc67e14a46e43ba0a49308dd0c7595f8ba34e4d80c01b",
+    "trace_selection_path": "audits/phase5b/trace_selection.json",
+    "trace_selection_sha256": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac"
+  },
+  "gates": {
+    "active_environment_context_confirmed": false,
+    "free_plan_confirmed": false,
+    "linked_billing_account_confirmed_absent": false,
+    "mode_specific_trace_approval_recorded": false,
+    "owner_confirmation_max_age_hours": 24,
+    "paid_execution_authorized": false,
+    "trace_and_full_may_run_together": false
+  },
+  "mode": "trace",
+  "network_scope": {
+    "logical_request_n": 24,
+    "maximum_attempted_network_request_n": 24,
+    "primary_request_n": 8,
+    "replicate_request_n": 16,
+    "retries_consume_cap": true,
+    "trace_input_tokens_offline_planned": 604005,
+    "trace_maximum_contract_output_tokens": 45186
+  },
+  "outputs": {
+    "artifact_manifest": "runs/v2/phase5b_prompt_rag/trace/artifact_manifest.json",
+    "checkpoint": "runs/v2/phase5b_prompt_rag/trace/phase5c_checkpoint.json",
+    "durable_ledger": "runs/v2/phase5b_prompt_rag/trace/control/ledger.json",
+    "operational_summary": "runs/v2/phase5b_prompt_rag/trace/operational_summary.json",
+    "raw_response_directory": "runs/v2/phase5b_prompt_rag/trace/raw",
+    "repeatability_decision": "runs/v2/phase5b_prompt_rag/trace/repeatability_decision.json",
+    "repeatability_summary": "runs/v2/phase5b_prompt_rag/trace/repeatability_summary.json"
+  },
+  "permissions": {
+    "answer_generation": false,
+    "full_26_query_execution": false,
+    "owner_judging": false,
+    "pool_expansion": false,
+    "relevance_metric_calculation": false,
+    "repeatability_metric_calculation_after_complete_trace": true,
+    "trace_operational_summary_after_complete_trace": true
+  },
+  "selected_query_ids": [
+    "v2q-017",
+    "v2q-016",
+    "v2q-003",
+    "v2q-023",
+    "v2q-013",
+    "v2q-025",
+    "v2q-004",
+    "v2q-027"
+  ],
+  "status": "offline_planned_pending_owner_free_tier_confirmation_and_trace_approval"
+}

@@ -1,0 +1,34 @@
+{
+  "artifact_hashes": {
+    "audits/phase5b/freeze_manifest.json": "92336c60a4be05b5996020b1483afb689e0c9c8ac227a03e7e7c141958c16e1a",
+    "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
+    "audits/phase5b/token_budget_audit.json": "fade68a498fa0aa56585c72574a53be17f96de334eae49f98288682c05ab2338",
+    "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
+    "audits/phase5c/freeze_readiness.json": "0cf50c63af3469966ff69a5af6618730ca9235e577cc96100c2a32ee7643c226",
+    "audits/phase5c/trace_plan.json": "41f84578eef03a0eb77812a7a55fc139c3c81ae5633f75e5202f15fdd3937932",
+    "configs/prompt_rag_v1_frozen.json": "251e8ea1948eb20b03f1e259742d9b9933e88aaafc0897ff16905a4d16c69fde",
+    "docs/DISSERTATION_PHASE_PLAN_RECOVERED.md": "f386e14afd08aa3b2f34850d84bfae5988448db5696ed1315c9167f0378de39a",
+    "docs/PHASE5C_TRACE_PROTOCOL.md": "9761827dcc935b940f3aee54f159dbcd8d6d90ed5f0fc6997105be8d4f113183",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "scripts/evaluate_phase5c_trace.py": "7f2213eb67daf3c4675b49b2edc0288923958e5206de9e73bbadebe14a7aa4f2",
+    "scripts/run_phase5b_prompt_rag.py": "b040691eb00c5a16fe5970d09a27c1b4ca3fe7d657a411e009b42d983547b495",
+    "src/retrievers/prompt_rag_gemini_v1.py": "179a3ebba643cfbac3dfab369e15a33c42eb18ecec9f03b59d67ffea2d80237b",
+    "tests/test_phase5c_trace.py": "609daaa8cf2dccabc09fbb162247716884d94f3cc8dd306672ef91a8b2d5744f"
+  },
+  "artifact_type": "phase5c_offline_freeze_manifest",
+  "completeness": {
+    "artifact_count": 14,
+    "manifest_self_hash_excluded": true
+  },
+  "live_execution": {
+    "owner_free_tier_confirmation_status": "pending",
+    "trace_approval_status": "pending",
+    "verified_api_call_n": 0
+  },
+  "mutable_runtime_controls_excluded": [
+    "audits/phase5b/free_tier_owner_confirmation.json",
+    "audits/phase5b/trace_execution_approval.json"
+  ],
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_live_gates"
+}
