@@ -1,0 +1,25 @@
+{
+  "artifact_hashes": {
+    "audits/phase5d_v2_full/cost_budget_audit.json": "a73ca9475655964551b9c28ac402651913f5898229e72bca2b3473a8ca4e306b",
+    "audits/phase5d_v2_full/offline_verification.json": "4dcfecb12ac7399d21fb92db953138e3db0b1c424c17bb31ed0a47c84b732ac4",
+    "audits/phase5d_v2_full/trace_preservation.json": "281d6af65ba28e3e1c4a87ae1e403c5795503591c58e64bad9c682336d44f71f",
+    "configs/prompt_rag_claude_v2_frozen.json": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+    "configs/prompt_rag_claude_v2_full_amendment.json": "d3a307ebac45f8e59b788ff579548b06b465b3f0587ba0573cdd0997297205c8",
+    "docs/PHASE5D_V2_FULL_RUN_COST_AMENDMENT.md": "67f3cc7220a0474479d2abc779303b102eaf9dbb4551b20d20f34d36d81c3672",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/control/ledger.json": "e444f2e199c4662765b3f7e758a7b4491900891e93ea70852bac53cfa4935d47",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/repeatability_decision.json": "8b944967f92cd753b7024d8ddfd4064f81bea81002c4f8c3a4f9faacdd45f76d",
+    "scripts/run_phase5d_v2_full_prompt_rag_claude.py": "80e46d3c626d5aa7e059c870b0c3de3e7c51c48e43c1196bb6f410823d9dca21",
+    "src/retrievers/prompt_rag_claude_v2.py": "686ea7c35287a203dd99280a9c8a45d82efdd43cb6532e25b920c86177c03b76",
+    "tests/test_phase5d_v2_full_amendment.py": "52ddf42af87d602e407bc4960285ec754798749738106e184e3c592bc652f622"
+  },
+  "credential_fields_stored": false,
+  "excluded_mutable_artifacts": [
+    "audits/phase5d_v2_full/full_execution_approval.json"
+  ],
+  "generation_calls_during_amendment": 0,
+  "live_api_calls_during_amendment": 0,
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_approval"
+}

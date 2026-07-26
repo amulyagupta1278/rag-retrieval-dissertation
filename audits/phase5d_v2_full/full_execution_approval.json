@@ -1,0 +1,8 @@
+{
+  "approved_amendment_commit": null,
+  "amendment_config_sha256": null,
+  "freeze_manifest_sha256": null,
+  "owner_statement": null,
+  "schema_version": 1,
+  "status": "pending_owner_approval"
+}

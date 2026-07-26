@@ -1,0 +1,13 @@
+{
+  "protected_hashes": {
+    "configs/prompt_rag_claude_v2_frozen.json": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/control/ledger.json": "e444f2e199c4662765b3f7e758a7b4491900891e93ea70852bac53cfa4935d47",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/operational_summary.json": "7701af5231a7e2b96d7b5d3ab094dca911312b77b9ebac184ff7a42d036cba81",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/repeatability_decision.json": "8b944967f92cd753b7024d8ddfd4064f81bea81002c4f8c3a4f9faacdd45f76d"
+  },
+  "policy": "Full-run amendment may read trace checkpoint for eligibility but may not modify, rerun, select among, or overwrite trace records.",
+  "schema_version": 1,
+  "status": "trace_evidence_frozen"
+}

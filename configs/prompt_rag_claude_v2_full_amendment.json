@@ -1,0 +1,45 @@
+{
+  "amendment_scope": "cost cap and remaining-primary execution only",
+  "base_config_path": "configs/prompt_rag_claude_v2_frozen.json",
+  "base_config_sha256": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+  "budget": {
+    "corrected_counted_input_tokens": 771820,
+    "counted_input_tokens_before_observed_correction": 771768,
+    "cumulative_budgeted_worst_case_usd": 2.099088,
+    "cumulative_corrected_count_worst_case_usd": 2.078088,
+    "cumulative_hard_cap_usd": 2.1,
+    "hard_cap_margin_after_reserve_usd": 0.000912,
+    "input_token_uncertainty_reserve": 21000,
+    "maximum_output_tokens_total": 53248,
+    "prior_cumulative_observed_spend_usd": 1.040028,
+    "remaining_run_budgeted_input_ceiling": 792820,
+    "remaining_run_budgeted_worst_case_usd": 1.05906,
+    "remaining_run_corrected_count_worst_case_usd": 1.03806,
+    "trace_observed_count_delta_per_request": 2
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "failure_policy": "fail closed; no fallback or backfill",
+    "logical_request_n": 26,
+    "mode": "remaining primary queries only",
+    "output_root": "runs/v2/phase5d_prompt_rag_claude_v2/full",
+    "trace_primary_rerun": false
+  },
+  "frozen_contract": {
+    "candidate_count": 50,
+    "candidate_source": "byte-identical frozen Phase 2A BM25 top-50",
+    "model": "claude-haiku-4-5-20251001",
+    "output_schema": "unchanged V2 fixed-key object requiring every exact chunk ID",
+    "prompt_path": "prompts/prompt_rag_retrieval_v1.txt",
+    "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "ranking": "score descending then chunk ID ascending",
+    "scoring": "unchanged integer scale 0..3",
+    "sdk": "anthropic==0.116.0"
+  },
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_approval",
+  "trace_artifact_manifest_path": "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json",
+  "trace_artifact_manifest_sha256": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+  "trace_evidence_policy": "immutable input checkpoint; never overwrite trace files",
+  "version": "phase5d-v2-full-run-cost-amendment-1"
+}
