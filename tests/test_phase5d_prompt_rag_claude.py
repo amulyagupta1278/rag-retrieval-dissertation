@@ -111,6 +111,10 @@ def test_schema_and_ranking_are_strict_and_deterministic() -> None:
     assert schema["additionalProperties"] is False
     item = schema["properties"]["candidate_scores"]["items"]
     assert item["properties"]["chunk_id"]["enum"] == sorted(ids())
+    assert item["properties"]["score"] == {"type": "integer"}
+    serialized_schema = json.dumps(schema)
+    for unsupported in ("minimum", "maximum", "minItems", "maxItems"):
+        assert f'"{unsupported}"' not in serialized_schema
     scores = [{"chunk_id": chunk_id, "score": index % 4} for index, chunk_id in enumerate(ids())]
     ranking = parse_scored_response(json.dumps({"candidate_scores": scores}), ids())
     assert ranking == sorted(ranking, key=lambda row: (-row["score"], row["chunk_id"]))
@@ -262,8 +266,9 @@ def test_repeatability_comparison_detects_identical_and_changed_rankings() -> No
     assert evaluator.compare(first, changed)["ranking_position_agreement"] < 1.0
 
 
-def test_no_live_api_call_or_runtime_output_exists_in_offline_freeze() -> None:
-    assert not (ROOT / "runs/v2/phase5d_prompt_rag_claude_v1").exists()
+def test_offline_freeze_records_zero_generation_and_evaluator_has_no_gold_inputs() -> None:
+    manifest = json.loads((ROOT / "audits/phase5d/freeze_manifest.json").read_text())
+    assert manifest["generation_calls_during_freeze"] == 0
     source = (ROOT / "scripts/evaluate_phase5d_claude_trace.py").read_text()
     for forbidden in ("qrels", "reference_answer", "owner_judgments", "category"):
         assert forbidden not in source

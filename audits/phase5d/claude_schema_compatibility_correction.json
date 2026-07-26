@@ -1,0 +1,43 @@
+{
+  "classification": "pre-result implementation-validity correction; not benchmark-sensitive tuning",
+  "diagnostic_method": "Messages count_tokens metadata endpoint with one frozen request and nested field isolation",
+  "generation_calls_before_correction": 0,
+  "observations": [
+    {
+      "case": "base request without output schema",
+      "http_status": 200
+    },
+    {
+      "case": "simple supported object schema",
+      "http_status": 200
+    },
+    {
+      "case": "original full schema",
+      "http_status": 400
+    },
+    {
+      "case": "remove numeric bounds only",
+      "http_status": 400
+    },
+    {
+      "case": "remove numeric and array-count bounds; retain exact 50-ID enum",
+      "http_status": 200
+    }
+  ],
+  "official_documentation_finding": "Claude structured outputs do not support numeric minimum/maximum constraints; SDK-native transformations remove unsupported constraints and validate them client-side.",
+  "removed_wire_keywords": [
+    "minimum",
+    "maximum",
+    "minItems",
+    "maxItems"
+  ],
+  "retained_fail_closed_validation": [
+    "exactly 50 rows",
+    "all and only supplied chunk IDs",
+    "no duplicate chunk ID",
+    "integer scores",
+    "score range 0..3"
+  ],
+  "schema_version": 1,
+  "status": "corrected_before_generation"
+}

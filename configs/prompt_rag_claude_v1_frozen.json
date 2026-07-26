@@ -21,6 +21,21 @@
     "top_k": "omitted",
     "top_p": "omitted"
   },
+  "implementation_validity_correction": {
+    "classification": "pre-result provider schema compatibility correction; not benchmark-sensitive tuning",
+    "generation_calls_before_correction": 0,
+    "offline_parser_still_enforces": [
+      "exactly 50 candidate rows",
+      "integer score range 0..3",
+      "exact supplied chunk-ID set"
+    ],
+    "removed_unsupported_wire_keywords": [
+      "minimum",
+      "maximum",
+      "minItems",
+      "maxItems"
+    ]
+  },
   "inputs": {
     "chunk_path": "data/v2/pilot/chunks/chunks.jsonl",
     "chunk_sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
@@ -38,7 +53,7 @@
     "score_maximum": 3,
     "score_minimum": 0,
     "score_type": "integer",
-    "structured_output": "output_config.format json_schema",
+    "structured_output": "output_config.format JSON Schema with provider-supported type and exact chunk-ID enum constraints; row count and numeric range enforced fail-closed by parser",
     "tie_break": "ascending chunk_id; BM25 rank never used"
   },
   "prompt": {

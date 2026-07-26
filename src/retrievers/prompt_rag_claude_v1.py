@@ -60,17 +60,11 @@ def build_response_schema(expected_chunk_ids: Iterable[str]) -> dict[str, Any]:
                     "additionalProperties": False,
                     "properties": {
                         "chunk_id": {"enum": sorted(chunk_ids), "type": "string"},
-                        "score": {
-                            "maximum": SCORE_MAX,
-                            "minimum": SCORE_MIN,
-                            "type": "integer",
-                        },
+                        "score": {"type": "integer"},
                     },
                     "required": ["chunk_id", "score"],
                     "type": "object",
                 },
-                "maxItems": CANDIDATE_N,
-                "minItems": CANDIDATE_N,
                 "type": "array",
             }
         },

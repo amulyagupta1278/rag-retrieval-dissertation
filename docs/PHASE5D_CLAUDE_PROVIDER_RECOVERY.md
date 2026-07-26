@@ -18,6 +18,13 @@ selection based on retrieval results.
 - Maximum output: 2,048 tokens; standard service tier only.
 - No fallback, backfill, automatic retry, answer generation, or benchmark tuning.
 
+Claude's wire-schema subset does not support `minimum`, `maximum`, `minItems`,
+or `maxItems`. A pre-generation metadata check returned HTTP 400 until these
+four constraints were removed. Wire schema still requires integer scores and
+binds chunk IDs to exact 50-ID enum. Offline parser independently and strictly
+requires 50 rows, one row per supplied ID, and integer scores from 0 through 3.
+This compatibility correction occurred before any Claude generation.
+
 Only query ID, question, chunk ID, and chunk text enter model request. Qrels,
 reference answers, categories, metrics, sealed provenance, owner judgments,
 first-stage ranks, and first-stage scores remain forbidden.
