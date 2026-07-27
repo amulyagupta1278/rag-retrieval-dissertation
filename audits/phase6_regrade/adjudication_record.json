@@ -1,0 +1,69 @@
+{
+  "label": "AI-assisted consistency audit; not owner judgment and not final qrels",
+  "created_utc": "2026-07-27T19:22:39.385616+00:00",
+  "n_disagreements": 10,
+  "retain_first_count": 2,
+  "adopt_second_count": 8,
+  "adjudications": {
+    "v2q-014-candidate-01": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "PMGKAY intro chunk states scheme purpose (food security) but does not state the specific 35kg/5kg allocations required by the reference; Grade 1 correct."
+    },
+    "v2q-028-candidate-01": {
+      "first": "1",
+      "second": "0",
+      "final": "0",
+      "rationale": "Chunk is from PMKVY Special Projects, a separate pathway not mentioned in the question (which asks about RPL and STT); SP content on transport costs irrelevant; Grade 0 correct."
+    },
+    "v2q-017-candidate-06": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "STT certificate grading levels (Grade A/B/C) and entrepreneurship tracking are STT mechanics; chunk does not state STT serves dropouts/unemployed for initial skilling; Grade 1 correct."
+    },
+    "v2q-028-candidate-15": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "RPL duration (132 hrs) and assessment stages are RPL mechanics; chunk does not state what RPL certifies (existing/prior-learning skills); Grade 1 correct."
+    },
+    "v2q-033-candidate-13": {
+      "first": "2",
+      "second": "1",
+      "final": "2",
+      "rationale": "Chunk explicitly states SVANidhi \"aims to formalize street vendors...through providing collateral-free w[orking-capital loans]\"; this directly states the scheme mechanism; Grade 2 correct (first-pass retained)."
+    },
+    "v2q-015-candidate-09": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "PMEGP eligibility and negative-list chunk confirms financial assistance for micro-enterprises but does not state self-employment for artisans/unemployed youth; Grade 1 correct."
+    },
+    "v2q-007-candidate-07": {
+      "first": "1",
+      "second": "0",
+      "final": "0",
+      "rationale": "Chunk is from PMSBY (accidental insurance) not PMJJBY (life insurance); question asks for PMJJBY full form; wrong scheme; Grade 0 correct."
+    },
+    "v2q-028-candidate-05": {
+      "first": "0",
+      "second": "1",
+      "final": "0",
+      "rationale": "First-pass rationale is correct: STT kit/logistics (induction kit, \u20b9600 assessment pay-out) do not address RPL certification scope or STT fresh-skilling purpose; Grade 0 retained."
+    },
+    "v2q-013-candidate-17": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "PMUY 2.0 cash assistance amounts (\u20b91600 / \u20b91150) are connection subsidy details; chunk does not state scheme purpose of replacing solid fuels with LPG for rural women; Grade 1 correct."
+    },
+    "v2q-030-candidate-06": {
+      "first": "2",
+      "second": "1",
+      "final": "1",
+      "rationale": "APY intro (old age income security, longevity risks, voluntary savings) describes broad purpose but does not state the guaranteed monthly pension or age-60 trigger; Grade 1 correct."
+    }
+  }
+}
