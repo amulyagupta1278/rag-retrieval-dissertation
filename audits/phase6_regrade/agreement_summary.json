@@ -1,0 +1,53 @@
+{
+  "label": "AI-assisted consistency audit; not owner judgment and not final qrels",
+  "n": 114,
+  "agree": 104,
+  "disagree": 10,
+  "exact_agreement_rate": 0.912281,
+  "u_count": 0,
+  "first_pass_distribution": {
+    "0": 87,
+    "2": 14,
+    "1": 13
+  },
+  "second_pass_distribution": {
+    "0": 88,
+    "1": 19,
+    "2": 7
+  },
+  "cohens_kappa_unweighted": 0.771772,
+  "cohens_kappa_quadratic_weighted": 0.891614,
+  "po": 0.912281,
+  "pe": 0.615651,
+  "transition_matrix": {
+    "0": {
+      "0": 86,
+      "1": 1,
+      "2": 0
+    },
+    "1": {
+      "0": 2,
+      "1": 11,
+      "2": 0
+    },
+    "2": {
+      "0": 0,
+      "1": 7,
+      "2": 7
+    }
+  },
+  "disagreement_display_ids": [
+    "v2q-014-candidate-01",
+    "v2q-028-candidate-01",
+    "v2q-017-candidate-06",
+    "v2q-028-candidate-15",
+    "v2q-033-candidate-13",
+    "v2q-015-candidate-09",
+    "v2q-007-candidate-07",
+    "v2q-028-candidate-05",
+    "v2q-013-candidate-17",
+    "v2q-030-candidate-06"
+  ],
+  "seed": 123,
+  "regrade_package_sha256": "8539fa3c67465f4279210ab0d36b79069b29bdeef64c23002ee67f9bec9f5dcb"
+}
