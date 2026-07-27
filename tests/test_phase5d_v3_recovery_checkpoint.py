@@ -2,17 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-pytest.importorskip(
-    "sentence_transformers",
-    reason=(
-        "SKIPPED 2026-07-27: requires sentence_transformers (and faiss-cpu / "
-        "torch) which are not installed in the evaluation sandbox. "
-        "These tests exercise retriever inference and Phase 5 pipeline "
-        "contracts that depend on ML inference libraries. Install the full "
-        "requirements (pip install sentence-transformers faiss-cpu) to run."
-    ),
-)
 
 
 import json
