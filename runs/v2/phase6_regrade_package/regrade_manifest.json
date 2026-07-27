@@ -19,5 +19,7 @@
     "1": 19,
     "2": 7
   },
-  "second_pass_grade_total": 114
+  "second_pass_grade_total": 114,
+  "VALIDITY_STATUS": "INVALID_NON_CONFIRMATORY",
+  "INVALIDATION_NOTICE": "INVALID - NON-CONFIRMATORY. Seed 123 (protocol requires 42), grade-stratified (protocol requires blind random), grades AI-generated (protocol requires human). Preserved as audit evidence. See audits/phase6_invalidation/INVALIDATION_NOTICE.md"
 }

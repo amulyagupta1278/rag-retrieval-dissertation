@@ -39,5 +39,7 @@
   "changes_from_phase6_pooled_qrels": 8,
   "ai_assigned_final_labels": 0,
   "api_calls": 0,
-  "generation_calls": 0
+  "generation_calls": 0,
+  "VALIDITY_STATUS": "INVALID_NON_CONFIRMATORY",
+  "INVALIDATION_NOTICE": "INVALID - NON-CONFIRMATORY. Seed 123 (protocol requires 42), grade-stratified (protocol requires blind random), grades AI-generated (protocol requires human). Preserved as audit evidence. See audits/phase6_invalidation/INVALIDATION_NOTICE.md"
 }

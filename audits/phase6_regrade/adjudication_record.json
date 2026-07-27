@@ -65,5 +65,7 @@
       "final": "1",
       "rationale": "APY intro (old age income security, longevity risks, voluntary savings) describes broad purpose but does not state the guaranteed monthly pension or age-60 trigger; Grade 1 correct."
     }
-  }
+  },
+  "VALIDITY_STATUS": "INVALID_NON_CONFIRMATORY",
+  "INVALIDATION_NOTICE": "INVALID - NON-CONFIRMATORY. Seed 123 (protocol requires 42), grade-stratified (protocol requires blind random), grades AI-generated (protocol requires human). Preserved as audit evidence. See audits/phase6_invalidation/INVALIDATION_NOTICE.md"
 }
