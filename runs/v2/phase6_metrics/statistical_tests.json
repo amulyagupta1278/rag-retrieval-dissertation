@@ -1,0 +1,82 @@
+{
+  "H1": {
+    "description": "Hybrid_RRF > BM25",
+    "system_a": "Hybrid_RRF",
+    "system_b": "BM25",
+    "mean_a": 0.8713922378003873,
+    "mean_b": 0.8192949087326717,
+    "observed_diff": 0.05209732906771558,
+    "ci_95": [
+      0.020821193834660082,
+      0.09418630244836805
+    ],
+    "p_value": 0.0094,
+    "alpha": 0.05,
+    "alpha_bonferroni": 0.0125,
+    "verdict": "SUPPORTED",
+    "metric": "ndcg_graded@10",
+    "n_queries": 34,
+    "n_bootstrap": 10000,
+    "seed": 42
+  },
+  "H2": {
+    "description": "Prompt_RAG_Claude > BM25",
+    "system_a": "Prompt_RAG_Claude",
+    "system_b": "BM25",
+    "mean_a": 0.8894577016393801,
+    "mean_b": 0.8192949087326717,
+    "observed_diff": 0.07016279290670835,
+    "ci_95": [
+      0.01042543018757733,
+      0.13184403688233426
+    ],
+    "p_value": 0.0248,
+    "alpha": 0.05,
+    "alpha_bonferroni": 0.0125,
+    "verdict": "PARTIALLY SUPPORTED",
+    "metric": "ndcg_graded@10",
+    "n_queries": 34,
+    "n_bootstrap": 10000,
+    "seed": 42
+  },
+  "H3": {
+    "description": "Hybrid_RRF > FAISS_windowed_max",
+    "system_a": "Hybrid_RRF",
+    "system_b": "FAISS_windowed_max",
+    "mean_a": 0.8713922378003873,
+    "mean_b": 0.6852176406230696,
+    "observed_diff": 0.18617459717731777,
+    "ci_95": [
+      0.09542448345517451,
+      0.2677267588192094
+    ],
+    "p_value": 0.0,
+    "alpha": 0.05,
+    "alpha_bonferroni": 0.0125,
+    "verdict": "SUPPORTED",
+    "metric": "ndcg_graded@10",
+    "n_queries": 34,
+    "n_bootstrap": 10000,
+    "seed": 42
+  },
+  "H4": {
+    "description": "Prompt_RAG_Claude > Hybrid_RRF",
+    "system_a": "Prompt_RAG_Claude",
+    "system_b": "Hybrid_RRF",
+    "mean_a": 0.8894577016393801,
+    "mean_b": 0.8713922378003873,
+    "observed_diff": 0.018065463838992768,
+    "ci_95": [
+      -0.03795702701782194,
+      0.07722834409046889
+    ],
+    "p_value": 0.5353,
+    "alpha": 0.05,
+    "alpha_bonferroni": 0.0125,
+    "verdict": "NOT SUPPORTED (positive trend)",
+    "metric": "ndcg_graded@10",
+    "n_queries": 34,
+    "n_bootstrap": 10000,
+    "seed": 42
+  }
+}
