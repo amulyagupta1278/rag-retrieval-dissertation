@@ -1,0 +1,35 @@
+{
+  "execution_artifact_hash_contract": {
+    "config": null,
+    "evaluation_records": null,
+    "final_qrels": null,
+    "prompt": null,
+    "rankings": null,
+    "requests": null,
+    "responses": null,
+    "serialized_contexts": null
+  },
+  "execution_enabled": false,
+  "known_input_hashes": {
+    "bm25": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "faiss_windowed_max": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115",
+    "graph_v3_2": "68ad05ff4b600fa549f957b4bd44579af7e9d6addc2ddebff3f71a4584adc59a",
+    "hybrid_rrf": "6570030a1c12edb38ff5c4e33b5dedb5d2fa83a05aa9a01ecd768bcf4edce249",
+    "prompt_rag_claude": "e665aa4dc80b468a0fc2af06173ab0e6963786a578653c9a9083e6ffa6b1e04f",
+    "questions_r5": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b"
+  },
+  "owner_decisions_pending": [
+    "provider",
+    "model",
+    "context_depth",
+    "output_token_cap",
+    "trace_size",
+    "retry_policy",
+    "total_monetary_cap",
+    "evaluator_design"
+  ],
+  "panel_n": 170,
+  "schema_version": 1,
+  "status": "non_executable_draft_pending_phase6_and_owner_decisions"
+}
+

@@ -1,0 +1,26 @@
+{
+  "final_qrels": {
+    "path": null,
+    "sha256": null
+  },
+  "phase6": {
+    "agreement_report_exists": false,
+    "first_pass_structural_validation": false,
+    "human_regrade_complete": false,
+    "human_regrade_row_n": 0,
+    "unresolved_disagreement_n": null,
+    "unresolved_u_n": null
+  },
+  "phase6_retrieval_metrics": {
+    "path": null,
+    "sha256": null
+  },
+  "phase7_freeze_manifest": {
+    "path": null,
+    "sha256": null
+  },
+  "rankings": {},
+  "schema_version": 1,
+  "status": "blocked_pending_phase6_human_regrade_and_qrels"
+}
+
