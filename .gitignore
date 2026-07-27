@@ -28,3 +28,6 @@ outputs/
 # Large binary indexes
 indexes/baselines/
 releases/
+
+# stray zip temp artifacts (sandbox cannot unlink)
+runs/v2/**/zi[0-9A-Za-z]*
