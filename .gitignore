@@ -14,3 +14,17 @@ indexes/faiss/*.jsonl
 indexes/graphrag/*.gpickle
 **/__pycache__/
 **/*.pyc
+# LibreOffice / Excel session lock files
+.~lock.*#
+**/.~lock.*#
+
+# Backup files created during editing
+*.bak
+
+# Session-local Claude outputs and config
+outputs/
+.claude/
+
+# Large binary indexes
+indexes/baselines/
+releases/
