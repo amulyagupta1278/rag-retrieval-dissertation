@@ -1,0 +1,21 @@
+{
+  "active": {
+    "phase5_prompt_rag_rankings": "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/complete_primary_rankings.jsonl",
+    "phase5f_blind_pool": "runs/v2/phase5f_prompt_rag_pool/blind/provisional_all_systems_pool.jsonl",
+    "phase6_first_pass_workbook": "runs/v2/phase6_blind_judging_package/phase6_owner_judging_completed.xlsx",
+    "phase7": "offline scaffold only",
+    "phase8": "decision framework only"
+  },
+  "archived_or_historical": {
+    "gemini_failed_route": "archive/phase5_gemini_failed",
+    "invalid_graph_v1": "runs/v2/phase3_graph_invalid_v1",
+    "phase3_graph_v3_1": "runs/v2/phase3_graph_v3_1",
+    "phase4_pre_latency_correction": "runs/v2/phase4_hybrid_pre_latency_disclosure_correction",
+    "prompt_rag_claude_v1_failure": "runs/v2/phase5d_prompt_rag_claude_v1",
+    "prompt_rag_claude_v2": "runs/v2/phase5d_prompt_rag_claude_v2"
+  },
+  "deletions_performed": 0,
+  "schema_version": 1,
+  "status": "historical_failures_preserved"
+}
+

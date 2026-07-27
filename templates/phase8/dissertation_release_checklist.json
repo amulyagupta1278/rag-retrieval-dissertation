@@ -1,0 +1,17 @@
+{
+  "cost_latency": false,
+  "failures": false,
+  "final_tag_approval": false,
+  "frozen_benchmark": false,
+  "frozen_corpus": false,
+  "frozen_qrels": false,
+  "generation_results": false,
+  "limitations": false,
+  "readme_alignment": false,
+  "release_status": "not_ready",
+  "reproducibility": false,
+  "retrieval_results": false,
+  "statistics": false,
+  "system_configs": false
+}
+

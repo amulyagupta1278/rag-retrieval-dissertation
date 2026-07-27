@@ -1,0 +1,43 @@
+{
+  "corrective_notes": [
+    {
+      "artifact": "audits/phase6/freeze_manifest.json",
+      "historical_claim": "phase7_gate OPEN",
+      "current_treatment": "historical only; current Phase 7 gate is blocked pending authorized human regrade, adjudication, final qrels, and retrieval metrics"
+    },
+    {
+      "artifact": "docs/DISSERTATION_PHASE_PLAN_RECOVERED.md",
+      "historical_claim": "Phase 5D V2 trace is current next action",
+      "current_treatment": "stale historical planning text; Phase 5D V3 and Phase 5F are already frozen"
+    }
+  ],
+  "dependency_graph": [
+    {
+      "blocked": "Phase 6 adjudication",
+      "blocker": "Phase 6 human regrade"
+    },
+    {
+      "blocked": "final pooled qrels",
+      "blocker": "Phase 6 adjudication"
+    },
+    {
+      "blocked": "Phase 6 retrieval metrics",
+      "blocker": "final pooled qrels"
+    },
+    {
+      "blocked": "Phase 7 execution",
+      "blocker": "Phase 6 retrieval metrics and owner-frozen Phase 7 design"
+    },
+    {
+      "blocked": "Phase 8 final evidence work",
+      "blocker": "Phase 7 completion and owner final-scale decision"
+    }
+  ],
+  "phase6_complete": false,
+  "phase7_executed": false,
+  "phase8_executed": false,
+  "pilot_is_final_dissertation_evidence": false,
+  "schema_version": 1,
+  "status": "corrective_audit_preserves_historical_records"
+}
+
