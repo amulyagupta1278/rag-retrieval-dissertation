@@ -1,7 +1,0 @@
-Category,BM25,FAISS,GRAPHRAG
-entity_relation,1.0000,1.0000,1.0000
-exact_lookup,0.9444,0.6389,0.5407
-multi_hop,0.5500,0.6067,0.3333
-paraphrase,1.0000,1.0000,0.2667
-synthesis,0.6667,0.9167,0.9167
-terminology,1.0000,1.0000,0.6250

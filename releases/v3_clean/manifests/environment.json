@@ -1,0 +1,17 @@
+{
+  "embedding_execution_device": "runtime-selected; index bytes are checksum-verified",
+  "packages": {
+    "PyMuPDF": "1.27.2.3",
+    "PyYAML": "6.0.3",
+    "beautifulsoup4": "4.15.0",
+    "faiss-cpu": "1.14.3",
+    "networkx": "3.6.1",
+    "numpy": "2.4.6",
+    "python-docx": "1.2.0",
+    "rank-bm25": "0.2.2",
+    "sentence-transformers": "5.6.0",
+    "spacy": "3.8.14",
+    "torch": "2.12.1"
+  },
+  "python": "3.12.2"
+}

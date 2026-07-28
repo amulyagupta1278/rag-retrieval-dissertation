@@ -1,6 +1,0 @@
-Total judgements : 78
-Unique queries   : 28
-Gold (2)         : 45
-Relevant (1)     : 33
-Not relevant (0) : 0
-Avg gold per query: 1.61

@@ -1,0 +1,29 @@
+faiss:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  model_revision: "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  index_type: "IndexFlatL2"   # frozen clean baseline
+  similarity_metric: "l2"
+  top_k: 10
+  batch_size: 64
+  normalize_embeddings: false
+  query_prefix: ""
+  passage_prefix: ""
+  index_path: "indexes/faiss/faiss.index"
+  meta_path: "indexes/faiss/faiss_meta.jsonl"
+
+bm25:
+  backend: "rank_bm25"        # rank_bm25 (pure Python, no Java dep)
+  k1: 1.5
+  b: 0.75
+  top_k: 10
+  index_path: "indexes/bm25/bm25_index.pkl"
+
+graphrag:  # legacy machine key: Entity-Co-occurrence Graph Retrieval, not Microsoft GraphRAG
+  entity_model: "en_core_web_sm"   # spaCy model
+  relation_window: 2               # sentence window for co-occurrence edges
+  max_hop: 2                       # graph traversal depth
+  top_k: 10
+  min_entity_freq: 2               # prune rare entities
+  graph_path: "indexes/graphrag/graph.gpickle"
+  nodes_path: "indexes/graphrag/nodes.jsonl"
+  edges_path: "indexes/graphrag/edges.jsonl"

@@ -8,8 +8,8 @@ Research purpose
     compatible with trec_eval and pytrec_eval.
 
 Design choice
-    Binary relevance (0/1) is used for mid-semester; graded relevance (0/1/2)
-    can be added at the final semester when human annotation is available.
+    Binary relevance (0/1) is frozen for all dissertation releases. Human
+    pooling expands judgment coverage without changing metric semantics.
 
 Alternative approaches
     BEIR benchmark format uses separate queries.jsonl + qrels.tsv; this
@@ -20,8 +20,8 @@ Expected strengths
     directly supports offline retrieval evaluation separate from generation.
 
 Expected weaknesses
-    Binary relevance may understate the advantage of partial-relevance
-    retrievers; graded relevance would give a more nuanced nDCG@k signal.
+    Binary relevance cannot express partial support; changing to graded
+    relevance would invalidate direct comparison with historical releases.
 """
 
 from __future__ import annotations

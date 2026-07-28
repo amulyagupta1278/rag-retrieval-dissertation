@@ -11,6 +11,7 @@ import pytest
 
 from src.evaluation.metrics import (
     compute_mrr,
+    compute_mrr_at_k,
     compute_recall_at_k,
     compute_ndcg_at_k,
     compute_precision_at_k,
@@ -30,6 +31,12 @@ class TestMRR:
 
     def test_empty_gold(self):
         assert compute_mrr(["a", "b"], set()) == pytest.approx(0.0)
+
+    def test_cutoffs_differ_when_first_relevant_is_between_six_and_ten(self):
+        ranked = [f"chunk_{index}" for index in range(1, 11)]
+        gold = {"chunk_7"}
+        assert compute_mrr_at_k(ranked, gold, 5) == 0.0
+        assert compute_mrr_at_k(ranked, gold, 10) == pytest.approx(1 / 7)
 
 
 class TestRecallAtK:

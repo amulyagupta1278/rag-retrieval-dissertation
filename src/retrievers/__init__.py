@@ -26,6 +26,7 @@ from typing import TYPE_CHECKING, Any
 from .base_retriever import BaseRetriever, RetrievalResult, RetrievalRun
 from .bm25_retriever import BM25Retriever
 from .graphrag_retriever import GraphRAGRetriever
+from .structured_graph_retriever import StructuredMetadataGraphRetriever
 
 if TYPE_CHECKING:  # pragma: no cover - typing only, no runtime import
     from .faiss_retriever import FAISSRetriever
@@ -39,6 +40,7 @@ __all__ = [
     "FAISSRetriever",
     "BM25Retriever",
     "GraphRAGRetriever",
+    "StructuredMetadataGraphRetriever",
 ]
 
 

@@ -1,0 +1,19 @@
+{
+  "audit_status": "pending_human_review",
+  "questions": 60,
+  "selection": {
+    "entity_relation": 20,
+    "multi_hop": 20,
+    "paraphrase": 10,
+    "exact_match": 5,
+    "terminology_heavy": 5
+  },
+  "pooled_candidates": 414,
+  "automatic_failures": {
+    "gold_ids_resolve": 0,
+    "source_document_ids_resolve": 0,
+    "answer_exactly_supported": 0,
+    "two_chunks_for_cross_scheme": 0,
+    "question_intent_unique": 0
+  }
+}

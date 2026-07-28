@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pytest
 
+from src.ingestion.document_loader import extract_myscheme_text
 from src.ingestion.text_cleaner import TextCleaner, CleaningConfig
 from src.ingestion.chunker import Chunker
 from src.ingestion.metadata_enricher import MetadataEnricher
@@ -30,6 +31,46 @@ class TestTextCleaner:
         text = "A\n\n\n\n\nB"
         cleaned = cleaner.clean(text)
         assert "\n\n\n" not in cleaned
+
+
+class TestMySchemeProjection:
+    def test_structured_text_wins_over_markdown_copy(self):
+        payload = {
+            "core": {"en": {
+                "basicDetails": {"schemeName": "Test Scheme", "nodalMinistryName": {"label": "Test Ministry"}},
+                "schemeContent": {
+                    "briefDescription": [{"children": [{"text": "Canonical benefit text."}], "type": "paragraph"}],
+                    "detailedDescription": [], "benefits": [], "exclusions": [],
+                    "benefits_md": "DUPLICATE MARKDOWN COPY",
+                },
+                "eligibilityCriteria": {"eligibilityDescription": []},
+                "applicationProcess": [], "schemeDefinitions": [],
+            }},
+            "documents": {"en": {"documents_required": [], "documentsRequired_md": "MARKDOWN DOCUMENT COPY"}},
+            "faqs": {"en": {"faqs": []}},
+        }
+        text, title, metadata = extract_myscheme_text(payload)
+        assert title == "Test Scheme"
+        assert text.count("Canonical benefit text.") == 1
+        assert "MARKDOWN" not in text
+        assert metadata["json_projection"] == "myscheme_v1"
+
+    def test_faq_keeps_question_answer_pair_without_schema(self):
+        payload = {
+            "core": {"en": {
+                "basicDetails": {"schemeName": "Test Scheme"}, "schemeContent": {},
+                "eligibilityCriteria": {}, "applicationProcess": [], "schemeDefinitions": [],
+            }},
+            "faqs": {"en": {"faqs": [{
+                "question": "Who is eligible?",
+                "answer": [{"children": [{"text": "Eligible workers may apply."}], "type": "paragraph"}],
+                "answer_md": "Eligible workers may apply.",
+            }]}},
+        }
+        text, _, _ = extract_myscheme_text(payload)
+        assert "Question: Who is eligible?" in text
+        assert "Answer: Eligible workers may apply." in text
+        assert "answer_md" not in text and "children" not in text
 
 
 class TestChunker:
@@ -85,3 +126,12 @@ class TestMetadataEnricher:
         chunk = {"chunk_id": "c1", "doc_id": "d1", "text": "BM25 retrieval ranking recall precision", "word_count": 6}
         result = enricher.enrich(chunk)
         assert "information_retrieval" in result["domain_tags"]
+
+    def test_provenance_survives_enrichment(self):
+        provenance = {"document_id": "scheme_guideline", "ministry": "Ministry of Test"}
+        chunk = {
+            "chunk_id": "c1", "doc_id": "d1", "text": "Eligibility is defined by government.",
+            "word_count": 5, "extra_meta": provenance,
+        }
+        result = MetadataEnricher().enrich(chunk)
+        assert result["extra_meta"] == provenance

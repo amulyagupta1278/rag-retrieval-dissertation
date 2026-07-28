@@ -28,8 +28,8 @@ Expected weaknesses
 from __future__ import annotations
 
 import json
+import hashlib
 import logging
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -54,11 +54,21 @@ class CorpusVersioner:
         self.version = version
 
     def save_manifest(self, documents: list[dict]) -> Path:
-        """Write one JSONL line per document."""
+        """Write compact provenance records without duplicating corpus text."""
         manifest_path = self.output_dir / f"manifest_{self.version}.jsonl"
         with manifest_path.open("w", encoding="utf-8") as fh:
             for doc in documents:
-                fh.write(json.dumps(doc) + "\n")
+                record = {
+                    key: value for key, value in doc.items()
+                    if key not in {"raw_text", "cleaned_text"}
+                }
+                record["raw_text_sha256"] = hashlib.sha256(
+                    doc.get("raw_text", "").encode("utf-8")
+                ).hexdigest()
+                record["cleaned_text_sha256"] = hashlib.sha256(
+                    doc.get("cleaned_text", "").encode("utf-8")
+                ).hexdigest()
+                fh.write(json.dumps(record, sort_keys=True) + "\n")
         logger.info("Manifest written: %s (%d docs)", manifest_path, len(documents))
         return manifest_path
 
@@ -68,21 +78,35 @@ class CorpusVersioner:
         avg_length = total_tokens / max(len(documents), 1)
         source_types: dict[str, int] = {}
         domain_tags: dict[str, int] = {}
+        ministries: dict[str, int] = {}
+        document_types: dict[str, int] = {}
 
         for doc in documents:
             st = doc.get("source_type", "unknown")
             source_types[st] = source_types.get(st, 0) + 1
             dt = doc.get("domain_tag", "general")
             domain_tags[dt] = domain_tags.get(dt, 0) + 1
+            ministry = doc.get("ministry", "unknown")
+            ministries[ministry] = ministries.get(ministry, 0) + 1
+            document_type = doc.get("document_type", "unknown")
+            document_types[document_type] = document_types.get(document_type, 0) + 1
 
+        # A release profile must be byte-reproducible.  Use frozen acquisition
+        # provenance instead of the wall clock so two builds of the same raw
+        # snapshot produce identical output.
+        provenance_times = sorted(
+            str(doc.get("ingested_at")) for doc in documents if doc.get("ingested_at")
+        )
         profile: dict[str, Any] = {
             "corpus_version": self.version,
-            "created_at": datetime.now(timezone.utc).isoformat(),
+            "created_at": provenance_times[-1] if provenance_times else None,
             "num_documents": len(documents),
             "total_tokens_approx": total_tokens,
             "avg_doc_length_tokens": round(avg_length, 1),
             "source_type_distribution": source_types,
             "domain_tag_distribution": domain_tags,
+            "ministry_distribution": ministries,
+            "document_type_distribution": document_types,
         }
 
         profile_path = self.output_dir / f"corpus_profile_{self.version}.json"

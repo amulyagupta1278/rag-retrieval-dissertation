@@ -34,3 +34,4 @@ runs/v2/**/zi[0-9A-Za-z]*
 
 .DS_Store
 **/.DS_Store
+.DS_Store

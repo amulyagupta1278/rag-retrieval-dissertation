@@ -41,6 +41,7 @@ class MetricBundle:
     query_category: str           # "all" for aggregate
     num_queries: int
     mrr: float
+    mrr_at_k: dict[int, float]
     recall_at_k: dict[int, float]   # k → recall
     ndcg_at_k: dict[int, float]
     precision_at_k: dict[int, float]
@@ -53,6 +54,7 @@ class MetricBundle:
             "query_category": self.query_category,
             "num_queries": self.num_queries,
             "mrr": round(self.mrr, 4),
+            "mrr_at_k": {str(k): round(v, 4) for k, v in self.mrr_at_k.items()},
             "recall_at_k": {str(k): round(v, 4) for k, v in self.recall_at_k.items()},
             "ndcg_at_k": {str(k): round(v, 4) for k, v in self.ndcg_at_k.items()},
             "precision_at_k": {str(k): round(v, 4) for k, v in self.precision_at_k.items()},
@@ -71,6 +73,13 @@ def compute_mrr(ranked_ids: list[str], gold_ids: set[str]) -> float:
         if chunk_id in gold_ids:
             return 1.0 / rank
     return 0.0
+
+
+def compute_mrr_at_k(ranked_ids: list[str], gold_ids: set[str], k: int) -> float:
+    """Reciprocal rank after explicitly truncating the ranked list at *k*."""
+    if k < 0:
+        raise ValueError("k must be non-negative")
+    return compute_mrr(ranked_ids[:k], gold_ids)
 
 
 def compute_recall_at_k(ranked_ids: list[str], gold_ids: set[str], k: int) -> float:
@@ -140,6 +149,7 @@ def compute_all_metrics(
         Per-query latencies; if None extracted from run total_latency_ms.
     """
     mrr_scores: list[float] = []
+    mrr_at_k_scores: dict[int, list[float]] = {k: [] for k in k_values}
     recall_scores: dict[int, list[float]] = {k: [] for k in k_values}
     ndcg_scores: dict[int, list[float]] = {k: [] for k in k_values}
     prec_scores: dict[int, list[float]] = {k: [] for k in k_values}
@@ -147,11 +157,15 @@ def compute_all_metrics(
 
     for i, run in enumerate(runs):
         qid = run["query_id"]
-        gold_ids = set(qrels.get(qid, {}).keys())
+        gold_ids = {
+            chunk_id for chunk_id, relevance in qrels.get(qid, {}).items()
+            if relevance > 0
+        }
         ranked_ids = [r["chunk_id"] for r in run.get("results", [])]
 
         mrr_scores.append(compute_mrr(ranked_ids, gold_ids))
         for k in k_values:
+            mrr_at_k_scores[k].append(compute_mrr_at_k(ranked_ids, gold_ids, k))
             recall_scores[k].append(compute_recall_at_k(ranked_ids, gold_ids, k))
             ndcg_scores[k].append(compute_ndcg_at_k(ranked_ids, gold_ids, k))
             prec_scores[k].append(compute_precision_at_k(ranked_ids, gold_ids, k))
@@ -161,7 +175,7 @@ def compute_all_metrics(
         else:
             lat_list.append(run.get("total_latency_ms", 0.0))
 
-    n = max(len(runs), 1)
+    n = len(runs)
 
     def _avg(lst: list[float]) -> float:
         return sum(lst) / len(lst) if lst else 0.0
@@ -171,6 +185,7 @@ def compute_all_metrics(
         query_category=query_category,
         num_queries=n,
         mrr=_avg(mrr_scores),
+        mrr_at_k={k: _avg(mrr_at_k_scores[k]) for k in k_values},
         recall_at_k={k: _avg(recall_scores[k]) for k in k_values},
         ndcg_at_k={k: _avg(ndcg_scores[k]) for k in k_values},
         precision_at_k={k: _avg(prec_scores[k]) for k in k_values},

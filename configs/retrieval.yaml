@@ -1,9 +1,13 @@
 faiss:
   model_name: "sentence-transformers/all-MiniLM-L6-v2"
-  index_type: "IndexFlatIP"   # inner product after L2 normalisation → cosine
+  model_revision: "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  index_type: "IndexFlatL2"   # frozen clean baseline
+  similarity_metric: "l2"
   top_k: 10
   batch_size: 64
-  normalize_embeddings: true
+  normalize_embeddings: false
+  query_prefix: ""
+  passage_prefix: ""
   index_path: "indexes/faiss/faiss.index"
   meta_path: "indexes/faiss/faiss_meta.jsonl"
 
@@ -14,7 +18,7 @@ bm25:
   top_k: 10
   index_path: "indexes/bm25/bm25_index.pkl"
 
-graphrag:
+graphrag:  # legacy machine key: Entity-Co-occurrence Graph Retrieval, not Microsoft GraphRAG
   entity_model: "en_core_web_sm"   # spaCy model
   relation_window: 2               # sentence window for co-occurrence edges
   max_hop: 2                       # graph traversal depth
@@ -23,3 +27,11 @@ graphrag:
   graph_path: "indexes/graphrag/graph.gpickle"
   nodes_path: "indexes/graphrag/nodes.jsonl"
   edges_path: "indexes/graphrag/edges.jsonl"
+  # G0 historical behavior. G1-G5 enable these only in versioned model-selection runs.
+  seed_filtering: false
+  use_aliases: false
+  hub_penalty: false
+  dual_entity_coverage: false
+  lexical_fallback: false
+  max_seeds: 5
+  hop_decay: 0.5

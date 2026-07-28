@@ -1,0 +1,1182 @@
+{
+  "q_0001": {
+    "question": "What is Pradhan Mantri Shram Yogi Maan-dhan?",
+    "gold_evidence_ids": [
+      "chunk_21b9c982"
+    ],
+    "source_doc_ids": [
+      "doc_ce7a0db40c39"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0002": {
+    "question": "What is Pradhan Mantri Viksit Bharat Rozgar Yojana?",
+    "gold_evidence_ids": [
+      "chunk_e8ec211c"
+    ],
+    "source_doc_ids": [
+      "doc_5ea5fe03a8d6"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0003": {
+    "question": "What is Agri-Clinics And Agri-Business Centres Scheme?",
+    "gold_evidence_ids": [
+      "chunk_01052796"
+    ],
+    "source_doc_ids": [
+      "doc_9971978bc1b5"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0004": {
+    "question": "What is Internship Programme Of The Department Of Expenditure?",
+    "gold_evidence_ids": [
+      "chunk_c46dc09b"
+    ],
+    "source_doc_ids": [
+      "doc_22020bcc1151"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0005": {
+    "question": "What is National Mission on Natural Farming?",
+    "gold_evidence_ids": [
+      "chunk_6eb48a64"
+    ],
+    "source_doc_ids": [
+      "doc_e72166572312"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0006": {
+    "question": "What is Agricultural Marketing Infrastructure?",
+    "gold_evidence_ids": [
+      "chunk_f84a88e4"
+    ],
+    "source_doc_ids": [
+      "doc_bd9277ef7bc5"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0007": {
+    "question": "What is Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana?",
+    "gold_evidence_ids": [
+      "chunk_350d0c63"
+    ],
+    "source_doc_ids": [
+      "doc_fff6e8f259ad"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0008": {
+    "question": "What is ICAR Emeritus Professor?",
+    "gold_evidence_ids": [
+      "chunk_2142d5ea"
+    ],
+    "source_doc_ids": [
+      "doc_859321d9249e"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0009": {
+    "question": "What is AICTE e-Shodh Sindhu Scheme (eSS)?",
+    "gold_evidence_ids": [
+      "chunk_ea03a594"
+    ],
+    "source_doc_ids": [
+      "doc_e0e872e12b7f"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0010": {
+    "question": "What is Indira Gandhi National Widow Pension Scheme?",
+    "gold_evidence_ids": [
+      "chunk_7c2c2fca"
+    ],
+    "source_doc_ids": [
+      "doc_36f1bfbe2807"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0011": {
+    "question": "What is Dr Ambedkar Central Sector Scheme of Interest Subsidy on Educational Loans for Overseas Studies for Other Backward Classes (OBCs) and Economically Backward Classes (EBCs)?",
+    "gold_evidence_ids": [
+      "chunk_b4d17702"
+    ],
+    "source_doc_ids": [
+      "doc_680c89c819af"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0012": {
+    "question": "What is ICMR- Post Doctoral Fellowship?",
+    "gold_evidence_ids": [
+      "chunk_500bd740"
+    ],
+    "source_doc_ids": [
+      "doc_a6d3dd1ea32d"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0013": {
+    "question": "What is Credit Based Schemes For SC - Term Loan (TL)?",
+    "gold_evidence_ids": [
+      "chunk_88f50633"
+    ],
+    "source_doc_ids": [
+      "doc_7b296997271b"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0014": {
+    "question": "What is Kera Suraksha Insurance Scheme?",
+    "gold_evidence_ids": [
+      "chunk_1f7b25ec"
+    ],
+    "source_doc_ids": [
+      "doc_d2b7066f0f18"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0015": {
+    "question": "What is Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric?",
+    "gold_evidence_ids": [
+      "chunk_b6c4f3dd"
+    ],
+    "source_doc_ids": [
+      "doc_6de925439e30"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0016": {
+    "question": "What is PM Street Vendor\u2019s AtmaNirbhar Nidhi (PM SVANidhi)?",
+    "gold_evidence_ids": [
+      "chunk_c413d920"
+    ],
+    "source_doc_ids": [
+      "doc_6e58b5122f8d"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0017": {
+    "question": "What is Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India?",
+    "gold_evidence_ids": [
+      "chunk_1b4834d7"
+    ],
+    "source_doc_ids": [
+      "doc_149550455cfd"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0018": {
+    "question": "What is Pradhan Mantri Surakshit Matritva Abhiyan?",
+    "gold_evidence_ids": [
+      "chunk_4aa2356e"
+    ],
+    "source_doc_ids": [
+      "doc_1badc1f2eac9"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0019": {
+    "question": "What is Centrally Sponsored Scheme of Pre-matric Scholarship to Other Backward Classes (OBC) for Studies in India?",
+    "gold_evidence_ids": [
+      "chunk_6f2a5404"
+    ],
+    "source_doc_ids": [
+      "doc_68525e05dae4"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0020": {
+    "question": "What is Janani Shishu Suraksha Karyakram?",
+    "gold_evidence_ids": [
+      "chunk_e6ffa0ec"
+    ],
+    "source_doc_ids": [
+      "doc_3d49119874ce"
+    ],
+    "category": "exact_match",
+    "difficulty": "easy"
+  },
+  "q_0021": {
+    "question": "What does DGT stand for?",
+    "gold_evidence_ids": [
+      "chunk_6695d299"
+    ],
+    "source_doc_ids": [
+      "doc_0f7c3439a6be"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0022": {
+    "question": "What does PRI stand for?",
+    "gold_evidence_ids": [
+      "chunk_797e87b4"
+    ],
+    "source_doc_ids": [
+      "doc_ca4b29fe5546"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0023": {
+    "question": "What does ULB stand for?",
+    "gold_evidence_ids": [
+      "chunk_797e87b4"
+    ],
+    "source_doc_ids": [
+      "doc_ca4b29fe5546"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0024": {
+    "question": "What does NTA stand for?",
+    "gold_evidence_ids": [
+      "chunk_b3c66aec"
+    ],
+    "source_doc_ids": [
+      "doc_97925511123b"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0025": {
+    "question": "What does OCPS stand for?",
+    "gold_evidence_ids": [
+      "chunk_0d4167e3"
+    ],
+    "source_doc_ids": [
+      "doc_88358036b6bc"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0026": {
+    "question": "What does CCPS stand for?",
+    "gold_evidence_ids": [
+      "chunk_0d4167e3"
+    ],
+    "source_doc_ids": [
+      "doc_88358036b6bc"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0027": {
+    "question": "What does VLE stand for?",
+    "gold_evidence_ids": [
+      "chunk_c60d9085"
+    ],
+    "source_doc_ids": [
+      "doc_ce7a0db40c39"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0028": {
+    "question": "What does AMRUT stand for?",
+    "gold_evidence_ids": [
+      "chunk_d2fd6f4f"
+    ],
+    "source_doc_ids": [
+      "doc_ea0584096ec4"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0029": {
+    "question": "What does CSC stand for?",
+    "gold_evidence_ids": [
+      "chunk_80e18553"
+    ],
+    "source_doc_ids": [
+      "doc_fff6e8f259ad"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0030": {
+    "question": "What does SHA stand for?",
+    "gold_evidence_ids": [
+      "chunk_80e18553"
+    ],
+    "source_doc_ids": [
+      "doc_fff6e8f259ad"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0031": {
+    "question": "What does SCP stand for?",
+    "gold_evidence_ids": [
+      "chunk_1fd470c4"
+    ],
+    "source_doc_ids": [
+      "doc_ed7ea6c7a4f4"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0032": {
+    "question": "What does CFLD stand for?",
+    "gold_evidence_ids": [
+      "chunk_1fd470c4"
+    ],
+    "source_doc_ids": [
+      "doc_ed7ea6c7a4f4"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0033": {
+    "question": "What does AAY stand for?",
+    "gold_evidence_ids": [
+      "chunk_1405b417"
+    ],
+    "source_doc_ids": [
+      "doc_b80d6c9e565f"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0034": {
+    "question": "What does NFRS stand for?",
+    "gold_evidence_ids": [
+      "chunk_9a2e349c"
+    ],
+    "source_doc_ids": [
+      "doc_e72166572312"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0035": {
+    "question": "What does MSDE stand for?",
+    "gold_evidence_ids": [
+      "chunk_5374e2df"
+    ],
+    "source_doc_ids": [
+      "doc_0464d6c2afe9"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0036": {
+    "question": "What does NCSC stand for?",
+    "gold_evidence_ids": [
+      "chunk_9737d5f1"
+    ],
+    "source_doc_ids": [
+      "doc_2d4fa9d786fd"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0037": {
+    "question": "What does IP stand for?",
+    "gold_evidence_ids": [
+      "chunk_afb81ea4"
+    ],
+    "source_doc_ids": [
+      "doc_a2dfcc222072"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0038": {
+    "question": "What does PDB stand for?",
+    "gold_evidence_ids": [
+      "chunk_afb81ea4"
+    ],
+    "source_doc_ids": [
+      "doc_a2dfcc222072"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0039": {
+    "question": "What does AMI stand for?",
+    "gold_evidence_ids": [
+      "chunk_f84a88e4"
+    ],
+    "source_doc_ids": [
+      "doc_bd9277ef7bc5"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0040": {
+    "question": "What does ISAM stand for?",
+    "gold_evidence_ids": [
+      "chunk_f84a88e4"
+    ],
+    "source_doc_ids": [
+      "doc_bd9277ef7bc5"
+    ],
+    "category": "terminology_heavy",
+    "difficulty": "easy"
+  },
+  "q_0041": {
+    "question": "What detail does the source provide about Indirect Tax Internship Scheme In Central Board Of Indirect Taxes And Customs (CBIC)?",
+    "gold_evidence_ids": [
+      "chunk_57bae672"
+    ],
+    "source_doc_ids": [
+      "doc_3ebe75fa1ad3"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0042": {
+    "question": "What detail does the source provide about ICMR- Post Doctoral Fellowship?",
+    "gold_evidence_ids": [
+      "chunk_0ca97ff2"
+    ],
+    "source_doc_ids": [
+      "doc_a6d3dd1ea32d"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0043": {
+    "question": "What detail does the source provide about Pradhan Mantri Surakshit Matritva Abhiyan?",
+    "gold_evidence_ids": [
+      "chunk_853e6c34"
+    ],
+    "source_doc_ids": [
+      "doc_1badc1f2eac9"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0044": {
+    "question": "What detail does the source provide about PM Street Vendor\u2019s AtmaNirbhar Nidhi (PM SVANidhi)?",
+    "gold_evidence_ids": [
+      "chunk_bc263ab9"
+    ],
+    "source_doc_ids": [
+      "doc_6e58b5122f8d"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0045": {
+    "question": "What detail does the source provide about Flexible Memorandum of Understanding (Flexi-MoU) Scheme?",
+    "gold_evidence_ids": [
+      "chunk_6695d299"
+    ],
+    "source_doc_ids": [
+      "doc_0f7c3439a6be"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0046": {
+    "question": "What detail does the source provide about AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens?",
+    "gold_evidence_ids": [
+      "chunk_797e87b4"
+    ],
+    "source_doc_ids": [
+      "doc_ca4b29fe5546"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0047": {
+    "question": "What detail does the source provide about Pradhan Mantri Viksit Bharat Rozgar Yojana?",
+    "gold_evidence_ids": [
+      "chunk_2bd4ab57"
+    ],
+    "source_doc_ids": [
+      "doc_5ea5fe03a8d6"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0048": {
+    "question": "What detail does the source provide about Kisan Vikas Patra Scheme?",
+    "gold_evidence_ids": [
+      "chunk_460b3a34"
+    ],
+    "source_doc_ids": [
+      "doc_084c8d312d79"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0049": {
+    "question": "What detail does the source provide about Pradhan Mantri Shram Yogi Maan-dhan?",
+    "gold_evidence_ids": [
+      "chunk_21b9c982"
+    ],
+    "source_doc_ids": [
+      "doc_ce7a0db40c39"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0050": {
+    "question": "What detail does the source provide about ICAR Senior Research Fellowship For Post-Graduate Studies In Agricultural Sciences?",
+    "gold_evidence_ids": [
+      "chunk_b3c66aec"
+    ],
+    "source_doc_ids": [
+      "doc_97925511123b"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0051": {
+    "question": "What detail does the source provide about Centrally Sponsored Scheme for Implementation of the Protection of Civil Rights Act, 1955 and the Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989?",
+    "gold_evidence_ids": [
+      "chunk_caf67666"
+    ],
+    "source_doc_ids": [
+      "doc_33c2b35211f8"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0052": {
+    "question": "What detail does the source provide about Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India?",
+    "gold_evidence_ids": [
+      "chunk_ae032736"
+    ],
+    "source_doc_ids": [
+      "doc_149550455cfd"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0053": {
+    "question": "What detail does the source provide about Pradhan Mantri Adi Adarsh Gram Yojana (PMAAGY)?",
+    "gold_evidence_ids": [
+      "chunk_240fdb30"
+    ],
+    "source_doc_ids": [
+      "doc_5e4f1b3106d8"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0054": {
+    "question": "What detail does the source provide about Ambedkar Social Innovation and Incubation Mission (ASIIM)?",
+    "gold_evidence_ids": [
+      "chunk_0d4167e3"
+    ],
+    "source_doc_ids": [
+      "doc_88358036b6bc"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0055": {
+    "question": "What detail does the source provide about Agri-Clinics And Agri-Business Centres Scheme?",
+    "gold_evidence_ids": [
+      "chunk_01052796"
+    ],
+    "source_doc_ids": [
+      "doc_9971978bc1b5"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0056": {
+    "question": "What detail does the source provide about Rastriya Arogya Nidhi - Health Minister\u2019s Cancer Patient Fund?",
+    "gold_evidence_ids": [
+      "chunk_4b59643b"
+    ],
+    "source_doc_ids": [
+      "doc_14f766130f6d"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0057": {
+    "question": "What detail does the source provide about National Agriculture Market?",
+    "gold_evidence_ids": [
+      "chunk_0f3e3962"
+    ],
+    "source_doc_ids": [
+      "doc_ad676bdabfce"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0058": {
+    "question": "What detail does the source provide about Janani Suraksha Yojana (JSY)?",
+    "gold_evidence_ids": [
+      "chunk_f960c08a"
+    ],
+    "source_doc_ids": [
+      "doc_b20e0ce2bc2b"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0059": {
+    "question": "What detail does the source provide about National Savings (Monthly Income Account) Scheme?",
+    "gold_evidence_ids": [
+      "chunk_a0aa0796"
+    ],
+    "source_doc_ids": [
+      "doc_73ca242a2c21"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0060": {
+    "question": "What detail does the source provide about Atal Mission For Rejuvenation And Urban Transformation?",
+    "gold_evidence_ids": [
+      "chunk_d2fd6f4f"
+    ],
+    "source_doc_ids": [
+      "doc_ea0584096ec4"
+    ],
+    "category": "paraphrase",
+    "difficulty": "medium"
+  },
+  "q_0061": {
+    "question": "How are Indira Gandhi National Disability Pension Scheme and National Family Benefit Scheme related through below poverty line?",
+    "gold_evidence_ids": [
+      "chunk_a8bd837d",
+      "chunk_156ee666"
+    ],
+    "source_doc_ids": [
+      "doc_e2868118e0af",
+      "doc_7b3642ec1151"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0062": {
+    "question": "How are ICMR-Junior Research Fellowship and ICMR- Post Doctoral Fellowship related through ministry of health & family welfare?",
+    "gold_evidence_ids": [
+      "chunk_cabfbd36",
+      "chunk_500bd740"
+    ],
+    "source_doc_ids": [
+      "doc_7375f1616cee",
+      "doc_a6d3dd1ea32d"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0063": {
+    "question": "How are PM Janjati Adivasi Nyaya Maha Abhiyan (PM JANMAN) and Pradhan Mantri Janjatiya Vikas Mission (PMJVM) related through ministry of tribal affairs?",
+    "gold_evidence_ids": [
+      "chunk_0e5de080",
+      "chunk_34038ee8"
+    ],
+    "source_doc_ids": [
+      "doc_c0a1e7511e8a",
+      "doc_660723ff74a0"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0064": {
+    "question": "How are Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric and National Mission on Natural Farming related through direct benefit transfer?",
+    "gold_evidence_ids": [
+      "chunk_b6c4f3dd",
+      "chunk_2d20b8f5"
+    ],
+    "source_doc_ids": [
+      "doc_6de925439e30",
+      "doc_e72166572312"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0065": {
+    "question": "How are Mahatma Gandhi National Rural Employment Guarantee Act and Pradhan Mantri Awaas Yojana - Gramin related through ministry of rural development?",
+    "gold_evidence_ids": [
+      "chunk_1cfa1af6",
+      "chunk_0e4d9728"
+    ],
+    "source_doc_ids": [
+      "doc_61963411b818",
+      "doc_090a9730eab2"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0066": {
+    "question": "How are Janani Suraksha Yojana (JSY) and Pradhan Mantri Surakshit Matritva Abhiyan related through primary health centres?",
+    "gold_evidence_ids": [
+      "chunk_b327452d",
+      "chunk_741a68c2"
+    ],
+    "source_doc_ids": [
+      "doc_b20e0ce2bc2b",
+      "doc_1badc1f2eac9"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0067": {
+    "question": "How are Flexible Memorandum of Understanding (Flexi-MoU) Scheme and National Award to Teachers (For Excellence in Vocational Training and Entrepreneurship Development) related through ministry of skill development and entrepreneurship?",
+    "gold_evidence_ids": [
+      "chunk_88e1a46b",
+      "chunk_fa221204"
+    ],
+    "source_doc_ids": [
+      "doc_0f7c3439a6be",
+      "doc_23c327401c1c"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0068": {
+    "question": "How are Credit Enhancement Guarantee Scheme For The Scheduled Castes and National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) related through scheduled caste?",
+    "gold_evidence_ids": [
+      "chunk_20e6ecdb",
+      "chunk_c533457b"
+    ],
+    "source_doc_ids": [
+      "doc_888392279272",
+      "doc_2d4fa9d786fd"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0069": {
+    "question": "How are Mahatma Gandhi National Rural Employment Guarantee Act and National Food Security Mission NFSM related through gram panchayat?",
+    "gold_evidence_ids": [
+      "chunk_60a58ee0",
+      "chunk_6e7f3a05"
+    ],
+    "source_doc_ids": [
+      "doc_61963411b818",
+      "doc_ed7ea6c7a4f4"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0070": {
+    "question": "How are Kisan Vikas Patra Scheme and National Savings Certificates (VIII-Issue) Scheme related through department of economic affairs?",
+    "gold_evidence_ids": [
+      "chunk_03b0a3fb",
+      "chunk_25d0339a"
+    ],
+    "source_doc_ids": [
+      "doc_084c8d312d79",
+      "doc_157e35020373"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0071": {
+    "question": "How are Kisan Credit Card and Micro Finance Scheme of NMDFC related through self help groups?",
+    "gold_evidence_ids": [
+      "chunk_f71ef05b",
+      "chunk_4f0c4bf2"
+    ],
+    "source_doc_ids": [
+      "doc_9ac88e156c40",
+      "doc_ba4f00960a99"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0072": {
+    "question": "How are Coaching Schemes For Sc/st/obc (non-creamy Layer) & Minority Students For Universities and National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) related through scheduled tribe?",
+    "gold_evidence_ids": [
+      "chunk_0960663e",
+      "chunk_5865bba1"
+    ],
+    "source_doc_ids": [
+      "doc_85c38cc5e0eb",
+      "doc_2d4fa9d786fd"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0073": {
+    "question": "How are Construction of Hostels for OBC Boys and Girls and Micro Finance Scheme of NMDFC related through backward classes?",
+    "gold_evidence_ids": [
+      "chunk_01ca802c",
+      "chunk_80d73df5"
+    ],
+    "source_doc_ids": [
+      "doc_007da74871e7",
+      "doc_ba4f00960a99"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0074": {
+    "question": "How are NSAP - Indira Gandhi National Old Age Pension Scheme and Pradhan Mantri Awaas Yojana - Gramin related through the persons with disabilities act?",
+    "gold_evidence_ids": [
+      "chunk_325dc428",
+      "chunk_68737d67"
+    ],
+    "source_doc_ids": [
+      "doc_7bed074e0938",
+      "doc_090a9730eab2"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0075": {
+    "question": "How are PM Janjati Adivasi Nyaya Maha Abhiyan (PM JANMAN) and Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India related through ministry of tribal affairs?",
+    "gold_evidence_ids": [
+      "chunk_0e5de080",
+      "chunk_1b4834d7"
+    ],
+    "source_doc_ids": [
+      "doc_c0a1e7511e8a",
+      "doc_149550455cfd"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0076": {
+    "question": "How are Kera Suraksha Insurance Scheme and National Agriculture Market related through ministry of agriculture and farmers welfare?",
+    "gold_evidence_ids": [
+      "chunk_1f7b25ec",
+      "chunk_f7b15eae"
+    ],
+    "source_doc_ids": [
+      "doc_d2b7066f0f18",
+      "doc_ad676bdabfce"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0077": {
+    "question": "How are Centrally Sponsored Scheme of Pre-matric Scholarship to Other Backward Classes (OBC) for Studies in India and Disha - Early Intervention and School Readiness Scheme related through ministry of social justice and empowerment?",
+    "gold_evidence_ids": [
+      "chunk_6f2a5404",
+      "chunk_16e809da"
+    ],
+    "source_doc_ids": [
+      "doc_68525e05dae4",
+      "doc_1d4b308ea354"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0078": {
+    "question": "How are Central Sector Scheme for Rehabilitation of Bonded Labourer and Labour Welfare Scheme (Health) related through ministry of labour and employment?",
+    "gold_evidence_ids": [
+      "chunk_7b5f4825",
+      "chunk_a6769b50"
+    ],
+    "source_doc_ids": [
+      "doc_fe8f51135aa5",
+      "doc_0e6dc3052976"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0079": {
+    "question": "How are Flexible Memorandum of Understanding (Flexi-MoU) Scheme and National Apprenticeship Promotion Scheme-2 related through ministry of skill development and entrepreneurship?",
+    "gold_evidence_ids": [
+      "chunk_88e1a46b",
+      "chunk_5374e2df"
+    ],
+    "source_doc_ids": [
+      "doc_0f7c3439a6be",
+      "doc_0464d6c2afe9"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0080": {
+    "question": "How are National Career Service Centers For SC/STs (erstwhile Coaching-cum-Guidance Centre for SC/STs) and Pradhan Mantri Adi Adarsh Gram Yojana (PMAAGY) related through scheduled tribe?",
+    "gold_evidence_ids": [
+      "chunk_5865bba1",
+      "chunk_ca2455ba"
+    ],
+    "source_doc_ids": [
+      "doc_2d4fa9d786fd",
+      "doc_5e4f1b3106d8"
+    ],
+    "category": "entity_relation",
+    "difficulty": "medium"
+  },
+  "q_0081": {
+    "question": "What combined evidence connects Indira Gandhi National Disability Pension Scheme and Indira Gandhi National Widow Pension Scheme through the gram panchayat / block office?",
+    "gold_evidence_ids": [
+      "chunk_db96f02b",
+      "chunk_eabef128"
+    ],
+    "source_doc_ids": [
+      "doc_e2868118e0af",
+      "doc_36f1bfbe2807"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0082": {
+    "question": "What combined evidence connects IVRI Institute Scholarship For M.V.Sc. And Ph.D. and Kera Suraksha Insurance Scheme through ministry of agriculture and farmers welfare?",
+    "gold_evidence_ids": [
+      "chunk_0fcc4968",
+      "chunk_1f7b25ec"
+    ],
+    "source_doc_ids": [
+      "doc_81c9b51d4ac9",
+      "doc_d2b7066f0f18"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0083": {
+    "question": "What combined evidence connects Assistance to Voluntary Organizations Working for Welfare of OBCs and AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens through the societies registration act?",
+    "gold_evidence_ids": [
+      "chunk_df3a10a0",
+      "chunk_1b2e93a0"
+    ],
+    "source_doc_ids": [
+      "doc_b8122bedade0",
+      "doc_ca4b29fe5546"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0084": {
+    "question": "What combined evidence connects Central Sector Scheme for Rehabilitation of Bonded Labourer and National Pension Scheme For Traders And Self Employed Persons through ministry of labour and employment?",
+    "gold_evidence_ids": [
+      "chunk_7b5f4825",
+      "chunk_14a1b55b"
+    ],
+    "source_doc_ids": [
+      "doc_fe8f51135aa5",
+      "doc_c26433c4825a"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0085": {
+    "question": "What combined evidence connects Ambedkar Social Innovation and Incubation Mission (ASIIM) and Construction of Hostels for OBC Boys and Girls through ministry of social justice and empowerment?",
+    "gold_evidence_ids": [
+      "chunk_017b6dc7",
+      "chunk_054b5d2b"
+    ],
+    "source_doc_ids": [
+      "doc_88358036b6bc",
+      "doc_007da74871e7"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0086": {
+    "question": "What combined evidence connects Disha - Early Intervention and School Readiness Scheme and NSAP - Indira Gandhi National Old Age Pension Scheme through national trust?",
+    "gold_evidence_ids": [
+      "chunk_b2f14a99",
+      "chunk_325dc428"
+    ],
+    "source_doc_ids": [
+      "doc_1d4b308ea354",
+      "doc_7bed074e0938"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0087": {
+    "question": "What combined evidence connects ICAR - Post Matric Scholarship for Scheduled Caste / Scheduled Tribes Candidates and IVRI Institute Scholarship For M.V.Sc. And Ph.D. through indian council of agricultural research?",
+    "gold_evidence_ids": [
+      "chunk_84c40902",
+      "chunk_0fcc4968"
+    ],
+    "source_doc_ids": [
+      "doc_05a7c19c33c7",
+      "doc_81c9b51d4ac9"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0088": {
+    "question": "What combined evidence connects Agricultural Extension and MANAGE Internship Programme through the national institute of agricultural extension management?",
+    "gold_evidence_ids": [
+      "chunk_8ba68751",
+      "chunk_76feb74d"
+    ],
+    "source_doc_ids": [
+      "doc_99ae16f43997",
+      "doc_abe9f2145783"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0089": {
+    "question": "What combined evidence connects Deen Dayal Disabled Rehabilitation Scheme and Post Matric Scholarship Scheme For The Students Belonging To Scheduled Tribe For Studies In India through the state/union territory?",
+    "gold_evidence_ids": [
+      "chunk_6188b64d",
+      "chunk_dbc5cc45"
+    ],
+    "source_doc_ids": [
+      "doc_dab3782f0a5e",
+      "doc_149550455cfd"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0090": {
+    "question": "What combined evidence connects Internship Scheme Of The Department Of Economic Affairs and Kisan Vikas Patra Scheme through ministry of finance?",
+    "gold_evidence_ids": [
+      "chunk_02a282c8",
+      "chunk_03b0a3fb"
+    ],
+    "source_doc_ids": [
+      "doc_97bd30334fde",
+      "doc_084c8d312d79"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0091": {
+    "question": "What combined evidence connects Disha - Early Intervention and School Readiness Scheme and Divyangjan Kaushal Yojana through department of empowerment of persons with disabilities?",
+    "gold_evidence_ids": [
+      "chunk_16e809da",
+      "chunk_fedff100"
+    ],
+    "source_doc_ids": [
+      "doc_1d4b308ea354",
+      "doc_f5bcc3ba20f4"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0092": {
+    "question": "What combined evidence connects Coconut Palm Insurance Scheme and Kera Suraksha Insurance Scheme through coconut development board?",
+    "gold_evidence_ids": [
+      "chunk_1ec7678d",
+      "chunk_1f7b25ec"
+    ],
+    "source_doc_ids": [
+      "doc_b04e3412e5e8",
+      "doc_d2b7066f0f18"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0093": {
+    "question": "What combined evidence connects Indira Gandhi National Disability Pension Scheme and NSAP - Indira Gandhi National Old Age Pension Scheme through the national social assistance programme?",
+    "gold_evidence_ids": [
+      "chunk_a8bd837d",
+      "chunk_2d5e6db8"
+    ],
+    "source_doc_ids": [
+      "doc_e2868118e0af",
+      "doc_7bed074e0938"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0094": {
+    "question": "What combined evidence connects Janani Suraksha Yojana (JSY) and Mahatma Gandhi National Rural Employment Guarantee Act through below poverty line?",
+    "gold_evidence_ids": [
+      "chunk_6e01dd8c",
+      "chunk_60a58ee0"
+    ],
+    "source_doc_ids": [
+      "doc_b20e0ce2bc2b",
+      "doc_61963411b818"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0095": {
+    "question": "What combined evidence connects Long Term Fellowship under the Human Resource Development Programme for Health Research and Pradhan Mantri Surakshit Matritva Abhiyan through ministry of health family welfare?",
+    "gold_evidence_ids": [
+      "chunk_d6f1192f",
+      "chunk_066bad59"
+    ],
+    "source_doc_ids": [
+      "doc_51c9d5678f36",
+      "doc_1badc1f2eac9"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0096": {
+    "question": "What combined evidence connects Financial Assistance for Education to the Wards of Beedi/Cine/IOMC/LSDM Workers \u2013 Pre & Post-Matric and National Apprenticeship Promotion Scheme-2 through direct benefit transfer?",
+    "gold_evidence_ids": [
+      "chunk_b6c4f3dd",
+      "chunk_7003ef34"
+    ],
+    "source_doc_ids": [
+      "doc_6de925439e30",
+      "doc_0464d6c2afe9"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0097": {
+    "question": "What combined evidence connects Deen Dayal Upadhyay Grameen Kaushalya Yojana and Deendayal Antyodaya Yojana - National Rural Livelihoods Mission through ministry of rural development?",
+    "gold_evidence_ids": [
+      "chunk_a4fac6b7",
+      "chunk_c6fb1d76"
+    ],
+    "source_doc_ids": [
+      "doc_89d7cd2418b9",
+      "doc_13ad6562bbdb"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0098": {
+    "question": "What combined evidence connects Coaching Schemes For Sc/st/obc (non-creamy Layer) & Minority Students For Universities and Credit Enhancement Guarantee Scheme For The Scheduled Castes through scheduled caste?",
+    "gold_evidence_ids": [
+      "chunk_0960663e",
+      "chunk_20e6ecdb"
+    ],
+    "source_doc_ids": [
+      "doc_85c38cc5e0eb",
+      "doc_888392279272"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0099": {
+    "question": "What combined evidence connects AVYAY - National Action Plan for Senior Citizens: Health and Shelter for Senior Citizens and Micro Finance Scheme of NMDFC through self help groups?",
+    "gold_evidence_ids": [
+      "chunk_1b2e93a0",
+      "chunk_4f0c4bf2"
+    ],
+    "source_doc_ids": [
+      "doc_ca4b29fe5546",
+      "doc_ba4f00960a99"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  },
+  "q_0100": {
+    "question": "What combined evidence connects Assistance to Voluntary Organizations Working for Welfare of OBCs and Deen Dayal Disabled Rehabilitation Scheme through the societies registration act?",
+    "gold_evidence_ids": [
+      "chunk_df3a10a0",
+      "chunk_6188b64d"
+    ],
+    "source_doc_ids": [
+      "doc_b8122bedade0",
+      "doc_dab3782f0a5e"
+    ],
+    "category": "multi_hop",
+    "difficulty": "hard"
+  }
+}

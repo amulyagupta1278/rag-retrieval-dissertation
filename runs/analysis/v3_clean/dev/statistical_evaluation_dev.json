@@ -1,0 +1,412 @@
+{
+  "confidence_intervals": {
+    "bm25": {
+      "mrr_at_10": {
+        "ci95_high": 0.7488095238095238,
+        "ci95_low": 0.4279761904761905,
+        "mean": 0.5879761904761904,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "mrr_at_5": {
+        "ci95_high": 0.745,
+        "ci95_low": 0.41583333333333333,
+        "mean": 0.5808333333333333,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "ndcg_at_10": {
+        "ci95_high": 0.7452007329549256,
+        "ci95_low": 0.49377802378443636,
+        "mean": 0.622378067682877,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_10": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.725,
+        "mean": 0.875,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_5": {
+        "ci95_high": 0.925,
+        "ci95_low": 0.6,
+        "mean": 0.775,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      }
+    },
+    "entity_graph": {
+      "mrr_at_10": {
+        "ci95_high": 0.3192857142857143,
+        "ci95_low": 0.047619047619047616,
+        "mean": 0.17047619047619048,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "mrr_at_5": {
+        "ci95_high": 0.3,
+        "ci95_low": 0.025,
+        "mean": 0.15,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "ndcg_at_10": {
+        "ci95_high": 0.3369086559605032,
+        "ci95_low": 0.061108247919724266,
+        "mean": 0.18648186107652687,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_10": {
+        "ci95_high": 0.45,
+        "ci95_low": 0.1,
+        "mean": 0.275,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_5": {
+        "ci95_high": 0.35,
+        "ci95_low": 0.025,
+        "mean": 0.175,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      }
+    },
+    "faiss": {
+      "mrr_at_10": {
+        "ci95_high": 0.5222291666666666,
+        "ci95_low": 0.2013888888888889,
+        "mean": 0.35305555555555557,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "mrr_at_5": {
+        "ci95_high": 0.5125,
+        "ci95_low": 0.1825,
+        "mean": 0.33916666666666667,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "ndcg_at_10": {
+        "ci95_high": 0.5486632005853527,
+        "ci95_low": 0.25266893059467765,
+        "mean": 0.39785607116771854,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_10": {
+        "ci95_high": 0.8,
+        "ci95_low": 0.425,
+        "mean": 0.625,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      },
+      "recall_at_5": {
+        "ci95_high": 0.7,
+        "ci95_low": 0.3,
+        "mean": 0.5,
+        "num_queries": 20,
+        "samples": 10000,
+        "seed": 42
+      }
+    }
+  },
+  "paired_comparisons": {
+    "bm25_minus_entity_graph": {
+      "mrr_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.4175,
+          "ci95_high": 0.6321428571428571,
+          "ci95_low": 0.1928482142857143,
+          "mean_difference": 0.4175,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.4175,
+          "p_value": 0.0034996500349965005,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "mrr_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.43083333333333335,
+          "ci95_high": 0.6550208333333332,
+          "ci95_low": 0.19916666666666666,
+          "mean_difference": 0.43083333333333335,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.43083333333333335,
+          "p_value": 0.0033996600339966003,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "ndcg_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.43589620660635015,
+          "ci95_high": 0.6266503527158427,
+          "ci95_low": 0.23514120859077373,
+          "mean_difference": 0.43589620660635015,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.43589620660635015,
+          "p_value": 0.0007999200079992001,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.6,
+          "ci95_high": 0.8,
+          "ci95_low": 0.4,
+          "mean_difference": 0.6,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.6,
+          "p_value": 0.00019998000199980003,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.6,
+          "ci95_high": 0.8,
+          "ci95_low": 0.4,
+          "mean_difference": 0.6,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.6,
+          "p_value": 0.00019998000199980003,
+          "samples": 10000,
+          "seed": 42
+        }
+      }
+    },
+    "bm25_minus_faiss": {
+      "mrr_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.23492063492063492,
+          "ci95_high": 0.3883333333333333,
+          "ci95_low": 0.08665773809523811,
+          "mean_difference": 0.23492063492063492,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.23492063492063492,
+          "p_value": 0.008999100089991,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "mrr_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.24166666666666664,
+          "ci95_high": 0.4025,
+          "ci95_low": 0.0875,
+          "mean_difference": 0.24166666666666664,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.24166666666666664,
+          "p_value": 0.007999200079992,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "ndcg_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.22452199651515842,
+          "ci95_high": 0.34526529960972835,
+          "ci95_low": 0.10984145456234264,
+          "mean_difference": 0.22452199651515842,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.22452199651515842,
+          "p_value": 0.001999800019998,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.25,
+          "ci95_high": 0.45,
+          "ci95_low": 0.1,
+          "mean_difference": 0.25,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.25,
+          "p_value": 0.0314968503149685,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.275,
+          "ci95_high": 0.5,
+          "ci95_low": 0.075,
+          "mean_difference": 0.275,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.275,
+          "p_value": 0.029497050294970503,
+          "samples": 10000,
+          "seed": 42
+        }
+      }
+    },
+    "entity_graph_minus_faiss": {
+      "mrr_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.18257936507936506,
+          "ci95_high": 0.018818452380952245,
+          "ci95_low": -0.37786210317460317,
+          "mean_difference": -0.18257936507936506,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.18257936507936506,
+          "p_value": 0.09479052094790522,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "mrr_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.18916666666666665,
+          "ci95_high": 0.020833333333333336,
+          "ci95_low": -0.4,
+          "mean_difference": -0.18916666666666665,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.18916666666666665,
+          "p_value": 0.10628937106289371,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "ndcg_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.21137421009119167,
+          "ci95_high": -0.018816337315448333,
+          "ci95_low": -0.38961856869593714,
+          "mean_difference": -0.21137421009119167,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.21137421009119167,
+          "p_value": 0.042995700429957005,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_10": {
+        "bootstrap": {
+          "absolute_effect_size": 0.35,
+          "ci95_high": -0.125,
+          "ci95_low": -0.575,
+          "mean_difference": -0.35,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.35,
+          "p_value": 0.017198280171982803,
+          "samples": 10000,
+          "seed": 42
+        }
+      },
+      "recall_at_5": {
+        "bootstrap": {
+          "absolute_effect_size": 0.325,
+          "ci95_high": -0.1,
+          "ci95_low": -0.55,
+          "mean_difference": -0.325,
+          "num_queries": 20,
+          "samples": 10000,
+          "seed": 42
+        },
+        "randomization": {
+          "num_queries": 20,
+          "observed_absolute_difference": 0.325,
+          "p_value": 0.027697230276972302,
+          "samples": 10000,
+          "seed": 42
+        }
+      }
+    }
+  },
+  "query_count": 20,
+  "samples": 10000,
+  "seed": 42,
+  "split": "dev"
+}

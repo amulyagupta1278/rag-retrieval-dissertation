@@ -1,0 +1,168 @@
+{
+  "run_name": "bm25_top5_k11.5_b0.75",
+  "generated_at": "2026-06-19T19:03:36.995677+00:00",
+  "config": {
+    "retriever": "bm25",
+    "top_k": 5,
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "metrics": [
+    {
+      "retriever": "bm25",
+      "query_category": "all",
+      "num_queries": 5,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.08,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "exact_match",
+      "num_queries": 1,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.12,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "terminology_heavy",
+      "num_queries": 1,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.05,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "paraphrase",
+      "num_queries": 1,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.08,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "entity_relation",
+      "num_queries": 1,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.07,
+      "extra": {}
+    },
+    {
+      "retriever": "bm25",
+      "query_category": "multi_hop",
+      "num_queries": 1,
+      "mrr": 0.0,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0
+      },
+      "avg_latency_ms": 0.07,
+      "extra": {}
+    }
+  ]
+}

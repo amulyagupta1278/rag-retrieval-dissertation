@@ -1,5 +1,6 @@
 from .metrics import (
     compute_mrr,
+    compute_mrr_at_k,
     compute_recall_at_k,
     compute_ndcg_at_k,
     compute_precision_at_k,
@@ -11,6 +12,7 @@ from .report_generator import ReportGenerator
 
 __all__ = [
     "compute_mrr",
+    "compute_mrr_at_k",
     "compute_recall_at_k",
     "compute_ndcg_at_k",
     "compute_precision_at_k",

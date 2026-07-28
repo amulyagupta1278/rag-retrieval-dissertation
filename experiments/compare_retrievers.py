@@ -35,6 +35,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--run-dir", default="runs/retrieval")
     p.add_argument("--qrels", default="data/qrels/qrels.tsv")
     p.add_argument("--query-categories", default="data/queries/query_categories.json")
+    p.add_argument("--qa-dataset", default="data/queries/qa_dataset.jsonl")
+    p.add_argument("--chunks", default="data/chunks/chunks.jsonl")
     p.add_argument("--output-dir", default="runs/metrics")
     p.add_argument("--reports-dir", default="runs/reports")
     p.add_argument("--log-level", default="INFO")
@@ -85,6 +87,8 @@ def main() -> None:
     evaluator = RetrievalEvaluator(
         qrels_path=qrels_path,
         query_categories_path=cat_path if cat_path.exists() else None,
+        qa_dataset_path=args.qa_dataset,
+        chunks_path=args.chunks,
     )
 
     all_bundles: list[MetricBundle] = []
@@ -105,7 +109,7 @@ def main() -> None:
     md_path = reporter.generate(
         all_bundles,
         run_name="comparison_all_retrievers",
-        config={"run_files": [str(f) for f in run_files]},
+        config={"run_files": [f.name for f in run_files]},
     )
     logger.info("Comparison report → %s", md_path)
 
@@ -115,7 +119,7 @@ def main() -> None:
     results_json_path.write_text(
         json.dumps(
             {
-                "run_files": [str(f) for f in run_files],
+                "run_files": [f.name for f in run_files],
                 "metrics": [b.to_dict() for b in all_bundles],
             },
             indent=2,

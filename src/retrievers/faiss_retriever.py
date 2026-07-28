@@ -2,13 +2,12 @@
 FAISS Dense Retriever — Retrieval Layer
 =========================================
 Research purpose
-    Dense retrieval is the de-facto default in modern RAG pipelines.
-    Including it as a controlled baseline allows the dissertation to answer
-    H2: "Dense retrieval performs strongly on semantically paraphrased
-    questions where lexical overlap is weak."
+    Dense retrieval is the de-facto default in modern RAG pipelines and serves
+    as the controlled dense baseline. Tests H2 — canonical definition in
+    README.md §Canonical Hypotheses (H1–H5).
 
 Design choice
-    SentenceTransformer embeddings + FAISS IndexFlatL2 (exact L2-based search).
+    SentenceTransformer embeddings + configurable exact L2/cosine search.
     IndexFlatL2 is exact (not approximate) at dissertation scale, so ANN error
     is not a confound. The index and metadata are saved to disk so the
     expensive embedding pass runs once and retrieval experiments replay cheaply.
@@ -25,7 +24,7 @@ Expected strengths
 Expected weaknesses
     Requires embedding model download (~90 MB). Underperforms on queries
     requiring exact terminology or explicit relational structure (motivating
-    the BM25 and GraphRAG baselines).
+    the BM25 and entity-co-occurrence graph baselines).
 """
 
 from __future__ import annotations
@@ -33,6 +32,7 @@ from __future__ import annotations
 import json
 import logging
 import time
+import importlib.metadata
 from pathlib import Path
 from typing import Optional
 
@@ -46,8 +46,16 @@ except ImportError:
 from sentence_transformers import SentenceTransformer
 
 from .base_retriever import BaseRetriever, RetrievalResult
+from ..utils.artifact_provenance import chunk_provenance, stable_json_hash, validate_chunk_provenance, validate_config_hash
 
 logger = logging.getLogger(__name__)
+
+
+def _package_version(name: str) -> str | None:
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
 
 
 class FAISSRetriever(BaseRetriever):
@@ -59,7 +67,7 @@ class FAISSRetriever(BaseRetriever):
     index_dir : Path | str
         Directory where index, config, and chunk metadata are stored.
     chunks_path : Path | str
-        Path to chunks_v1.jsonl.
+        Path to the explicit corpus chunks JSONL.
     model_name : str
         HuggingFace SentenceTransformer model identifier.
     """
@@ -69,8 +77,13 @@ class FAISSRetriever(BaseRetriever):
     def __init__(
         self,
         index_dir: Path | str = "indexes/faiss",
-        chunks_path: Path | str = "data/chunks/chunks_v1.jsonl",
+        chunks_path: Path | str = "data/chunks/chunks.jsonl",
         model_name: str = "all-MiniLM-L6-v2",
+        similarity_metric: str = "l2",
+        normalize_embeddings: bool = False,
+        query_prefix: str = "",
+        passage_prefix: str = "",
+        model_revision: str | None = None,
     ) -> None:
         if faiss is None:
             raise ImportError("faiss-cpu not installed. Run: pip install faiss-cpu")
@@ -78,14 +91,25 @@ class FAISSRetriever(BaseRetriever):
         self.index_dir = Path(index_dir)
         self.chunks_path = Path(chunks_path)
         self.model_name = model_name
+        if similarity_metric not in {"l2", "cosine"}:
+            raise ValueError("similarity_metric must be 'l2' or 'cosine'")
+        if similarity_metric == "cosine" and not normalize_embeddings:
+            raise ValueError("cosine similarity requires normalized embeddings")
+        self.similarity_metric = similarity_metric
+        self.normalize_embeddings = normalize_embeddings
+        self.query_prefix = query_prefix
+        self.passage_prefix = passage_prefix
+        self.model_revision = model_revision
 
         self.index_dir.mkdir(parents=True, exist_ok=True)
 
         self.model: Optional[SentenceTransformer] = None
-        self.index: Optional[faiss.IndexFlatL2] = None
+        self.index: Optional[object] = None
         self.chunk_ids: list[str] = []
         self.chunk_texts: dict[str, str] = {}
         self.chunk_docs: dict[str, str] = {}
+        self.index_config: dict = {}
+        self.provenance: dict = {}
 
     def build_index(self, chunks: list[dict]) -> None:
         """
@@ -100,18 +124,21 @@ class FAISSRetriever(BaseRetriever):
 
         # Load embedding model
         logger.info(f"Loading SentenceTransformer model: {self.model_name}")
-        self.model = SentenceTransformer(self.model_name)
-        embedding_dim = self.model.get_sentence_embedding_dimension()
+        model_kwargs = {"revision": self.model_revision} if self.model_revision else {}
+        self.model = SentenceTransformer(self.model_name, **model_kwargs)
+        embedding_dim = self.model.get_embedding_dimension()
 
         # Encode all chunks
         logger.info("Encoding chunk texts...")
-        texts = [chunk["text"] for chunk in chunks]
-        embeddings = self.model.encode(texts, show_progress_bar=True, normalize_embeddings=False)
+        texts = [self.passage_prefix + chunk["text"] for chunk in chunks]
+        embeddings = self.model.encode(
+            texts, show_progress_bar=True, normalize_embeddings=self.normalize_embeddings,
+        )
         embeddings = np.array(embeddings, dtype=np.float32)
 
-        # Build index (using L2 for exact similarity)
-        logger.info(f"Building IndexFlatL2 (dim={embedding_dim})...")
-        self.index = faiss.IndexFlatL2(embedding_dim)
+        index_type = "IndexFlatIP" if self.similarity_metric == "cosine" else "IndexFlatL2"
+        logger.info("Building %s (dim=%d)...", index_type, embedding_dim)
+        self.index = faiss.IndexFlatIP(embedding_dim) if self.similarity_metric == "cosine" else faiss.IndexFlatL2(embedding_dim)
         self.index.add(embeddings)
 
         # Store chunk metadata
@@ -126,14 +153,29 @@ class FAISSRetriever(BaseRetriever):
         with open(self.index_dir / "chunk_ids.json", "w") as f:
             json.dump(self.chunk_ids, f)
 
-        config = {
+        self.provenance = chunk_provenance(chunks, self.chunks_path)
+        base_config = {
             "model_name": self.model_name,
             "embedding_dim": embedding_dim,
             "num_chunks": len(chunks),
-            "index_type": "IndexFlatL2",
+            "index_type": index_type,
+            "similarity_metric": self.similarity_metric,
+            "normalize_embeddings": self.normalize_embeddings,
+            "query_prefix": self.query_prefix,
+            "passage_prefix": self.passage_prefix,
+            "model_revision": self.model_revision,
+            "provenance": self.provenance,
+            "package_versions": {
+                "faiss-cpu": _package_version("faiss-cpu"),
+                "sentence-transformers": _package_version("sentence-transformers"),
+                "numpy": _package_version("numpy"),
+            },
         }
+        config = {**base_config, "configuration_hash": stable_json_hash(base_config)}
+        self.index_config = config
+        validate_config_hash(config)
         with open(self.index_dir / "config.json", "w") as f:
-            json.dump(config, f, indent=2)
+            json.dump(config, f, indent=2, sort_keys=True)
 
         logger.info(f"✓ FAISS index built. {len(chunks)} chunks indexed.")
 
@@ -155,19 +197,55 @@ class FAISSRetriever(BaseRetriever):
         # Load config
         with open(self.index_dir / "config.json") as f:
             config = json.load(f)
+        self.index_config = config
+        self.provenance = config.get("provenance", {})
         self.model_name = config["model_name"]
+        actual_index_type = type(self.index).__name__
+        index_type = config.get("index_type", actual_index_type)
+        self.similarity_metric = config.get("similarity_metric", "cosine" if index_type == "IndexFlatIP" else "l2")
+        self.normalize_embeddings = config.get("normalize_embeddings", self.similarity_metric == "cosine")
+        self.query_prefix = config.get("query_prefix", "")
+        self.passage_prefix = config.get("passage_prefix", "")
+        self.model_revision = config.get("model_revision")
+        expected_type = "IndexFlatIP" if self.similarity_metric == "cosine" else "IndexFlatL2"
+        if index_type != expected_type or actual_index_type != expected_type:
+            raise RuntimeError(
+                f"FAISS config/runtime mismatch: config_type={index_type} "
+                f"runtime_type={actual_index_type} metric={self.similarity_metric}"
+            )
+        if self.similarity_metric == "cosine" and not self.normalize_embeddings:
+            raise RuntimeError("FAISS cosine config requires normalized embeddings")
+        expected_chunks = int(config.get("num_chunks", len(self.chunk_ids)))
+        if self.index.ntotal != expected_chunks or len(self.chunk_ids) != expected_chunks:
+            raise RuntimeError(
+                f"FAISS cardinality mismatch: index={self.index.ntotal} "
+                f"ids={len(self.chunk_ids)} config={expected_chunks}"
+            )
 
         # Load model
         logger.info(f"Loading SentenceTransformer model: {self.model_name}")
-        self.model = SentenceTransformer(self.model_name)
+        model_kwargs = {"revision": self.model_revision} if self.model_revision else {}
+        self.model = SentenceTransformer(self.model_name, **model_kwargs)
 
         # Load chunk metadata
         self._load_chunk_metadata()
 
         logger.info(f"✓ Loaded index with {len(self.chunk_ids)} chunks.")
 
+    def validate_provenance(self, chunks: list[dict], *, require_complete: bool = False) -> dict:
+        """Validate vector row order and parent corpus fingerprints."""
+        validate_config_hash(self.index_config, required=require_complete)
+        actual = validate_chunk_provenance(
+            self.provenance, chunks, self.chunks_path,
+            require_complete=require_complete,
+        )
+        actual_ids = [chunk["chunk_id"] for chunk in chunks]
+        if self.chunk_ids != actual_ids:
+            raise RuntimeError("FAISS chunk_ids.json order differs from corpus chunk order")
+        return actual
+
     def _load_chunk_metadata(self) -> None:
-        """Load chunk texts and doc_ids from chunks_v1.jsonl."""
+        """Load chunk texts and document IDs from the configured corpus JSONL."""
         logger.info(f"Loading chunk metadata from {self.chunks_path}...")
         with open(self.chunks_path) as f:
             for line in f:
@@ -196,7 +274,9 @@ class FAISSRetriever(BaseRetriever):
             raise RuntimeError("Index not loaded. Call load_index() first.")
 
         # Encode query
-        query_embedding = self.model.encode([query], normalize_embeddings=False)
+        query_embedding = self.model.encode(
+            [self.query_prefix + query], normalize_embeddings=self.normalize_embeddings,
+        )
         query_embedding = np.array(query_embedding, dtype=np.float32)
 
         # Search
@@ -214,9 +294,7 @@ class FAISSRetriever(BaseRetriever):
             text = self.chunk_texts.get(chunk_id, "")
             doc_id = self.chunk_docs.get(chunk_id, "")
 
-            # Convert L2 distance to score (lower distance = higher score)
-            # score = 1 / (1 + distance) ensures score in (0, 1]
-            score = 1.0 / (1.0 + float(distance))
+            score = float(distance) if self.similarity_metric == "cosine" else 1.0 / (1.0 + float(distance))
 
             results.append(
                 RetrievalResult(
@@ -227,7 +305,7 @@ class FAISSRetriever(BaseRetriever):
                     rank=rank,
                     latency_ms=0.0,  # Set by retrieve_timed()
                     retriever=self.name,
-                    extra={"distance": float(distance)},
+                    extra={"raw_faiss_score": float(distance), "similarity_metric": self.similarity_metric},
                 )
             )
 

@@ -137,6 +137,12 @@ This dissertation addresses that gap.
 
 ## 1.7 Scope and Boundaries
 
+**Terminology clarification for the final dissertation:** the implemented graph baseline is
+reported as *Entity-Co-occurrence Graph Retrieval*. Earlier mid-semester text used “GraphRAG”
+as shorthand. The implementation uses spaCy entities, NetworkX co-occurrence edges, and bounded
+traversal; it is not Microsoft GraphRAG and does not perform LLM relationship extraction,
+community detection, community summarisation, or global/local GraphRAG search.
+
 **In Scope:**
 - Three retrieval paradigms: FAISS, BM25, GraphRAG
 - Query categorization framework (6 types)
@@ -602,4 +608,3 @@ Lin, J., Ma, X., & Shi, S. (2023). Pyserini: A Python Toolkit for Reproducible I
 Robertson, S., & Zaragoza, H. (2009). The Probabilistic Relevance Framework: BM25 and Beyond. Foundations and Trends® in Information Retrieval, 3(4), 333-389.
 
 Yadav, A., Kumar, R., & Gupta, M. (2023). Revisiting the Strength of BM25 in the Era of Neural Retrieval. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP).
-
