@@ -1,0 +1,83 @@
+{
+  "baseline_test": {
+    "bm25": {
+      "mrr@10": 0.565476,
+      "ndcg@10": 0.594223,
+      "recall@10": 0.7625
+    },
+    "faiss": {
+      "mrr@10": 0.434058,
+      "ndcg@10": 0.442705,
+      "recall@10": 0.625
+    },
+    "graph": {
+      "mrr@10": 0.192183,
+      "ndcg@10": 0.212743,
+      "recall@10": 0.375
+    }
+  },
+  "graph_guarded": {
+    "selected": {
+      "dev": {
+        "mrr@10": 0.579881,
+        "ndcg@10": 0.594403,
+        "recall@10": 0.775
+      },
+      "graph_only_factor": 0.0,
+      "graph_weight": 0.05,
+      "k": 30
+    },
+    "test": {
+      "mrr@10": 0.580655,
+      "ndcg@10": 0.599507,
+      "recall@10": 0.7625
+    }
+  },
+  "prompt_rag_candidate_pool": {
+    "bm25_faiss_union_top10_candidate_recall": 0.825,
+    "bm25_faiss_union_top25_candidate_recall": 0.88
+  },
+  "section_aware_bm25": {
+    "selection": {
+      "b": 0.75,
+      "dev": {
+        "mrr@10": 0.612103,
+        "ndcg@10": 0.638749,
+        "recall@10": 0.833333
+      },
+      "k1": 1.2
+    },
+    "synthesis_candidate_metrics": {
+      "mrr@10": 0.639167,
+      "ndcg@10": 0.449872,
+      "recall@10": 0.5
+    },
+    "synthesis_warning": "Automated candidate questions and automatic old-to-new qrel crosswalk; not final human-validated evidence.",
+    "test": {
+      "mrr@10": 0.607083,
+      "ndcg@10": 0.641178,
+      "recall@10": 0.85
+    }
+  },
+  "selection_policy": "Hyperparameters selected on 60-query category-stratified dev split; reported confirmation uses untouched 40-query test split.",
+  "split_counts": {
+    "dev": 60,
+    "test": 40
+  },
+  "weighted_bm25_faiss": {
+    "selected": {
+      "dev": {
+        "mrr@10": 0.620066,
+        "ndcg@10": 0.625266,
+        "recall@10": 0.783333
+      },
+      "faiss_weight": 0.25,
+      "k": 10
+    },
+    "test": {
+      "mrr@10": 0.557044,
+      "ndcg@10": 0.595132,
+      "recall@10": 0.8125
+    }
+  }
+}

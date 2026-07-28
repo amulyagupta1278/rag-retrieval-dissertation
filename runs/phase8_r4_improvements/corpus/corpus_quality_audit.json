@@ -1,0 +1,88 @@
+{
+  "chunk_n": 856,
+  "document_n": 130,
+  "exact_duplicate_document_n": 0,
+  "exact_duplicate_groups": [],
+  "near_duplicate_pair_n": 1,
+  "near_duplicate_pairs": [
+    {
+      "jaccard_5gram": 0.943009,
+      "left": "doc_8bcbb9118dcb",
+      "right": "doc_c96df527e90a"
+    }
+  ],
+  "noise_candidate_n": 10,
+  "noise_candidates": [
+    {
+      "chunk_id": "chunk_703d79a4",
+      "doc_id": "doc_cc6e316344d2",
+      "reasons": [
+        "low_alpha_ratio"
+      ]
+    },
+    {
+      "chunk_id": "chunk_ce79bd34",
+      "doc_id": "doc_cc6e316344d2",
+      "reasons": [
+        "low_alpha_ratio"
+      ]
+    },
+    {
+      "chunk_id": "chunk_dc83ac9f",
+      "doc_id": "doc_cc6e316344d2",
+      "reasons": [
+        "low_alpha_ratio"
+      ]
+    },
+    {
+      "chunk_id": "chunk_1234eee5",
+      "doc_id": "doc_79d34c416c35",
+      "reasons": [
+        "low_alpha_ratio"
+      ]
+    },
+    {
+      "chunk_id": "chunk_356446b8",
+      "doc_id": "doc_46bd9efa1745",
+      "reasons": [
+        "short"
+      ]
+    },
+    {
+      "chunk_id": "chunk_2b24872b",
+      "doc_id": "doc_85c38cc5e0eb",
+      "reasons": [
+        "short"
+      ]
+    },
+    {
+      "chunk_id": "chunk_06f47faf",
+      "doc_id": "doc_59f95eb84e28",
+      "reasons": [
+        "short"
+      ]
+    },
+    {
+      "chunk_id": "chunk_614af274",
+      "doc_id": "doc_fe8f51135aa5",
+      "reasons": [
+        "short"
+      ]
+    },
+    {
+      "chunk_id": "chunk_fc39ef7a",
+      "doc_id": "doc_51c9d5678f36",
+      "reasons": [
+        "short"
+      ]
+    },
+    {
+      "chunk_id": "chunk_915e8f24",
+      "doc_id": "doc_5ea5fe03a8d6",
+      "reasons": [
+        "short"
+      ]
+    }
+  ],
+  "policy": "Exact normalized duplicates may be canonicalized. Near duplicates and noise candidates require review; R4 does not silently delete them."
+}

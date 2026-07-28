@@ -1,0 +1,48 @@
+{
+  "baseline_preserved": true,
+  "code": {
+    "scripts/build_phase8_r4_improvements.py": "cb7413f7bd2546e0af9bd5a9066dbf535df6373873f596ec4ac113798531c232",
+    "scripts/run_phase8_r4_faiss.py": "0a1b2231c9ac8fb5afa85c5bbcb98dc78dcf8486f493c36a747bdf4dd53ccf0d"
+  },
+  "counts": {
+    "documents": 130,
+    "mapped_qrels": 140,
+    "new_section_aware_chunks": 954,
+    "old_chunks": 856,
+    "queries": 100,
+    "synthesis_candidates": 20
+  },
+  "gates": {
+    "final_test_claim_authorized": false,
+    "human_validation_complete": false,
+    "new_faiss_index_run": true,
+    "new_graph_index_run": false,
+    "prompt_rag_api_calls": 0
+  },
+  "inputs": {
+    "releases/v3_clean/data/chunks/chunks_v3_clean.jsonl": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "releases/v3_clean/data/processed/documents.jsonl": "5e7ae594eef4884d644af12eae5d73d5b95b2325ad5b7dbcd2ae07ff1cab40c3",
+    "runs/phase8_exploratory_automated_r3/benchmark/qa_dataset.jsonl": "cb53efc28941b67ca513d37c08494e457ee79c77935b9f49fec27ac16c9fae80",
+    "runs/phase8_exploratory_automated_r3/benchmark/qrels_gold.tsv": "a28dd553db0aba021d0ce2e85e80dcc5a0641e3c4b5aef638ace755cdc9e62d8",
+    "runs/phase8_exploratory_automated_r3/results/retrieval/faiss_run.jsonl": "3c049ccc3f4dbfbedd0ad835e41110c95ae27f07192d028c9c4cacff1386f77b",
+    "runs/phase8_exploratory_five_system/bm25_top50/retrieval/bm25_run.jsonl": "762962a7ce098ec8a71ab5ff11a4bb5b7376a96b21b979e4ee0e424f16ee8666",
+    "runs/phase8_exploratory_five_system/graph_top50/retrieval/graphrag_run.jsonl": "e38c0d30191a1f1405b1db8ee100521db3595d91fa66a30d10a52f335bdc39b9"
+  },
+  "outputs": {
+    "runs/phase8_r4_improvements/benchmark/qa_dev_test.jsonl": "550dc70d2d4ce4b998241ec4f40284183e693a39d0f254c146c53297545cd3ea",
+    "runs/phase8_r4_improvements/benchmark/query_split.json": "16aef7ca09ff50a0bf092bbf055ca83be32f55271d51b64261dcd04659a40e4b",
+    "runs/phase8_r4_improvements/benchmark/synthesis_candidates_20.jsonl": "cdc2df79b857bb8a58af5e48a1e58c605f3fc83aae3b66db54f57d03fecef7ff",
+    "runs/phase8_r4_improvements/corpus/chunks_section_aware_450w.jsonl": "bf6e040548cc5b236a79af993d8a2c2bf3556a559719fdbb3b4920855e6d6d45",
+    "runs/phase8_r4_improvements/corpus/corpus_quality_audit.json": "b0aa12782eabba5e808778beef5b34765f90c0a757302ffb6a9ff1ea08efaf48",
+    "runs/phase8_r4_improvements/corpus/gold_chunk_crosswalk.jsonl": "3545de7052c00f6eb717dabe3877c8d843c96508e062fea044ad234fc977ac02",
+    "runs/phase8_r4_improvements/retrieval/bm25_section_aware_run.jsonl": "2a012dee98e2bad8d7136f8f5dd49bae5bd18300ac491a2e061c470c815b168e",
+    "runs/phase8_r4_improvements/retrieval/faiss_cosine/faiss_run.jsonl": "997ea7f0ede36c906ef666ecb90ab9cddcfa391f8f05f181878c06ca9f05c7e4",
+    "runs/phase8_r4_improvements/retrieval/faiss_cosine/index/chunk_ids.json": "b38f89a017206b78a0849745efc79e67f76e70f12dc4f1ed58a4ed6ea58cb05b",
+    "runs/phase8_r4_improvements/retrieval/faiss_cosine/index/config.json": "c7a3711d1190ae0d2c96e3853038b39fb1cd1fc2ca95cb2134eec0c0f75a45e5",
+    "runs/phase8_r4_improvements/retrieval/faiss_cosine/index/faiss.index": "71bcb686d04d4149e9d4c8dcb927688b45020b5c9a29dcbc5b1436f1c2da6661",
+    "runs/phase8_r4_improvements/retrieval/faiss_cosine/metrics.json": "9f2933a23020b7b27c2f6bc4a03812151d4aacb87fc00526af5a15c93dea07cc",
+    "runs/phase8_r4_improvements/retrieval/offline_experiments.json": "ae5eb2d3ed9f651e86a73b751bc367bed20173f83de2e9b3b240322ea09e7636",
+    "runs/phase8_r4_improvements/retrieval/prompt_rag_mixed_top25_plan.jsonl": "45dd04e8fb1368d98a3fc517b8f18f58c6aca8d8e2111cfd64d19b087fef95fd"
+  },
+  "status": "offline_r4_improvements_complete_pending_new_index_runs_and_human_validation"
+}
