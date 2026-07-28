@@ -1,0 +1,39 @@
+{
+  "ambiguous_dispatch_reserve_usd": 0.102649,
+  "automatic_retries": 0,
+  "benchmark_status": "exploratory_automated_only_pending_human_validation",
+  "candidate_n": 50,
+  "fallback": null,
+  "full_hard_cap_usd": 9.61,
+  "full_worst_case_usd": 9.504277,
+  "input_token_envelope": 8480277,
+  "inputs": {
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "releases/v3_clean/data/chunks/chunks_v3_clean.jsonl": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "runs/phase8_exploratory_automated_r3/benchmark/qa_dataset.jsonl": "cb53efc28941b67ca513d37c08494e457ee79c77935b9f49fec27ac16c9fae80",
+    "runs/phase8_exploratory_five_system/bm25_top50/retrieval/bm25_run.jsonl": "762962a7ce098ec8a71ab5ff11a4bb5b7376a96b21b979e4ee0e424f16ee8666"
+  },
+  "max_output_tokens": 2048,
+  "maximum_output_tokens": 204800,
+  "model": "claude-haiku-4-5-20251001",
+  "pricing": {
+    "input_usd_per_million": 1.0,
+    "lineage": "Phase 7 official Anthropic pricing verification dated 2026-07-28",
+    "output_usd_per_million": 5.0
+  },
+  "ranking": "score descending then chunk ID ascending",
+  "request_n": 100,
+  "request_plan_sha256": "abd22b9e5f9c36c7c469e08636071df24f98500ad415cdf2fe53bb93235193b7",
+  "status": "offline_frozen_pending_owner_trace_approval",
+  "temperature": 0,
+  "trace_hard_cap_usd": 0.62,
+  "trace_n": 5,
+  "trace_query_ids": [
+    "q_0066",
+    "q_0097",
+    "q_0047",
+    "q_0071",
+    "q_0070"
+  ],
+  "trace_worst_case_including_reserve_usd": 0.613523
+}
