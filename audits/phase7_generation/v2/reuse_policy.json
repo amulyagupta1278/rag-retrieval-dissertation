@@ -1,0 +1,1 @@
+{"duplicate_full_panel_call_allowed":false,"invalid_or_truncated_trace_reusable":false,"request_identity_rule":"canonical V2 trace request SHA-256 must equal frozen V2 panel request SHA-256","response_replacement_allowed":false,"schema_version":1,"successful_v2_trace_records_count_toward_panel":true,"v1_response_reusable_in_v2":false}
