@@ -1,0 +1,17 @@
+{
+  "authorized_at_utc": "2026-07-28T16:10:22Z",
+  "completed_human_regrade": {
+    "expected_row_n": 114,
+    "expected_sha256": "e12c4c427ddf7b5ea58063c19e3063ddfcf223b2762ee2089e8434b26dc9bc00",
+    "source_path": "/Users/amulyagupta/Downloads/regrade_package_seed42_COMPLETED.csv"
+  },
+  "final_owner_adjudication": {
+    "expected_row_n": 14,
+    "expected_sha256": "9fd10b3267fbcd339c3ce65b2c5796a99b17672f69c32d4a39cbdc9055fa4aa7",
+    "source_path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/outputs/019f9e9c-e14b-7b51-87af-e2cfca5b2a6e/phase6_adjudication_final/phase6_owner_adjudication_14_FINAL.csv"
+  },
+  "owner_decisions_explicitly_supplied": true,
+  "phase7_execution_authorized": false,
+  "request": "Complete corrected Phase 6 freeze from validated human-owner inputs; preserve historical evidence byte-identically; stop after Phase 7 dependency-gate assessment.",
+  "status": "authorized_for_corrected_phase6_freeze"
+}
