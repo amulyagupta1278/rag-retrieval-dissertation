@@ -84,7 +84,7 @@ def test_manifest_verifies_and_preserves_gates() -> None:
     manifest = load(RUN / "manifest.json")
     assert manifest["baseline_preserved"] is True
     assert manifest["counts"] == {"documents": 130, "old_chunks": 856, "new_section_aware_chunks": 954, "queries": 100, "synthesis_candidates": 20, "mapped_qrels": 140}
-    assert manifest["gates"] == {"human_validation_complete": False, "new_faiss_index_run": True, "new_graph_index_run": False, "prompt_rag_api_calls": 0, "final_test_claim_authorized": False}
+    assert manifest["gates"] == {"human_validation_complete": False, "new_faiss_index_run": True, "new_graph_index_run": True, "new_hybrid_run": True, "prompt_rag_api_calls": 0, "final_test_claim_authorized": False}
     for section in ("inputs", "outputs", "code"):
         for relative, expected in manifest[section].items():
             assert sha(ROOT / relative) == expected

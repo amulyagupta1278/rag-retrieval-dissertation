@@ -459,8 +459,9 @@ def main() -> int:
         "code": {
             "scripts/build_phase8_r4_improvements.py": sha(ROOT / "scripts/build_phase8_r4_improvements.py"),
             "scripts/run_phase8_r4_faiss.py": sha(ROOT / "scripts/run_phase8_r4_faiss.py"),
+            "scripts/run_phase8_r4_graph_hybrid.py": sha(ROOT / "scripts/run_phase8_r4_graph_hybrid.py"),
         },
-        "gates": {"human_validation_complete": False, "new_faiss_index_run": (OUT / "retrieval/faiss_cosine/metrics.json").is_file(), "new_graph_index_run": False, "prompt_rag_api_calls": 0, "final_test_claim_authorized": False},
+        "gates": {"human_validation_complete": False, "new_faiss_index_run": (OUT / "retrieval/faiss_cosine/metrics.json").is_file(), "new_graph_index_run": (OUT / "retrieval/graph_hybrid_v4/metrics.json").is_file(), "new_hybrid_run": (OUT / "retrieval/graph_hybrid_v4/hybrid_weighted_run.jsonl").is_file(), "prompt_rag_api_calls": 0, "final_test_claim_authorized": False},
     }
     write_json(OUT / "manifest.json", manifest)
     print(json.dumps({"counts": manifest["counts"], "audit": {k: audit[k] for k in ("exact_duplicate_document_n", "near_duplicate_pair_n", "noise_candidate_n")}, "experiments": experiments}, indent=2, default=dict))

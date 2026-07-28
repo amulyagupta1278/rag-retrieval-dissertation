@@ -1,0 +1,70 @@
+{
+  "graph": {
+    "dev": {
+      "mrr@10": 0.478565,
+      "ndcg@10": 0.495283,
+      "recall@10": 0.708333
+    },
+    "empty_result_query_n": 0,
+    "synthesis_candidate_metrics": {
+      "mrr@10": 0.628472,
+      "ndcg@10": 0.47164,
+      "recall@10": 0.6
+    },
+    "test": {
+      "mrr@10": 0.457917,
+      "ndcg@10": 0.46277,
+      "recall@10": 0.6625
+    }
+  },
+  "hybrid_equal_bm25_graph": {
+    "config": {
+      "rrf_k": 60,
+      "systems": [
+        "bm25_r4",
+        "graph_v4"
+      ]
+    },
+    "dev": {
+      "mrr@10": 0.596548,
+      "ndcg@10": 0.619745,
+      "recall@10": 0.825
+    },
+    "synthesis_candidate_metrics": {
+      "mrr@10": 0.636667,
+      "ndcg@10": 0.493925,
+      "recall@10": 0.608333
+    },
+    "test": {
+      "mrr@10": 0.535,
+      "ndcg@10": 0.557628,
+      "recall@10": 0.775
+    }
+  },
+  "hybrid_weighted_bm25_faiss_graph": {
+    "selection": {
+      "dev": {
+        "mrr@10": 0.622798,
+        "ndcg@10": 0.655764,
+        "recall@10": 0.858333
+      },
+      "faiss_weight": 0.25,
+      "graph_only_factor": 0.0,
+      "graph_weight": 0.1,
+      "k": 10
+    },
+    "synthesis_candidate_metrics": {
+      "mrr@10": 0.64631,
+      "ndcg@10": 0.461476,
+      "recall@10": 0.525
+    },
+    "test": {
+      "mrr@10": 0.59375,
+      "ndcg@10": 0.624515,
+      "recall@10": 0.85
+    }
+  },
+  "selection_policy": "Weights selected on 60-query dev split only; 40-query test remained untouched until selection.",
+  "status": "offline_automatic_candidate_pending_human_validation",
+  "warning": "R4 qrel crosswalk and synthesis candidates remain automatic pending human validation."
+}
