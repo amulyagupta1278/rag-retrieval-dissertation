@@ -1,0 +1,11 @@
+hypothesis,comparison,effect,ci_low,ci_high,verdict
+H1,BM25 − FAISS · exact+terminology,0.06666666666666667,-0.08333333333333333,0.2416666666666667,inconclusive
+H2,FAISS − BM25 · paraphrase,-0.425,-0.7666666666666666,0.0,not supported
+H3,Graph − BM25 · entity_relation,-0.08333333333333333,-0.25,0.0,not supported
+H3,Graph − FAISS · entity_relation,0.0,-0.25,0.25,not supported
+H3,Graph − BM25 · multi_hop,0.0,0.0,0.0,not supported
+H3,Graph − FAISS · multi_hop,0.08333333333333333,0.0,0.25,not supported
+H4,Hybrid − BM25 · aggregate,0.014705882352941176,0.0,0.04411764705882353,not supported
+H4,Hybrid − FAISS · aggregate,0.12794117647058822,0.022058823529411766,0.23823529411764705,not supported
+H4,Hybrid − Graph · aggregate,0.27941176470588236,0.14705882352941177,0.4264705882352941,supported
+H4,Hybrid − Prompt-RAG · aggregate,-0.022058823529411766,-0.08823529411764706,0.022058823529411766,not supported
