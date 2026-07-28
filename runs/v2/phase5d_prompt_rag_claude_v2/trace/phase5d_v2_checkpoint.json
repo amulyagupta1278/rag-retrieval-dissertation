@@ -1,0 +1,20 @@
+{
+  "architecture_or_ranking_change_after_results": false,
+  "automatic_retries": 0,
+  "execution_commit": "65a3721bb4994ebb48925bbe4fd93245a5679579",
+  "freeze_commit": "73b9a40af9ebe724dff19a76205302ecf4f562a8",
+  "full_remaining_primary_run_authorized": false,
+  "generation_or_answer_evaluation_performed": false,
+  "ledger_path": "runs/v2/phase5d_prompt_rag_claude_v2/trace/control/ledger.json",
+  "model": "claude-haiku-4-5-20251001",
+  "owner_judging_performed": false,
+  "pool_expansion_performed": false,
+  "raw_record_n": 24,
+  "relevance_metrics_calculated": false,
+  "repeatability_decision_path": "runs/v2/phase5d_prompt_rag_claude_v2/trace/repeatability_decision.json",
+  "repeatability_gate": "passed",
+  "schema_version": 1,
+  "status": "trace_checkpoint_complete_stop_for_owner_approval",
+  "terminal_failure_n": 0,
+  "v1_output_used_or_selected": false
+}

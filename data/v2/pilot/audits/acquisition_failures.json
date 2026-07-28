@@ -1,0 +1,1 @@
+[{"reason":"legacy search endpoint requires authorization; no credential supplied","source":"https://api.myscheme.gov.in/search/v4/schemes","status":401}]

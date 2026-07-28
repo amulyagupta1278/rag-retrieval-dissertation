@@ -1,0 +1,25 @@
+{
+  "artifact_hashes": {
+    "audits/phase5d_v2_full/failure_manifest.json": "1ecb877daaa9eca705f2fe8ed1579261d6a77e3fc2420bf741d6344c607c11d4",
+    "audits/phase5d_v3_recovery/budget_audit.json": "c6c683b7fb58410dfcfcab6a01ceecc11c6da69e234e9878d2ba69fb14dd0171",
+    "audits/phase5d_v3_recovery/evidence_preservation.json": "d405ea87540c321401b08439cd6ff329468bf88574bd642655af84b074a7b05a",
+    "audits/phase5d_v3_recovery/offline_verification.json": "d96a6c96517a3fe26ad705d357be3fa628f09e5987f691cb2ade1ba717daf046",
+    "configs/prompt_rag_claude_v2_frozen.json": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+    "configs/prompt_rag_claude_v3_transport_recovery.json": "2834f2873c162271fa8e769d336521a89ab59ac055db780a2f19f68935b589c1",
+    "docs/PHASE5D_V3_TRANSPORT_RECOVERY.md": "f1bf3c7617590c8d3476ed3bf0c2803a9272e3714576adf46e569eb8f68fe940",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "runs/v2/phase5d_prompt_rag_claude_v2/full/control/ledger.json": "01d2a453bd57252ea23551cc6a9b4a625a6d0827dcb0018d89de03ae08b8b3d7",
+    "runs/v2/phase5d_prompt_rag_claude_v2/full/failures/v2q-001__primary.json": "f75e9fd02fd603efc809570027707dc3a458502399eec545dd7c4305595b9e26",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+    "scripts/run_phase5d_v3_transport_recovery.py": "de99ed13a43fd037c325d9d8fc3214e45b17fcd045535196655320f0c76c2453",
+    "tests/test_phase5d_v3_transport_recovery.py": "1f6874541067cf9ab7290eafe4620a0cb09273761f6510e8c04a56d41a189dd3"
+  },
+  "credential_fields_stored": false,
+  "excluded_mutable_artifacts": [
+    "audits/phase5d_v3_recovery/live_execution_approval.json"
+  ],
+  "generation_calls_during_freeze": 0,
+  "live_api_calls_during_freeze": 0,
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_live_approval"
+}

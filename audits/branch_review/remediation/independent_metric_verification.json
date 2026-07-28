@@ -1,0 +1,43 @@
+{
+  "implementation": {
+    "imports_production_metric_functions": false,
+    "path": "tests/test_independent_phase3_phase4_metrics.py",
+    "sha256": "764a9ffc14f4f398b1f2475305736ee3a09295e331a3788424d9a04a411fc38c",
+    "uses_raw_inputs": [
+      "data/v2/pilot/qrels/pilot-qa-v2-owner-approved-20260724-r5.jsonl",
+      "runs/v2/phase3_graph_v3_2/metrics/per_query_metrics.jsonl",
+      "runs/v2/phase4_hybrid/metrics/per_query_metrics.jsonl"
+    ]
+  },
+  "metrics": [
+    "MRR@5",
+    "MRR@10",
+    "Recall@5",
+    "Recall@10",
+    "Hit Rate@5",
+    "Hit Rate@10",
+    "Precision@5",
+    "Precision@10",
+    "binary nDCG@10",
+    "graded nDCG@10",
+    "Complete Evidence Recall@5",
+    "Complete Evidence Recall@10"
+  ],
+  "phase3": {
+    "aggregate_and_per_category_exact_within_absolute_tolerance": 1e-12,
+    "per_query_rows_verified": 102,
+    "query_n_per_system": 34,
+    "system_n": 3
+  },
+  "phase4": {
+    "aggregate_and_per_category_exact_within_absolute_tolerance": 1e-12,
+    "per_query_rows_verified": 102,
+    "query_n_per_system": 34,
+    "system_n": 3
+  },
+  "schema_version": 1,
+  "status": "passed",
+  "test_command": "pytest -q tests/test_independent_phase3_phase4_metrics.py",
+  "test_result": "3 passed",
+  "tiny_hand_computed_fixture": true
+}

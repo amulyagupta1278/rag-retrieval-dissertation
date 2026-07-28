@@ -1,0 +1,33 @@
+{
+  "awaiting": "HUMAN owner second pass on runs/v2/phase6_regrade_package_seed42/phase6_regrade_workbook_seed42.xlsx",
+  "blocking_reasons": [
+    "Seed-123 regrade invalid: wrong seed (protocol requires 42) and grade-stratified (requires blind random).",
+    "Second-pass grades and adjudications were AI-generated; protocol requires a human rater.",
+    "Reported H1-H4 were fabricated, not the preregistered hypotheses.",
+    "Full-suite green claim unproven: 168 test fns were suppressed by over-broad skips."
+  ],
+  "final_qrels": {
+    "path": null,
+    "sha256": null
+  },
+  "invalidation_notice": "audits/phase6_invalidation/INVALIDATION_NOTICE.md",
+  "phase6": {
+    "agreement_report_exists": false,
+    "first_pass_structural_validation": false,
+    "human_regrade_complete": false,
+    "human_regrade_row_n": 0,
+    "unresolved_disagreement_n": null,
+    "unresolved_u_n": null
+  },
+  "phase6_retrieval_metrics": {
+    "path": null,
+    "sha256": null
+  },
+  "phase7_freeze_manifest": {
+    "path": null,
+    "sha256": null
+  },
+  "rankings": {},
+  "schema_version": 1,
+  "status": "blocked_pending_HUMAN_phase6_regrade_seed42"
+}

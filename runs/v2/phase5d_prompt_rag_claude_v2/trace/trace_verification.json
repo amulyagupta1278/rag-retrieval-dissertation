@@ -1,0 +1,32 @@
+{
+  "artifact_manifest": {
+    "hash_mismatch_n": 0,
+    "verified_artifact_n_before_this_record": 32
+  },
+  "diff_check": "passed",
+  "evaluator_exit_code": 0,
+  "focused_runtime_tests": {
+    "deselected": 2,
+    "deselection_reason": "offline-freeze assertions require pending approval and absent output; both lifecycle preconditions ended after authorized trace",
+    "failed": 0,
+    "passed": 17
+  },
+  "full_lifecycle_applicable_suite": {
+    "deselected": 2,
+    "deselection_reason": "same two pre-execution-only lifecycle assertions",
+    "failed": 0,
+    "passed": 293
+  },
+  "raw_contract_validation": {
+    "failed_record_n": 0,
+    "passed_record_n": 24
+  },
+  "relevance_metrics_calculated": false,
+  "schema_version": 1,
+  "secret_scan": {
+    "credential_values_printed": false,
+    "secret_like_token_hits": 0,
+    "scope": "Git tracked plus untracked nonignored files including trace outputs"
+  },
+  "status": "passed"
+}

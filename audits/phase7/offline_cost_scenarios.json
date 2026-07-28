@@ -1,0 +1,63 @@
+{
+  "assumptions": {
+    "calls": 170,
+    "input_price_usd_per_million_tokens": 1.0,
+    "input_token_method": "offline character-count heuristic: ceil(evidence characters / 4) plus 200 tokens per request",
+    "output_price_usd_per_million_tokens": 5.0,
+    "output_token_cases_per_call": {
+      "best_case": 64,
+      "expected": 128,
+      "hard_cap_scenario": 512
+    },
+    "pricing_source": "existing frozen Phase 5D repository records only",
+    "warning": "Not model-compatible tokenization. Recalculate offline after provider/model and tokenizer are owner-approved."
+  },
+  "contexts": [
+    {
+      "context_depth": 3,
+      "estimated_input_tokens_panel": 265089,
+      "estimated_total_cost_usd": {
+        "best_case": 0.319489,
+        "expected": 0.373889,
+        "hard_cap_scenario": 0.700289
+      },
+      "per_request_estimated_input_tokens": {
+        "maximum": 1935,
+        "mean": 1559,
+        "minimum": 200
+      }
+    },
+    {
+      "context_depth": 5,
+      "estimated_input_tokens_panel": 415806,
+      "estimated_total_cost_usd": {
+        "best_case": 0.470206,
+        "expected": 0.524606,
+        "hard_cap_scenario": 0.851006
+      },
+      "per_request_estimated_input_tokens": {
+        "maximum": 3013,
+        "mean": 2446,
+        "minimum": 200
+      }
+    },
+    {
+      "context_depth": 10,
+      "estimated_input_tokens_panel": 793540,
+      "estimated_total_cost_usd": {
+        "best_case": 0.84794,
+        "expected": 0.90234,
+        "hard_cap_scenario": 1.22874
+      },
+      "per_request_estimated_input_tokens": {
+        "maximum": 5527,
+        "mean": 4668,
+        "minimum": 200
+      }
+    }
+  ],
+  "schema_version": 1,
+  "selected_context_depth": null,
+  "status": "offline_estimates_only_owner_verification_required"
+}
+

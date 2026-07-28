@@ -1,0 +1,1 @@
+{"billing_ambiguity":false,"blinded_request_id":"P7B002","error_message":"truncation","failure_class":"truncation","raw_response_path":"runs/v2/phase7_generation_claude_top3/trace_v1/blinded/raw_responses/P7B002.json","request_sha256":"69d5d5a0f82ad727c01c7c49240c7cc492ee0b226191be78977c745af6c830fb","schema_version":1,"usage_accounted_before_validation":true}

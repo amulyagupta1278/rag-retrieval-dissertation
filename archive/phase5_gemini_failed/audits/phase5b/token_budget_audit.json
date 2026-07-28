@@ -1,0 +1,390 @@
+{
+  "aggregate": {
+    "input_limit_tokens_per_request": 1048576,
+    "largest_request_headroom_tokens": 1022207,
+    "max_contract_output_limit_tokens_per_request": 4096,
+    "max_contract_output_tokens_per_request": 1911,
+    "max_input_tokens_per_request": 26369,
+    "mean_input_tokens_per_request": 25361.117647,
+    "min_input_tokens_per_request": 23977,
+    "primary_input_tokens": 862278,
+    "primary_max_contract_output_tokens": 64009,
+    "primary_request_n": 34,
+    "repeatability_extra_input_tokens": 402670,
+    "repeatability_extra_max_contract_output_tokens": 30124,
+    "repeatability_extra_request_n": 16,
+    "total_planned_input_tokens": 1264948,
+    "total_planned_max_contract_output_tokens": 94133,
+    "total_planned_request_n": 50
+  },
+  "call_and_attempt_terminology": {
+    "authorized_network_attempt_cap_total": 50,
+    "full_logical_call_n": 26,
+    "full_network_attempt_cap": 26,
+    "logical_call_n": 50,
+    "possible_retry_demand_if_hard_caps_did_not_exist": 150,
+    "quota_stopped_attempt_n": "observed only after authorized execution",
+    "successful_response_n": "observed only after authorized execution",
+    "trace_logical_call_n": 24,
+    "trace_network_attempt_cap": 24,
+    "interpretation": "Retries consume mode caps. 150 is a counterfactual demand from three attempts for all 50 calls, not an authorized request allowance; execution can dispatch at most 50 attempts total across separately approved modes."
+  },
+  "cost_estimate": {
+    "free_tier_conditional_usd": 0.0,
+    "free_tier_qualification": "Record $0 only for requests executed after a fresh owner confirmation that active Google AI Studio project is on Free plan with no linked billing account.",
+    "paid_counterfactual_usd": null,
+    "paid_counterfactual_qualification": "Not calculated and not authorized; no paid execution, billing enablement, credit purchase, or paid fallback is permitted.",
+    "source": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "inputs": {
+    "bm25_ranking_path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl",
+    "bm25_ranking_sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "chunk_path": "data/v2/pilot/chunks/chunks.jsonl",
+    "chunk_sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "prompt_path": "prompts/prompt_rag_retrieval_v1.txt",
+    "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "query_path": "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl",
+    "query_sha256": "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488",
+    "sanitized_bm25_ranking_path": "audits/phase5b/bm25_top50_query_chunk_only.jsonl",
+    "sanitized_bm25_ranking_sha256": "323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390"
+  },
+  "method": {
+    "counted_components": [
+      "single-turn contents JSON",
+      "system instruction",
+      "dynamic response schema including 50 chunk-ID enum values"
+    ],
+    "live_countTokens_api_called": false,
+    "local_tokenizer": "google.genai.local_tokenizer.LocalTokenizer",
+    "local_tokenizer_asset_sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+    "model": "gemini-2.5-flash",
+    "schema_counting_projection": "google-genai 2.13.0 local tokenizer omits response_json_schema, so identical schema is projected through response_schema only during offline counting",
+    "schema_live_wire_field": "responseJsonSchema",
+    "sdk": "google-genai 2.13.0",
+    "status": "exact under frozen experimental local tokenizer asset; compare against provider usage metadata after authorized execution"
+  },
+  "mode_envelopes": {
+    "full": {
+      "input_tokens": 660943,
+      "maximum_contract_output_tokens": 48947,
+      "network_attempt_cap": 26,
+      "scope": "remaining 26 primary queries only after separate owner approval"
+    },
+    "trace": {
+      "input_tokens": 604005,
+      "maximum_contract_output_tokens": 45186,
+      "network_attempt_cap": 24,
+      "scope": "8 primary plus 16 repeatability requests",
+      "split_across_quota_resets_if_needed": true
+    }
+  },
+  "per_query": [
+    {
+      "contents_tokens": 23723,
+      "input_tokens": 25419,
+      "max_contract_output_tokens": 1881,
+      "query_id": "v2q-001",
+      "request_sha256": "aff4c7663f82979620739e35c9f280100b60eefd674591bd8436d3690a0ed5ac",
+      "response_schema_tokens": 1440,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24102,
+      "input_tokens": 25800,
+      "max_contract_output_tokens": 1883,
+      "query_id": "v2q-002",
+      "request_sha256": "76cfdbce9dabd4aa3744be3109dcbe98beb1eb8882e2fec7b78d5d2ef410b6e7",
+      "response_schema_tokens": 1442,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23973,
+      "input_tokens": 25681,
+      "max_contract_output_tokens": 1893,
+      "query_id": "v2q-003",
+      "request_sha256": "814af58d4642c7feba669d515840844d0ac3e688f04436e0b5b03ebad77fac7d",
+      "response_schema_tokens": 1452,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23744,
+      "input_tokens": 25439,
+      "max_contract_output_tokens": 1880,
+      "query_id": "v2q-004",
+      "request_sha256": "62326587630ae89a961266944e74c0723cc18b9fa6d648f53974fd22850db99d",
+      "response_schema_tokens": 1439,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23511,
+      "input_tokens": 25198,
+      "max_contract_output_tokens": 1872,
+      "query_id": "v2q-005",
+      "request_sha256": "a8e9e72ed1b52714b002edecf489d681da9f51ffa954848f245b58203dc80b5a",
+      "response_schema_tokens": 1431,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23660,
+      "input_tokens": 25355,
+      "max_contract_output_tokens": 1880,
+      "query_id": "v2q-006",
+      "request_sha256": "0d8d10425518c5a771fc1c43cba79139ed41e48c8d3624ec62bafbccabf1d9b8",
+      "response_schema_tokens": 1439,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23794,
+      "input_tokens": 25485,
+      "max_contract_output_tokens": 1876,
+      "query_id": "v2q-007",
+      "request_sha256": "52889d93833a5a1bc302ef240a1779556221e7ba3016abd6b4308a7f730a4809",
+      "response_schema_tokens": 1435,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23693,
+      "input_tokens": 25394,
+      "max_contract_output_tokens": 1886,
+      "query_id": "v2q-008",
+      "request_sha256": "20164a7efa965356ae9abb7146c228ae74550a4889127c7c423add3607a8dc8d",
+      "response_schema_tokens": 1445,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24159,
+      "input_tokens": 25870,
+      "max_contract_output_tokens": 1896,
+      "query_id": "v2q-009",
+      "request_sha256": "c9a7cfd9276706187ab6265cda64a99a097ef3da846b52427cb08212445b96fe",
+      "response_schema_tokens": 1455,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24258,
+      "input_tokens": 25984,
+      "max_contract_output_tokens": 1911,
+      "query_id": "v2q-010",
+      "request_sha256": "06912aa12c9a1b47586b7171c4b4d1eaae086f1e7ec8722ba6bfad9532fcb605",
+      "response_schema_tokens": 1470,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24651,
+      "input_tokens": 26369,
+      "max_contract_output_tokens": 1903,
+      "query_id": "v2q-011",
+      "request_sha256": "78eda03450063faa117b5e5ecc3a06ade6546d54349bc167f6e05827f597e4fe",
+      "response_schema_tokens": 1462,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24441,
+      "input_tokens": 26160,
+      "max_contract_output_tokens": 1904,
+      "query_id": "v2q-012",
+      "request_sha256": "f491ae545503f4189011e7b71292e6fbe7ad427ab0d0aad0f5fa56fced3a155e",
+      "response_schema_tokens": 1463,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24014,
+      "input_tokens": 25700,
+      "max_contract_output_tokens": 1871,
+      "query_id": "v2q-013",
+      "request_sha256": "ed1982c2e641dffa6a18daa450b7c26fd913dbbd1941379ab3ff84ff276fa380",
+      "response_schema_tokens": 1430,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23373,
+      "input_tokens": 25078,
+      "max_contract_output_tokens": 1890,
+      "query_id": "v2q-014",
+      "request_sha256": "2b6a17d8f309c1616f7227a7132da6c4eb10f256335230802cb2033c64f8ab1f",
+      "response_schema_tokens": 1449,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23781,
+      "input_tokens": 25498,
+      "max_contract_output_tokens": 1902,
+      "query_id": "v2q-015",
+      "request_sha256": "3ba6841aef4fea72d45d7ef86972ca2ff387cea3f858591e2bc7845218d5dccf",
+      "response_schema_tokens": 1461,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 22411,
+      "input_tokens": 24100,
+      "max_contract_output_tokens": 1874,
+      "query_id": "v2q-016",
+      "request_sha256": "6aa3cee5f0404faedab619f070a6da6099cfd3a45611587da91be849c1a10b8a",
+      "response_schema_tokens": 1433,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 22260,
+      "input_tokens": 23977,
+      "max_contract_output_tokens": 1902,
+      "query_id": "v2q-017",
+      "request_sha256": "7b5579cf30c364c5a568bf8b9be29f3c947455d3c862205306dc360dc8277b25",
+      "response_schema_tokens": 1461,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24000,
+      "input_tokens": 25678,
+      "max_contract_output_tokens": 1863,
+      "query_id": "v2q-018",
+      "request_sha256": "7d8ecb892fe45ee9197a6be7040446a6f0b1b89651a666a7e08cec9cb614f3ae",
+      "response_schema_tokens": 1422,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23984,
+      "input_tokens": 25690,
+      "max_contract_output_tokens": 1891,
+      "query_id": "v2q-019",
+      "request_sha256": "bf04d747850d297a4c94c3302d3441054401dbd7591f0c8595df14a0c43ee56b",
+      "response_schema_tokens": 1450,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 22889,
+      "input_tokens": 24591,
+      "max_contract_output_tokens": 1887,
+      "query_id": "v2q-020",
+      "request_sha256": "fd2e91b224ebed7cce6406a24794e15a1f29ef12d2a5d8c7dee668427f311172",
+      "response_schema_tokens": 1446,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23443,
+      "input_tokens": 25136,
+      "max_contract_output_tokens": 1878,
+      "query_id": "v2q-021",
+      "request_sha256": "e7599be6fb7b94b4c0d349179f1503641224157f6a76adafbf823fec7ac2a7a5",
+      "response_schema_tokens": 1437,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23434,
+      "input_tokens": 25122,
+      "max_contract_output_tokens": 1873,
+      "query_id": "v2q-022",
+      "request_sha256": "6d8ef449102dca31e5ec5c7c1d7733cb55a6642907e67b12efbc8dad22f0e146",
+      "response_schema_tokens": 1432,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23140,
+      "input_tokens": 24850,
+      "max_contract_output_tokens": 1895,
+      "query_id": "v2q-023",
+      "request_sha256": "d7b0826a29d031d2b534e2ac6baae02ced9520c663d1f11879479cd440317dee",
+      "response_schema_tokens": 1454,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23903,
+      "input_tokens": 25614,
+      "max_contract_output_tokens": 1896,
+      "query_id": "v2q-024",
+      "request_sha256": "52c8836726d6febd610804f71f0b67e5f7691fa11dadf3356094dc308bb524e9",
+      "response_schema_tokens": 1455,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23786,
+      "input_tokens": 25468,
+      "max_contract_output_tokens": 1867,
+      "query_id": "v2q-025",
+      "request_sha256": "ec817b86c297f7a032d490201c132e07a944a1333e136c4917482311e3178a59",
+      "response_schema_tokens": 1426,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23817,
+      "input_tokens": 25503,
+      "max_contract_output_tokens": 1871,
+      "query_id": "v2q-026",
+      "request_sha256": "461b34378c30167d9dda89ffb89a4a030103a51463e936925c285fd70765ef55",
+      "response_schema_tokens": 1430,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24425,
+      "input_tokens": 26120,
+      "max_contract_output_tokens": 1880,
+      "query_id": "v2q-027",
+      "request_sha256": "43785c98bcf46d55ba878da0ccd4404c61394d4980cfad1f2eb49ce3827b32c1",
+      "response_schema_tokens": 1439,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23193,
+      "input_tokens": 24895,
+      "max_contract_output_tokens": 1887,
+      "query_id": "v2q-028",
+      "request_sha256": "52b620191661ed621d17c1f5b0edf227a3ee5bf4509fd2b5eaae8502ace78280",
+      "response_schema_tokens": 1446,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23617,
+      "input_tokens": 25311,
+      "max_contract_output_tokens": 1879,
+      "query_id": "v2q-029",
+      "request_sha256": "558442fa9366d929b142a6c3d72679b644b5cca88b313bbd59156a5bdec777e9",
+      "response_schema_tokens": 1438,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 24019,
+      "input_tokens": 25742,
+      "max_contract_output_tokens": 1908,
+      "query_id": "v2q-030",
+      "request_sha256": "1eb0af3078d02729c1949aa37ad4611fab30b6d7070cb5657df72a16004acdb3",
+      "response_schema_tokens": 1467,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23114,
+      "input_tokens": 24786,
+      "max_contract_output_tokens": 1857,
+      "query_id": "v2q-031",
+      "request_sha256": "6ee85599a4882c86ceacc72f5f1cb5994e39c1b06017eac6f1324cd31fc45942",
+      "response_schema_tokens": 1416,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23267,
+      "input_tokens": 24944,
+      "max_contract_output_tokens": 1862,
+      "query_id": "v2q-032",
+      "request_sha256": "d9e89ad5f135e2e5422713d6cb946b7b16e61c859ae22e798ea1bbfe4b522d8b",
+      "response_schema_tokens": 1421,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23727,
+      "input_tokens": 25405,
+      "max_contract_output_tokens": 1863,
+      "query_id": "v2q-033",
+      "request_sha256": "512e4fb20a6a0877a484bb43ac9220ab1052f8936b632d919e2240cbef49bd6f",
+      "response_schema_tokens": 1422,
+      "system_instruction_tokens": 256
+    },
+    {
+      "contents_tokens": 23253,
+      "input_tokens": 24916,
+      "max_contract_output_tokens": 1848,
+      "query_id": "v2q-034",
+      "request_sha256": "71178bce9c4443671a13162e29c97e91fbcac5350b54670a6dc164a2c2dd206f",
+      "response_schema_tokens": 1407,
+      "system_instruction_tokens": 256
+    }
+  ],
+  "status": "all requests within frozen input and output limits; no truncation applied"
+}

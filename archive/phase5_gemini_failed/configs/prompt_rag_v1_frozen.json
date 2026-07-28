@@ -1,0 +1,253 @@
+{
+  "api": {
+    "api_version": "v1beta",
+    "endpoint_family": "generateContent",
+    "endpoint_template": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+    "provider": "Google Gemini Developer API",
+    "stateless_single_turn": true
+  },
+  "architecture": {
+    "candidate_count_per_query": 50,
+    "candidate_generator": "frozen Phase 2A BM25",
+    "candidate_order": "ascending frozen BM25 rank",
+    "sanitized_ranking_path": "audits/phase5b/bm25_top50_query_chunk_only.jsonl",
+    "sanitized_ranking_sha256": "323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390",
+    "source_ranking_path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl",
+    "source_ranking_sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "kind": "LLM relevance reranker",
+    "primary_request_n": 34,
+    "requests_per_query": 1,
+    "system_name": "Prompt-RAG-Gemini-2.5-Flash-BM25-50"
+  },
+  "benchmark_boundary": {
+    "benchmark_version": "pilot-qa-v2-owner-approved-20260724-r5",
+    "chunk_id_is_retrieval_unit": true,
+    "chunk_path": "data/v2/pilot/chunks/chunks.jsonl",
+    "chunk_sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "corpus_chunk_n": 140,
+    "forbidden_inputs": [
+      "qrels",
+      "reference_answer",
+      "answer",
+      "category",
+      "gold_evidence",
+      "metrics",
+      "sealed_provenance",
+      "owner_judgments",
+      "system_identity",
+      "first_stage_score",
+      "first_stage_rank"
+    ],
+    "query_n": 34,
+    "query_path": "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl",
+    "query_sha256": "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488"
+  },
+  "candidate_input_contract": {
+    "candidate_fields": [
+      "chunk_id",
+      "text"
+    ],
+    "candidate_order_bias_disclosed": true,
+    "candidate_order_is_relevance_evidence": false,
+    "duplicate_policy": "fail_closed",
+    "query_fields": [
+      "query_id",
+      "question"
+    ],
+    "serialization": "UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators=(',', ':')"
+  },
+  "credential_policy": {
+    "credential_context_reconfirmation_required_after_any_change": true,
+    "environment_variable": "GEMINI_API_KEY",
+    "log_or_serialize_secret": false,
+    "source": "environment_only"
+  },
+  "implementation_validity_correction": {
+    "api_version_after_correction": "v1beta",
+    "api_version_before_correction": "v1",
+    "classification": "pre-result API schema-field and API-version corrections; not benchmark-sensitive tuning",
+    "invalid_v1_output_root": "runs/v2/phase5b_prompt_rag",
+    "invalid_v1_successful_response_n": 0,
+    "invalid_v2_output_root": "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
+    "invalid_v2_successful_response_n": 0,
+    "provider_wire_field_after_correction": "responseJsonSchema",
+    "provider_wire_field_before_correction": "responseSchema"
+  },
+  "execution_authorized": true,
+  "execution_control": {
+    "canonical_output_root": "runs/v2/phase5b_prompt_rag_v1beta_v3",
+    "full_execution_approval_path": "audits/phase5b/full_execution_approval.json",
+    "full_requires_verified_trace_decision": true,
+    "mode_specific_owner_approval_required": true,
+    "quota_reset_resume_approval_path": "audits/phase5b/quota_reset_resume_approval.json",
+    "trace_execution_approval_path": "audits/phase5b/trace_execution_approval.json",
+    "trace_never_authorizes_full": true
+  },
+  "failure_policy": {
+    "failed_query_output": "explicit failure record; no ranking",
+    "fallback": "none",
+    "retry_content_validation_failures": false,
+    "retry_http_429": false,
+    "retry_same_exact_payload_only": true,
+    "terminal_conditions": [
+      "missing candidate",
+      "extra candidate",
+      "duplicate candidate",
+      "changed chunk ID",
+      "non-integer score",
+      "score outside 0..3",
+      "malformed JSON",
+      "prompt blocked",
+      "candidate refused or safety-blocked",
+      "truncated output",
+      "missing responseId",
+      "missing modelVersion",
+      "modelVersion differs within run",
+      "incomplete response",
+      "unexpected tool or non-text part"
+    ]
+  },
+  "free_tier_execution_safety": {
+    "attempt_count_timing": "atomically persisted before every network dispatch",
+    "billing_or_credit_enablement_authorized": false,
+    "confirmation_artifact": "audits/phase5b/free_tier_owner_confirmation.json",
+    "confirmation_must_match_frozen_config_sha256": true,
+    "full_mode": {
+      "network_attempt_cap": 26,
+      "scope": "remaining 26 primary queries only",
+      "separate_owner_approval_required": true
+    },
+    "implicit_trace_plus_full": false,
+    "model_key_project_provider_prompt_or_depth_change_for_quota": false,
+    "monetary_charge_required": 0,
+    "record_zero_cost_only_after_confirmation": true,
+    "paid_fallback": false,
+    "quota_exhaustion": "preserve checkpoint and stop; no same-execution 429 retry; resume only after owner-approved quota reset",
+    "runtime_required_flag": "--require-free-tier-owner-confirmation",
+    "trace_mode": {
+      "network_attempt_cap": 24,
+      "scope": "8 trace primaries plus 16 fixed repeatability requests"
+    }
+  },
+  "generation": {
+    "cached_content": null,
+    "candidate_count": 1,
+    "max_output_tokens": 4096,
+    "model": "gemini-2.5-flash",
+    "model_input_token_limit": 1048576,
+    "model_output_token_limit": 65536,
+    "safety_settings": "provider_default; any block is terminal",
+    "seed": "omitted_not_owner_frozen",
+    "streaming": false,
+    "temperature": 0,
+    "thinking_budget": 0,
+    "tools": [],
+    "top_k": "omitted_not_owner_frozen",
+    "top_p": "omitted_not_owner_frozen"
+  },
+  "model_version_policy": {
+    "first_valid_trace_response_establishes_run_version": true,
+    "requested_model": "gemini-2.5-flash",
+    "returned_modelVersion_required": true,
+    "stable_name_is_dated_immutable_snapshot": false,
+    "stop_if_modelVersion_changes": true
+  },
+  "output_contract": {
+    "output_depth": 50,
+    "response_mime_type": "application/json",
+    "response_json_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_scores": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "chunk_id": {
+                "dynamic_enum": "sorted exact supplied chunk IDs",
+                "type": "string"
+              },
+              "score": {
+                "maximum": 3,
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "chunk_id",
+              "score"
+            ],
+            "type": "object"
+          },
+          "maxItems": 50,
+          "minItems": 50,
+          "type": "array"
+        }
+      },
+      "required": [
+        "candidate_scores"
+      ],
+      "type": "object"
+    },
+    "score_anchors": {
+      "0": "irrelevant, misleading, or no useful evidence",
+      "1": "topically related background but unlikely to answer a material part alone",
+      "2": "concrete evidence useful for a material part",
+      "3": "direct specific evidence strongly addressing the question or an essential answer element"
+    },
+    "score_type": "integer",
+    "tie_break": "score descending then chunk_id ascending; never BM25 rank"
+  },
+  "prompt": {
+    "path": "prompts/prompt_rag_retrieval_v1.txt",
+    "sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9"
+  },
+  "request_contract": {
+    "implementation_revision": 3,
+    "provider_wire_schema_field": "responseJsonSchema",
+    "full_plan_sha256": "25fb56b0f8aaf3bdeb33c35fd80f0520100fb0c48d84f941a4d9e5e15af4ca11",
+    "request_hash_source_path": "audits/phase5b/token_budget_audit.json",
+    "request_hash_source_sha256": "ff13f5e46b1629f914ce0f0d3fbc81b3c09d7eb96193046e966e304cc069ac40",
+    "trace_plan_sha256": "196b1e76703b135c901dc67e14a46e43ba0a49308dd0c7595f8ba34e4d80c01b",
+    "trace_selection_path": "audits/phase5b/trace_selection.json",
+    "trace_selection_sha256": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac"
+  },
+  "retry_and_timeout": {
+    "backoff_seconds_before_retry": [
+      1,
+      2
+    ],
+    "jitter": 0,
+    "sdk_internal_attempts": 1,
+    "timeout_milliseconds": 120000,
+    "total_attempts": 3,
+    "transient_http_statuses": [
+      408,
+      500,
+      502,
+      503,
+      504
+    ],
+    "quota_stop_http_statuses": [
+      429
+    ]
+  },
+  "sdk": {
+    "install_spec": "google-genai[local-tokenizer]==2.13.0",
+    "local_tokenizer_asset_sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+    "local_tokenizer_name": "gemma3",
+    "name": "google-genai",
+    "version": "2.13.0"
+  },
+  "status": "offline_frozen_ready_pending_mode_specific_owner_approval",
+  "trace_gate": {
+    "full_run_allowed_before_pass": false,
+    "metrics_allowed_before_pass": false,
+    "repeatability_execution_n_per_trace_query": 3,
+    "network_attempt_cap": 24,
+    "seed": "42",
+    "selection_input": "UTF-8 bytes of '42' + NUL + query_id",
+    "selection_rule": "select eight lexicographically smallest SHA-256 digests",
+    "trace_query_n": 8
+  },
+  "version": "prompt-rag-retrieval-v1-gemini-v1beta-r3"
+}

@@ -1,0 +1,65 @@
+{
+  "artifact_hashes": {
+    "audits/branch_review/remediation/starting_state.json": "0ece2ab23f4749042702c07c4d1a2c6627cdd8addd38652babd2438aea990a23",
+    "audits/phase5a/cost_and_failure_policy.json": "6fc267304a46465e5cb768e698601f47f703c658875d0161a3bbd702c6f297ff",
+    "audits/phase5a/fairness_audit.json": "4297072aac0354177e0b1228f3320b6123548100567a85e4d765c1434b6597c5",
+    "audits/phase5a/freeze_readiness.json": "e944bc87dc348f5b248333f4ccd268d6531d22ba8e72b49e2533b638444ed575",
+    "audits/phase5a/history_and_claims_audit.json": "447b70a9f6f031b2d3e4d3e2d40dfe48efde1a04115b95061a28c719673d4507",
+    "audits/phase5a/leakage_boundary.json": "3fedcd44ae09a8c11354eda9a560f218a41edbc99440587685eedd13775c95cf",
+    "audits/phase5b/bm25_top50_query_chunk_only.jsonl": "323f325bb730f3d0a0a5e37b7938d96090d831d5569fc2ae91330ec0c2f59390",
+    "audits/phase5b/credential_rotation_owner_attestation.json": "6c98a046a93686c6eb71e63ec5978559f2a65ae30efe20eb1284a1e5db60a678",
+    "audits/phase5b/evaluation_protocol.json": "54d70a88a37c641a658370e4f0e1caae040ee4b5a0a2a8dae34f9789114d3093",
+    "audits/phase5b/failure_and_retry_policy.json": "96122e9df8955bb64398d7e44bf4d444a3a092e862e2d8cd65db5534cb8ad82f",
+    "audits/phase5b/model_and_sdk_evidence.json": "988a190f69ea528e6d254c920c6df5332ea0db8eebfa23c0726100b839dc52a4",
+    "audits/phase5b/prompt_freeze.json": "1767963df90deacb5c5fef71e8457a9080e12cc23fd37397730d88b1835b76d4",
+    "audits/phase5b/repeatability_protocol.json": "2be81f636adf4fbb67079ae68f3d5feda7d784d2e5e51cc0bed9c42c9eda019f",
+    "audits/phase5b/token_budget_audit.json": "ff13f5e46b1629f914ce0f0d3fbc81b3c09d7eb96193046e966e304cc069ac40",
+    "audits/phase5b/trace_selection.json": "14e47bb7685033629603f72c11fdaca270929ec8a946ffbc75bf2fea9f7dffac",
+    "configs/prompt_rag_v1_candidate.json": "fc3a0aaad48d96ecf809754e7f75f45e64c91368b8c0240a21e110721db243da",
+    "configs/prompt_rag_v1_frozen.json": "87247fc5bab12e9f174e19fdbe8a237c4a910d215eaa6cbbe1b19d852914f2d7",
+    "data/v2/pilot/chunks/chunks.jsonl": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "docs/PROMPT_RAG_PROTOCOL_V1.md": "4f1a3107e048cee5ef677bf6062b22fca9dc9ebf041a2b38b309414e79a5dd61",
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "pyproject.toml": "2c73f138e9d938a5f032e172a2e56c06107537f00019d254598df23feef9cbed",
+    "requirements.txt": "39df82a3fc475decfedebd1b64bc6aede483d052c295023451550a89b8dc707f",
+    "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+    "runs/v2/phase3_graph_v3_2/inputs/r5_queries_only.jsonl": "c96270ffa4acc060a3a2eae4ab081bd8146230eece361e53d8e3d1af69494488",
+    "scripts/run_phase5b_prompt_rag.py": "33002e005e8072bb20636449390ce10b38f9251ac615798bdab2c7dea379b182",
+    "src/retrievers/prompt_rag_contract.py": "116f80308bf85f031ffc9acea35d75bf8c1c07bfa2d928f6cbb7ca6d652395d2",
+    "src/retrievers/prompt_rag_gemini_v1.py": "f9f5512a5abcd15be5ec5cbff49707a8aef09c16b04717cd9c5f75b66f8c208e",
+    "src/utils/atomic_io.py": "2dcbdc8638b5f7636b8a55db5a8ebfd68e68694b54c5e06babb53f006bbc8845",
+    "src/utils/hashing.py": "457b7311c5b5bfceb7340f95e8dd43e1fb997e9c7ee0a772da06b08017fe9950",
+    "tests/test_phase5a_prompt_rag.py": "42c3200441ccba888fea19b67839dc688e229a501d2f0a78e6af1cb03aa6e23d",
+    "tests/test_phase5b_prompt_rag.py": "73496f1b659652d60914dd334667331995b8b5d30395e0b9a36199ca4c729b76"
+  },
+  "checkpoint": {
+    "config_executable_contract": true,
+    "free_tier_confirmation_status": "pending_manual_owner_confirmation",
+    "full_execution_approval_status": "pending",
+    "live_execution_authorized": false,
+    "mode_approvals_are_separate": true,
+    "status": "offline_remediation_complete_pending_free_tier_and_mode_owner_approval",
+    "trace_execution_approval_status": "pending"
+  },
+  "completeness": {
+    "artifact_count": 31,
+    "manifest_self_hash_excluded": true,
+    "scope": "all immutable Phase 5A/5B protocols, configs, prompt, sources, runner, tests, dependency metadata, frozen request inputs, and credential-rotation remediation attestation"
+  },
+  "mutable_runtime_controls": [
+    "audits/phase5b/free_tier_owner_confirmation.json",
+    "audits/phase5b/full_execution_approval.json",
+    "audits/phase5b/quota_reset_resume_approval.json",
+    "audits/phase5b/trace_execution_approval.json"
+  ],
+  "prohibited_actions": {
+    "answer_generation": false,
+    "commit_or_push": false,
+    "live_gemini_api_calls": 0,
+    "owner_judging": false,
+    "pool_expansion": false,
+    "retrieval_metric_calculation": false,
+    "retrieval_run": false
+  },
+  "schema_version": 2
+}

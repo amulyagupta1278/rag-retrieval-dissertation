@@ -1,0 +1,65 @@
+{
+  "policy": "Historical hash-pinned tests remain byte-identical. Exact pre-execution or pre-judging assertions run and xfail after later owner-authorized lifecycle transitions. Current-state replacement tests must pass.",
+  "schema_version": 1,
+  "supersessions": {
+    "tests/test_phase5a_prompt_rag.py::test_hypotheses_and_protected_phase4_checkpoint_are_unchanged": {
+      "current_checkpoint_file_n": 532,
+      "current_checkpoint_sha256": "9e122c1365aeff3abfa5c3328431e6a7569d1daa310e212513ae5bf51c09b34b",
+      "evidence": {
+        "archive/phase5_gemini_failed/manifest.json": "a8a163da7bfd428286ac52d55e880dbd68203683e6a7d37d5d5452d4dec7042c",
+        "audits/phase4_hybrid/latency_disclosure_correction.json": "ba38c2b1cf8bdcfe21853fd794ea10a3169c49353b5f0a68e61ee3792d9a5b56"
+      },
+      "reason": "Phase 4 latency disclosure correction, later audit repairs, lazy optional FAISS import, and failed Gemini archival were owner-authorized after protected Phase 4 HEAD. Historical aggregate assertion remains unchanged."
+    },
+    "tests/test_phase5d_v2_full_amendment.py::test_approval_is_pending_and_commit_bound": {
+      "evidence": {
+        "audits/phase5d_v2_full/full_execution_approval.json": "63cfc95965b87ab91c66f77555402c655b9dfd07018fbf69c99f54c58a2f6b62"
+      },
+      "reason": "Owner approved Phase 5D V2 full execution after amendment freeze."
+    },
+    "tests/test_phase5d_v2_full_amendment.py::test_no_full_output_or_api_call_during_amendment": {
+      "evidence": {
+        "audits/phase5d_v2_full/full_execution_approval.json": "63cfc95965b87ab91c66f77555402c655b9dfd07018fbf69c99f54c58a2f6b62"
+      },
+      "reason": "Amendment made zero calls, then separately approved execution created full-run evidence."
+    },
+    "tests/test_phase5d_v2_prompt_rag_claude.py::test_owner_approval_is_pending_and_exact_statement_is_commit_bound": {
+      "evidence": {
+        "audits/phase5d_v2/trace_execution_approval.json": "758a413234294ebdf4081276e9740fc9a710d14f89f1564dbcd29aec1c185c90"
+      },
+      "reason": "Owner approved 24-call V2 trace after offline freeze."
+    },
+    "tests/test_phase5d_v2_prompt_rag_claude.py::test_no_live_call_or_v2_output_exists_during_freeze": {
+      "evidence": {
+        "audits/phase5d_v2/trace_execution_approval.json": "758a413234294ebdf4081276e9740fc9a710d14f89f1564dbcd29aec1c185c90",
+        "runs/v2/phase5d_prompt_rag_claude_v2/trace/control/ledger.json": "e444f2e199c4662765b3f7e758a7b4491900891e93ea70852bac53cfa4935d47"
+      },
+      "reason": "Offline freeze made zero calls, then separately approved trace created V2 evidence."
+    },
+    "tests/test_phase5d_v3_transport_recovery.py::test_live_approval_is_pending_and_commit_bound": {
+      "evidence": {
+        "audits/phase5d_v3_recovery/live_execution_approval.json": "134be7257b606956cd65cba9fed951c53ed367f9b7016734b6acd2099f0a29b0"
+      },
+      "reason": "Owner approved V3 transport recovery after offline freeze."
+    },
+    "tests/test_phase5d_v3_transport_recovery.py::test_no_v3_output_or_live_call_during_freeze": {
+      "evidence": {
+        "audits/phase5d_v3_recovery/live_execution_approval.json": "134be7257b606956cd65cba9fed951c53ed367f9b7016734b6acd2099f0a29b0",
+        "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/control/ledger.json": "c5fa15f454df97b1fb7c53080e67f00a36b7e3b034944c12f30cd0809c6d703b"
+      },
+      "reason": "Offline V3 freeze made zero calls, then separately approved recovery created V3 evidence."
+    },
+    "tests/test_phase6_blind_judging_package.py::test_freeze_manifest_hashes_every_artifact": {
+      "evidence": {
+        "audits/phase6_seed42/freeze/freeze_manifest.json": "c20f6f1d39ddf10f17b497fbab0d9e46202af5672e9d232728737ae9e747fb8b"
+      },
+      "reason": "Historical test asserts blank-package manifest. Owner judging and valid additive seed-42 final freeze now supersede that lifecycle state."
+    },
+    "tests/test_phase6_blind_judging_package.py::test_package_has_755_unique_blank_rows_and_safe_columns": {
+      "evidence": {
+        "data/v2/pilot/qrels/pilot-qa-v2-final-pooled-phase6-seed42-owner-adjudicated.tsv": "c167689e5f0a1e7412d17baab56c6789e1612bb08121255fc0c153fecd1e077f"
+      },
+      "reason": "Historical test asserts pre-judging blanks. Package now contains owner first-pass labels and final seed-42 labels are frozen additively."
+    }
+  }
+}

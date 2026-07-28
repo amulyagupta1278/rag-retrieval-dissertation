@@ -1,0 +1,45 @@
+{
+  "artifact_type": "phase5c_api_version_404_checkpoint",
+  "authorization": {
+    "free_tier_confirmation_sha256": "00360a5207e46b857c67560ba766707a2c8f7868e62fe522a815b913766ca37e",
+    "owner_approved_commit": "fcaf1bbb7a9e903d13700d408ff1cfbc6d0ac2d7",
+    "trace_execution_approval_sha256": "c42cff18cde042c959316bbb40a74958cfd5f2f88ca29b5ca063e4a1ce55cc55"
+  },
+  "classification": "terminal pre-result API-version compatibility failure",
+  "detected_at": "2026-07-26T19:51:37+05:30",
+  "evidence": {
+    "attempt_path": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/attempts/v2q-017__primary/attempt-001.json",
+    "attempt_sha256": "4613fcc3f024305bf9d1aee3887b6a90b72ae001ff3ba592076e81d6f2406452",
+    "attempted_network_request_n": 1,
+    "failure_path": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/failures/v2q-017__primary__terminal.json",
+    "failure_sha256": "bc60f0e6daf4340059a0ce1ff45f482806ba78401ef6aa4da521c27737bc4862",
+    "http_status": 404,
+    "ledger_path": "runs/v2/phase5b_prompt_rag_response_json_schema_v2/trace/control/ledger.json",
+    "ledger_sha256": "5cf8998d3997ec0a510fc81f13fb772181a1f4e185214a9af62edec11872811b",
+    "logical_request_id": "v2q-017:primary",
+    "requested_api_version": "v1",
+    "requested_endpoint_family": "generateContent",
+    "requested_model": "gemini-2.5-flash",
+    "successful_response_n": 0
+  },
+  "finding": {
+    "exact_provider_error_detail_preserved": false,
+    "exact_provider_error_detail_reason": "frozen secret-safe policy intentionally discards provider error bodies",
+    "root_cause_status": "strongly supported but not proven from provider error body",
+    "summary": "Current official SDK defaults Gemini Developer API calls to v1beta, current Generate Content examples use v1beta, and stable v1 documentation demonstrates Interactions API. Official troubleshooting classifies HTTP 404 as an invalid-resource or API-version parameter problem. Frozen v1 generateContent route therefore appears incompatible with this model/key context."
+  },
+  "next_decision": {
+    "alternative_1_recommended": "freeze v1beta generateContent while retaining model, prompt, candidate set, schema, scoring, ranking, and trace selection",
+    "alternative_2": "retain stable v1 but redesign around Interactions API; this changes endpoint contract and is not a narrow correction",
+    "alternative_3": "stop Prompt-RAG live evaluation",
+    "benchmark_sensitive_selection": false,
+    "further_live_request_authorized": false,
+    "owner_approval_required": true
+  },
+  "references": [
+    "https://ai.google.dev/gemini-api/docs/api-versions",
+    "https://ai.google.dev/gemini-api/docs/troubleshooting",
+    "https://googleapis.github.io/python-genai/index.html"
+  ],
+  "schema_version": 1
+}

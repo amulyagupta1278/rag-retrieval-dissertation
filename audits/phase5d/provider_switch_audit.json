@@ -1,0 +1,31 @@
+{
+  "classification": "owner-approved provider recovery after Gemini endpoint and quota failures; not benchmark-sensitive tuning",
+  "claude_selection": {
+    "model": "claude-haiku-4-5-20251001",
+    "reasons": [
+      "owner supplied Claude credential path because submission deadline is near",
+      "dated active model snapshot improves reproducibility",
+      "native strict JSON schema is available",
+      "lowest current Claude API list price among active suitable Claude models"
+    ],
+    "retrieval_results_or_metrics_used": false
+  },
+  "gemini_artifacts_preserved": [
+    "runs/v2/phase5b_prompt_rag",
+    "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
+    "runs/v2/phase5b_prompt_rag_v1beta_v3",
+    "audits/phase5c/minimal_generation_quota_diagnostic.json"
+  ],
+  "invariants": [
+    "frozen BM25 top-50 candidates",
+    "same 34 R5 query-only records",
+    "unchanged prompt text and SHA-256",
+    "same 0..3 score anchors",
+    "score-descending then chunk-ID-ascending ranking",
+    "same structural trace IDs and repeatability thresholds",
+    "no qrels, answers, categories, metrics, sealed provenance, or owner labels"
+  ],
+  "owner_direction": "Use Claude API because submission is near and complete Phase 5 quickly.",
+  "schema_version": 1,
+  "status": "offline_provider_recovery_frozen_no_claude_call_yet"
+}

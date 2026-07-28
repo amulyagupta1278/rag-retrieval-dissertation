@@ -1,0 +1,13 @@
+{
+  "answerability": null,
+  "category_balance": null,
+  "duplicate_check": null,
+  "evidence_sufficiency": null,
+  "leakage_check": null,
+  "multi_hop_validity": null,
+  "review_status": "not_started",
+  "scheme_balance": null,
+  "shortcut_risk": null,
+  "synthesis_validity": null
+}
+

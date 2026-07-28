@@ -1,0 +1,45 @@
+{
+  "benchmark_version": "pilot-qa-v2",
+  "phase": "phase6_final_pooled",
+  "created_utc": "2026-07-27T19:23:40.890869+00:00",
+  "question_count": 34,
+  "pair_count": 755,
+  "grade_distribution": {
+    "0": 574,
+    "1": 92,
+    "2": 89
+  },
+  "label_sources": {
+    "first_pass_unsampled": 641,
+    "regrade_agreement": 104,
+    "owner_adjudication": 10
+  },
+  "regrade_protocol": {
+    "seed": 123,
+    "n": 114,
+    "stratified": {
+      "0": 87,
+      "1": 13,
+      "2": 14
+    },
+    "exact_agreement_rate": 0.912281,
+    "cohens_kappa": 0.7718,
+    "quadratic_weighted_kappa": 0.8916,
+    "disagreements_adjudicated": 10,
+    "retain_first_pass": 2,
+    "adopt_second_pass": 8
+  },
+  "source_hashes": {
+    "first_pass_owner_judging_csv": "b955dc4007466e4adda73fdabc96e9dcd8fc04fc33bc47f3265f0a148883f8f8",
+    "regrade_package_csv": "b9d810cb81d0a654150a8ab5f60dda337382f008d0f88b8746c6ee7cfc992cb8",
+    "regrade_provenance_sealed": "803b239fe09b7c308d8f8dd791dde7a5156010becd036b0f1b25b2b2659e5cba",
+    "final_human_labels_csv": "d95dc8b1e1d78560badfbe08d271d6c8a526bfee0a956388dffef03844bd9f29"
+  },
+  "final_qrels_sha256": "25f8cb41163a2e987fe92a8e0a284fc53aa8eeb700b63d8ac48b32f4a63e14aa",
+  "changes_from_phase6_pooled_qrels": 8,
+  "ai_assigned_final_labels": 0,
+  "api_calls": 0,
+  "generation_calls": 0,
+  "VALIDITY_STATUS": "INVALID_NON_CONFIRMATORY",
+  "INVALIDATION_NOTICE": "INVALID - NON-CONFIRMATORY. Seed 123 (protocol requires 42), grade-stratified (protocol requires blind random), grades AI-generated (protocol requires human). Preserved as audit evidence. See audits/phase6_invalidation/INVALIDATION_NOTICE.md"
+}

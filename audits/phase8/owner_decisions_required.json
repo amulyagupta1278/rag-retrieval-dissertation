@@ -1,0 +1,16 @@
+{
+  "decisions": [
+    "final-scale strategy: staged corpus ramp, locked pilot plus holdout, or separately specified design",
+    "document or question target",
+    "official-source inclusion and version policy",
+    "owner QA and pooled-qrels review capacity",
+    "schedule and stop conditions",
+    "retrieval rerun scope",
+    "Phase 7 generation dataset scope",
+    "monetary hard cap"
+  ],
+  "final_scale_strategy": null,
+  "schema_version": 1,
+  "status": "owner_decision_required"
+}
+

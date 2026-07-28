@@ -1,0 +1,10 @@
+{"byte_size":98,"path":"audits/phase1/human_review/category_counts.json","sha256":"55d0c08377116594a8d7dce0e34d0398142bea604702b6d40f380b4f02304024"}
+{"byte_size":22232,"path":"audits/phase1/human_review/decision_log.json","sha256":"030c567cf282e55ffc202b566b784021eb2376bc2f76b77f22ecfbcc8b47bffe"}
+{"byte_size":384,"path":"audits/phase1/human_review/evidence_support_audit.json","sha256":"2ed2b006140f165bf73533f1afa8e9be42973cf0970389473ae539d83ee40b99"}
+{"byte_size":578,"path":"audits/phase1/human_review/freeze_manifest.json","sha256":"76616c21179811a243874c8d61ba1fc78ae269b8ce8b65b5b8b70d4618120888"}
+{"byte_size":1618,"path":"audits/phase1/human_review/multi_hop_audit.json","sha256":"747331b3272fc4c7a49ac6670c3398326822d8de32690f473eefd1b3f4b7cea5"}
+{"byte_size":124,"path":"audits/phase1/human_review/near_duplicate_resolution.json","sha256":"ad32935405cd139a90d1c960c71952aac527d0fe01ffc9c34d2876660b3f750e"}
+{"byte_size":1020,"path":"audits/phase1/human_review/synthesis_audit.json","sha256":"feed86c031a302f952a6d8d2a3e765c43c547a031e8eb694f96cb86718cef496"}
+{"byte_size":137,"path":"audits/phase1/human_review/test_output.txt","sha256":"e3b6d84b573779672a513a443d55d1a5f4c38d8af436871e8cb5fc544f71a34e"}
+{"byte_size":123776,"path":"data/v2/pilot/qa/pilot-qa-v2-reviewed-20260724-r1.jsonl","sha256":"a7b7ef9a805707f3668d45f7d127a2cc6f4d47330ff31910d59c543188253013"}
+{"byte_size":15160,"path":"data/v2/pilot/qrels/pilot-qa-v2-reviewed-20260724-r1.jsonl","sha256":"a38776076fbf5c80f5ede3cbefd8e6d9ffd724818d33dac6f085ed63074edd3b"}

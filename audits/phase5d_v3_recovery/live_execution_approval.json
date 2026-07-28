@@ -1,0 +1,8 @@
+{
+  "approved_recovery_commit": "fa05de13da0c0ae46f81d4f53d92d4df2d9328d4",
+  "freeze_manifest_sha256": "c461a6e12235f6414d3b3f4e8a272ed94f965e737b453cc8408a8e3877478b3b",
+  "owner_statement": "Approve Phase 5D V3 26-primary transport recovery at commit fa05de13da0c0ae46f81d4f53d92d4df2d9328d4, with unchanged model, fixed-key schema, prompt, candidates, scoring, ranking, and no automatic retries; separate V3 outputs; cumulative hard cap $2.15, including $0.050240 ambiguous-attempt reserve and $2.149328 budgeted cumulative worst case.",
+  "recovery_config_sha256": "2834f2873c162271fa8e769d336521a89ab59ac055db780a2f19f68935b589c1",
+  "schema_version": 1,
+  "status": "owner_approved"
+}

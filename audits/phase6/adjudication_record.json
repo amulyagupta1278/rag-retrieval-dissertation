@@ -1,0 +1,94 @@
+{
+  "phase": "phase6_blind_adjudication",
+  "timestamp_utc": "2026-07-26T20:34:25.992682Z",
+  "description": "Owner adjudication of 27 audit disagreements (all from owner Grade-1 rows). Acting as owner per user instruction 'u r the owner'.",
+  "audit_file": "runs/v2/phase6_blind_judging_package/audit/phase6_audit_all_rows.csv",
+  "audit_sha256": "5b92193c3bb3950fb0fcaff7a4ac326480044b6c40137c9b9ad8502085aeed84",
+  "snapshot_sha256": "d02c08df6cfc5a43dedfbbcd3248e199671c067654f8971cae63f2342c2faaf8",
+  "total_disagreements": 27,
+  "owner_1_audit_2": {
+    "count": 20,
+    "upgrades_accepted": 3,
+    "upgrades_rejected_kept_1": 17,
+    "note": "Upgraded where chunk directly states the scheme mechanism. Kept Grade 1 where chunk contains correct-scheme content (costs, eligibility, definitions, procedural steps) but lacks the direct mechanistic claim in the reference answer."
+  },
+  "owner_1_audit_0": {
+    "count": 7,
+    "downgrades_accepted": 6,
+    "downgrades_rejected_kept_1": 1,
+    "note": "Downgraded 6 rows where chunk was wrong-scheme (PMAY-G chunks for PMUY query v2q-013) or wrong-pathway (SP/STT operational steps for v2q-016 RPL / v2q-028 RPL queries). Kept 1 Grade-1 row (v2q-028-candidate-07) where STT chunk verbatim states 'fresh skilling, re-skilling, or upskilling' \u2014 directly addresses STT component; audit Grade 0 was too strict."
+  },
+  "grade_changes": [
+    {
+      "display_id": "v2q-034-candidate-21",
+      "old": "1",
+      "new": "2",
+      "decision": "upgrade"
+    },
+    {
+      "display_id": "v2q-032-candidate-02",
+      "old": "1",
+      "new": "2",
+      "decision": "upgrade"
+    },
+    {
+      "display_id": "v2q-033-candidate-08",
+      "old": "1",
+      "new": "2",
+      "decision": "upgrade"
+    },
+    {
+      "display_id": "v2q-016-candidate-04",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    },
+    {
+      "display_id": "v2q-013-candidate-05",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    },
+    {
+      "display_id": "v2q-013-candidate-01",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    },
+    {
+      "display_id": "v2q-013-candidate-12",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    },
+    {
+      "display_id": "v2q-028-candidate-03",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    },
+    {
+      "display_id": "v2q-028-candidate-05",
+      "old": "1",
+      "new": "0",
+      "decision": "downgrade"
+    }
+  ],
+  "final_grade_distribution": {
+    "0": 572,
+    "1": 88,
+    "2": 95,
+    "U": 0
+  },
+  "total_rows": 755,
+  "owner_judging_package_sha256_post_adjudication": "b955dc4007466e4adda73fdabc96e9dcd8fc04fc33bc47f3265f0a148883f8f8",
+  "qrels_sha256_post_adjudication": "b17b606f95be1dd50bf935380d8d2281dd08e9fd63fbb8cb70156ae4625f3309",
+  "reseed_qc": {
+    "seed": 42,
+    "reseed_rows": 113,
+    "agreements": 111,
+    "intra_rater_agreement": 0.9823,
+    "disagreements_adjudicated": 2,
+    "both_upheld_grade_2": true
+  }
+}

@@ -20,6 +20,8 @@ dependencies = [
     "python-docx>=0.8",       # DOCX extraction
     "beautifulsoup4>=4.12",   # HTML extraction
     "pyyaml>=6.0",
+    "tqdm>=4.65",
+    "anthropic==0.116.0",
     "requests>=2.31",
 ]
 

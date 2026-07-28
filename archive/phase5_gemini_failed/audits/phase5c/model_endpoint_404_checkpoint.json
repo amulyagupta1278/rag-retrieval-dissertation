@@ -1,0 +1,57 @@
+{
+  "artifact_type": "phase5c_model_endpoint_404_checkpoint",
+  "authorization": {
+    "free_tier_confirmation_sha256": "d0dcb21f76ba8206ae7859fbe5b5c4299e8c20184854a9dd652fb1c7f16b5a8d",
+    "owner_approved_commit": "f9bec09b1bb0aa7702767895813462e7dd7ba49f",
+    "trace_execution_approval_sha256": "91e9f3158dfffd4a5463319fb0278ed8d0b144b5b45a722ac85ddd5f30cd23c1"
+  },
+  "classification": "terminal pre-result model-endpoint availability failure",
+  "detected_at": "2026-07-26T20:44:50+05:30",
+  "evidence": {
+    "attempt_path": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/attempts/v2q-017__primary/attempt-001.json",
+    "attempt_sha256": "9915d86b7dd72ae644485540fefb59cdf2407561930e7cf9cb9f22d75d1af2e5",
+    "attempted_network_request_n": 1,
+    "failure_path": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/failures/v2q-017__primary__terminal.json",
+    "failure_sha256": "fb22c8afb04e5fe162ff16836211ba2f506192f8c8e51cd1453fa85bbd5e86b0",
+    "http_status": 404,
+    "ledger_path": "runs/v2/phase5b_prompt_rag_v1beta_v3/trace/control/ledger.json",
+    "ledger_sha256": "102c8bf3fe23ef99ab7a11bd476081e0355e52503fc92ef16a6444a9c8ccb862",
+    "logical_request_id": "v2q-017:primary",
+    "requested_api_version": "v1beta",
+    "requested_endpoint_family": "generateContent",
+    "requested_model": "gemini-2.5-flash",
+    "successful_response_n": 0
+  },
+  "offline_routing_validation": {
+    "api_base_url": "https://generativelanguage.googleapis.com/",
+    "api_version": "v1beta",
+    "developer_api_selected": true,
+    "google_cloud_project_environment_present": false,
+    "proxy_environment_present": false,
+    "vertex_ai_selected": false
+  },
+  "finding": {
+    "api_version_only_cause_ruled_out": true,
+    "exact_provider_error_detail_preserved": false,
+    "exact_provider_error_detail_reason": "frozen secret-safe policy intentionally discards provider error bodies",
+    "official_model_status": "gemini-2.5-flash remains listed as stable with earliest shutdown 2026-10-16",
+    "root_cause_status": "unresolved",
+    "unverified_possibilities": [
+      "active key/project lacks access to requested model",
+      "project-side Gemini API configuration differs from owner expectation",
+      "provider returned model-specific NOT_FOUND detail that current sanitized error policy did not preserve"
+    ]
+  },
+  "next_gate": {
+    "additional_credentialed_diagnostic_call_authorized": false,
+    "further_trace_request_authorized": false,
+    "owner_should_verify_model_access_in_google_ai_studio": true,
+    "preserve_current_model_until_explicit_owner_change": true
+  },
+  "references": [
+    "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash",
+    "https://ai.google.dev/gemini-api/docs/deprecations",
+    "https://ai.google.dev/gemini-api/docs/troubleshooting"
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,22 @@
+{
+  "artifact_hashes": {
+    "audits/phase5d_v2_full/freeze_manifest.json": "f6e8c2ef91564799bf87d09fb75d520345a86de73440b3c20d6bab4fe581a8b6",
+    "audits/phase5d_v2_full/failure_verification.json": "601dc751f54e44082854674712713b59539af953889c0c601a0a3327ddb20d0f",
+    "audits/phase5d_v2_full/full_execution_approval.json": "63cfc95965b87ab91c66f77555402c655b9dfd07018fbf69c99f54c58a2f6b62",
+    "audits/phase5d_v2_full/full_transport_failure_checkpoint.json": "c9c233d2d9d8553b00fbcd29a9d5f9928462ae656680dc6d7bc2658db91a6b03",
+    "audits/phase5d_v2_full/offline_transport_diagnosis.json": "47b9d7f95d6816fa979adcb3f6835a13a180fc178f4676af9b0257d51234136a",
+    "configs/prompt_rag_claude_v2_full_amendment.json": "d3a307ebac45f8e59b788ff579548b06b465b3f0587ba0573cdd0997297205c8",
+    "runs/v2/phase5d_prompt_rag_claude_v2/full/control/ledger.json": "01d2a453bd57252ea23551cc6a9b4a625a6d0827dcb0018d89de03ae08b8b3d7",
+    "runs/v2/phase5d_prompt_rag_claude_v2/full/failures/v2q-001__primary.json": "f75e9fd02fd603efc809570027707dc3a458502399eec545dd7c4305595b9e26",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+    "scripts/run_phase5d_v2_full_prompt_rag_claude.py": "80e46d3c626d5aa7e059c870b0c3de3e7c51c48e43c1196bb6f410823d9dca21",
+    "tests/test_phase5d_v2_full_failure_checkpoint.py": "8caf17cc99a5229c0b7a64724d6a35ddce2eec59700598399c18551f8e3d351d"
+  },
+  "artifact_n": 11,
+  "credentials_stored": false,
+  "failure_run_resumable": false,
+  "manifest_self_hash_excluded": true,
+  "new_live_call_authorized": false,
+  "schema_version": 1,
+  "status": "terminal_failure_checkpoint_frozen"
+}

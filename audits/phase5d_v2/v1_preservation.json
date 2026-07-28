@@ -1,0 +1,16 @@
+{
+  "policy": "Phase 5D V1 evidence is immutable and excluded from all V2 selection, backfill, and resume paths.",
+  "schema_version": 1,
+  "status": "preserved_failure_evidence",
+  "v1_artifact_hashes": {
+    "audits/phase5d/claude_trace_contract_failure_checkpoint.json": "631a6985aa3882b9d516090fed235828af6d3dc9efd92d98caededc652db7170",
+    "configs/prompt_rag_claude_v1_frozen.json": "082c7f40d207292c774a126c775e08527fb48a9b849cc87043d18cc78b352803",
+    "runs/v2/phase5d_prompt_rag_claude_v1/token_count_audit.json": "bbed0ba2857638ed9771661e851a81e93cb38f47acbe22bbf9dc3ad1acd87a27",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/control/ledger.json": "59de7431434a558437fee3547977fa913e9a083aae17eb2ba60f6bc58d3fe238",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/failures/v2q-013__primary.json": "25ce1bfd2ae25c5a4628f958c1bd98e31d7e7a6fb5fbd7a2ec9e38b2bb04732f",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-003__primary.json": "148771bcf19c1a1dec3031ae4290839f08ced1befe1f84bea4d7429f92a11202",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-016__primary.json": "faed270963d8f72b2489af8277eac2ca044be8fb3eb4bf3d52a4ae176fb1eefc",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-017__primary.json": "e14393053e1d3259adebc750911510c6a15bd83e9c09c1b65e18a01c60b69a4c",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-023__primary.json": "ef7e3f0e86dc3f12fb897e5ba05d524c8fc0121e984301f6873114262b96d09a"
+  }
+}

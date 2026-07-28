@@ -1,0 +1,29 @@
+{
+  "claude": {
+    "ambiguous_full_attempt_reserve_usd": 0.05024,
+    "cumulative_budgeted_exposure_usd": 2.031173,
+    "cumulative_hard_cap_usd": 2.15,
+    "cumulative_recorded_observed_cost_usd": 1.980933,
+    "phase5d_v1_corrected_observed_cost_usd": 0.177402,
+    "phase5d_v2_trace_incremental_observed_cost_usd": 0.862626,
+    "phase5d_v2_trace_recorded_cumulative_usd": 1.040028,
+    "phase5d_v3_recovery_observed_cost_usd": 0.940905,
+    "reconciliation": "0.177402 + 0.862626 + 0.940905 = 1.980933 observed; plus 0.050240 ambiguous reserve = 2.031173 exposure"
+  },
+  "gemini": {
+    "archived_route": "archive/phase5_gemini_failed",
+    "monetary_cost_usd": null,
+    "note": "Archived ledgers record failed attempts and owner free-tier/no-billing controls, but no authoritative provider monetary usage. Do not assert zero independently.",
+    "status": "failed_archived_cost_not_authoritatively_measured"
+  },
+  "schema_version": 1,
+  "sources": [
+    "audits/phase5d/claude_trace_contract_failure_checkpoint.json",
+    "runs/v2/phase5d_prompt_rag_claude_v2/trace/control/ledger.json",
+    "audits/phase5d_v2_full/full_transport_failure_checkpoint.json",
+    "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/control/ledger.json",
+    "archive/phase5_gemini_failed/manifest.json"
+  ],
+  "status": "reconciled_from_committed_ledgers_no_new_cost"
+}
+

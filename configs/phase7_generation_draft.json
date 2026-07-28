@@ -1,0 +1,46 @@
+{
+  "allowed_context_depths": [
+    3,
+    5,
+    10
+  ],
+  "context_depth": null,
+  "evaluator_design": null,
+  "execution_enabled": false,
+  "expected_panel_n": 170,
+  "model": null,
+  "output_token_cap": null,
+  "provider": null,
+  "questions": {
+    "path": "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl",
+    "sha256": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b"
+  },
+  "rankings": {
+    "bm25": {
+      "path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl",
+      "sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a"
+    },
+    "faiss_windowed_max": {
+      "path": "runs/v2/phase2a_r5_windowed/rankings/faiss_windowed_max_top50.jsonl",
+      "sha256": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115"
+    },
+    "graph_v3_2": {
+      "path": "runs/v2/phase3_graph_v3_2/rankings/graph_v3_2_top50.jsonl",
+      "sha256": "68ad05ff4b600fa549f957b4bd44579af7e9d6addc2ddebff3f71a4584adc59a"
+    },
+    "hybrid_rrf": {
+      "path": "runs/v2/phase4_hybrid/rankings/hybrid_top50.jsonl",
+      "sha256": "6570030a1c12edb38ff5c4e33b5dedb5d2fa83a05aa9a01ecd768bcf4edce249"
+    },
+    "prompt_rag_claude": {
+      "path": "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/complete_primary_rankings.jsonl",
+      "sha256": "e665aa4dc80b468a0fc2af06173ab0e6963786a578653c9a9083e6ffa6b1e04f"
+    }
+  },
+  "retry_policy": null,
+  "schema_version": 1,
+  "status": "non_executable_draft_pending_phase6_and_owner_decisions",
+  "total_monetary_cap_usd": null,
+  "trace_size": null
+}
+

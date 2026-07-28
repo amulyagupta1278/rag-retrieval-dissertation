@@ -1,0 +1,49 @@
+{
+  "artifact_hashes": {
+    "audits/phase6/package_generation_approval.json": "5799b5d5e2e9758ea2be313a782e57369b8c4c01349a0e937d3c15a187000610",
+    "audits/phase6/package_integrity.json": "db028af3cdd5868fc33317599ca5d4913d6b18c50a5f1bbfabc55287be9349a6",
+    "data/v2/pilot/chunks/chunks.jsonl": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "data/v2/pilot/extracted/documents.jsonl": "a3a3ceeba8f62cf4d387f7fe8f16ad5a6e167d05259ecb1c50afbaaa42d36773",
+    "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
+    "docs/PHASE6_BLIND_JUDGING_PACKAGE_PROTOCOL.md": "f3d3f77e6fa4bea7afb9b24f59628d2297c528a604029098257c0d4f0404da7c",
+    "runs/v2/phase5f_prompt_rag_pool/blind/provisional_all_systems_pool.jsonl": "ff48c3413e891377b3b7e035a35902146d2e9e3be088457f9d37f91d0b6c468f",
+    "runs/v2/phase6_blind_judging_package/commands.json": "75942b13ddad560943d59c6ef8a7a2824cf115f9c2d6cc8ca79ae7785b04308a",
+    "runs/v2/phase6_blind_judging_package/owner_judging_package.csv": "f59c15aed793dde15a973867563ee23a7765ffaa99caf25ba44dfd560e14756a",
+    "runs/v2/phase6_blind_judging_package/package_summary.json": "d303d989e0ec923a457ec4c4538f8cc268a81b157896fb7a1b54acd1ecd672ec",
+    "scripts/build_phase6_blind_judging_package.py": "a4f3caa7ce585a2d2d01d128de4ca56657f8531ead42c9d04d3d97497a65d520",
+    "tests/test_phase6_blind_judging_package.py": "8f8dbb28d90bbf0dfe52c857b057f05b8c3e58c2690ba8893b1d8989a326fb32",
+    "data/v2/pilot/qrels/phase6_pooled_qrels.tsv": "726468fe144ae60a0a625db1549a6859d6de41ec02aecbaf7b2ca796a7579cb0",
+    "audits/phase6/adjudication_record.json": "f13df207264ac5c13be4e35e22eff4162e43fdf649dfbb81915288fe7c537fdc"
+  },
+  "artifact_n": 12,
+  "base_commit": "3a9633340ae215e6d6fbee1621a1afe4370975c5",
+  "manifest_self_hash_excluded": true,
+  "owner_judging_performed": true,
+  "package_row_n": 755,
+  "schema_version": 1,
+  "status": "phase6_owner_judging_frozen",
+  "frozen_at": "2026-07-26T19:52:48.637085+00:00",
+  "intra_rater_agreement": 0.9823,
+  "grade_distribution": {
+    "0": 547,
+    "1": 95,
+    "2": 113
+  },
+  "phase6_status": "phase6_owner_judging_frozen_and_adjudicated",
+  "adjudication_performed": true,
+  "adjudication_timestamp_utc": "2026-07-26T20:34:38.930500Z",
+  "total_rows": 755,
+  "final_grade_distribution": {
+    "0": 572,
+    "1": 88,
+    "2": 95,
+    "U": 0
+  },
+  "audit_disagreements_total": 27,
+  "audit_disagreements_resolved": 27,
+  "owner_judging_package_sha256": "b955dc4007466e4adda73fdabc96e9dcd8fc04fc33bc47f3265f0a148883f8f8",
+  "qrels_sha256": "b17b606f95be1dd50bf935380d8d2281dd08e9fd63fbb8cb70156ae4625f3309",
+  "adjudication_record_sha256": "13a8040203857c6dd3fe15a182d8c8ba90d17845e44cf7362f8ee23a17aa0792",
+  "phase7_gate": "OPEN",
+  "phase7_gate_note": "All 755 rows judged, 15% reseed QC passed (98.2%), 27 audit disagreements adjudicated, qrels rebuilt. Phase 7 may proceed."
+}

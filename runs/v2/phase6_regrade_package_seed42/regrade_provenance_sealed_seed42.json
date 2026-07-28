@@ -1,0 +1,464 @@
+{
+  "seed": 42,
+  "n": 114,
+  "sampling": "blind_simple_random_without_replacement_over_display_id",
+  "warning": "SEALED. Do not open until all 114 second-pass grades are entered by the human owner.",
+  "rows": [
+    {
+      "display_id": "v2q-001-candidate-07",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-002-candidate-03",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-002-candidate-05",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-002-candidate-08",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-002-candidate-10",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-002-candidate-22",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-002-candidate-24",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-003-candidate-10",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-003-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-003-candidate-24",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-004-candidate-01",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-004-candidate-08",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-004-candidate-09",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-004-candidate-17",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-004-candidate-22",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-004-candidate-23",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-005-candidate-03",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-005-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-005-candidate-08",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-005-candidate-18",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-006-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-006-candidate-22",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-006-candidate-26",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-007-candidate-11",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-007-candidate-15",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-007-candidate-18",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-007-candidate-19",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-007-candidate-27",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-008-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-01",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-12",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-009-candidate-14",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-15",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-18",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-21",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-22",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-009-candidate-23",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-010-candidate-01",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-010-candidate-06",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-010-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-010-candidate-11",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-011-candidate-02",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-011-candidate-04",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-03",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-04",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-06",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-09",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-012-candidate-14",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-012-candidate-17",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-013-candidate-03",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-013-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-014-candidate-10",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-014-candidate-11",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-014-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-015-candidate-09",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-015-candidate-13",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-015-candidate-17",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-016-candidate-06",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-016-candidate-10",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-016-candidate-13",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-016-candidate-16",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-017-candidate-06",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-017-candidate-14",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-017-candidate-15",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-017-candidate-16",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-018-candidate-16",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-019-candidate-02",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-019-candidate-21",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-020-candidate-01",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-021-candidate-04",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-021-candidate-09",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-021-candidate-14",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-021-candidate-15",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-021-candidate-18",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-023-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-023-candidate-13",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-024-candidate-17",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-024-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-024-candidate-22",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-025-candidate-06",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-025-candidate-13",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-025-candidate-18",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-026-candidate-01",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-026-candidate-07",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-026-candidate-18",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-027-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-027-candidate-08",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-027-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-028-candidate-01",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-028-candidate-06",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-028-candidate-16",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-029-candidate-09",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-029-candidate-16",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-029-candidate-20",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-029-candidate-21",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-030-candidate-07",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-030-candidate-09",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-030-candidate-21",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-031-candidate-03",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-031-candidate-13",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-032-candidate-12",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-032-candidate-14",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-033-candidate-01",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-033-candidate-07",
+      "first_pass_grade": "1"
+    },
+    {
+      "display_id": "v2q-033-candidate-13",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-033-candidate-16",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-034-candidate-04",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-034-candidate-08",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-034-candidate-09",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-034-candidate-12",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-034-candidate-14",
+      "first_pass_grade": "2"
+    },
+    {
+      "display_id": "v2q-034-candidate-15",
+      "first_pass_grade": "0"
+    },
+    {
+      "display_id": "v2q-034-candidate-17",
+      "first_pass_grade": "2"
+    }
+  ]
+}

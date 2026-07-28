@@ -1,0 +1,32 @@
+{
+  "common_controls": {
+    "adjudication_required": true,
+    "blind_display_ids": true,
+    "randomized_display_order": true,
+    "system_identity_hidden": true
+  },
+  "options": [
+    {
+      "agreement": "human repeat sample and adjudication",
+      "failure_handling": "missing judgment remains unresolved",
+      "id": "human_only",
+      "limitations": "slowest; owner workload highest"
+    },
+    {
+      "agreement": "judge repeats plus human audit",
+      "failure_handling": "provider or schema failure remains explicit; no hidden fallback",
+      "id": "llm_judge",
+      "limitations": "requires provider/model/prompt/cost freeze and preserved raw outputs"
+    },
+    {
+      "agreement": "automated first pass plus human disagreement/low-confidence review",
+      "failure_handling": "failed automated cases route to explicit human review",
+      "id": "hybrid",
+      "limitations": "most complex audit trail"
+    }
+  ],
+  "schema_version": 1,
+  "selected_option": null,
+  "status": "owner_decision_required"
+}
+

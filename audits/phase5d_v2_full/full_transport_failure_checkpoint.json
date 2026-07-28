@@ -1,0 +1,43 @@
+{
+  "approval": {
+    "approved_amendment_commit": "7d542ecb3707fed9775c340757eb9c224cdd230b",
+    "approval_artifact_path": "audits/phase5d_v2_full/full_execution_approval.json",
+    "approval_artifact_sha256": "63cfc95965b87ab91c66f77555402c655b9dfd07018fbf69c99f54c58a2f6b62"
+  },
+  "cost": {
+    "billing_status": "ambiguous",
+    "ledger_cumulative_observed_usd": 1.040028,
+    "ledger_full_observed_usd": 0.0,
+    "limitation": "Zero recorded provider usage is not proof that provider performed no billable processing. No HTTP response or usage metadata reached application."
+  },
+  "execution": {
+    "attempted_request_n": 1,
+    "automatic_retry_n": 0,
+    "completed_valid_request_n": 0,
+    "failed_logical_request_id": "v2q-001:primary",
+    "failure_artifact_path": "runs/v2/phase5d_prompt_rag_claude_v2/full/failures/v2q-001__primary.json",
+    "http_status": null,
+    "ledger_path": "runs/v2/phase5d_prompt_rag_claude_v2/full/control/ledger.json",
+    "provider_error_body_preserved": false,
+    "runner_exit_classification": "terminal ClaudeProviderError",
+    "timestamp": "not recorded by failed-dispatch branch"
+  },
+  "integrity": {
+    "model_prompt_schema_candidates_scoring_or_ranking_changed": false,
+    "relevance_metrics_calculated": false,
+    "trace_evidence_changed": false
+  },
+  "recovery_boundary": {
+    "current_run_may_resume": false,
+    "new_live_call_authorized": false,
+    "requirements": [
+      "separate versioned recovery output directory",
+      "same frozen payload; no result selection",
+      "explicit treatment of ambiguous first-attempt billing",
+      "new offline recovery freeze and commit",
+      "separate exact owner approval"
+    ]
+  },
+  "schema_version": 1,
+  "status": "full_run_terminal_transport_failure_preserved"
+}

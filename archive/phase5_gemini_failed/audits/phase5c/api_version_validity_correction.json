@@ -1,0 +1,41 @@
+{
+  "artifact_type": "phase5c_api_version_validity_correction",
+  "classification": "pre-result API-version compatibility correction; not benchmark-sensitive tuning",
+  "corrected_contract": {
+    "active_output_root": "runs/v2/phase5b_prompt_rag_v1beta_v3",
+    "api_version_after": "v1beta",
+    "api_version_before": "v1",
+    "candidate_set_changed": false,
+    "model_changed": false,
+    "prompt_changed": false,
+    "ranking_or_score_contract_changed": false,
+    "response_schema_changed": false,
+    "trace_selection_changed": false
+  },
+  "corrected_at": "2026-07-26T19:54:30+05:30",
+  "evidence": {
+    "api_version_404_checkpoint_path": "audits/phase5c/api_version_404_checkpoint.json",
+    "api_version_404_checkpoint_sha256": "9d7817c03f82221f62901f0a6c5ba3fa919f7cccdf444309fa6fd5b01691faa5",
+    "invalid_v2_attempt_sha256": "4613fcc3f024305bf9d1aee3887b6a90b72ae001ff3ba592076e81d6f2406452",
+    "invalid_v2_failure_sha256": "bc60f0e6daf4340059a0ce1ff45f482806ba78401ef6aa4da521c27737bc4862",
+    "invalid_v2_ledger_sha256": "5cf8998d3997ec0a510fc81f13fb772181a1f4e185214a9af62edec11872811b",
+    "invalid_v2_successful_response_n": 0
+  },
+  "owner_approval": {
+    "approved_at": "2026-07-26T19:54:30+05:30",
+    "approved_instruction": "Approve v1beta generateContent correction. Keep model, prompt, candidates, schema, scoring, ranking, and trace selection unchanged.",
+    "approved": true
+  },
+  "references": [
+    "https://ai.google.dev/gemini-api/docs/api-versions",
+    "https://ai.google.dev/gemini-api/docs/troubleshooting",
+    "https://googleapis.github.io/python-genai/index.html"
+  ],
+  "runtime_gate": {
+    "corrected_commit_required_before_live_execution": true,
+    "fresh_free_tier_confirmation_required": true,
+    "fresh_trace_approval_bound_to_corrected_commit_required": true,
+    "live_execution_authorized_by_this_artifact": false
+  },
+  "schema_version": 1
+}

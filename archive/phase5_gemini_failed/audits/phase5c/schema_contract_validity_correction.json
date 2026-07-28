@@ -1,0 +1,54 @@
+{
+  "artifact_type": "phase5c_schema_contract_validity_correction",
+  "classification": "pre-result implementation-validity correction; not benchmark-sensitive tuning",
+  "corrected_contract": {
+    "active_output_root": "runs/v2/phase5b_prompt_rag_response_json_schema_v2",
+    "candidate_depth_changed": false,
+    "model_or_provider_changed": false,
+    "prompt_changed": false,
+    "ranking_or_score_contract_changed": false,
+    "request_schema_content_changed": false,
+    "sdk_python_field": "response_json_schema",
+    "wire_field": "responseJsonSchema"
+  },
+  "corrected_offline_serialization": {
+    "forbidden_field_absent": "responseSchema",
+    "required_field_present": "responseJsonSchema",
+    "verified_with": "google-genai 2.13.0 GenerateContentConfig.model_dump(by_alias=true)"
+  },
+  "detected_at": "2026-07-26T19:27:20+05:30",
+  "failed_v1_attempt": {
+    "attempt_path": "runs/v2/phase5b_prompt_rag/trace/attempts/v2q-017__primary/attempt-001.json",
+    "attempt_sha256": "237c72f391e41679e0fa60825877336adff1fff047a8409583acab18e39bf1e3",
+    "attempted_network_request_n": 1,
+    "failure_path": "runs/v2/phase5b_prompt_rag/trace/failures/v2q-017__primary__terminal.json",
+    "failure_sha256": "24547e0f5e9e46160ba77490e5f5e9be296c3c02ad90077b00177c529931aaa0",
+    "http_status": 400,
+    "ledger_path": "runs/v2/phase5b_prompt_rag/trace/control/ledger.json",
+    "ledger_sha256": "f7c54b7da626d2aece46df486372be10c7554f3d7b61d6fd937e140619a82977",
+    "logical_request_id": "v2q-017:primary",
+    "successful_response_n": 0
+  },
+  "finding": {
+    "exact_provider_error_detail_preserved": false,
+    "exact_provider_error_detail_reason": "frozen secret-safe policy intentionally discards provider error bodies",
+    "root_cause_status": "strongly supported but not independently proven from provider error body",
+    "summary": "V1 supplied standard lower-case JSON Schema through SDK response_schema, which serialized as responseSchema. SDK documentation assigns standard JSON Schema to response_json_schema/responseJsonSchema and responseSchema to an OpenAPI schema subset."
+  },
+  "historical_preservation": {
+    "failed_run_modified_or_deleted": false,
+    "failed_run_root": "runs/v2/phase5b_prompt_rag",
+    "frozen_v1_git_commit": "1632c3b0c5d9005df33d9ed47000741d5ea590cf",
+    "new_execution_must_not_resume_v1_ledger": true
+  },
+  "owner_gate": {
+    "fresh_free_tier_confirmation_required": true,
+    "fresh_trace_approval_required_after_corrected_commit": true,
+    "live_execution_authorized_by_this_artifact": false
+  },
+  "references": [
+    "https://ai.google.dev/gemini-api/docs/structured-output",
+    "https://googleapis.github.io/python-genai/index.html"
+  ],
+  "schema_version": 1
+}

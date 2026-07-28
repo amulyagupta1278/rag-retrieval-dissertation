@@ -1,0 +1,44 @@
+{
+  "artifact_hashes": {
+    "runs/v2/phase5d_prompt_rag_claude_v1/token_count_audit.json": "bbed0ba2857638ed9771661e851a81e93cb38f47acbe22bbf9dc3ad1acd87a27",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/control/ledger.json": "59de7431434a558437fee3547977fa913e9a083aae17eb2ba60f6bc58d3fe238",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/failures/v2q-013__primary.json": "25ce1bfd2ae25c5a4628f958c1bd98e31d7e7a6fb5fbd7a2ec9e38b2bb04732f",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-003__primary.json": "148771bcf19c1a1dec3031ae4290839f08ced1befe1f84bea4d7429f92a11202",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-016__primary.json": "faed270963d8f72b2489af8277eac2ca044be8fb3eb4bf3d52a4ae176fb1eefc",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-017__primary.json": "e14393053e1d3259adebc750911510c6a15bd83e9c09c1b65e18a01c60b69a4c",
+    "runs/v2/phase5d_prompt_rag_claude_v1/trace/raw/v2q-023__primary.json": "ef7e3f0e86dc3f12fb897e5ba05d524c8fc0121e984301f6873114262b96d09a"
+  },
+  "cost": {
+    "actual_input_tokens_all_five_responses": 136127,
+    "actual_input_tokens_from_valid_responses": 107948,
+    "actual_output_tokens_all_five_responses": 8255,
+    "actual_output_tokens_from_valid_responses": 6642,
+    "ledger_observed_list_price_usd_valid_only": 0.141158,
+    "observed_list_price_usd_all_five_responses": 0.177402,
+    "validity_defect": "V1 ledger did not add provider usage from schema-invalid HTTP-200 response; checkpoint corrects cost without altering preserved ledger."
+  },
+  "execution_commit": "d7675cbd2683f2b5602d32d5d94f2c47f389dd56",
+  "failure": {
+    "automatic_retry_performed": false,
+    "completed_valid_primary_n": 4,
+    "failed_logical_request_id": "v2q-013:primary",
+    "failed_request_attempt_n": 1,
+    "failed_response_row_n": 49,
+    "failed_response_unique_chunk_id_n": 49,
+    "finish_reason": "end_turn",
+    "http_status": 200,
+    "model": "claude-haiku-4-5-20251001",
+    "parser_error": "response must contain exactly 50 scores",
+    "planned_trace_request_n": 24
+  },
+  "interpretation": "Provider-supported array schema guarantees row shape but cannot guarantee exactly 50 rows because minItems/maxItems are unsupported. Fail-closed parser correctly rejected one omitted candidate. This is implementation-contract failure, not retrieval evidence.",
+  "proposed_recovery_requiring_owner_approval": {
+    "architecture_prompt_candidates_scores_and_ranking_unchanged": true,
+    "change": "Represent candidate_scores as object mapping each exact chunk ID property to one integer score; make all 50 properties required and additionalProperties false.",
+    "metadata_validation": "The fixed-key object schema was accepted by count_tokens with HTTP 200.",
+    "reason": "Supported schema then guarantees every supplied chunk ID exactly once without unsupported array-count constraints.",
+    "restart_policy": "Create new V2 run; preserve and exclude failed V1 records; rerun full trace from first request; never choose among old/new outputs."
+  },
+  "schema_version": 1,
+  "status": "trace_failed_full_run_blocked_pending_owner_decision"
+}

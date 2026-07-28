@@ -1,0 +1,126 @@
+{
+  "candidate_config": {
+    "path": "configs/prompt_rag_v1_candidate.json",
+    "status": "blocked_non_executable_candidate"
+  },
+  "decision": "not_ready_stop_for_owner_approval",
+  "execution_authorized": false,
+  "freeze_checklist": [
+    {
+      "item": "provider_and_exact_model_version",
+      "status": "unresolved"
+    },
+    {
+      "item": "api_endpoint_and_sdk_version",
+      "status": "unresolved"
+    },
+    {
+      "item": "candidate_generator_and_depth",
+      "status": "unresolved_owner_architecture_choice"
+    },
+    {
+      "item": "prompt_text_and_sha256",
+      "status": "blocked_placeholder_hash_recorded_but_actual_prompt_not_authored"
+    },
+    {
+      "item": "chunk_fields_exposed",
+      "status": "proposed_chunk_id_text_source_title"
+    },
+    {
+      "item": "query_fields_exposed",
+      "status": "proposed_query_id_question"
+    },
+    {
+      "item": "batch_size_and_ordering",
+      "status": "ordering_proposed_batch_size_unresolved"
+    },
+    {
+      "item": "output_json_schema",
+      "status": "proposed_and_strict_parser_tested"
+    },
+    {
+      "item": "score_and_rank_interpretation",
+      "status": "proposed_higher_score_is_better"
+    },
+    {
+      "item": "tie_breaking",
+      "status": "proposed_score_descending_then_chunk_id_ascending"
+    },
+    {
+      "item": "temperature_seed_top_p_token_limit",
+      "status": "unresolved_provider_dependent"
+    },
+    {
+      "item": "retry_timeout_rate_limit_and_failure_policy",
+      "status": "fail_closed_and_no_fallback_frozen_numeric_limits_unresolved"
+    },
+    {
+      "item": "context_window_and_truncation",
+      "status": "no_silent_truncation_frozen_context_limit_unresolved"
+    },
+    {
+      "item": "duplicate_handling",
+      "status": "frozen_fail_closed"
+    },
+    {
+      "item": "top_50_output_contract",
+      "status": "proposed"
+    },
+    {
+      "item": "raw_response_preservation_and_redaction",
+      "status": "policy_proposed"
+    },
+    {
+      "item": "token_latency_cost_retry_error_accounting",
+      "status": "accounting_dimensions_frozen_pricing_unresolved"
+    },
+    {
+      "item": "determinism_and_repeatability_audit",
+      "status": "comparison_fields_proposed_repetition_count_unresolved"
+    },
+    {
+      "item": "structural_trace_gate_queries",
+      "status": "unresolved_until_architecture_approval"
+    },
+    {
+      "item": "stop_conditions_before_metrics",
+      "status": "frozen_stop_on_any_invalid_trace"
+    }
+  ],
+  "gates": {
+    "benchmark_sensitive_tuning_prohibited": true,
+    "final_h4_or_h5_verdict_prohibited": true,
+    "metrics_before_trace_approval_prohibited": true,
+    "negative_or_weak_results_must_be_preserved": true,
+    "owner_judging_before_prompt_rag_pool_union_prohibited": true,
+    "pool_expansion_before_valid_ranking_run_prohibited": true
+  },
+  "owner_choices_required": [
+    {
+      "choice": "architecture and first-stage candidate generator",
+      "recommendation": "Alternative A: frozen BM25 top-50 plus LLM relevance reranking",
+      "recommendation_basis": "structural simplicity, auditability, and consistency with documentation-only reranking language; not benchmark gain"
+    },
+    {
+      "choice": "provider, exact immutable model/version, endpoint, and SDK"
+    },
+    {
+      "choice": "batch size compatible with the chosen context window"
+    },
+    {
+      "choice": "generation controls, timeout, bounded retry schedule, and repeatability repetitions"
+    }
+  ],
+  "prompt": {
+    "path": "prompts/prompt_rag_retrieval_v1.txt",
+    "sha256": "e95c6936d1b7a7e2dfed58c8cd753c1e58b8b77252d2eb462e0d28fb2074c35d",
+    "status": "unfrozen_non_executable_placeholder"
+  },
+  "readiness_summary": {
+    "frozen": 2,
+    "proposed_or_partial": 12,
+    "total": 20,
+    "unresolved_or_blocked": 6
+  },
+  "unresolved_choices_prevent_execution": true
+}

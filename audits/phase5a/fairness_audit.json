@@ -1,0 +1,118 @@
+{
+  "architecture_alternatives": [
+    {
+      "candidate_ceiling": "Recall cannot exceed the frozen BM25 top-50 candidate recall for each query.",
+      "candidate_depth": 50,
+      "candidate_generator": "frozen Phase 2A BM25",
+      "confounds": [
+        "Prompt-RAG quality includes dependence on BM25 candidate coverage."
+      ],
+      "id": "A",
+      "label": "BM25 top-50 plus LLM relevance reranking",
+      "recommendation_status": "recommended_not_selected",
+      "structural_rationale": "Smallest auditable staged design consistent with the documentation-only reranking description; deterministic first stage and explicit ceiling."
+    },
+    {
+      "candidate_ceiling": "Recall cannot exceed the frozen Phase 4 Hybrid top-50 candidate recall for each query.",
+      "candidate_depth": 50,
+      "candidate_generator": "frozen Phase 4 Hybrid BM25+Graph RRF",
+      "confounds": [
+        "The reported Prompt-RAG system would inherit both Hybrid components.",
+        "A Prompt-RAG comparison against Hybrid would not isolate the reranker's contribution."
+      ],
+      "id": "B",
+      "label": "Hybrid top-50 plus LLM relevance reranking",
+      "recommendation_status": "not_selected"
+    },
+    {
+      "candidate_ceiling": "All 140 chunks are candidates, so there is no first-stage candidate-recall ceiling.",
+      "candidate_depth": 140,
+      "candidate_generator": "complete frozen corpus",
+      "confounds": [
+        "This is direct corpus scoring rather than the documented reranking design.",
+        "It substantially increases context, calls, tokens, cost, and ordering sensitivity."
+      ],
+      "id": "C",
+      "label": "Direct all-corpus LLM relevance scoring",
+      "recommendation_status": "not_selected"
+    },
+    {
+      "candidate_ceiling": "Depends on an undefined downstream retriever and depth.",
+      "candidate_depth": null,
+      "candidate_generator": null,
+      "confounds": [
+        "Introduces a second LLM behavior and additional failure modes.",
+        "No reachable repository evidence defines rewriting behavior.",
+        "Creates broad prompt-tuning degrees of freedom."
+      ],
+      "id": "D",
+      "label": "LLM query rewriting followed by retrieval or reranking",
+      "recommendation_status": "not_selected"
+    }
+  ],
+  "candidate_recall_ceiling_reporting": {
+    "aggregate_required": true,
+    "calculation_time": "only after the trace gate and authorized ranking run, alongside exploratory metrics",
+    "definition": "For each query, the fraction of frozen judged-gold evidence present in the first-stage candidate set; report per query and aggregate without treating unjudged chunks as nonrelevant facts.",
+    "required_for_staged_reranker": true
+  },
+  "decision": {
+    "architecture_selected": false,
+    "benchmark_performance_used": false,
+    "owner_approval_required": true,
+    "recommended_alternative": "A",
+    "recommendation_is_frozen": false
+  },
+  "fair_comparison_controls": [
+    "Use exactly the frozen 140-chunk corpus and 34 R5 questions.",
+    "Keep chunk IDs as retrieval units.",
+    "Do not read qrels, reference answers, categories, sealed provenance, owner judgments, or metrics when constructing model inputs or prompts.",
+    "Do not train or tune against the benchmark.",
+    "Do not use BM25, FAISS, Graph, or Hybrid performance results to optimize the prompt or architecture.",
+    "Do not add manual query-specific rules.",
+    "Do not expose hidden gold evidence to any system.",
+    "Name a staged system as a reranker and identify its first-stage generator and depth.",
+    "Preserve missing and invalid responses as failures.",
+    "Do not substitute BM25 or another retriever for failures.",
+    "Freeze all execution parameters before any authorized run.",
+    "Preserve negative or weak results."
+  ],
+  "risk_register": [
+    {
+      "control": "Freeze generator/depth and report candidate recall ceiling.",
+      "risk": "First-stage ceiling may be misattributed to the LLM reranker.",
+      "severity": "high"
+    },
+    {
+      "control": "Strict allowlisted fields and tests; no gold-related paths in runtime config.",
+      "risk": "Gold, category, answer, provenance, or prior-result leakage into prompt design or model input.",
+      "severity": "critical"
+    },
+    {
+      "control": "Owner selects architecture for structural reasons before results; config remains execution-disabled.",
+      "risk": "Architecture choice based on likely or observed benchmark gain.",
+      "severity": "critical"
+    },
+    {
+      "control": "Pin provider/model/version/SDK and preserve exact request/response traces.",
+      "risk": "Hosted-model drift prevents repeatability.",
+      "severity": "high"
+    },
+    {
+      "control": "Fixed ordering, explicit batching, repeated trace audit, deterministic parser and tie rule.",
+      "risk": "Candidate order or stochastic output changes ranking.",
+      "severity": "high"
+    },
+    {
+      "control": "Fail closed and count errors/retries; no hidden fallback or backfill.",
+      "risk": "API failures are silently replaced, biasing retrieval quality upward.",
+      "severity": "critical"
+    },
+    {
+      "control": "Separate Phase 5A retrieval protocol from the later H5 answer-generation protocol.",
+      "risk": "Retrieval and generation effects are conflated.",
+      "severity": "high"
+    }
+  ],
+  "status": "blocked_pending_owner_architecture_choice"
+}

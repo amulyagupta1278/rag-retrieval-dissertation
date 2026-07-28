@@ -1,0 +1,89 @@
+{
+  "api": {
+    "api_version": "v1beta",
+    "endpoint_family": "models.generateContent",
+    "stable_api": false,
+    "stateless_method": "client.models.generate_content"
+  },
+  "evidence": [
+    {
+      "claim": "gemini-2.5-flash is a stable model name with structured outputs, 1,048,576 input tokens, and 65,536 output tokens.",
+      "source": "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash",
+      "source_type": "official Google model documentation"
+    },
+    {
+      "claim": "Stable model names usually do not change, but are not documented as dated immutable snapshots.",
+      "source": "https://ai.google.dev/gemini-api/docs/models",
+      "source_type": "official Google model-version documentation"
+    },
+    {
+      "claim": "Gemini Developer API SDK defaults to v1beta; current generateContent examples use v1beta. Frozen v1 generateContent returned HTTP 404 before any valid response.",
+      "source": "https://ai.google.dev/gemini-api/docs/api-versions",
+      "source_type": "official Google API-version documentation"
+    },
+    {
+      "claim": "generateContent returns candidates, promptFeedback, usageMetadata, modelVersion, responseId, finishReason, and safety metadata.",
+      "source": "https://ai.google.dev/api/generate-content",
+      "source_type": "official Google API reference"
+    },
+    {
+      "claim": "Gemini 2.5 Flash supports response JSON schema and integer constraints through structured output.",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/structured-output",
+      "source_type": "official Google structured-output documentation"
+    },
+    {
+      "claim": "Gemini 2.5 thinking can be disabled with thinkingBudget=0.",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking",
+      "source_type": "official Google thinking documentation"
+    },
+    {
+      "claim": "google-genai provides LocalTokenizer for gemini-2.5-flash and can count system instructions plus response schemas locally.",
+      "source": "https://github.com/googleapis/python-genai",
+      "source_type": "official Google SDK repository"
+    },
+    {
+      "claim": "Gemini 2.5 Flash input and output tokens are free on the free tier; free-tier content may be used to improve Google products.",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "source_type": "official Google pricing documentation"
+    }
+  ],
+  "installed_environment": {
+    "google-auth": "2.56.2",
+    "google-genai": "2.13.0",
+    "python": "3.12.2",
+    "sentencepiece": "0.2.2",
+    "torch": "2.13.0",
+    "torchvision": "0.28.0"
+  },
+  "model": {
+    "dated_immutable_snapshot": false,
+    "model_stage": "stable",
+    "requested_model": "gemini-2.5-flash",
+    "returned_modelVersion_policy": "first valid trace response establishes run value; every later response must match exactly"
+  },
+  "owner_selection": {
+    "architecture": "frozen BM25 top-50 then Gemini relevance reranker",
+    "benchmark_performance_used": false,
+    "provider": "Google Gemini Developer API",
+    "reason": "available credential infrastructure and zero-cost free tier; approved design correction",
+    "rejected_provider": "OpenAI",
+    "rejection_reason": "no approved OpenAI credential infrastructure; not expected benchmark performance"
+  },
+  "recorded_at": "2026-07-26T15:08:44+05:30",
+  "sdk": {
+    "declared_dependency_files": [
+      "pyproject.toml",
+      "requirements.txt"
+    ],
+    "dependency_declaration_exact": true,
+    "install_spec": "google-genai[local-tokenizer]==2.13.0",
+    "local_tokenizer_asset_bytes": 4689074,
+    "local_tokenizer_asset_sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+    "local_tokenizer_model": "gemma3",
+    "local_tokenizer_status": "experimental SDK feature; exact for frozen local asset but server accounting may differ and must be compared after authorized calls",
+    "name": "google-genai",
+    "runtime_version_enforcement": "Client construction rejects installed google-genai version unless exactly 2.13.0 before credential-backed client creation.",
+    "version": "2.13.0",
+    "wheel_sha256": "e1fd408db6864ac12f23eb7634df670934020c918112f4f886e5609d26dd92d3"
+  }
+}

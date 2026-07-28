@@ -1,0 +1,34 @@
+{
+  "category_counts": {
+    "entity_relation": 6,
+    "exact_lookup": 6,
+    "multi_hop": 6,
+    "paraphrase": 6,
+    "synthesis": 4,
+    "terminology": 6
+  },
+  "chunk_document_n": 22,
+  "chunk_n": 140,
+  "concentration": {
+    "largest_document_chunk_n": 47,
+    "largest_document_id": "doc-pm-kmy-guidelines",
+    "top_two_document_chunk_fraction": 0.4642857142857143,
+    "top_two_document_chunk_n": 65
+  },
+  "inputs": {
+    "chunks": {
+      "path": "data/v2/pilot/chunks/chunks.jsonl",
+      "sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6"
+    },
+    "questions": {
+      "path": "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl",
+      "sha256": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b"
+    }
+  },
+  "question_n": 34,
+  "question_source_document_n": 22,
+  "schema_version": 1,
+  "status": "committed_metadata_audit_only",
+  "system_execution_performed": false
+}
+

@@ -1,0 +1,23 @@
+{
+  "cumulative_hard_cap_usd": 1.9,
+  "input_price_usd_per_million": 1.0,
+  "live_calls_during_v2_correction": 0,
+  "maximum_output_tokens_per_request": 2048,
+  "output_price_usd_per_million": 5.0,
+  "phase5d_v1_observed": {
+    "input_tokens": 136127,
+    "output_tokens": 8255,
+    "spend_usd": 0.177402
+  },
+  "remaining_before_v2_usd": 1.722598,
+  "schema_version": 1,
+  "source": "Provider token-count diagnostic completed before V2 amendment; generation count remained zero.",
+  "status": "trace_within_cumulative_cap",
+  "trace_v2": {
+    "input_token_envelope": 705963,
+    "maximum_output_tokens_total": 49152,
+    "request_n": 24,
+    "worst_case_cost_usd": 0.951723
+  },
+  "worst_case_cumulative_after_trace_usd": 1.129125
+}

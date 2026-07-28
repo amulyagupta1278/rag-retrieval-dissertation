@@ -1,0 +1,28 @@
+display_id,query_id,owner_grade,audit_grade,agreement,confidence,evidence_fragment,adjudication_required
+v2q-028-candidate-06,v2q-028,1,2,no,high,RPL + certify existing skills confirmed,yes
+v2q-033-candidate-07,v2q-033,1,2,no,high,PMEGP credit-linked subsidy confirmed,yes
+v2q-029-candidate-07,v2q-029,1,2,no,high,Ujjwala 2.0 + migrant facility confirmed,yes
+v2q-016-candidate-04,v2q-016,1,0,no,high,,yes
+v2q-013-candidate-05,v2q-013,1,0,no,high,,yes
+v2q-028-candidate-07,v2q-028,1,0,no,high,,yes
+v2q-029-candidate-03,v2q-029,1,2,no,high,Ujjwala 2.0 + migrant facility confirmed,yes
+v2q-033-candidate-06,v2q-033,1,2,no,high,PMEGP credit-linked subsidy confirmed,yes
+v2q-013-candidate-01,v2q-013,1,0,no,high,,yes
+v2q-032-candidate-07,v2q-032,1,2,no,high,"PM-KISAN ₹6,000 transfer confirmed",yes
+v2q-028-candidate-04,v2q-028,1,2,no,high,STT fresh-skilling/dropout role confirmed,yes
+v2q-034-candidate-20,v2q-034,1,2,no,high,PMGKAY free foodgrains for AAY/PHH confirmed,yes
+v2q-013-candidate-12,v2q-013,1,0,no,high,,yes
+v2q-028-candidate-03,v2q-028,1,0,no,high,,yes
+v2q-032-candidate-11,v2q-032,1,2,no,high,"PM-KMY ₹3,000 pension for SMFs confirmed",yes
+v2q-016-candidate-10,v2q-016,1,2,no,high,RPL + assess/certify function confirmed,yes
+v2q-033-candidate-02,v2q-033,1,2,no,high,PMEGP credit-linked subsidy confirmed,yes
+v2q-032-candidate-03,v2q-032,1,2,no,high,PMFBY crop-loss insurance confirmed,yes
+v2q-033-candidate-15,v2q-033,1,2,no,high,SVANidhi working-capital/interest-subsidy confirmed,yes
+v2q-032-candidate-13,v2q-032,1,2,no,high,"PM-KMY ₹3,000 pension for SMFs confirmed",yes
+v2q-034-candidate-21,v2q-034,1,2,no,high,PMUY LPG for deprived/rural replacing traditional fuels confirmed,yes
+v2q-028-candidate-05,v2q-028,1,0,no,high,,yes
+v2q-034-candidate-10,v2q-034,1,2,no,high,PMAY-G pucca/permanent rural housing confirmed,yes
+v2q-028-candidate-09,v2q-028,1,2,no,high,RPL + certify existing skills confirmed,yes
+v2q-032-candidate-02,v2q-032,1,2,no,high,"PM-KMY ₹3,000 pension for SMFs confirmed",yes
+v2q-016-candidate-06,v2q-016,1,2,no,high,RPL + assess/certify function confirmed,yes
+v2q-033-candidate-08,v2q-033,1,2,no,high,PMMY micro-credit confirmed,yes

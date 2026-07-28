@@ -1,0 +1,117 @@
+{
+  "architecture_determination": {
+    "direct_corpus_selection": "no_evidence_found",
+    "llm_relevance_scoring": "documentation_implies_guidance_but_scoring_contract_is_undefined",
+    "multi_stage_retrieval": "reranking_implies_an_undefined_first_stage",
+    "query_rewriting": "no_evidence_found",
+    "reranking": "documentation_only_intended_meaning",
+    "unique_architecture_defined": false
+  },
+  "audit_scope": {
+    "current_branch": "codex/dissertation-rebuild-v2",
+    "head": "70de0fd17f825ca04527c7ff50f91a2e5959a084",
+    "reachable_sources": [
+      "all refs returned by git rev-list --all",
+      "tracked documentation and reports",
+      "tracked and historical configuration files",
+      "tracked and historical scripts",
+      "reachable branches and tags"
+    ],
+    "searched_terms": [
+      "Prompt-RAG",
+      "prompt based retrieval",
+      "prompt-based retrieval",
+      "LLM-guided reranking",
+      "reranker",
+      "Gemini",
+      "OpenAI",
+      "Anthropic"
+    ]
+  },
+  "classification_definitions": {
+    "documentation_only_claim": "A repository document states the claim, but no matching executable implementation or result artifact is reachable.",
+    "obsolete_or_invalid_artifact": "Executable material exists but violates the current no-leakage/fair-comparison boundary or does not implement Prompt-RAG.",
+    "unsupported_claim": "The claim is not supported by a matching committed implementation or artifact.",
+    "verified_implementation": "Executable code with identifiable behavior is present in reachable Git history; this does not imply validity for Phase 5A."
+  },
+  "conclusion": {
+    "decision": "stop_for_owner_architecture_choice",
+    "historical_meaning": "Prompt-RAG was described only as prompt-based retrieval using LLM-guided reranking.",
+    "prompt_rag_implementation_verified": false,
+    "reason": "No reachable artifact uniquely defines the provider, model, first-stage candidate generator, candidate depth, prompt, endpoint, schema, or failure behavior.",
+    "unsupported_claim_wording": "unsupported by committed artifacts"
+  },
+  "findings": [
+    {
+      "classification": "documentation_only_claim",
+      "claim": "Prompt-based retrieval (LLM-guided reranking).",
+      "commit": "123932df629cd7e6379721b449baacd44557d5a1",
+      "content_sha256": "5042e239bececf92ab411de526d8d31fde1f7dd2b920b901ef632608934c2152",
+      "git_blob": "023cd1a6f96e0c053f08ed2f4f0725b70169a4d0",
+      "interpretation": "Defines an intended reranking family only; it does not define an executable architecture.",
+      "path": "FINAL_COMPILED_MIDSEM_REPORT.md"
+    },
+    {
+      "classification": "documentation_only_claim",
+      "claim": "Former Prompt-RAG report sections were removed as unimplemented.",
+      "commit": "123932df629cd7e6379721b449baacd44557d5a1",
+      "content_sha256": "daa2c1540c7bc4de2de46246bed22fef1d1adc75b8041c49c9bb5f2244c33357",
+      "git_blob": "d446a0493ae0ccc45b57a23f09e9cb0ddafcec9b",
+      "interpretation": "Contemporaneous documentation labels Prompt-RAG as unimplemented; it is not executable evidence.",
+      "path": "CHANGELOG.md"
+    },
+    {
+      "classification": "unsupported_claim",
+      "claim": "A Prompt-RAG, Gemini, or equivalent API implementation and output artifact existed historically.",
+      "commit": "50d7e13f65223da102877af1eee8e8c6fc993567",
+      "content_sha256": "00c632b3fc2ce0caece9a34a9929101ce7984f68a7dd3566726a31f350237fdb",
+      "git_blob": "0af1ff10572e87f0301b81c27fa1a9e777ac104b",
+      "interpretation": "The Phase 0 forensic correction states no such implementation, test, run, integration, or output artifact was found in reachable history.",
+      "path": "docs/MIDSEM_RESULTS_CORRECTION.md"
+    },
+    {
+      "classification": "documentation_only_claim",
+      "claim": "Prompt-RAG efficiency should report API tokens, cost, and retry rate.",
+      "commit": "50d7e13f65223da102877af1eee8e8c6fc993567",
+      "content_sha256": "78547d0fc4a81ae64303103b22f577366a0d7895d8e5dbe94b0e417e366115b7",
+      "git_blob": "0db10e4910092021fffbcd50e0dc0da7079acc42",
+      "interpretation": "This is an evaluation requirement, not an architecture or implementation.",
+      "path": "docs/EXPERIMENT_PROTOCOL_V2.md"
+    },
+    {
+      "classification": "verified_implementation",
+      "claim": "A local CrossEncoder reranking experiment existed.",
+      "commit": "1bafc63e9e9da159101d7506e08ea9d478d47183",
+      "content_sha256": "063c45194fb7465b2e8c4666408c531b4752fe36ac1605c43e83d2ee2e73ea06",
+      "git_blob": "b5940861d2aa918cafcba7f0ac93dd759901c49f",
+      "interpretation": "Verified local cross-encoder code, but not a Prompt-RAG/API implementation.",
+      "path": "scripts/run_reranker_experiment.py"
+    },
+    {
+      "classification": "obsolete_or_invalid_artifact",
+      "claim": "The historical CrossEncoder experiment can define the Phase 5A Prompt-RAG architecture.",
+      "commit": "c735f80fdde2554256b2b6b9687af77808827471",
+      "content_sha256": "4d12f3b6aa5035245c818ff7d0647591fe5e50e5d80a5d39f84c7a488acd8bdc",
+      "git_blob": "8a1e73c53ddc1fc692d577cdf40726b2e8a72f97",
+      "interpretation": "It reads qrels/categories and evaluates candidate modes/depths, violating the current design boundary; it also uses a local CrossEncoder rather than an LLM prompt API.",
+      "path": "scripts/run_reranker_experiment.py"
+    }
+  ],
+  "history_reachability": {
+    "crossencoder_commits_contained_by": [
+      "backup/pre-rollback-20260719",
+      "origin/main",
+      "tag forensic-pre-rollback-7d7e5f4"
+    ],
+    "prompt_rag_implementation_path_found": false
+  },
+  "recorded_at": "2026-07-26T14:07:27+05:30",
+  "search_commands": [
+    "git log --all -G '<Prompt-RAG term>' --oneline --decorate -- .",
+    "git rev-list --all --objects",
+    "git grep -n -i '<Prompt-RAG term>' $(git rev-list --all)",
+    "git show <commit>:<path>",
+    "git branch -a --contains <commit>",
+    "git tag --contains <commit>"
+  ]
+}

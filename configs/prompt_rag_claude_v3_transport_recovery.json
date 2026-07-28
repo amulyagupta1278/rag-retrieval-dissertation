@@ -1,0 +1,46 @@
+{
+  "architecture": "unchanged frozen BM25 top-50 then Claude relevance reranker",
+  "budget": {
+    "ambiguous_attempt_input_reserve_tokens": 40000,
+    "ambiguous_attempt_max_output_tokens": 2048,
+    "ambiguous_attempt_reserve_usd": 0.05024,
+    "cumulative_budgeted_worst_case_usd": 2.149328,
+    "cumulative_hard_cap_usd": 2.15,
+    "hard_cap_margin_usd": 0.000672,
+    "recorded_prior_cumulative_usd": 1.040028,
+    "recovery_budgeted_input_tokens": 792820,
+    "recovery_budgeted_worst_case_usd": 1.05906,
+    "recovery_maximum_output_tokens": 53248,
+    "reserved_prior_exposure_usd": 1.090268
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "failure_policy": "terminal fail closed; no fallback, backfill, or selection",
+    "output_root": "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full",
+    "request_n": 26,
+    "scope": "all 26 non-trace primary queries in frozen order",
+    "v2_failed_output_reuse": false
+  },
+  "failure_checkpoint": {
+    "manifest_path": "audits/phase5d_v2_full/failure_manifest.json",
+    "manifest_sha256": "1ecb877daaa9eca705f2fe8ed1579261d6a77e3fc2420bf741d6344c607c11d4",
+    "status_required": "terminal_failure_checkpoint_frozen"
+  },
+  "frozen_contract": {
+    "base_v2_config_path": "configs/prompt_rag_claude_v2_frozen.json",
+    "base_v2_config_sha256": "623a81b5d52e5d7c1fe08d2b457d720b86fc4948e020922274f904b1feed82f1",
+    "candidate_count": 50,
+    "model": "claude-haiku-4-5-20251001",
+    "prompt_path": "prompts/prompt_rag_retrieval_v1.txt",
+    "prompt_sha256": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "ranking": "score descending then chunk ID ascending",
+    "schema": "V2 fixed-key candidate-score object requiring all exact chunk IDs",
+    "scoring": "integer 0..3 with unchanged anchors",
+    "sdk": "anthropic==0.116.0"
+  },
+  "schema_version": 1,
+  "status": "offline_frozen_pending_owner_live_approval",
+  "trace_manifest_path": "runs/v2/phase5d_prompt_rag_claude_v2/trace/artifact_manifest.json",
+  "trace_manifest_sha256": "0910c957081b4bb54b1e7ba08f20b29e1a8b3608ecfe9b8d06bac5a6f7693158",
+  "version": "phase5d-v3-transport-recovery-1"
+}

@@ -1,0 +1,42 @@
+{
+  "calls": {
+    "full_panel": 170,
+    "trace_options": [
+      10,
+      15,
+      20
+    ]
+  },
+  "options": [
+    {
+      "availability": "existing repository history only; owner verification required before use",
+      "citation_contract_risk": "medium",
+      "input_price_assumption_usd_per_million_tokens": 1.0,
+      "latency_range": "unknown until approved trace",
+      "model": "claude-haiku-4-5-20251001",
+      "model_version_drift_risk": "medium; verify returned model metadata",
+      "output_price_assumption_usd_per_million_tokens": 5.0,
+      "pricing_source": "configs/prompt_rag_claude_v1_frozen.json and audits/phase5d_v3_recovery/budget_audit.json",
+      "provider": "Anthropic",
+      "reproducibility_risk": "medium",
+      "structured_output_risk": "must be tested for final answer schema"
+    },
+    {
+      "availability": "owner verification required",
+      "citation_contract_risk": "owner verification required",
+      "input_price_assumption_usd_per_million_tokens": null,
+      "latency_range": "owner verification required",
+      "model": null,
+      "model_version_drift_risk": "owner verification required",
+      "output_price_assumption_usd_per_million_tokens": null,
+      "pricing_source": "not researched; web access not authorized",
+      "provider": "alternative provider",
+      "reproducibility_risk": "owner verification required",
+      "structured_output_risk": "owner verification required"
+    }
+  ],
+  "schema_version": 1,
+  "selected_option": null,
+  "status": "owner_decision_required"
+}
+

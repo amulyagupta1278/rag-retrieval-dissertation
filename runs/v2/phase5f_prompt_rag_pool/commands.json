@@ -1,0 +1,1 @@
+{"deterministic_rebuild":["python","scripts/build_phase5f_prompt_rag_pool.py","--overwrite"],"safe_zsh_wrapper":"python scripts/build_phase5f_prompt_rag_pool.py --overwrite; run_exit=$?; exit $run_exit","schema_version":1}

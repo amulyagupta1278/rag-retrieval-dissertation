@@ -1,0 +1,27 @@
+{
+  "calculation": {
+    "corrected_counted_input_tokens": 771820,
+    "corrected_counted_input_usd": 0.77182,
+    "counted_input_tokens": 771768,
+    "counted_plus_observed_correction_worst_case_usd": 1.03806,
+    "cumulative_corrected_count_worst_case_usd": 2.078088,
+    "cumulative_hard_cap_usd": 2.1,
+    "cumulative_with_uncertainty_reserve_usd": 2.099088,
+    "hard_cap_margin_usd": 0.000912,
+    "maximum_output_tokens": 53248,
+    "maximum_output_usd": 0.26624,
+    "prior_observed_cumulative_usd": 1.040028,
+    "remaining_primary_request_n": 26,
+    "reserved_input_tokens": 792820,
+    "uncertainty_reserve_input_tokens": 21000
+  },
+  "correction_basis": "Trace actual input exceeded preexecution count by exactly 48 tokens across 24 requests, or two tokens per request. Remaining count adds 52 tokens before a separate 21,000-token reserve.",
+  "live_api_calls_during_amendment": 0,
+  "prices": {
+    "input_usd_per_million": 1.0,
+    "output_usd_per_million": 5.0
+  },
+  "provider_usage_authority": "Runtime response usage remains authoritative and is accounted before content validation.",
+  "schema_version": 1,
+  "status": "within_raised_cap_with_reserve"
+}

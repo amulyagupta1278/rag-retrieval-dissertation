@@ -1,0 +1,9 @@
+{
+  "approved": false,
+  "approved_at": null,
+  "artifact_type": "phase5b_quota_reset_resume_approval",
+  "checkpoint_sha256": null,
+  "frozen_config_sha256": "251e8ea1948eb20b03f1e259742d9b9933e88aaafc0897ff16905a4d16c69fde",
+  "mode": null,
+  "schema_version": 1
+}

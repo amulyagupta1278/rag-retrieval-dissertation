@@ -1,0 +1,1 @@
+{"candidate_count":512,"includes_all_existing_gold":true,"reviewer_hidden_fields":["system identity","rank","score","current gold status"],"seed":42,"status":"provisional; Graph results must be added before final pooled judging","systems":["bm25","faiss"]}

@@ -1,0 +1,40 @@
+{
+  "git_head": "df1b37384738641691a5f993bbab3032f6394f62",
+  "inputs": {
+    "chunks": {
+      "bytes": 19967,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/data/chunks/chunks_v1.jsonl",
+      "sha256": "46209d833055a2d0668660b11661adbfdc6722c97a87eae844913539cde18532"
+    },
+    "qrels": {
+      "bytes": 2058,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/data/qrels/qrels.tsv",
+      "sha256": "f1de481174345987cd4c40019993eb5c166bb8465e833e7695580547d6ec777b"
+    },
+    "queries": {
+      "bytes": 16450,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/data/queries/qa_dataset_v1.jsonl",
+      "sha256": "f98776865ff6632b24035b8e76551d96f5b89e3e9acadaaf953d7543d34f862b"
+    },
+    "reported_summary": {
+      "bytes": 240,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/runs/metrics/comparison_summary.csv",
+      "sha256": "1e43e3aa118e0bf9c66fd9b0f24c0a81c19db4eb52d611eaee1e941b118e01de"
+    },
+    "run:bm25": {
+      "bytes": 450235,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/runs/retrieval/bm25_run.jsonl",
+      "sha256": "3401d18b62d93811c150146fc5a9ac9a6b27c41fea6435da42ada41ae69d570e"
+    },
+    "run:faiss": {
+      "bytes": 231464,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/runs/retrieval/faiss_run.jsonl",
+      "sha256": "3d9b80fdf30c905840cea7312aba99ca0ca96f15d997a133597a415ed617ac5e"
+    },
+    "run:graphrag": {
+      "bytes": 254308,
+      "path": "/Users/amulyagupta/Desktop/rag-retrieval-dissertation/runs/retrieval/graphrag_run.jsonl",
+      "sha256": "66d7e084914ed19b6910d73180a1882d45fa089227073384bd32c7d7ca581952"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "bootstrap": {
+    "confidence_level": 0.95,
+    "paired_whole_query": true,
+    "samples": 10000,
+    "seed": 42
+  },
+  "evaluator_design": null,
+  "h5_outcomes": [
+    "supported",
+    "partially_supported",
+    "not_supported",
+    "inconclusive"
+  ],
+  "missing_output_primary_treatment": "retain as execution failure",
+  "multiplicity_correction": null,
+  "no_composite_score": true,
+  "schema_version": 1,
+  "statistics_calculated": false,
+  "status": "draft_pending_owner_decisions_and_phase6"
+}
+

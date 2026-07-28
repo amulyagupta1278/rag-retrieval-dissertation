@@ -1,0 +1,151 @@
+{
+  "architecture_status": "blocked_owner_architecture_choice_required",
+  "benchmark_boundary": {
+    "benchmark_version": "pilot-qa-v2-owner-approved-20260724-r5",
+    "chunk_id_is_retrieval_unit": true,
+    "corpus_chunk_n": 140,
+    "query_n": 34
+  },
+  "candidate_version": "prompt-rag-retrieval-v1-candidate",
+  "execution_authorized": false,
+  "historical_evidence_conclusion": {
+    "implementation_status": "no_verified_prompt_rag_implementation_in_reachable_history",
+    "intended_family": "llm_guided_reranking",
+    "intended_family_evidence_strength": "documentation_only",
+    "unique_architecture_defined": false
+  },
+  "owner_decision_required": {
+    "alternatives": [
+      {
+        "candidate_depth": 50,
+        "candidate_generator": "bm25_frozen_phase2a",
+        "id": "A",
+        "kind": "llm_relevance_reranker",
+        "status": "recommended_not_selected"
+      },
+      {
+        "candidate_depth": 50,
+        "candidate_generator": "hybrid_bm25_graph_rrf_frozen_phase4",
+        "id": "B",
+        "kind": "llm_relevance_reranker",
+        "status": "not_selected"
+      },
+      {
+        "candidate_depth": 140,
+        "candidate_generator": "complete_frozen_corpus",
+        "id": "C",
+        "kind": "llm_direct_corpus_scorer",
+        "status": "not_selected"
+      },
+      {
+        "candidate_depth": null,
+        "candidate_generator": null,
+        "id": "D",
+        "kind": "llm_query_rewriting_plus_retrieval_or_reranking",
+        "status": "not_selected"
+      }
+    ],
+    "recommendation": "A",
+    "recommendation_basis": "simplest auditable staged reranker with a deterministic first stage and explicit candidate-recall ceiling; not selected from benchmark performance",
+    "required_choices": [
+      "architecture alternative",
+      "provider",
+      "exact model and immutable version",
+      "API endpoint and declared SDK dependency",
+      "batch size",
+      "actual prompt",
+      "generation controls",
+      "timeout and retry limits"
+    ]
+  },
+  "prompt": {
+    "path": "prompts/prompt_rag_retrieval_v1.txt",
+    "sha256": "e95c6936d1b7a7e2dfed58c8cd753c1e58b8b77252d2eb462e0d28fb2074c35d",
+    "status": "unfrozen_non_executable_placeholder"
+  },
+  "proposed_common_contract": {
+    "candidate_fields_exposed": [
+      "chunk_id",
+      "text",
+      "source_title"
+    ],
+    "candidate_recall_ceiling_required": true,
+    "duplicate_candidate_policy": "fail_closed",
+    "failure_policy": "record_failure_without_fallback_or_substitution",
+    "forbidden_inputs": [
+      "qrels",
+      "reference_answer",
+      "category",
+      "gold_evidence",
+      "metrics",
+      "sealed_provenance",
+      "owner_judgments"
+    ],
+    "output_depth": 50,
+    "output_json_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_scores": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "chunk_id": {
+                "type": "string"
+              },
+              "score": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "chunk_id",
+              "score"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "candidate_scores"
+      ],
+      "type": "object"
+    },
+    "query_fields_exposed": [
+      "query_id",
+      "question"
+    ],
+    "raw_response_policy": "preserve_exact_response_and request metadata; redact credentials and provider request IDs only where they are security-sensitive",
+    "score_interpretation": "higher_is_more_relevant",
+    "tie_breaking": "score_descending_then_chunk_id_ascending",
+    "top_50_output_contract": "one row per frozen query, unique known chunk IDs, ranks 1 through min(50, candidate_depth), raw score retained, failures represented explicitly and never backfilled"
+  },
+  "trace_gate": {
+    "metrics_allowed_before_pass": false,
+    "selection_rule": "structural_only_after_architecture_approval; query IDs must be selected without categories, qrels, answers, metrics, or performance traces",
+    "stop_on_any_invalid_trace": true,
+    "trace_query_ids": null
+  },
+  "unresolved_execution_parameters": {
+    "api_endpoint": null,
+    "batch_ordering": "query_id_ascending_then_first_stage_rank_ascending",
+    "batch_size": null,
+    "candidate_depth": null,
+    "candidate_generator": null,
+    "context_window_tokens": null,
+    "max_output_tokens": null,
+    "model": null,
+    "model_version": null,
+    "provider": null,
+    "rate_limit_policy": null,
+    "repetitions_for_repeatability_audit": null,
+    "retry_count": null,
+    "sdk_name": null,
+    "sdk_version": null,
+    "seed": null,
+    "temperature": null,
+    "timeout_seconds": null,
+    "top_p": null,
+    "truncation_policy": "fail_closed; no silent query or candidate-text truncation"
+  }
+}

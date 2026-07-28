@@ -1,0 +1,19 @@
+{
+  "system": "hybrid_bm25_graph_rrf",
+  "components": [
+    "bm25",
+    "entity_graph_v3_2"
+  ],
+  "rrf_k": 60,
+  "weights": {
+    "bm25": 1.0,
+    "entity_graph_v3_2": 1.0
+  },
+  "input_depth": 50,
+  "output_depth": 50,
+  "rank_origin": 1,
+  "tie_break": "score descending then chunk ID ascending",
+  "missing_component_policy": "use available component contribution",
+  "duplicate_chunk_policy": "one contribution per system",
+  "status": "frozen_before_hybrid_results"
+}

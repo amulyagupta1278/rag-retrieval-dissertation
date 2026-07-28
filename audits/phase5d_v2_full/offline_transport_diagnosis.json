@@ -1,0 +1,41 @@
+{
+  "diagnosis": {
+    "determined": "Application caught Anthropic SDK APIConnectionError path before receiving HTTP status, response body, response ID, or usage metadata.",
+    "exact_root_cause": "unverified",
+    "not_distinguishable_from_preserved_evidence": [
+      "DNS resolution failure",
+      "TCP connection failure or reset",
+      "TLS negotiation/certificate failure",
+      "local network interruption",
+      "upstream connection termination before HTTP response"
+    ],
+    "not_supported": [
+      "HTTP authentication rejection",
+      "HTTP rate limit",
+      "HTTP provider server error",
+      "schema/content rejection"
+    ],
+    "reason_not_supported": "Those classes require an HTTP status or valid response; checkpoint contains neither. This does not prove they were impossible upstream."
+  },
+  "local_environment": {
+    "anthropic_sdk": "0.116.0",
+    "anthropic_base_url_override_present": false,
+    "certifi": "2026.5.20",
+    "credential_expected_prefix": true,
+    "credential_present": true,
+    "credential_value_recorded": false,
+    "httpx": "0.28.1",
+    "openssl": "OpenSSL 3.6.2 7 Apr 2026",
+    "proxy_environment_override_present": false,
+    "python": "3.12.2",
+    "ssl_default_verify_paths_present": true
+  },
+  "network_activity_during_diagnosis": 0,
+  "runner_mapping": {
+    "APIConnectionError": "ClaudeProviderError with null status",
+    "APIStatusError": "ClaudeProviderError with returned HTTP status",
+    "APITimeoutError": "ClaudeProviderError with status 408"
+  },
+  "schema_version": 1,
+  "status": "offline_diagnosis_complete_exact_transport_cause_unverified"
+}

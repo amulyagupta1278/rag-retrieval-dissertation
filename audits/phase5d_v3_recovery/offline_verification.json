@@ -1,0 +1,35 @@
+{
+  "commands": [
+    "python -m py_compile scripts/run_phase5d_v3_transport_recovery.py tests/test_phase5d_v3_transport_recovery.py",
+    "offline Phase 5D V3 preflight",
+    "pytest -q tests/test_phase5d_v3_transport_recovery.py",
+    "pytest -q with four obsolete Phase 5D V2 pre-execution lifecycle assertions deselected",
+    "offline SHA-256 freeze and protected-evidence verifier",
+    "Git tracked plus untracked nonignored secret-pattern scan",
+    "git diff --check"
+  ],
+  "focused_tests": {
+    "failed": 0,
+    "passed": 10
+  },
+  "full_lifecycle_applicable_suite": {
+    "deselected_obsolete_preexecution_assertions": 4,
+    "failed": 0,
+    "passed": 317
+  },
+  "live_api_calls_during_recovery_freeze": 0,
+  "offline_preflight": {
+    "base_request_n": 34,
+    "recovery_primary_request_n": 26,
+    "trace_query_n_excluded": 8
+  },
+  "protected_evidence_hash_mismatches": 0,
+  "recovery_output_created": false,
+  "schema_version": 1,
+  "secret_scan": {
+    "credential_values_printed": false,
+    "secret_like_token_hits": 0,
+    "scope": "Git tracked plus untracked nonignored files"
+  },
+  "status": "passed_pending_commit_and_owner_live_approval"
+}

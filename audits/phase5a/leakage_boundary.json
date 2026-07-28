@@ -1,0 +1,94 @@
+{
+  "blind_pool_validation": {
+    "blank_relevance_judgment_n": 620,
+    "blank_reviewer_notes_n": 620,
+    "duplicate_query_chunk_pair_n": 0,
+    "file": "runs/v2/phase4_hybrid/pool/provisional_blind_top10_bm25_faiss_graph_hybrid.jsonl",
+    "file_sha256": "5c424b6a0bbca1343499621c5fd705a904eaf11c1109824c3ec6094c0dc643e2",
+    "provenance_fields_present": false,
+    "row_n": 620,
+    "unique_query_chunk_pair_n": 620,
+    "validation_scope": "Only row count, query/chunk uniqueness, judgment blanks, reviewer-note blanks, and absence of provenance fields were inspected."
+  },
+  "design_boundary": {
+    "allowed_design_inputs": [
+      "reachable Git history and repository documentation about Prompt-RAG architecture",
+      "corpus and benchmark identity/count metadata without corpus text, answers, categories, or relevance",
+      "dependency and Python environment metadata",
+      "blind-pool blankness and structural counts",
+      "cryptographic hashes computed without semantic parsing"
+    ],
+    "forbidden_model_inputs": [
+      "qrels",
+      "reference_answer",
+      "category",
+      "gold evidence or gold chunk IDs",
+      "prior or current metrics",
+      "sealed system/rank/score provenance",
+      "owner judgments",
+      "system identity"
+    ],
+    "forbidden_repository_sources_during_design": [
+      "qrel contents",
+      "reference-answer contents",
+      "query-category contents",
+      "metric-result contents",
+      "sealed provenance contents",
+      "owner-judgment contents"
+    ],
+    "implementation_enforcement": "src/retrievers/prompt_rag_contract.py uses explicit field allowlists and fail-closed validation."
+  },
+  "design_boundary_incident": {
+    "architecture_or_prompt_changed_after_exposure": false,
+    "description": "A broad Git-history search displayed a current Phase 4 evaluation manifest containing embedded metric material. No metric was copied into Phase 5A artifacts or used to select an architecture, candidate source, depth, prompt, provider, or model.",
+    "freeze_consequence": "Phase 5A remains non-executable and blocked for owner architecture approval; the structurally recommended alternative is explicitly not performance-selected.",
+    "performance_results_used_for_design": false,
+    "prior_metric_content_incidentally_exposed": true
+  },
+  "environment": {
+    "branch": "codex/dissertation-rebuild-v2",
+    "declared_project_dependencies_include_api_sdk": false,
+    "head": "70de0fd17f825ca04527c7ff50f91a2e5959a084",
+    "installed_packages": {
+      "faiss-cpu": "1.14.3",
+      "httpx": "0.28.1",
+      "numpy": "2.4.6",
+      "openai": "2.44.0",
+      "pydantic": "2.13.4",
+      "pytest": "9.0.3",
+      "rank-bm25": "0.2.2",
+      "sentence-transformers": "5.6.0",
+      "tiktoken": null
+    },
+    "machine": "arm64",
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "python_executable": "/Users/amulyagupta/.pyenv/versions/3.12.2/bin/python",
+    "python_implementation": "CPython",
+    "python_version": "3.12.2",
+    "starting_worktree_clean": true
+  },
+  "hypothesis_protection": {
+    "file": "docs/EXPERIMENT_PROTOCOL_V2.md",
+    "sha256_at_start": "78547d0fc4a81ae64303103b22f577366a0d7895d8e5dbe94b0e417e366115b7",
+    "status": "unchanged"
+  },
+  "prohibited_actions": {
+    "api_calls": false,
+    "answer_generation": false,
+    "external_network_access": false,
+    "metric_calculation": false,
+    "owner_judgment_inspection": false,
+    "pool_expansion": false,
+    "prompt_rag_retrieval_execution": false,
+    "repository_commit": false
+  },
+  "protected_phase0_through_phase4_checkpoint": {
+    "coverage": "Every one of the 532 files tracked at the clean Phase 4 HEAD, which includes the committed Phase 0–4 checkpoint.",
+    "git_tree_object": "4fe2988ac25391949073d76c6ad2d3db4d5f32f2",
+    "head": "70de0fd17f825ca04527c7ff50f91a2e5959a084",
+    "manifest_method": "Sort `git ls-tree -r --name-only -z HEAD` paths; SHA-256 each current file's bytes; SHA-256 the concatenated UTF-8 path + NUL + lowercase file SHA-256 + newline records.",
+    "manifest_sha256": "ea708a1d4f5a3256d7ce00351d0b4dc3071a3bb9044f7a716bf44c60d3e91212",
+    "tracked_file_n": 532
+  },
+  "recorded_at": "2026-07-26T14:07:27+05:30"
+}

@@ -1,0 +1,70 @@
+{
+  "metric_definition": "binary_relevance_gt_zero",
+  "reported_comparison": {
+    "bm25": {
+      "matches_reported_at_4_decimals": true,
+      "reported": {
+        "mrr_at_10": 0.8304,
+        "mrr_at_5": 0.8304,
+        "ndcg_at_10": 0.8683,
+        "recall_at_10": 1.0,
+        "recall_at_5": 0.8214
+      }
+    },
+    "faiss": {
+      "matches_reported_at_4_decimals": true,
+      "reported": {
+        "mrr_at_10": 0.7958,
+        "mrr_at_5": 0.7958,
+        "ndcg_at_10": 0.7742,
+        "recall_at_10": 0.8571,
+        "recall_at_5": 0.8571
+      }
+    },
+    "graphrag": {
+      "matches_reported_at_4_decimals": true,
+      "reported": {
+        "mrr_at_10": 0.6095,
+        "mrr_at_5": 0.6095,
+        "ndcg_at_10": 0.5909,
+        "recall_at_10": 0.6875,
+        "recall_at_5": 0.6875
+      }
+    }
+  },
+  "systems": {
+    "bm25": {
+      "macro_metrics": {
+        "graded_ndcg_at_10": 0.8404696965031055,
+        "mrr_at_10": 0.8303571428571429,
+        "mrr_at_5": 0.8303571428571429,
+        "ndcg_at_10": 0.8683438348167158,
+        "recall_at_10": 1.0,
+        "recall_at_5": 0.8214285714285714
+      },
+      "query_count": 28
+    },
+    "faiss": {
+      "macro_metrics": {
+        "graded_ndcg_at_10": 0.7096199749427624,
+        "mrr_at_10": 0.7958333333333334,
+        "mrr_at_5": 0.7958333333333334,
+        "ndcg_at_10": 0.774176526246765,
+        "recall_at_10": 0.8571428571428571,
+        "recall_at_5": 0.8571428571428571
+      },
+      "query_count": 28
+    },
+    "graphrag": {
+      "macro_metrics": {
+        "graded_ndcg_at_10": 0.5760119268973428,
+        "mrr_at_10": 0.6095238095238095,
+        "mrr_at_5": 0.6095238095238095,
+        "ndcg_at_10": 0.590898599326502,
+        "recall_at_10": 0.6875,
+        "recall_at_5": 0.6875
+      },
+      "query_count": 28
+    }
+  }
+}

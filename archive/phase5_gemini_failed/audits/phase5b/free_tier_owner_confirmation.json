@@ -1,0 +1,18 @@
+{
+  "artifact_type": "phase5b_free_tier_owner_confirmation",
+  "attestation": {
+    "google_ai_studio_plan": "Free",
+    "linked_billing_account": false,
+    "monetary_charge_authorized": false
+  },
+  "confirmed_at": "2026-07-26T20:43:55+05:30",
+  "context_attestation": {
+    "active_execution_environment_confirmed": true,
+    "credential_or_environment_changed_since_confirmation": false,
+    "reconfirmation_required_after_any_change": true,
+    "scope": "current process environment and active GEMINI_API_KEY context"
+  },
+  "frozen_config_sha256": "87247fc5bab12e9f174e19fdbe8a237c4a910d215eaa6cbbe1b19d852914f2d7",
+  "schema_version": 1,
+  "status": "confirmed"
+}
