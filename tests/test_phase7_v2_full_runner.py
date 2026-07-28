@@ -72,6 +72,8 @@ def test_mock_full_dispatches_only_160_and_covers_170(
     assert sum(row["source"] == "trace_v2_reuse" for row in coverage) == 10
     assert sum(row["source"] == "full_v2_new" for row in coverage) == 160
     assert sum(row["dispatched_in_full_run"] is True for row in coverage) == 160
+    manifest = json.loads((runner.FULL_ROOT / "full_manifest.json").read_text())
+    assert len(manifest["artifacts"]) == 323
 
 
 def test_terminal_failure_stops_without_retry(

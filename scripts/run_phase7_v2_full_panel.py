@@ -280,14 +280,6 @@ def _write_manifest() -> None:
         for path in FULL_ROOT.rglob("*")
         if path.is_file() and path.name != "full_manifest.json"
     )
-
-
-def _artifact_reference(path: Path) -> str:
-    """Return repository path in production and full-root path under tests."""
-
-    if path.is_relative_to(ROOT):
-        return str(path.relative_to(ROOT))
-    return str(path.relative_to(FULL_ROOT))
     write_json(
         FULL_ROOT / "full_manifest.json",
         {
@@ -300,6 +292,14 @@ def _artifact_reference(path: Path) -> str:
         },
         overwrite=(FULL_ROOT / "full_manifest.json").exists(),
     )
+
+
+def _artifact_reference(path: Path) -> str:
+    """Return repository path in production and full-root path under tests."""
+
+    if path.is_relative_to(ROOT):
+        return str(path.relative_to(ROOT))
+    return str(path.relative_to(FULL_ROOT))
 
 
 def run_full(
