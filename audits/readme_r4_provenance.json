@@ -1,0 +1,14 @@
+{
+  "authorization": "Owner approved intentional resolution of unstaged README while preserving substantive content and correcting unsupported wording.",
+  "current_phase4_checkpoint_file_n": 532,
+  "current_phase4_checkpoint_sha256": "7013b9a22e9119f14ccffc7abf08a3ee3e86b670aee75b4115740c4cc0c292cb",
+  "historical_phase4_head": "70de0fd17f825ca04527c7ff50f91a2e5959a084",
+  "historical_results_modified": false,
+  "main_merge_commit": "6049994253e78a353442f594d027980b1fd89689",
+  "main_path_checks": {
+    "runs/v2/phase4_hybrid/rankings/hybrid_top50.jsonl": true,
+    "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/complete_primary_rankings.jsonl": true
+  },
+  "readme_sha256": "da18a3d13e62cb036890a93fa567d6473571fcc4650855613aeb0a38fc20dd76",
+  "status": "verified_and_intentionally_resolved"
+}
