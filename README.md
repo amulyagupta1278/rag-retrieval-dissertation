@@ -13,13 +13,14 @@
 ## Current status
 
 This repository contains a controlled pilot comparison of five retrieval systems and a
-downstream answer-generation experiment. Work is frozen through Phase 7 generation on branch
+downstream answer-generation experiment. Work is frozen through Phase 7 evaluation on branch
 `codex/dissertation-rebuild-v2`.
 
 - Phase 6 retrieval evaluation is complete on 34 owner-approved questions and final pooled
   human-owner relevance judgments.
-- Phase 7 generated all 170 planned answers: 34 questions × 5 retrieval systems. Mechanical
-  validation is frozen; blinded owner quality review and H5 analysis remain pending.
+- Phase 7 generated and evaluated all 170 planned answers: 34 questions × 5 retrieval systems.
+  Twenty-six blinded answers retain human-owner scores; 144 carry disclosed offline AI scores.
+  Mechanical validation, owner-audit agreement, and exploratory H5 analysis are frozen.
 - Phase 8 final-scale expansion is a separate, unexecuted decision. Pilot results must not be
   described as final population-level evidence.
 
@@ -146,7 +147,7 @@ slices are small (`N=4` or `N=6`) and all inferential conclusions remain explora
 | **H2:** FAISS outperforms BM25 on paraphrase | Not supported | No balanced metric passed effect, confidence-interval, and Holm-adjusted randomization criteria. |
 | **H3:** Graph outperforms BM25 and FAISS on entity relation and multi-hop | Not supported | No emphasized metric passed all preregistered criteria across required comparisons. |
 | **H4:** Hybrid has highest aggregate MRR | Not supported | Hybrid passed only Graph comparison, not every frozen comparator. |
-| **H5:** Retrieval quality predicts answer quality | Pending | Requires completed blinded Phase 7 owner quality audit and frozen analysis. |
+| **H5:** Retrieval quality does not translate monotonically into generation faithfulness | Exploratory result consistent with separation | MRR@10–faithfulness Spearman rho was -0.0333; no confirmatory threshold was preregistered. |
 
 Detailed effects, intervals, tests, correction rules, and category results are stored in
 `runs/v2/phase6_seed42_final/statistics/` and
@@ -163,7 +164,7 @@ Detailed effects, intervals, tests, correction rules, and category results are s
 | 4 | BM25 + Graph Hybrid RRF | Complete |
 | 5 | BM25 top-50 → Claude Prompt-RAG reranker | Complete |
 | 6 | Blind pooled judging, regrade, adjudication, final retrieval metrics | Complete |
-| 7 | 170-answer generation panel | Generation complete; owner quality audit and H5 pending |
+| 7 | 170-answer generation and H5 panel | Complete as disclosed AI-evaluated exploratory pilot |
 | 8 | Final-scale corpus/benchmark expansion | Planning only; owner decision required |
 
 Failed Gemini and earlier Claude attempts remain archived as audit evidence. They are not selected
@@ -299,8 +300,11 @@ Retrieval metrics are reported in aggregate and per category, always with query 
 Metrics are never averaged into a composite score. Contradictory results remain visible.
 
 Phase 7 answer-quality dimensions are separate: correctness, faithfulness, completeness, citation
-accuracy, unsupported claims, and abstention quality. Mechanical validation is complete; human
-quality labeling is not.
+accuracy, unsupported claims, and abstention quality. Mechanical validation covers all 170
+answers. Twenty-six blinded records were scored by the human owner; 144 were scored by a pinned
+offline MiniLM-plus-5-NN procedure trained on those owner records. These results must not be
+described as 170 human-reviewed answers. Full disclosure and H5 results are in
+`docs/PHASE7_FINAL_AI_EVALUATED_STATUS.md`.
 
 ## Repository map
 
