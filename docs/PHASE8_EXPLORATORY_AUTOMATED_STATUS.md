@@ -39,3 +39,29 @@ Not allowed: "Phase 8 final-scale benchmark is validated," "owner approved," or
 
 Canonical machine-readable audit:
 `audits/phase8_exploratory/automated_audit.json`.
+
+## Automated repair and rerun R3
+
+R3 repaired all 32 category-contract failures using source-verbatim text. One
+Mission Shakti gold chunk containing administrative boilerplate was replaced by
+another chunk from same frozen official document. Strict automatic audit then
+reported zero failures across gold resolution, source-document alignment, exact
+answer support, cross-scheme cardinality, question uniqueness, and category
+contracts.
+
+Three available systems were rerun over 100 questions and 140 automated gold
+judgments. Aggregate diagnostic results:
+
+| System | MRR@10 | Recall@10 | nDCG@10 |
+|---|---:|---:|---:|
+| BM25 | 0.5813 | 0.7750 | 0.6017 |
+| FAISS | 0.4662 | 0.6100 | 0.4637 |
+| Entity-co-occurrence graph | 0.1537 | 0.3050 | 0.1756 |
+
+R2 was invalidated because abbreviation-sensitive sentence splitting caused one
+strict exact-support failure. R3 preserves contiguous verbatim source text.
+
+R3 remains `pending_human_review`. Automated contract compliance does not make
+questions natural, labels human-relevant, or results final evidence. Frozen BM25
+and FAISS indexes also lack modern per-index `configuration_hash`; release-level
+manifest integrity passes, but strict index-provenance mode does not.

@@ -1,0 +1,29 @@
+{
+  "api_calls": 0,
+  "categories": {
+    "entity_relation": 20,
+    "exact_match": 20,
+    "multi_hop": 20,
+    "paraphrase": 20,
+    "terminology_heavy": 20
+  },
+  "changed_gold_evidence": 1,
+  "gold_judgments": 140,
+  "human_review_complete": false,
+  "inputs": {
+    "chunks_sha256": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "qa_sha256": "588de4621ed1428aa252d7a1f4925ee816ec477f9316c5c23ed85b3f29655c21"
+  },
+  "outputs": {
+    "categories_sha256": "39009bc845681c5ca2a2ff55e6dcb4201b559885e326edf8638c0adb27c7ad13",
+    "qa_sha256": "cb53efc28941b67ca513d37c08494e457ee79c77935b9f49fec27ac16c9fae80",
+    "qrels_sha256": "a28dd553db0aba021d0ce2e85e80dcc5a0641e3c4b5aef638ace755cdc9e62d8",
+    "repair_log_sha256": "345dbdb4bbffe1d5de570c31a5728ea6a6602de850af08b75a63ab4dc77283d7"
+  },
+  "owner_approved": false,
+  "questions_repaired": 32,
+  "remaining_contract_failures": 0,
+  "source_contract_failures": 32,
+  "source_questions": 100,
+  "status": "exploratory_automated_candidate_pending_human_validation"
+}

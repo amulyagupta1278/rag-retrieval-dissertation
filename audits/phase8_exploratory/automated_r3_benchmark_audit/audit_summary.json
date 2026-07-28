@@ -1,0 +1,24 @@
+{
+  "audit_status": "pending_human_review",
+  "benchmark_version": "v3_clean_exploratory_automated_r3",
+  "questions": 100,
+  "selection": {
+    "exact_match": 20,
+    "terminology_heavy": 20,
+    "paraphrase": 20,
+    "entity_relation": 20,
+    "multi_hop": 20
+  },
+  "pooled_candidates": 1167,
+  "pool_depth": 5,
+  "second_review_questions": 20,
+  "pool_status": "diagnostic_only_until_rejected_questions_are_replaced",
+  "automatic_failures": {
+    "gold_ids_resolve": 0,
+    "source_document_ids_resolve": 0,
+    "answer_exactly_supported": 0,
+    "two_chunks_for_cross_scheme": 0,
+    "question_intent_unique": 0,
+    "category_contract_passes": 0
+  }
+}

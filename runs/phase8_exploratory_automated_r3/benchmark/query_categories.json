@@ -1,0 +1,502 @@
+{
+  "q_0001": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0002": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0003": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0004": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0005": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0006": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0007": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0008": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0009": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0010": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0011": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0012": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0013": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0014": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0015": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0016": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0017": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0018": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0019": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0020": {
+    "category": "exact_match",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0021": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0022": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0023": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0024": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0025": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0026": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0027": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0028": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0029": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0030": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0031": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0032": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0033": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0034": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "dev"
+  },
+  "q_0035": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0036": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0037": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0038": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0039": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0040": {
+    "category": "terminology_heavy",
+    "difficulty": "easy",
+    "split": "test"
+  },
+  "q_0041": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0042": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0043": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0044": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0045": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0046": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0047": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0048": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0049": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0050": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0051": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0052": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0053": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0054": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0055": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0056": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0057": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0058": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0059": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0060": {
+    "category": "paraphrase",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0061": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0062": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0063": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0064": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0065": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0066": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0067": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0068": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0069": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0070": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0071": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0072": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0073": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0074": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0075": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0076": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0077": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0078": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0079": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "test"
+  },
+  "q_0080": {
+    "category": "entity_relation",
+    "difficulty": "medium",
+    "split": "dev"
+  },
+  "q_0081": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "dev"
+  },
+  "q_0082": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0083": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "dev"
+  },
+  "q_0084": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0085": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0086": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0087": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0088": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0089": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0090": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "dev"
+  },
+  "q_0091": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0092": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0093": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0094": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0095": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0096": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0097": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0098": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0099": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "test"
+  },
+  "q_0100": {
+    "category": "multi_hop",
+    "difficulty": "hard",
+    "split": "dev"
+  }
+}
