@@ -1,0 +1,12 @@
+{
+  "ambiguous_dispatch_reserve_usd": 0.00983,
+  "full_hard_cap_usd": 1.25,
+  "full_input_token_envelope": 625328,
+  "full_request_n": 100,
+  "full_worst_case_usd": 0.881328,
+  "hard_cap_pass": true,
+  "trace_hard_cap_usd": 0.1,
+  "trace_input_token_envelope": 31290,
+  "trace_request_n": 5,
+  "trace_worst_case_including_reserve_usd": 0.05392
+}

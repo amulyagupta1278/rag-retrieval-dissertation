@@ -1,0 +1,29 @@
+{
+  "artifact_manifest_sha256": "76beae3703f3a03917090e4934ce441a71bb6274fb5915a7ef12dbc3bc2ec744",
+  "category_counts": {
+    "entity_relation": 4,
+    "exact_match": 4,
+    "multi_hop": 4,
+    "paraphrase": 4,
+    "terminology_heavy": 4
+  },
+  "category_n": 5,
+  "cost": {
+    "ambiguous_dispatch_reserve_usd": 0.00983,
+    "full_hard_cap_usd": 1.25,
+    "full_input_token_envelope": 625328,
+    "full_request_n": 100,
+    "full_worst_case_usd": 0.881328,
+    "hard_cap_pass": true,
+    "trace_hard_cap_usd": 0.1,
+    "trace_input_token_envelope": 31290,
+    "trace_request_n": 5,
+    "trace_worst_case_including_reserve_usd": 0.05392
+  },
+  "execution_config_sha256": "4b0b194cfe347fb8ca7ee491098f4953cc2d96d598e87e60fdf2cab3d4eff051",
+  "live_api_calls_n": 0,
+  "request_payloads_sha256": "8c8a9adcbcfc4d8a0966013133bb507587ebdca746f8e4ee066cab3873415ccf",
+  "request_plan_sha256": "c6fe221326ea43bf6cd2cd5e89f6347b1befcd3dc276b6b37683eb673d6ce7ef",
+  "status": "offline_frozen_pending_trace_approval",
+  "trace_plan_sha256": "157bdb55220badadd212373b19077eb2b10dbd01e749cb85ef8a8082b55dd599"
+}

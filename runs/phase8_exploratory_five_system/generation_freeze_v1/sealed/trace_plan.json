@@ -1,0 +1,49 @@
+{
+  "selected": [
+    {
+      "blinded_request_id": "P8G071",
+      "category": "multi_hop",
+      "logical_request_id": "q_0094:bm25",
+      "planned_input_token_envelope": 6421,
+      "query_id": "q_0094",
+      "request_sha256": "c004c7cefee56918cd28d1bd02bc7950273ac4a15720e357061280075d902652",
+      "system_id": "bm25"
+    },
+    {
+      "blinded_request_id": "P8G080",
+      "category": "terminology_heavy",
+      "logical_request_id": "q_0021:faiss_windowed_max",
+      "planned_input_token_envelope": 6182,
+      "query_id": "q_0021",
+      "request_sha256": "c8afd4e83597dadf0fec29a02db2e3534e25fa4ea03050590d4a9eebedb63cb5",
+      "system_id": "faiss_windowed_max"
+    },
+    {
+      "blinded_request_id": "P8G081",
+      "category": "entity_relation",
+      "logical_request_id": "q_0061:graph_v3_2",
+      "planned_input_token_envelope": 6317,
+      "query_id": "q_0061",
+      "request_sha256": "6a451e6b8e69ba55b67b94082c66fd0521ba724e4a02153dd366e26ec5da83f7",
+      "system_id": "graph_v3_2"
+    },
+    {
+      "blinded_request_id": "P8G077",
+      "category": "paraphrase",
+      "logical_request_id": "q_0043:hybrid_rrf",
+      "planned_input_token_envelope": 6130,
+      "query_id": "q_0043",
+      "request_sha256": "09a20903472458be44723f8b8dbec076d419068d4bd2257e9e74e6737d3d1620",
+      "system_id": "hybrid_rrf"
+    },
+    {
+      "blinded_request_id": "P8G098",
+      "category": "exact_match",
+      "logical_request_id": "q_0005:prompt_rag_claude",
+      "planned_input_token_envelope": 6240,
+      "query_id": "q_0005",
+      "request_sha256": "74b33540236f81d634380220abfd6d643accf1864f567cfabc0af3ec3fa3860e",
+      "system_id": "prompt_rag_claude"
+    }
+  ]
+}
