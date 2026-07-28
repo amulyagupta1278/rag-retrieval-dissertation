@@ -1,0 +1,1 @@
+{"attempt_n":1,"automatic_retries":0,"completed_query_ids":[],"failure":{"error":"R4 response truncated/refused","query_id":"q_0080"},"input_tokens":0,"latencies_seconds":[],"observed_cost_usd":0.0,"output_tokens":0,"status":"failed_terminal_validation"}
