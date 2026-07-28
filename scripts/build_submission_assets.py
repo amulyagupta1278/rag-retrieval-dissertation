@@ -259,11 +259,13 @@ def dashboard(metrics: dict, h5: dict) -> str:
 def main() -> None:
     metrics = json.loads(METRICS.read_text())
     h5 = json.loads(H5.read_text())
-    (ROOT / "FINAL_DISSERTATION_REPORT_DRAFT.md").write_text(report(), encoding="utf-8")
-    out = ROOT / "dashboard/index.html"
+    report_path = ROOT / "submission/FINAL_DISSERTATION_REPORT_DRAFT.md"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(report(), encoding="utf-8")
+    out = ROOT / "submission/dashboard/index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(dashboard(metrics, h5), encoding="utf-8")
-    print(json.dumps({"report": str(ROOT / "FINAL_DISSERTATION_REPORT_DRAFT.md"), "dashboard": str(out)}))
+    print(json.dumps({"report": str(report_path), "dashboard": str(out)}))
 
 
 if __name__ == "__main__":

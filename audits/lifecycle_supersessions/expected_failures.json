@@ -4,7 +4,7 @@
   "supersessions": {
     "tests/test_phase5a_prompt_rag.py::test_hypotheses_and_protected_phase4_checkpoint_are_unchanged": {
       "current_checkpoint_file_n": 532,
-      "current_checkpoint_sha256": "172c8768e6c7698e534877e43a09d9b9ffef4bbf345094ca4e71f4f9cba0aa95",
+      "current_checkpoint_sha256": "656714cec0b96ba6fff4a51460a1a018681f0095741d76ab6bfc974b550ce1e0",
       "evidence": {
         "archive/phase5_gemini_failed/manifest.json": "a8a163da7bfd428286ac52d55e880dbd68203683e6a7d37d5d5452d4dec7042c",
         "audits/phase4_hybrid/latency_disclosure_correction.json": "ba38c2b1cf8bdcfe21853fd794ea10a3169c49353b5f0a68e61ee3792d9a5b56"

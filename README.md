@@ -321,9 +321,21 @@ described as 170 human-reviewed answers. Full disclosure and H5 results are in
 ├── releases/                # Historical and expanded deterministic releases
 ├── runs/v2/                 # Frozen rankings, metrics, statistics, and generation evidence
 ├── scripts/                 # Auditable phase runners and validators
+├── submission/              # Current report draft, dashboard, and defense deck
 ├── src/                     # Ingestion, retrieval, evaluation, generation, and utilities
 └── tests/                   # Offline contract, integrity, and regression tests
 ```
+
+## Submission assets
+
+Current submission-facing files are grouped under `submission/`:
+
+- Dissertation report draft: `submission/FINAL_DISSERTATION_REPORT_DRAFT.md`
+- Interactive results dashboard: `submission/dashboard/index.html`
+- Defense presentation: `submission/presentation/RAG_Dissertation_Defense_Amulya_Gupta.pptx`
+
+Historical mid-semester reports remain at repository root because frozen audits and conversion
+scripts reference their exact paths. They are provenance records, not current submission files.
 
 ## Reproducibility statement
 
