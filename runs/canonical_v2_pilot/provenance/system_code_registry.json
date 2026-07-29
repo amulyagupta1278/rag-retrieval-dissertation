@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "canonical_v2_pilot_retriever_code_registry",
+  "systems": {
+    "bm25": {
+      "canonical_runner": "scripts/run_phase2a_r5_windowed.py",
+      "configuration_evidence": "scripts/run_phase2a_r5_windowed.py",
+      "core_modules": [
+        "src/retrievers/bm25_retriever.py"
+      ],
+      "strategy": "sparse lexical BM25 with k1=1.5 and b=0.75"
+    },
+    "faiss_windowed_max": {
+      "canonical_runner": "scripts/run_phase2a_r5_windowed.py",
+      "configuration_evidence": "runs/v2/phase2a_r5_windowed/indexes/faiss_windowed/provenance.json",
+      "core_modules": [
+        "src/retrievers/faiss_retriever.py"
+      ],
+      "strategy": "normalized MiniLM token-window embeddings, IndexFlatIP, maximum-window chunk score"
+    },
+    "graph_v3_2": {
+      "canonical_runner": "scripts/run_phase3_graph_v3_2_retrieval.py",
+      "configuration_evidence": "configs/entity_graph_v3_2_frozen.json",
+      "core_modules": [
+        "src/retrievers/entity_graph_v3.py"
+      ],
+      "strategy": "corpus-backed entity alias matching and maximum two-hop co-occurrence traversal"
+    },
+    "hybrid_rrf": {
+      "canonical_runner": "scripts/run_phase4_hybrid.py",
+      "configuration_evidence": "configs/hybrid_rrf_v1_frozen.json",
+      "core_modules": [
+        "src/retrievers/hybrid_rrf_v1.py"
+      ],
+      "strategy": "equal-weight reciprocal-rank fusion of frozen BM25 and Graph rankings"
+    },
+    "prompt_rag_claude": {
+      "canonical_runner": "scripts/run_phase5d_v3_transport_recovery.py",
+      "configuration_evidence": "configs/prompt_rag_claude_v3_transport_recovery.json",
+      "core_modules": [
+        "src/retrievers/prompt_rag_claude_v2.py",
+        "src/retrievers/prompt_rag_contract.py"
+      ],
+      "strategy": "Claude relevance scoring over frozen BM25 top-50 candidates"
+    }
+  }
+}

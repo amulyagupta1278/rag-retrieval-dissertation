@@ -1,0 +1,130 @@
+{
+  "artifact_count": 24,
+  "benchmark_scope": "owner-approved 34-query V2 pilot with final pooled human-owner relevance judgments",
+  "copies": [
+    {
+      "destination_path": "runs/canonical_v2_pilot/benchmark/final_pooled_qrels.tsv",
+      "sha256": "c167689e5f0a1e7412d17baab56c6789e1612bb08121255fc0c153fecd1e077f",
+      "source_path": "runs/v2/phase6_seed42_final/qrels/phase6_final_pooled_qrels.tsv"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/benchmark/questions_r5.jsonl",
+      "sha256": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
+      "source_path": "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/balanced_metrics.json",
+      "sha256": "35dca4d65fdaef4125efece1b83d09f37c4fc0f95d71a2996599098f0b498248",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/balanced_metrics.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/efficiency_snapshot.json",
+      "sha256": "06e7ed970ca5383555df85ed4260880cd7cbff60115809b9cb323cc0ae51d18a",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/efficiency_snapshot.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/failure_taxonomy.jsonl",
+      "sha256": "3c4e9262f4102f6fffe4060534796f38620b20d7c099bd20a9463daf602f2a56",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/failure_taxonomy.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/final_pooled_per_query.jsonl",
+      "sha256": "3fc1b892aea214272d2af8588ccf988078e258e4a00c86d20b4c4fd2d32f441e",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/final_pooled_per_query.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/known_gold_metrics.json",
+      "sha256": "e473822819a5790136e597499bd77c3d4adc64d1fd02dccb8508a63745f0582f",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/known_gold_metrics.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/known_gold_per_query.jsonl",
+      "sha256": "d87a96c2c9444026ac5a4f1107d5e11c1fd8e3faed0fc97892cc666a3debd24b",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/known_gold_per_query.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/known_gold_vs_final_pooled_shifts.json",
+      "sha256": "5bdbd6d143b1e9bb108da6325b473877048afb166abc898dd6f5ee1fc1a1a4ba",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/known_gold_vs_final_pooled_shifts.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/paired_uncertainty_vs_bm25.json",
+      "sha256": "46eb43c6fd11ebeabf3febde53cc6a6f8490a4bf168e2932ba25bb8a59b5810d",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/paired_uncertainty_vs_bm25.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/prompt_rag_candidate_recall_ceiling.json",
+      "sha256": "29aa3f6608b209e656b59596208736aa9ce9c465cfb8345d084e14fbb0c8336d",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/prompt_rag_candidate_recall_ceiling.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/system_comparison_table.json",
+      "sha256": "a173e7094779f0b0a1b45bd01b883f207cc5a3f11be002a3830cd11edc0e2544",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/system_comparison_table.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/metrics/worst_query_traces.json",
+      "sha256": "314957e191e3da41074ac1c5f3d9f470b776146854ee6cfe677f58733f2d8387",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/worst_query_traces.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/provenance/phase6_metrics_manifest.json",
+      "sha256": "edf5ba8959fc90a70b02be4f27ca576fb4a5473814d962dd9a0a09b8cd5222f9",
+      "source_path": "runs/v2/phase6_seed42_final/metrics/supplement_manifest.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/provenance/phase6_statistics_manifest.json",
+      "sha256": "c8030151aaa4ec774a565a268127cbc4617c8cd28ab7b4b235683a980ffd4108",
+      "source_path": "runs/v2/phase6_seed42_final/statistics/manifest.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/provenance/source_registry.json",
+      "sha256": "bde460829f6176f4b71edec761e37bb47fdcafe2bd61ca70b94e5d38f6e5aa70",
+      "source_path": "runs/CANONICAL_EVIDENCE.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/provenance/system_code_registry.json",
+      "sha256": "a4033c2bd11318fd09206294ed49b18ee4aac0634a5047bb4d4626eed67b2b4a",
+      "source_path": "src/retrievers/SYSTEMS.json"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/retrieval/bm25_top50.jsonl",
+      "sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+      "source_path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/retrieval/faiss_windowed_max_top50.jsonl",
+      "sha256": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115",
+      "source_path": "runs/v2/phase2a_r5_windowed/rankings/faiss_windowed_max_top50.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/retrieval/graph_v3_2_top50.jsonl",
+      "sha256": "68ad05ff4b600fa549f957b4bd44579af7e9d6addc2ddebff3f71a4584adc59a",
+      "source_path": "runs/v2/phase3_graph_v3_2/rankings/graph_v3_2_top50.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/retrieval/hybrid_rrf_top50.jsonl",
+      "sha256": "6570030a1c12edb38ff5c4e33b5dedb5d2fa83a05aa9a01ecd768bcf4edce249",
+      "source_path": "runs/v2/phase4_hybrid/rankings/hybrid_top50.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/retrieval/prompt_rag_claude_top50.jsonl",
+      "sha256": "e665aa4dc80b468a0fc2af06173ab0e6963786a578653c9a9083e6ffa6b1e04f",
+      "source_path": "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/complete_primary_rankings.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/statistics/directional_test_rows.jsonl",
+      "sha256": "ab0a735de468a90b2d6d2b18b011f57bb15abf85429fe1f9c24464a9f7824ddb",
+      "source_path": "runs/v2/phase6_seed42_final/statistics/directional_test_rows.jsonl"
+    },
+    {
+      "destination_path": "runs/canonical_v2_pilot/statistics/preregistered_h1_h4_results.json",
+      "sha256": "afacba9afdc27ad5cbf9322b92c7d3a8ef09b9b92a7f40cf28642df125873505",
+      "source_path": "runs/v2/phase6_seed42_final/statistics/preregistered_h1_h4_results.json"
+    }
+  ],
+  "historical_sources_modified": false,
+  "schema_version": 1,
+  "status": "canonical_v2_pilot_consolidated_view",
+  "system_count": 5
+}

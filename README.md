@@ -16,6 +16,12 @@ Default branch `origin/main` now contains five-system pilot evidence after merge
 (2026-07-28): BM25, FAISS-windowed-max, Entity Graph v3.2, Hybrid RRF, and Prompt-RAG Claude.
 Rule-based router has code scaffolding but no canonical run or score.
 
+Machine-readable canonical discovery starts at `runs/CANONICAL_EVIDENCE.json`. Unversioned
+`runs/retrieval/` and `runs/metrics/` contain preserved 100-query automated diagnostic artifacts
+for three systems; they are not canonical V2 pilot directories and must not be used as system
+inventory. Consolidated five-system rankings, metrics, statistics, and benchmark inputs are under
+`runs/canonical_v2_pilot/`; every file remains byte-identical to its frozen source.
+
 - Phase 6 retrieval evaluation is complete on 34 owner-approved questions and final pooled
   human-owner relevance judgments.
 - Phase 7 generated and evaluated all 170 planned answers: 34 questions × 5 retrieval systems.
@@ -261,6 +267,8 @@ status: `audits/phase8_exploratory/automated_r3_freeze.json`.
 
 Machine-readable score sources:
 
+- Canonical five-system registry: `runs/CANONICAL_EVIDENCE.json`
+- Consolidated canonical view: `runs/canonical_v2_pilot/`
 - Phase 0: `audits/phase0/recomputed_metrics.json`
 - Phase 2: `runs/v2/phase2a_r5_windowed/metrics/balanced_metrics.json`
 - Phase 3: `runs/v2/phase3_graph_v3_2/metrics/balanced_known_gold_metrics.json`

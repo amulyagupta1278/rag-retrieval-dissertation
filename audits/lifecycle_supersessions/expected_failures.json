@@ -4,12 +4,12 @@
   "supersessions": {
     "tests/test_phase5a_prompt_rag.py::test_hypotheses_and_protected_phase4_checkpoint_are_unchanged": {
       "current_checkpoint_file_n": 532,
-      "current_checkpoint_sha256": "7013b9a22e9119f14ccffc7abf08a3ee3e86b670aee75b4115740c4cc0c292cb",
+      "current_checkpoint_sha256": "9783cbfbedad6be0ba9a720d70d529fdaaf24bfdb55d73e4ae82dfaf3afb2f1c",
       "evidence": {
         "archive/phase5_gemini_failed/manifest.json": "a8a163da7bfd428286ac52d55e880dbd68203683e6a7d37d5d5452d4dec7042c",
         "audits/phase4_hybrid/latency_disclosure_correction.json": "ba38c2b1cf8bdcfe21853fd794ea10a3169c49353b5f0a68e61ee3792d9a5b56"
       },
-      "reason": "Phase 4 latency disclosure correction, later audit repairs, lazy optional FAISS import, failed Gemini archival, and owner-authorized evidence-status README correction were added after protected Phase 4 HEAD. Historical aggregate assertion remains unchanged; current checkpoint is explicitly re-frozen."
+      "reason": "Phase 4 latency disclosure correction, later audit repairs, lazy optional FAISS import, failed Gemini archival, owner-authorized evidence-status README correction, and canonical five-system discovery documentation were added after protected Phase 4 HEAD. Historical aggregate assertion remains unchanged; current checkpoint is explicitly re-frozen."
     },
     "tests/test_phase5d_v2_full_amendment.py::test_approval_is_pending_and_commit_bound": {
       "evidence": {

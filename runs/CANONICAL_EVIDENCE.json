@@ -1,0 +1,75 @@
+{
+  "benchmark": {
+    "question_count": 34,
+    "questions_path": "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl",
+    "questions_sha256": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
+    "qrels_path": "runs/v2/phase6_seed42_final/qrels/phase6_final_pooled_qrels.tsv",
+    "qrels_sha256": "c167689e5f0a1e7412d17baab56c6789e1612bb08121255fc0c153fecd1e077f",
+    "scope": "owner-approved 34-query V2 pilot with final pooled human-owner relevance judgments"
+  },
+  "canonical_metrics": {
+    "path": "runs/v2/phase6_seed42_final/metrics/balanced_metrics.json",
+    "sha256": "35dca4d65fdaef4125efece1b83d09f37c4fc0f95d71a2996599098f0b498248"
+  },
+  "canonical_view_root": "runs/canonical_v2_pilot",
+  "canonical_system_count": 5,
+  "legacy_unversioned_directories": {
+    "runs/metrics": "100-query expanded automated diagnostic outputs; not canonical V2 pilot metrics",
+    "runs/retrieval": "100-query expanded automated diagnostic outputs; not canonical V2 pilot rankings"
+  },
+  "main_merge_commit": "6049994253e78a353442f594d027980b1fd89689",
+  "pending_systems": {
+    "rule_router": {
+      "status": "pending_no_canonical_run_or_score"
+    }
+  },
+  "schema_version": 1,
+  "status": "canonical_five_system_pilot_evidence_registry",
+  "systems": {
+    "bm25": {
+      "evidence_commit": "50d7e13f65223da102877af1eee8e8c6fc993567",
+      "metric_key": "bm25",
+      "observed_max_depth": 50,
+      "observed_min_depth": 50,
+      "ranking_path": "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl",
+      "ranking_sha256": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
+      "requested_ranking_depth": 50
+    },
+    "faiss_windowed_max": {
+      "evidence_commit": "50d7e13f65223da102877af1eee8e8c6fc993567",
+      "metric_key": "faiss_windowed_max",
+      "observed_max_depth": 50,
+      "observed_min_depth": 50,
+      "ranking_path": "runs/v2/phase2a_r5_windowed/rankings/faiss_windowed_max_top50.jsonl",
+      "ranking_sha256": "7e419626d2e7d00efaedfa9f1ce0dda01760dbce5c901b214e992e32df597115",
+      "requested_ranking_depth": 50
+    },
+    "graph_v3_2": {
+      "evidence_commit": "20a889f82dda1bfd6bb681f397ce8758b45b27b1",
+      "metric_key": "graph_v3_2",
+      "observed_max_depth": 38,
+      "observed_min_depth": 0,
+      "ranking_path": "runs/v2/phase3_graph_v3_2/rankings/graph_v3_2_top50.jsonl",
+      "ranking_sha256": "68ad05ff4b600fa549f957b4bd44579af7e9d6addc2ddebff3f71a4584adc59a",
+      "requested_ranking_depth": 50
+    },
+    "hybrid_rrf": {
+      "evidence_commit": "70de0fd17f825ca04527c7ff50f91a2e5959a084",
+      "metric_key": "hybrid_rrf",
+      "observed_max_depth": 50,
+      "observed_min_depth": 50,
+      "ranking_path": "runs/v2/phase4_hybrid/rankings/hybrid_top50.jsonl",
+      "ranking_sha256": "6570030a1c12edb38ff5c4e33b5dedb5d2fa83a05aa9a01ecd768bcf4edce249",
+      "requested_ranking_depth": 50
+    },
+    "prompt_rag_claude": {
+      "evidence_commit": "88c54c906e9ea4313a43664cd8b7b65e61ea5944",
+      "metric_key": "prompt_rag_claude",
+      "observed_max_depth": 50,
+      "observed_min_depth": 50,
+      "ranking_path": "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/complete_primary_rankings.jsonl",
+      "ranking_sha256": "e665aa4dc80b468a0fc2af06173ab0e6963786a578653c9a9083e6ffa6b1e04f",
+      "requested_ranking_depth": 50
+    }
+  }
+}
