@@ -1,0 +1,25 @@
+{
+  "api_calls_during_finalization": 0,
+  "artifacts": {
+    "audits/phase8_r4/canonical_status.json": "524870f2f209cf682aed66f963da01abd5787caf128923f3bcb25a04895dbd6c",
+    "audits/phase8_r4/generation_v1_failure_checkpoint.json": "04fe160311689bffbb4c28a275535fa4258f8ebcdd7a755dcd040c37bf0590e9",
+    "audits/phase8_r4/generation_v2_corrected_semantic_failure_checkpoint.json": "e54e2c9f99cc9215d6dd54be04515e0c9eb4b63a791168819cc7a95ecbbfcdf2",
+    "audits/phase8_r4/generation_v2_validator_failure_checkpoint.json": "ddef01cd9edc085a612fa96cfb314088f441121e7a1d4c3b39ba44baaacf6fb4",
+    "audits/phase8_r4/prompt_rag_trace_v1_failure_checkpoint.json": "650d6e3899b9b51f696b4bc3a5edfc3592bc8a639943bac860701bda5c89c244",
+    "docs/PHASE8_R4_FINAL_REPORT.md": "9749434d3b973a8411edbd7649226fb181bb6f94894fd1f0a0b42d2a6049f69d",
+    "runs/phase8_r4_improvements/benchmark/synthesis_candidates_20.jsonl": "cdc2df79b857bb8a58af5e48a1e58c605f3fc83aae3b66db54f57d03fecef7ff",
+    "runs/phase8_r4_improvements/evaluation_ai_h5/ai_owner_agreement.json": "c9245eefdae6fb12e0261e328915bb41532ea0a18baf86ce926c6d1902e792f3",
+    "runs/phase8_r4_improvements/evaluation_ai_h5/ai_quality_labels_100.jsonl": "70f1a468670c2d882b26038d1d831d22be6bdfc6e61ef74b65f588ebd5d6e1cb",
+    "runs/phase8_r4_improvements/evaluation_ai_h5/h5_results.json": "1ca8dc9615b741361332db5b981c0f0d4185442c9e3ff3f409a8b60b95ed45da",
+    "runs/phase8_r4_improvements/evaluation_ai_h5/manifest.json": "7d4a4382718e34bdd7b6f5bf0cfa4fba9f5b0c47f3013da6b00561671c37b330",
+    "runs/phase8_r4_improvements/evaluation_r4/exploratory_statistics.json": "db53eff1af5df89c8b610dfe392ef748494a2c54c3c0047198e405f266ccc106",
+    "runs/phase8_r4_improvements/evaluation_r4/metrics.json": "0e0de92af68e29f6d778b635351fe441f0ec26bb1d48ee73b48a2deaa4e7e41a",
+    "runs/phase8_r4_improvements/generation_r4_v3_full/combined_100_record_index.jsonl": "991af07c5565d88011a860e6cd6686ac3b6a29050beb8921c7a165f7ded49af7",
+    "runs/phase8_r4_improvements/generation_r4_v3_full/summary.json": "d43f71a0639fabb832a2fdd852438b987a3fdf706cce5afa49b58b9abb769a23",
+    "runs/phase8_r4_improvements/manifest.json": "5f09e35e5458feb4f2a7ed07621c347d9a192644df9204bc81b646a5889bd308",
+    "runs/phase8_r4_improvements/prompt_rag_r4_v2_full/summary.json": "b502d07798b208aa77d85c3551b0e794050c807663edfc29284445b080ffe5c4"
+  },
+  "human_validation_complete": false,
+  "schema_version": 1,
+  "status": "automated_r4_complete_pending_human_validation"
+}
