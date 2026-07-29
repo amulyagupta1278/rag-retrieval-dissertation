@@ -1,0 +1,74 @@
+{
+  "generated_files": {
+    "DATA_CONTRACT.md": "13a385d0dfd59f647b325d0a7a7fee8d63a4dbe50115dfd753cc3cdaa41b0e0b",
+    "category_metrics.csv": "f7e98d68983683ac05864c0ab4a8ff04b158a720d2ed5ac14fd14ab5bdfe1ede",
+    "dashboard_payload_v2.json": "00fb71e06ed2f96f29845895ce7e1c62b0fbf9862052c1582d9633c2cd7fb9f6",
+    "generation_quality.csv": "1aebc7566a81eb6e2e8931d967d0e760921511670954e4b1bc88fd969e22d571",
+    "h5_correlations.csv": "0e818ebb462afaabdf9ae4002ecd0f24275d359081d56e6c84e75b744eb728af",
+    "operations_cost_latency.csv": "e2bfd7a879a365cb05427f0b4d70addd0743d4e89be87b2fcae3eb05ad21836c",
+    "query_metrics.csv": "a6c8b591a77f30831a4b086f8096e6085e675f49b6fbd0c5a8f6a17057205d40",
+    "r4_pairwise_statistics.csv": "38e0436eea4ba108f2e120c2b240bbe8d278252763646e39585143d559e3bed5",
+    "retrieval_metrics.csv": "412b8015400be78309421d0d69dc322a6008dc45076ca4b70b1be6aa0db055a0",
+    "scope_comparison.csv": "77ab4ba5e7b26a94b1876649605f50a6acb7de3fcc620a62f4e906095711ed7c",
+    "validation_status.csv": "2c1273fc084326b7977e9b41bf6a7199ca0ddd4125ae734a62d43440295d6c73"
+  },
+  "schema_version": 1,
+  "source_files": [
+    {
+      "path": "runs/v2/phase6_seed42_final/metrics/balanced_metrics.json",
+      "sha256": "35dca4d65fdaef4125efece1b83d09f37c4fc0f95d71a2996599098f0b498248"
+    },
+    {
+      "path": "runs/v2/phase6_seed42_final/statistics/preregistered_h1_h4_results.json",
+      "sha256": "afacba9afdc27ad5cbf9322b92c7d3a8ef09b9b92a7f40cf28642df125873505"
+    },
+    {
+      "path": "runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/h5_results.json",
+      "sha256": "7f8851e06a93b46c1b8403001832cd9fed817475a0c8a4523ffe7229f012c688"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/evaluation_r4/metrics.json",
+      "sha256": "0e0de92af68e29f6d778b635351fe441f0ec26bb1d48ee73b48a2deaa4e7e41a"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/evaluation_r4/exploratory_statistics.json",
+      "sha256": "db53eff1af5df89c8b610dfe392ef748494a2c54c3c0047198e405f266ccc106"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/evaluation_ai_h5/h5_results.json",
+      "sha256": "1ca8dc9615b741361332db5b981c0f0d4185442c9e3ff3f409a8b60b95ed45da"
+    },
+    {
+      "path": "audits/phase8_r4/canonical_status.json",
+      "sha256": "524870f2f209cf682aed66f963da01abd5787caf128923f3bcb25a04895dbd6c"
+    },
+    {
+      "path": "audits/phase7_generation/v2/full_v2_success_checkpoint.json",
+      "sha256": "f50497b4be5cc69e4659b4f7a0f7c26b31b398884cadc9d6b4bac0d6515ba1be"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/prompt_rag_r4_v2_full/summary.json",
+      "sha256": "b502d07798b208aa77d85c3551b0e794050c807663edfc29284445b080ffe5c4"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/generation_r4_v3_full/summary.json",
+      "sha256": "d43f71a0639fabb832a2fdd852438b987a3fdf706cce5afa49b58b9abb769a23"
+    },
+    {
+      "path": "runs/v2/phase6_seed42_final/metrics/final_pooled_per_query.jsonl",
+      "sha256": "3fc1b892aea214272d2af8588ccf988078e258e4a00c86d20b4c4fd2d32f441e"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/evaluation_r4/per_query.json",
+      "sha256": "f9a62076537f680125927584ac7283d42c385e5a39eaa29db424a153641ccc2b"
+    },
+    {
+      "path": "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl",
+      "sha256": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b"
+    },
+    {
+      "path": "runs/phase8_r4_improvements/benchmark/qa_dev_test.jsonl",
+      "sha256": "550dc70d2d4ce4b998241ec4f40284183e693a39d0f254c146c53297545cd3ea"
+    }
+  ]
+}

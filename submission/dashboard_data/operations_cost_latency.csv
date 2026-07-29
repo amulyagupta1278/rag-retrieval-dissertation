@@ -1,0 +1,5 @@
+phase,operation,valid_records,failures,retries,cost_usd,hard_cap_usd,mean_latency_seconds
+Phase 7 generation,170 pilot answers,170,0,0,0.52532,3.0,
+Phase 8 R4 retrieval,Prompt-RAG 100-query reranking,100,0,0,2.430722,3.7,16.820007
+Phase 8 R4 generation,100 answers across five systems,100,0,0,0.429828,3.7,3.4017912200000002
+Phase 8 R4 total,retrieval plus generation,200,0,0,2.86055,3.7,

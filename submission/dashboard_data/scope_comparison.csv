@@ -1,0 +1,3 @@
+benchmark,claim_class,documents,chunks,primary_questions,categories,synthesis_questions,relevance_pairs,human_validation_complete
+V2 human-validated pilot,canonical dissertation evidence,22,140,34,6,4,755,True
+Phase 8 R4 expansion,exploratory automated scaling evidence,130,954,100,5,20,140,False
