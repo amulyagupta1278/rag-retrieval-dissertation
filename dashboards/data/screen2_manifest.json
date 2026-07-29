@@ -1,0 +1,22 @@
+{
+  "evidence_commit": "7bc5bda9c6fc01964bab0247145699fe14e35175",
+  "offline_external_reference_n": 0,
+  "output_bytes": 752485,
+  "output_sha256": "d9e5c9b5ff0f3399136c081112af290abadf94923b0f8b6ca4aa63dd66df7d14",
+  "payload_sha256": "159119219368ae2a48fe6e3351888c30f3be37c9ab503ecee141e5f9fcfcebd3",
+  "qrels_base": "final_pooled",
+  "required_panels": [
+    "response_grid",
+    "irt_ability_dial",
+    "three_dimensional_query_field",
+    "radar",
+    "category_bars",
+    "h5_aggregate",
+    "provenance"
+  ],
+  "status": "gate3_passed",
+  "vendor_hashes": {
+    "gsap-3.12.5.min.js": "28033e449a31ebcc396e5be8b13b63152bf03094288fb5867034321927bce087",
+    "three-r128.min.js": "9274bbcec8d96168626c732b5d31c775aa8cfb7eaa0599bec0c175908a2c1ce2"
+  }
+}

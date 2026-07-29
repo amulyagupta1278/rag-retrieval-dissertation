@@ -1,0 +1,2937 @@
+{
+  "aggregates": [
+    {
+      "ce_recall_at_10": {
+        "ci95": [
+          0.23529411764705882,
+          0.5882352941176471
+        ],
+        "mean": 0.4117647058823529
+      },
+      "hit_at_5": {
+        "ci95": [
+          0.9117647058823529,
+          1.0
+        ],
+        "mean": 0.9705882352941176
+      },
+      "label": "BM25",
+      "mrr_at_10": {
+        "ci95": [
+          0.8676470588235294,
+          1.0
+        ],
+        "mean": 0.9411764705882353
+      },
+      "ndcg_graded_at_10": {
+        "ci95": [
+          0.751626954721234,
+          0.8812203412094561
+        ],
+        "mean": 0.8234995215684568
+      },
+      "query_n": 34,
+      "recall_at_10": {
+        "ci95": [
+          0.7196582175993942,
+          0.8712472168354521
+        ],
+        "mean": 0.800754474283886
+      },
+      "system": "bm25"
+    },
+    {
+      "ce_recall_at_10": {
+        "ci95": [
+          0.14705882352941177,
+          0.4411764705882353
+        ],
+        "mean": 0.29411764705882354
+      },
+      "hit_at_5": {
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "mean": 1.0
+      },
+      "label": "FAISS (dense baseline)",
+      "mrr_at_10": {
+        "ci95": [
+          0.723529411764706,
+          0.9191176470588235
+        ],
+        "mean": 0.8279411764705882
+      },
+      "ndcg_graded_at_10": {
+        "ci95": [
+          0.6194464485936412,
+          0.7579365871160275
+        ],
+        "mean": 0.688269559524306
+      },
+      "query_n": 34,
+      "recall_at_10": {
+        "ci95": [
+          0.6157902554961378,
+          0.7809416237357414
+        ],
+        "mean": 0.7000874942051413
+      },
+      "system": "faiss_windowed_max"
+    },
+    {
+      "ce_recall_at_10": {
+        "ci95": [
+          0.23529411764705882,
+          0.5882352941176471
+        ],
+        "mean": 0.4117647058823529
+      },
+      "hit_at_5": {
+        "ci95": [
+          0.5588235294117647,
+          0.8529411764705882
+        ],
+        "mean": 0.7058823529411765
+      },
+      "label": "Entity-Co-occurrence Graph",
+      "mrr_at_10": {
+        "ci95": [
+          0.5147058823529411,
+          0.8235294117647058
+        ],
+        "mean": 0.6764705882352942
+      },
+      "ndcg_graded_at_10": {
+        "ci95": [
+          0.4748496266165982,
+          0.7545075451466761
+        ],
+        "mean": 0.6213620330675427
+      },
+      "query_n": 34,
+      "recall_at_10": {
+        "ci95": [
+          0.4667360580595875,
+          0.7504232042467336
+        ],
+        "mean": 0.6103328044504515
+      },
+      "system": "graph_v3_2"
+    },
+    {
+      "ce_recall_at_10": {
+        "ci95": [
+          0.3235294117647059,
+          0.6764705882352942
+        ],
+        "mean": 0.5
+      },
+      "hit_at_5": {
+        "ci95": [
+          0.9117647058823529,
+          1.0
+        ],
+        "mean": 0.9705882352941176
+      },
+      "label": "Hybrid (BM25+Graph, RRF)",
+      "mrr_at_10": {
+        "ci95": [
+          0.8823529411764706,
+          1.0
+        ],
+        "mean": 0.9558823529411765
+      },
+      "ndcg_graded_at_10": {
+        "ci95": [
+          0.8075031097319535,
+          0.92909597054159
+        ],
+        "mean": 0.8783271148263178
+      },
+      "query_n": 34,
+      "recall_at_10": {
+        "ci95": [
+          0.7704355530090825,
+          0.9083978195007607
+        ],
+        "mean": 0.8448848537083831
+      },
+      "system": "hybrid_rrf"
+    },
+    {
+      "ce_recall_at_10": {
+        "ci95": [
+          0.4117647058823529,
+          0.7352941176470589
+        ],
+        "mean": 0.5882352941176471
+      },
+      "hit_at_5": {
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "mean": 1.0
+      },
+      "label": "Prompt-RAG (BM25 top-50 reranker)",
+      "mrr_at_10": {
+        "ci95": [
+          0.9338235294117647,
+          1.0
+        ],
+        "mean": 0.9779411764705882
+      },
+      "ndcg_graded_at_10": {
+        "ci95": [
+          0.8366108829372366,
+          0.9387608091025019
+        ],
+        "mean": 0.8906867090715231
+      },
+      "query_n": 34,
+      "recall_at_10": {
+        "ci95": [
+          0.7551858517299694,
+          0.9095450954274484
+        ],
+        "mean": 0.8355089355089355
+      },
+      "system": "prompt_rag_claude"
+    }
+  ],
+  "bootstrap_samples": 10000,
+  "categories": [
+    {
+      "key": "exact_lookup",
+      "query_n": 6
+    },
+    {
+      "key": "terminology",
+      "query_n": 6
+    },
+    {
+      "key": "paraphrase",
+      "query_n": 6
+    },
+    {
+      "key": "entity_relation",
+      "query_n": 6
+    },
+    {
+      "key": "multi_hop",
+      "query_n": 6
+    },
+    {
+      "key": "synthesis",
+      "query_n": 4
+    }
+  ],
+  "category_mrr": [
+    {
+      "category": "exact_lookup",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "bm25"
+    },
+    {
+      "category": "exact_lookup",
+      "ci95": [
+        0.6,
+        1.0
+      ],
+      "mean": 0.8666666666666667,
+      "query_n": 6,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "exact_lookup",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "exact_lookup",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "exact_lookup",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "category": "terminology",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "bm25"
+    },
+    {
+      "category": "terminology",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "terminology",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "terminology",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "terminology",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "category": "paraphrase",
+      "ci95": [
+        0.5,
+        1.0
+      ],
+      "mean": 0.8333333333333334,
+      "query_n": 6,
+      "system": "bm25"
+    },
+    {
+      "category": "paraphrase",
+      "ci95": [
+        0.2333333333333333,
+        0.6666666666666666
+      ],
+      "mean": 0.4083333333333334,
+      "query_n": 6,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "paraphrase",
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "query_n": 6,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "paraphrase",
+      "ci95": [
+        0.5,
+        1.0
+      ],
+      "mean": 0.8333333333333334,
+      "query_n": 6,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "paraphrase",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "category": "entity_relation",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "bm25"
+    },
+    {
+      "category": "entity_relation",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "entity_relation",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "entity_relation",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "entity_relation",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "category": "multi_hop",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "bm25"
+    },
+    {
+      "category": "multi_hop",
+      "ci95": [
+        0.75,
+        1.0
+      ],
+      "mean": 0.9166666666666666,
+      "query_n": 6,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "multi_hop",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "multi_hop",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "multi_hop",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 6,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "category": "synthesis",
+      "ci95": [
+        0.625,
+        1.0
+      ],
+      "mean": 0.875,
+      "query_n": 4,
+      "system": "bm25"
+    },
+    {
+      "category": "synthesis",
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "query_n": 4,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "category": "synthesis",
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "query_n": 4,
+      "system": "graph_v3_2"
+    },
+    {
+      "category": "synthesis",
+      "ci95": [
+        0.625,
+        1.0
+      ],
+      "mean": 0.875,
+      "query_n": 4,
+      "system": "hybrid_rrf"
+    },
+    {
+      "category": "synthesis",
+      "ci95": [
+        0.4375,
+        1.0
+      ],
+      "mean": 0.8125,
+      "query_n": 4,
+      "system": "prompt_rag_claude"
+    }
+  ],
+  "evidence_commit": "7bc5bda9c6fc01964bab0247145699fe14e35175",
+  "evidence_date": "2026-07-29",
+  "failures": [
+    {
+      "ci95": [
+        0.9117647058823529,
+        1.0
+      ],
+      "count": 33,
+      "failure_type": "hit",
+      "proportion": 0.9705882352941176,
+      "system": "bm25"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "near_miss",
+      "proportion": 0.0,
+      "system": "bm25"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.08823529411764706
+      ],
+      "count": 1,
+      "failure_type": "ranking_failure",
+      "proportion": 0.029411764705882353,
+      "system": "bm25"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "missing_evidence",
+      "proportion": 0.0,
+      "system": "bm25"
+    },
+    {
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "count": 34,
+      "failure_type": "hit",
+      "proportion": 1.0,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "near_miss",
+      "proportion": 0.0,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "ranking_failure",
+      "proportion": 0.0,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "missing_evidence",
+      "proportion": 0.0,
+      "system": "faiss_windowed_max"
+    },
+    {
+      "ci95": [
+        0.5588235294117647,
+        0.8529411764705882
+      ],
+      "count": 24,
+      "failure_type": "hit",
+      "proportion": 0.7058823529411765,
+      "system": "graph_v3_2"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "near_miss",
+      "proportion": 0.0,
+      "system": "graph_v3_2"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "ranking_failure",
+      "proportion": 0.0,
+      "system": "graph_v3_2"
+    },
+    {
+      "ci95": [
+        0.14705882352941177,
+        0.4411764705882353
+      ],
+      "count": 10,
+      "failure_type": "missing_evidence",
+      "proportion": 0.29411764705882354,
+      "system": "graph_v3_2"
+    },
+    {
+      "ci95": [
+        0.9117647058823529,
+        1.0
+      ],
+      "count": 33,
+      "failure_type": "hit",
+      "proportion": 0.9705882352941176,
+      "system": "hybrid_rrf"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "near_miss",
+      "proportion": 0.0,
+      "system": "hybrid_rrf"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.08823529411764706
+      ],
+      "count": 1,
+      "failure_type": "ranking_failure",
+      "proportion": 0.029411764705882353,
+      "system": "hybrid_rrf"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "missing_evidence",
+      "proportion": 0.0,
+      "system": "hybrid_rrf"
+    },
+    {
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "count": 34,
+      "failure_type": "hit",
+      "proportion": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "near_miss",
+      "proportion": 0.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "ranking_failure",
+      "proportion": 0.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "count": 0,
+      "failure_type": "missing_evidence",
+      "proportion": 0.0,
+      "system": "prompt_rag_claude"
+    }
+  ],
+  "forest": [
+    {
+      "adjusted_p": null,
+      "ci_high": 0.2416666666666667,
+      "ci_low": -0.08333333333333333,
+      "comparison": "BM25 − FAISS · exact+terminology",
+      "effect": 0.06666666666666667,
+      "hypothesis": "H1",
+      "verdict": "inconclusive"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.0,
+      "ci_low": -0.7666666666666666,
+      "comparison": "FAISS − BM25 · paraphrase",
+      "effect": -0.425,
+      "hypothesis": "H2",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.0,
+      "ci_low": -0.25,
+      "comparison": "Graph − BM25 · entity_relation",
+      "effect": -0.08333333333333333,
+      "hypothesis": "H3",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.25,
+      "ci_low": -0.25,
+      "comparison": "Graph − FAISS · entity_relation",
+      "effect": 0.0,
+      "hypothesis": "H3",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "comparison": "Graph − BM25 · multi_hop",
+      "effect": 0.0,
+      "hypothesis": "H3",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.25,
+      "ci_low": 0.0,
+      "comparison": "Graph − FAISS · multi_hop",
+      "effect": 0.08333333333333333,
+      "hypothesis": "H3",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.04411764705882353,
+      "ci_low": 0.0,
+      "comparison": "Hybrid − BM25 · aggregate",
+      "effect": 0.014705882352941176,
+      "hypothesis": "H4",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 0.6357421875,
+      "ci_high": 0.23823529411764705,
+      "ci_low": 0.022058823529411766,
+      "comparison": "Hybrid − FAISS · aggregate",
+      "effect": 0.12794117647058822,
+      "hypothesis": "H4",
+      "verdict": "not supported"
+    },
+    {
+      "adjusted_p": 0.015625,
+      "ci_high": 0.4264705882352941,
+      "ci_low": 0.14705882352941177,
+      "comparison": "Hybrid − Graph · aggregate",
+      "effect": 0.27941176470588236,
+      "hypothesis": "H4",
+      "verdict": "supported"
+    },
+    {
+      "adjusted_p": 1.0,
+      "ci_high": 0.022058823529411766,
+      "ci_low": -0.08823529411764706,
+      "comparison": "Hybrid − Prompt-RAG · aggregate",
+      "effect": -0.022058823529411766,
+      "hypothesis": "H4",
+      "verdict": "not supported"
+    }
+  ],
+  "h5": {
+    "correlations": [
+      {
+        "bootstrap_samples": 10000,
+        "bootstrap_valid_n": 6387,
+        "ci95": [
+          -0.06715348243168302,
+          -0.025598489461052847
+        ],
+        "query_n": 34,
+        "record_n": 170,
+        "spearman_rho": -0.033280283273840396,
+        "x": "mrr_at_10",
+        "y": "faithfulness"
+      },
+      {
+        "bootstrap_samples": 10000,
+        "bootstrap_valid_n": 10000,
+        "ci95": [
+          0.15810944462381812,
+          0.5066903645163756
+        ],
+        "query_n": 34,
+        "record_n": 170,
+        "spearman_rho": 0.3395352861284314,
+        "x": "complete_evidence_recall_at_10",
+        "y": "completeness"
+      }
+    ],
+    "decision": "exploratory_descriptive_only",
+    "interpretation_limits": [
+      "AI-assigned labels dominate full panel (144/170).",
+      "Owner audit is 26 records and is not independent inter-rater evaluation.",
+      "Associations do not establish causality or universal system superiority.",
+      "No dimensions were averaged into a composite score."
+    ],
+    "label_sources": {
+      "human_owner": 26,
+      "offline_ai_knn": 144
+    },
+    "status": "complete_exploratory_ai_evaluated"
+  },
+  "hypothesis_summaries": {
+    "H1": "inconclusive",
+    "H2": {
+      "tests_met": 0,
+      "tests_n": 12,
+      "verdict": "not_supported"
+    },
+    "H3": {
+      "entity_relation": {
+        "tests_met": 0,
+        "tests_n": 8,
+        "verdict": "not_supported"
+      },
+      "multi_hop": {
+        "tests_met": 0,
+        "tests_n": 8,
+        "verdict": "not_supported"
+      }
+    },
+    "H4": {
+      "comparisons_met": 1,
+      "comparisons_n": 4,
+      "verdict": "not_supported"
+    },
+    "H5": "not_in_scope"
+  },
+  "pilot": {
+    "chunks": 140,
+    "concentration_risk": "Two documents supply 65/140 chunks.",
+    "documents": 22,
+    "questions": 34,
+    "systems": 5
+  },
+  "qrels_base": "final_pooled",
+  "queries": [
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-001",
+      "query_text": "What is the minimum house size specified under PMAY-G?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8282912530574776,
+          "recall_at_10": 0.7142857142857143,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8255516298730751,
+          "recall_at_10": 0.7142857142857143,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9367360409530254,
+          "recall_at_10": 0.8571428571428571,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9367360409530254,
+          "recall_at_10": 0.8571428571428571,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6190744388306226,
+          "recall_at_10": 0.2857142857142857,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-002",
+      "query_text": "What maximum premium rates can farmers pay under PMFBY for Kharif, Rabi, and annual commercial or horticultural crops?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6939299653784159,
+          "recall_at_10": 0.5,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.75939205516242,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7273339048874958,
+          "recall_at_10": 0.5,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-003",
+      "query_text": "What revised overdraft limit and RuPay accidental-insurance cover are stated for PMJDY?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9509457695419298,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 5,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.2,
+          "ndcg_graded_at_10": 0.3950493062974106,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-004",
+      "query_text": "What is the maximum micro-loan amount stated for PMMY?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-005",
+      "query_text": "How many days of wage employment does MGNREGA guarantee a rural household in a financial year?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9392351262915565,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.552282637708512,
+          "recall_at_10": 0.5,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8617841900037279,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8940187669412318,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9690768164202486,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "exact_lookup",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-006",
+      "query_text": "What annual hospitalisation cover does AB-PMJAY provide per eligible family?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9155230494702449,
+          "recall_at_10": 0.8,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8908151253526534,
+          "recall_at_10": 0.8,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.978646063123196,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9155230494702449,
+          "recall_at_10": 0.8,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-007",
+      "query_text": "What is the full form of PMJJBY, and which event does its life insurance cover?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.894632015448076,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7984848580994974,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9364501857286789,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6387878864795979,
+          "recall_at_10": 0.3333333333333333,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-008",
+      "query_text": "Which accident-insurance programme is abbreviated PMSBY, and which outcomes trigger its cover?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9238850086262381,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-009",
+      "query_text": "What does APY stand for, and what monthly pension range does it guarantee after age 60?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8702876391807989,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9687707507974168,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9687707507974168,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-010",
+      "query_text": "What is the full form of PM POSHAN, and what meal benefit does it provide?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8175295903539445,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-011",
+      "query_text": "What does PM JANMAN stand for, and which communities does it target?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8451850618939637,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.4776237035032179,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "terminology",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-012",
+      "query_text": "What does PM SVANidhi stand for, and who is its intended beneficiary group?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.3354350434265105,
+          "recall_at_10": 0.3333333333333333,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.5316519652587917,
+          "recall_at_10": 0.3333333333333333,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8539432076387756,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6993694869720469,
+          "recall_at_10": 0.6666666666666666,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-013",
+      "query_text": "Which initiative helps women in low-income countryside homes replace smoke-producing solid cooking materials with bottled gas?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6589260358421596,
+          "recall_at_10": 0.5714285714285714,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 4,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.25,
+          "ndcg_graded_at_10": 0.5991230895997225,
+          "recall_at_10": 0.8571428571428571,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6589260358421596,
+          "recall_at_10": 0.5714285714285714,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8953093694570126,
+          "recall_at_10": 0.7142857142857143,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-014",
+      "query_text": "Under the national ration programme, what monthly cereal allocation goes to families in the poorest entitlement tier and to each person in the priority tier?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9617761342179452,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8670870086853021,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9617761342179452,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9439279501848503,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.6,
+      "n_systems_hit_at_5": 2,
+      "query_id": "v2q-015",
+      "query_text": "Which initiative helps job-seekers and established craftspeople launch small businesses outside agriculture?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "ranking_failure",
+          "gold_rank": 16,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.6360655564544636,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "ranking_failure",
+          "gold_rank": 16,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.5316519652587917,
+          "recall_at_10": 0.3333333333333333,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-016",
+      "query_text": "How can an experienced worker obtain formal recognition for skills learned outside a training course?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8887223390544889,
+          "recall_at_10": 0.8,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 4,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.25,
+          "ndcg_graded_at_10": 0.37051152764918915,
+          "recall_at_10": 0.6,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8887223390544889,
+          "recall_at_10": 0.8,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9557034395662896,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-017",
+      "query_text": "Which training route serves people no longer in education or work who need an initial occupational skill?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7944981616784152,
+          "recall_at_10": 0.6,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 4,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.25,
+          "ndcg_graded_at_10": 0.44043068528919344,
+          "recall_at_10": 0.6,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7944981616784152,
+          "recall_at_10": 0.6,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9605753368118396,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "paraphrase",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-018",
+      "query_text": "Which initiative helps city households across officially defined lower and middle income bands obtain permanent homes?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 5,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.2,
+          "ndcg_graded_at_10": 0.4415801103577823,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-019",
+      "query_text": "What role does the Ministry of Petroleum and Natural Gas have in Ujjwala 2.0?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9753465284027845,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9065280314885752,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-020",
+      "query_text": "How do NSDC and SPIAs divide responsibility in the Special Projects arm of the national skill mission?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9211164623018355,
+          "recall_at_10": 0.8888888888888888,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.5310848976513474,
+          "recall_at_10": 0.5555555555555556,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.639182383043437,
+          "recall_at_10": 0.3333333333333333,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9268231925760118,
+          "recall_at_10": 0.8888888888888888,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6708877628637713,
+          "recall_at_10": 0.5555555555555556,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-021",
+      "query_text": "How do insurance companies and banks participate in PMFBY?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8110692588370789,
+          "recall_at_10": 0.8333333333333334,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8047492987655787,
+          "recall_at_10": 0.8333333333333334,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.75939205516242,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9308665529255559,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-022",
+      "query_text": "Which finance programme relies on Member Lending Institutions to extend assistance to non-corporate micro-enterprises?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7984848580994974,
+          "recall_at_10": 0.6666666666666666,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.762346330035624,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7349350438281765,
+          "recall_at_10": 0.6666666666666666,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8403030283801005,
+          "recall_at_10": 0.6666666666666666,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-023",
+      "query_text": "What role does a Gram Panchayat play when a household registers for MGNREGA?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9828920819566879,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9709286432396581,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "entity_relation",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-024",
+      "query_text": "Which national health-assurance programme does NHA implement under the health ministry?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7753926834409677,
+          "recall_at_10": 0.6,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.5065267082131061,
+          "recall_at_10": 0.2,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9020243604942442,
+          "recall_at_10": 0.8,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9020243604942442,
+          "recall_at_10": 0.8,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9020243604942442,
+          "recall_at_10": 0.8,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-025",
+      "query_text": "What banking function does PMJDY provide, and which other programme from its ministry finances income-generating micro-enterprises?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9428954171224019,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7569324800537425,
+          "recall_at_10": 0.6666666666666666,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7438998803693911,
+          "recall_at_10": 0.6666666666666666,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9074698988224679,
+          "recall_at_10": 0.8333333333333334,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-026",
+      "query_text": "What employment guarantee does MGNREGA provide, and which other programme from its ministry supplies pucca houses to rural households?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7526815831892946,
+          "recall_at_10": 0.5454545454545454,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6090334038837438,
+          "recall_at_10": 0.36363636363636365,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6732148197534753,
+          "recall_at_10": 0.5454545454545454,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8655111095721011,
+          "recall_at_10": 0.6363636363636364,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9885447677333545,
+          "recall_at_10": 0.9090909090909091,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-027",
+      "query_text": "What livelihood mechanism does PM SVANidhi offer street vendors, and which other programme from its ministry addresses housing shortages for eligible urban households?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7611196834697737,
+          "recall_at_10": 0.8,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.36297209628774124,
+          "recall_at_10": 0.2,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.812018285041175,
+          "recall_at_10": 0.8,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7495215535370101,
+          "recall_at_10": 0.8,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9920466006454153,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-028",
+      "query_text": "What does PMKVY Recognition of Prior Learning certify, and which other pathway from its ministry serves candidates seeking fresh short-term skills training?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.850586690869802,
+          "recall_at_10": 0.7692307692307693,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7283977934882587,
+          "recall_at_10": 0.6153846153846154,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8321471982848566,
+          "recall_at_10": 0.6153846153846154,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.881576276675749,
+          "recall_at_10": 0.7692307692307693,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.885001328693579,
+          "recall_at_10": 0.6153846153846154,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-029",
+      "query_text": "What migrant-focused facility distinguishes Ujjwala 2.0, and what clean-cooking transition was established by its predecessor programme?",
+      "systems": [
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9748412540413925,
+          "recall_at_10": 1.0,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.6919362709093179,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6971533001755515,
+          "recall_at_10": 0.8,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9333168256517765,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9714089025373848,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "difficulty": 0.0,
+      "n_systems_hit_at_5": 5,
+      "query_id": "v2q-030",
+      "query_text": "What retirement benefit does APY offer, and which life-insurance programme administered through the same department covers death from any cause?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7372449353281585,
+          "recall_at_10": 0.8,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9747429528567877,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9708923176105698,
+          "recall_at_10": 1.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "synthesis",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-031",
+      "query_text": "How do three finance-sector programmes combine basic banking, life insurance, and accident insurance?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9297916128016405,
+          "recall_at_10": 0.8,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.4722375848593862,
+          "recall_at_10": 0.4,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9297916128016405,
+          "recall_at_10": 0.8,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "synthesis",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-032",
+      "query_text": "How do three farmer programmes separately address crop loss, current income needs, and old-age income security?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.6115097351114764,
+          "recall_at_10": 0.7,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9862996544290681,
+          "recall_at_10": 1.0,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 2,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.5,
+          "ndcg_graded_at_10": 0.6115097351114764,
+          "recall_at_10": 0.7,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 4,
+          "hit_at_5": 1,
+          "mrr_at_10": 0.25,
+          "ndcg_graded_at_10": 0.4042872722961695,
+          "recall_at_10": 0.5,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "synthesis",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-033",
+      "query_text": "How do three programmes support micro-enterprises, new enterprise creation, and street-vendor livelihoods through different financial mechanisms?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7718743833295889,
+          "recall_at_10": 0.7,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.6746053082437771,
+          "recall_at_10": 0.7,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.7718743833295889,
+          "recall_at_10": 0.7,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 1.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.9829166404752318,
+          "recall_at_10": 1.0,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    },
+    {
+      "category": "synthesis",
+      "difficulty": 0.19999999999999996,
+      "n_systems_hit_at_5": 4,
+      "query_id": "v2q-034",
+      "query_text": "How do three programmes meet distinct household needs for rural housing, clean cooking, and food security?",
+      "systems": [
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8094088652851236,
+          "recall_at_10": 0.6363636363636364,
+          "system": "bm25"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.3130951348903007,
+          "recall_at_10": 0.36363636363636365,
+          "system": "faiss_windowed_max"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "missing_evidence",
+          "gold_rank": 999,
+          "hit_at_5": 0,
+          "mrr_at_10": 0.0,
+          "ndcg_graded_at_10": 0.0,
+          "recall_at_10": 0.0,
+          "system": "graph_v3_2"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8094088652851236,
+          "recall_at_10": 0.6363636363636364,
+          "system": "hybrid_rrf"
+        },
+        {
+          "ce_recall_at_10": 0.0,
+          "failure_type": "hit",
+          "gold_rank": 1,
+          "hit_at_5": 1,
+          "mrr_at_10": 1.0,
+          "ndcg_graded_at_10": 0.8562817881797212,
+          "recall_at_10": 0.7272727272727273,
+          "system": "prompt_rag_claude"
+        }
+      ]
+    }
+  ],
+  "schema_version": 2,
+  "seed": 42,
+  "systems": [
+    {
+      "key": "bm25",
+      "label": "BM25"
+    },
+    {
+      "key": "faiss_windowed_max",
+      "label": "FAISS (dense baseline)"
+    },
+    {
+      "key": "graph_v3_2",
+      "label": "Entity-Co-occurrence Graph"
+    },
+    {
+      "key": "hybrid_rrf",
+      "label": "Hybrid (BM25+Graph, RRF)"
+    },
+    {
+      "key": "prompt_rag_claude",
+      "label": "Prompt-RAG (BM25 top-50 reranker)"
+    }
+  ]
+}
