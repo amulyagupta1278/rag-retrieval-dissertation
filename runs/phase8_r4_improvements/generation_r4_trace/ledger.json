@@ -1,0 +1,1 @@
+{"attempt_n":5,"completed_blinded_request_ids":["P8R4G0105f88d3b6a","P8R4G03a75ff8298a","P8R4G046a6c32935b","P8R4G251bc306cd70","P8R4G30353bace711"],"input_tokens":14484,"latencies_seconds":[12.84555,2.597907,3.371537,5.253664,1.868018],"observed_cost_usd":0.020534,"output_tokens":1210,"retry_n":0,"status":"complete"}
