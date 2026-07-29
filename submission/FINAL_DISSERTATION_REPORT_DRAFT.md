@@ -13,7 +13,9 @@ Dissertation submission draft — July 2026
 
 Retrieval-augmented generation depends on retrieving evidence that is relevant, complete, and usable by a downstream generator. This dissertation compares five retrieval configurations on a shared corpus of Indian government-scheme documents: BM25 lexical retrieval, FAISS dense retrieval, entity-co-occurrence graph retrieval, BM25–graph Reciprocal Rank Fusion, and an LLM-based reranker operating over a frozen BM25 candidate set. A controlled pilot benchmark contains 22 documents, 140 chunks, and 34 questions across exact lookup, terminology, paraphrase, entity relation, multi-hop, and synthesis categories. Relevance assessment uses 755 pooled query–chunk pairs with human-owner grading, deterministic regrading, and disagreement adjudication.
 
-Prompt-RAG produced the highest pilot MRR@10 (0.9779) and graded nDCG@10 (0.8907), while Hybrid RRF achieved the highest Recall@10 (0.8449). BM25 remained a strong baseline with MRR@10 of 0.9412. FAISS and entity-graph retrieval did not satisfy the preregistered pilot superiority hypotheses. A separate generation study produced 170 answers from each system's top-three evidence chunks. Twenty-six blinded answers were scored by the human owner and 144 received disclosed offline AI-assisted labels. Retrieval MRR had almost no monotonic association with generation faithfulness (Spearman rho = -0.0333), while Complete Evidence Recall showed a modest positive association with answer completeness (rho = 0.3395). Results support evaluating retrieval and generation as separate layers. Findings remain exploratory because the corpus and benchmark are small and most generation labels are automated.
+Prompt-RAG produced the highest pilot MRR@10 (0.9779) and graded nDCG@10 (0.8907), while Hybrid RRF achieved the highest Recall@10 (0.8449). BM25 remained a strong baseline with MRR@10 of 0.9412. FAISS and entity-graph retrieval did not satisfy the preregistered pilot superiority hypotheses. A separate generation study produced 170 answers from each system's top-three evidence chunks. Twenty-six blinded answers were scored by the human owner and 144 received disclosed offline AI-assisted labels. Retrieval MRR had almost no monotonic association with generation faithfulness (Spearman rho = -0.0333), while Complete Evidence Recall showed a modest positive association with answer completeness (rho = 0.3395).
+
+An exploratory Phase 8 R4 scaling study expanded the corpus to 130 documents and 954 chunks and evaluated 100 inherited questions, with 20 synthesis questions held out as automated candidates. On the locked 40-question test split, Prompt-RAG achieved the highest Recall@10 (0.8750), BM25 the highest MRR@10 (0.6071) and nDCG@10 (0.6412), and Prompt-RAG nearly matched BM25 nDCG@10 (0.6408). All 100 generated-answer quality labels in R4 were AI-assigned and the expanded gold crosswalks remain pending human review. R4 therefore demonstrates engineering scalability and supplies exploratory evidence; it does not supersede the human-validated pilot. Results support evaluating retrieval and generation as separate layers.
 
 **Keywords:** retrieval-augmented generation, BM25, FAISS, entity graph, reciprocal rank fusion, reranking, relevance judgment, government schemes
 
@@ -48,7 +50,7 @@ The dissertation asks how different retrieval paradigms behave when corpus, chun
 
 ## 1.5 Scope
 
-Final claims apply to the frozen V2 pilot only: 22 documents, 140 chunks, 34 questions, and five retrieval systems. The expanded `v3_clean` release is separate engineering work and is not used to inflate pilot claims. Prompt-RAG is a reranker over BM25's top 50 candidates, not a generator. The graph system is an entity-co-occurrence retriever, not Microsoft GraphRAG.
+Confirmatory claims apply to the frozen V2 pilot: 22 documents, 140 chunks, 34 questions, and five retrieval systems. Phase 8 R4 is reported separately as an exploratory scaling study with 130 documents, 954 chunks, 100 primary questions, and 20 automated synthesis candidates. Its inherited gold mappings and generated-answer labels are not human-validated, so R4 is not used to inflate pilot claims. Prompt-RAG is a reranker rather than the downstream answer generator. In the pilot it reranks BM25's top 50; in R4 it reranks a deterministic BM25-top-25 plus unseen-FAISS-top-25 union. The graph systems are entity-co-occurrence retrievers, not Microsoft GraphRAG.
 
 # Chapter 2 — Related Work
 
@@ -112,6 +114,14 @@ Prompt-RAG sends each BM25 top-50 candidate set to `claude-haiku-4-5-20251001`. 
 
 Primary retrieval metrics are MRR@10, Recall@10, graded nDCG@10, and Complete Evidence Recall@10. MRR@5, Recall@5, precision, binary nDCG, hit rate, category slices, latency, and per-query values are retained. Statistical analysis uses 10,000 paired whole-query bootstrap samples with seed 42, exact paired randomization where defined, and Holm correction across frozen directional comparisons.
 
+## 3.6 Phase 8 R4 scaling design
+
+R4 expands the corpus from 22 to 130 documents and from 140 to 954 section-aware chunks. It retains 100 inherited primary questions across exact lookup, terminology, paraphrase, entity relation, and multi-hop categories. Sixty questions form a development split and 40 form a locked test split. Twenty deterministic synthesis questions remain outside primary metrics as `automated_candidate_pending_human_validation`.
+
+All five retrieval systems were rebuilt against the R4 corpus: BM25, normalized-cosine FAISS, Entity Graph v4, matching Hybrid RRF, and Prompt-RAG. Prompt-RAG used a deterministic union of BM25 top 25 followed by unseen FAISS top 25 candidates. Live calls used a frozen model, prompt, schema, temperature, output ceiling, request hashes, pre-dispatch accounting, and zero-retry/no-fallback policy. Failed V1 and V2 attempts were preserved; V3 recovery changed only the disclosed semantic instruction needed to satisfy the frozen claim-to-evidence contract.
+
+R4 relevance mappings are automatic crosswalks from inherited benchmark records to new chunks. They have not received the Phase 6-style human pooling, regrade, and adjudication process. Statistical comparisons are therefore explicitly exploratory.
+
 # Chapter 4 — Retrieval Results
 
 ## 4.1 Aggregate results
@@ -133,6 +143,22 @@ H1 tested BM25–FAISS MRR equivalence on exact lookup and terminology questions
 ## 4.3 Interpretation
 
 Strong BM25 performance indicates extensive lexical anchoring in government-scheme questions and documents. Dense retrieval's semantic flexibility did not compensate for lost exact-term precision in this pilot. Entity graph retrieval suffered from sparse or ambiguous query entity matches and could not rely on lexical fallback. Hybrid recovered much of BM25's strength while adding graph results, improving recall. Prompt-RAG gained top-rank precision by reasoning over candidate relevance but remained constrained by BM25 candidate recall.
+
+## 4.4 Exploratory Phase 8 R4 results
+
+Locked-test results on 40 questions were:
+
+| System | MRR@10 | Recall@10 | Precision@10 | nDCG@10 |
+|---|---:|---:|---:|---:|
+| BM25 | **0.6071** | 0.8500 | 0.1200 | **0.6412** |
+| FAISS-windowed-max | 0.4113 | 0.6625 | 0.0975 | 0.4413 |
+| Entity Graph v4 | 0.4579 | 0.6625 | 0.0950 | 0.4628 |
+| Hybrid RRF | 0.5938 | 0.8500 | 0.1200 | 0.6245 |
+| Prompt-RAG Claude | 0.5842 | **0.8750** | **0.1225** | 0.6408 |
+
+Expansion changed the ordering seen in the pilot. BM25 led R4 locked-test MRR and nDCG, Prompt-RAG led recall and precision, and Hybrid remained close to BM25. Prompt-RAG mean latency was 16.82 seconds (median 15.80; p95 24.25). Comparable latency was unavailable for the other systems and was not encoded as zero.
+
+Exploratory paired nDCG@10 tests used 10,000 sign-flip randomizations, paired bootstrap intervals, seed 42, and Holm correction. BM25, Hybrid, and Prompt-RAG each outperformed FAISS after correction (adjusted p-values 0.0036, 0.0020, and 0.0056 respectively). Other adjusted comparisons were not below 0.05. These tests do not prove preregistered hypotheses because R4 was not the confirmatory benchmark and its gold crosswalks await human review.
 
 # Chapter 5 — Generation Experiment
 
@@ -161,6 +187,16 @@ MRR showed almost no monotonic relationship with faithfulness. Evidence coverage
 
 The human audit contained seven literal abstentions. Five were judged incorrect because supplied evidence supported at least part of the answer; two were appropriate. One additional non-abstaining answer mishandled missing evidence, producing six abstention-policy failures. This indicates over-conservative refusal behavior and motivates partial-answer guidance: answer supported components, cite them, and explicitly mark unsupported components.
 
+## 5.5 Phase 8 R4 generation and automated evaluation
+
+R4 generated one answer for each combination of 20 deterministic category-balanced questions and five retrieval systems: 100 answers in total. Every answer used the same model, prompt family, top-three evidence depth, temperature, schema, and citation contract. All 100 final records were valid. Preserved failure checkpoints document truncation and semantic-contract failures before recovery; no failed output was silently replaced.
+
+Prompt-RAG retrieval cost USD 2.430722. Generation, including preserved failed and recovery attempts, cost USD 0.429828. Total R4 API cost was USD 2.860550, leaving USD 0.839450 under the USD 3.70 hard cap.
+
+All R4 answer-quality labels were assigned by a disclosed offline five-nearest-neighbor evaluator using MiniLM features trained on 26 genuine Phase 7 owner-audit labels. No R4 answer overlaps the owner-labelled set, so R4 AI–owner agreement is not estimable. Mean correctness/completeness scores were 1.0 for BM25, 1.1 for FAISS, 1.1 for Graph, 1.0 for Hybrid, and 1.3 for Prompt-RAG on the 0–2 rubric. Literal abstention counts were 10, 9, 9, 10, and 8 respectively. Faithfulness and citation-accuracy predictions were constant at 2.0 and unsupported-claim severity at 0, preventing meaningful inferential claims for those dimensions.
+
+R4 H5 analysis was descriptive. MRR–faithfulness was non-estimable because faithfulness was constant. MRR–correctness had Spearman rho -0.056 with interval [-0.345, 0.254]; nDCG–correctness rho 0.079 [-0.230, 0.387]; and recall–completeness rho 0.078 [-0.256, 0.434]. None supports a strong monotonic relationship between retrieval metrics and automated answer-quality predictions.
+
 # Chapter 6 — Discussion
 
 ## 6.1 Retrieval paradigms are complementary
@@ -187,7 +223,7 @@ Pooled judgments are incomplete: unpooled chunks are not independently verified 
 
 ## 7.3 External validity
 
-Twenty-two documents and 34 questions cannot represent every government scheme, language, user population, or information need. Findings should not be generalized beyond this pilot. Phase 8 expansion remains optional future work.
+Twenty-two documents and 34 questions cannot represent every government scheme, language, user population, or information need. R4 materially broadens engineering coverage to 130 documents and 954 chunks, but it reuses inherited questions and automatic gold crosswalks. It therefore reduces corpus-scale uncertainty without establishing population-level validity. Neither study covers multilingual questions, diverse user groups, or independently sampled real-world information needs.
 
 ## 7.4 Research integrity
 
@@ -201,7 +237,9 @@ Offline rankings, qrels, metrics, generated responses, tests, hashes, and manife
 
 This dissertation demonstrates that sparse lexical retrieval remains a strong baseline for government-scheme evidence retrieval. Hybrid fusion improves recall, while LLM reranking improves top-rank relevance within a candidate ceiling. Dense and graph retrieval did not achieve their preregistered pilot advantages. Generation evaluation shows that rank quality alone does not determine faithfulness and that evidence completeness deserves separate measurement.
 
-Future work should expand document and question coverage on a separate branch, conduct independent multi-rater judgments, improve graph entity linking, test multilingual questions, and evaluate partial-answer abstention policies. Expanded results must remain distinct from the frozen pilot until equivalent validation and judging are complete.
+R4 shows that the pipeline can scale from 22 to 130 documents and from 140 to 954 chunks while rebuilding all five systems, enforcing cost and failure controls, and completing retrieval plus generation. Its changed system ordering is itself important: apparent winners depend on benchmark scale and construction. Because R4 gold crosswalks and generation labels are automated, the human-validated pilot remains the canonical evidential basis.
+
+Future work should human-review R4 source mappings and retrieval pools, audit or score R4 answers, validate the 20 held-out synthesis candidates, conduct independent multi-rater judgments, improve graph entity linking, test multilingual questions, and evaluate partial-answer abstention policies. Only after equivalent validation should expanded results replace or be pooled with the pilot.
 
 # Appendix A — Canonical artifacts
 
@@ -212,6 +250,8 @@ Future work should expand document and question coverage on a separate branch, c
 - Final quality labels: `runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/final_quality_labels_170.jsonl`
 - H5 results: `runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/h5_results.json`
 - Phase 7 disclosure: `docs/PHASE7_FINAL_AI_EVALUATED_STATUS.md`
+- Phase 8 R4 report: `docs/PHASE8_R4_FINAL_REPORT.md`
+- Phase 8 R4 canonical status: `audits/phase8_r4/canonical_status.json`
 
 # Appendix B — Submission completion checklist
 
