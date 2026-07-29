@@ -14,7 +14,10 @@
     "terminology": 6
   },
   "column_count": 17,
-  "h5_source_available": false,
+  "evidence_commit": "7bc5bda9c6fc01964bab0247145699fe14e35175",
+  "evidence_date": "2026-07-29",
+  "h5_source": "runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/h5_results.json",
+  "h5_source_available": true,
   "known_gold_reconciliation": [
     {
       "basis": "known_gold",
@@ -682,8 +685,6 @@
   "query_count": 34,
   "row_count": 170,
   "source_hashes": {
-    "data/v2/pilot/chunks/chunks.jsonl": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
-    "data/v2/pilot/extracted/documents.jsonl": "a3a3ceeba8f62cf4d387f7fe8f16ad5a6e167d05259ecb1c50afbaaa42d36773",
     "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl": "0abd328ff639a05e80559202a018df0bd50aaf875f8d6b7753af925cc8a89c4b",
     "data/v2/pilot/qrels/pilot-qa-v2-final-pooled-phase6-seed42-owner-adjudicated.tsv": "c167689e5f0a1e7412d17baab56c6789e1612bb08121255fc0c153fecd1e077f",
     "runs/v2/phase2a_r5_windowed/rankings/bm25_top50.jsonl": "93b42dc121927561bf880cbe44ccf264c60bac1196adac08ce3d6d5e80d2db6a",
@@ -696,33 +697,8 @@
     "runs/v2/phase6_seed42_final/metrics/known_gold_per_query.jsonl": "d87a96c2c9444026ac5a4f1107d5e11c1fd8e3faed0fc97892cc666a3debd24b",
     "runs/v2/phase6_seed42_final/metrics/paired_uncertainty_vs_bm25.json": "46eb43c6fd11ebeabf3febde53cc6a6f8490a4bf168e2932ba25bb8a59b5810d",
     "runs/v2/phase6_seed42_final/metrics/system_comparison_table.json": "a173e7094779f0b0a1b45bd01b883f207cc5a3f11be002a3830cd11edc0e2544",
-    "runs/v2/phase6_seed42_final/statistics/preregistered_h1_h4_results.json": "afacba9afdc27ad5cbf9322b92c7d3a8ef09b9b92a7f40cf28642df125873505"
-  },
-  "statistics_summaries": {
-    "H1": "inconclusive",
-    "H2": {
-      "tests_met": 0,
-      "tests_n": 12,
-      "verdict": "not_supported"
-    },
-    "H3": {
-      "entity_relation": {
-        "tests_met": 0,
-        "tests_n": 8,
-        "verdict": "not_supported"
-      },
-      "multi_hop": {
-        "tests_met": 0,
-        "tests_n": 8,
-        "verdict": "not_supported"
-      }
-    },
-    "H4": {
-      "comparisons_met": 1,
-      "comparisons_n": 4,
-      "verdict": "not_supported"
-    },
-    "H5": "not_in_scope"
+    "runs/v2/phase6_seed42_final/statistics/preregistered_h1_h4_results.json": "afacba9afdc27ad5cbf9322b92c7d3a8ef09b9b92a7f40cf28642df125873505",
+    "runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/h5_results.json": "7f8851e06a93b46c1b8403001832cd9fed817475a0c8a4523ffe7229f012c688"
   },
   "status": "gate1_passed",
   "system_count": 5,

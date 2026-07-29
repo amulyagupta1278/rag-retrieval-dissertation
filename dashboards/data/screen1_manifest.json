@@ -1,0 +1,25 @@
+{
+  "artifact_hashes": {
+    "dashboards/figures/fig_5_1_response_grid.pdf": "2569c39959b2af15a204a68500c0de03016fd5962fea8a88a58443db01e9bc49",
+    "dashboards/figures/fig_5_1_response_grid.png": "22b567e48534a66ef9eeab8e433933968fb941415d356d356feef1b08df11826",
+    "dashboards/figures/fig_5_2_category_mrr.pdf": "a18ba8580aadd8274ef730678857f501545aa96d62f01132a1c42ee77d1177d2",
+    "dashboards/figures/fig_5_2_category_mrr.png": "95d3c6ced305d5100e12ee0e61cd8cbafa551d892221900e637e89b09ad38e2b",
+    "dashboards/figures/fig_5_3_hypothesis_forest.pdf": "1869cbd73cc28646cda0f26145e2170243023b8a440c99f61d6e51057606968b",
+    "dashboards/figures/fig_5_3_hypothesis_forest.png": "fc667a4eef8550d76d0cab10b97897693831928e4446be015a0b2884e36d7296",
+    "dashboards/figures/fig_5_4_failure_taxonomy.pdf": "5c8524e6e67c79a607e2fd67fe694ac1b1e9774649e7a1deb8bbc2f477c4e060",
+    "dashboards/figures/fig_5_4_failure_taxonomy.png": "12892f150edbece46ec2d4f9fee352e93df9fd77539ae126d52e538c63f5dc17",
+    "dashboards/figures/fig_5_5_h5_aggregate.pdf": "918b38ecccb04afc6d814c3ef20f9b1a7634313a90589ad2ccc7e96934d621c5",
+    "dashboards/figures/fig_5_5_h5_aggregate.png": "8506ba6ccb0ba619b2a36fbbe4806d08d284bf2a044cd1207c64a37d78b228c6",
+    "dashboards/figures/fig_5_6_provenance.pdf": "bcabc1f1dd335f80d5edb3bf436c7ea3cdca2e3685e584bb09b5eeb53372dc07",
+    "dashboards/figures/fig_5_6_provenance.png": "471b3af736ee409150c924a176e3c6981909f2bcdc1ecc224766e1c9ea772fed"
+  },
+  "evidence_commit": "7bc5bda9c6fc01964bab0247145699fe14e35175",
+  "figure_n": 6,
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "png_dpi": 300,
+  "qrels_base": "final_pooled",
+  "status": "gate2_passed"
+}
