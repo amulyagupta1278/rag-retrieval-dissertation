@@ -1,5 +1,6 @@
 {
   "generated_files": {
+    "CLAUDE_DASHBOARD_BUILD_PROMPT.md": "e62d32b530cbc51a9fe2d77bc1a90641b87799d9f7ef19ff507e52d2e2595a70",
     "DATA_CONTRACT.md": "13a385d0dfd59f647b325d0a7a7fee8d63a4dbe50115dfd753cc3cdaa41b0e0b",
     "category_metrics.csv": "f7e98d68983683ac05864c0ab4a8ff04b158a720d2ed5ac14fd14ab5bdfe1ede",
     "dashboard_payload_v2.json": "00fb71e06ed2f96f29845895ce7e1c62b0fbf9862052c1582d9633c2cd7fb9f6",
