@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "owner_approved",
+  "approved_commit": "7e07827",
+  "reuse_v1_valid_n": 10,
+  "v2_dispatch_n": 90,
+  "v2_trace_n": 5,
+  "max_output_tokens": 1024,
+  "zero_retries": true,
+  "fallback": null,
+  "replacement": null,
+  "v2_hard_cap_usd": 0.988461,
+  "remaining_cumulative_cap_usd": 1.223905,
+  "absolute_r4_cap_usd": 3.7,
+  "execution_config_sha256": "9f4f0ea534146d721dd3f47895040283a3a14f889a67dabf552c18d9109dc2f8",
+  "freeze_manifest_sha256": "0cdb3672b79aaa84c3027d3dc01d9efd174722e333fe3f20ec8a3a03e2b0174b",
+  "request_plan_sha256": "4288ab92f4187cd6923b8a97724e7eabcb67fa16e0a6fa8b06057751ec342bc5",
+  "post_success_scope": "disclosed AI evaluation, H5, tests, final report, commits, and push"
+}
