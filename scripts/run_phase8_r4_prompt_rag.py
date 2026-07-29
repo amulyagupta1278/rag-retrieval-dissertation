@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run approved R4 Prompt-RAG trace, then full run only after every trace gate passes."""
+"""Run approved R4 Prompt-RAG V2 recovery after preserved V1 failure."""
 
 from __future__ import annotations
 
@@ -19,21 +19,21 @@ from src.retrievers.prompt_rag_claude_v2 import (  # noqa: E402
     ClaudeContractError, ClaudeProviderError, create_client_from_environment,
     make_live_sender, observed_cost_usd,
 )
-from src.retrievers.prompt_rag_phase8_r4 import MAX_OUTPUT_TOKENS, build_request, validate_response  # noqa: E402
+from src.retrievers.prompt_rag_phase8_r4_v2 import MAX_OUTPUT_TOKENS, build_request, validate_response  # noqa: E402
 from src.utils.atomic_io import stable_json, write_json  # noqa: E402
 
 BASE = ROOT / "runs/phase8_r4_improvements"
-FREEZE = BASE / "prompt_rag_r4_freeze"
+FREEZE = BASE / "prompt_rag_r4_v2_freeze"
 CONFIG = FREEZE / "execution_config.json"
 PLAN = FREEZE / "request_plan.jsonl"
-APPROVAL = FREEZE / "approval_record.json"
+APPROVAL = ROOT / "audits/phase8_r4/prompt_rag_v2_owner_approval.json"
 QA = BASE / "benchmark/qa_dev_test.jsonl"
 CHUNKS = BASE / "corpus/chunks_section_aware_450w.jsonl"
 BM25 = BASE / "retrieval/bm25_section_aware_run.jsonl"
 FAISS = BASE / "retrieval/faiss_cosine/faiss_run.jsonl"
 PROMPT = ROOT / "prompts/prompt_rag_retrieval_v1.txt"
-TRACE = BASE / "prompt_rag_r4_trace"
-FULL = BASE / "prompt_rag_r4_full"
+TRACE = BASE / "prompt_rag_r4_v2_trace"
+FULL = BASE / "prompt_rag_r4_v2_full"
 
 
 def sha(path: Path) -> str:
@@ -54,11 +54,11 @@ def req_hash(request: dict) -> str:
 
 def preflight() -> dict:
     config, approval = obj(CONFIG), obj(APPROVAL)
-    if config["status"] != "frozen_owner_approved" or approval["status"] != "owner_approved":
+    if config["status"] != "frozen_pending_owner_approval" or approval["status"] != "owner_approved":
         raise ClaudeContractError("R4 approval status differs")
     if approval["execution_config_sha256"] != sha(CONFIG) or approval["request_plan_sha256"] != sha(PLAN):
         raise ClaudeContractError("R4 approved hashes differ")
-    if config["total_additional_r4_hard_cap_usd"] != 3.70 or config["zero_retries"] is not True:
+    if config["total_additional_r4_hard_cap_usd"] != 3.70 or config["zero_retries"] is not True or config["max_output_tokens"] != 1024:
         raise ClaudeContractError("R4 cap/failure policy differs")
     result = subprocess.run(["git", "merge-base", "--is-ancestor", config["approved_base_commit"], "HEAD"], cwd=ROOT)
     if result.returncode:
