@@ -1,0 +1,1 @@
+{"attempt_n":1,"completed_blinded_request_ids":[],"failure":{"blinded_request_id":"P8R4G0fb0ef5d959c","message":"missing_usage","type":"Phase7ExecutionFailure"},"input_tokens":0,"latencies_seconds":[],"observed_cost_usd":0.0,"output_tokens":0,"retry_n":0,"status":"failed_terminal_validation"}
