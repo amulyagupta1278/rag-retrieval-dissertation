@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "terminal_semantic_contract_failure",
+  "runner_commit": "4acde74",
+  "blinded_request_id": "P8R4G8323a17b91e8",
+  "attempts_in_corrected_continuation": 40,
+  "new_valid_responses": 39,
+  "total_valid_records_including_reuse": 50,
+  "failed_responses": 1,
+  "unresolved_requests": 50,
+  "retries": 0,
+  "returned_model": "claude-haiku-4-5-20251001",
+  "provider_stop_reason": "end_turn",
+  "provider_usage": {
+    "input_tokens": 2713,
+    "output_tokens": 665
+  },
+  "provider_cost_usd": 0.006038,
+  "continuation_valid_cost_usd": 0.154931,
+  "continuation_cost_including_failed_response_usd": 0.160969,
+  "new_cumulative_r4_cost_usd": 2.643100,
+  "remaining_absolute_cap_usd": 1.056900,
+  "failure_class": "answer citation coverage or abstention fields differ",
+  "failure_interpretation": "Provider returned complete JSON, but answer contained cited factual claims not fully represented in claim_to_evidence under frozen semantic contract.",
+  "automatic_continuation_gate": "failed",
+  "human_validation_complete": false,
+  "actions_not_performed": [
+    "remaining_50_generation resolutions",
+    "disclosed_ai_evaluation",
+    "h5_analysis",
+    "final_r4_report"
+  ],
+  "recovery_policy": "Do not rerun, alter, accept, or overwrite failed response. Any recovery requires separate design and owner approval."
+}

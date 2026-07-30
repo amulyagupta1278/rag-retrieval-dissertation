@@ -1,0 +1,12 @@
+{
+  "status": "owner_approved",
+  "approved_commit": "a81842892d67a43c7b6814ff5970f7443ee4e3eb",
+  "owner_statement": "Approve Phase 8 cost-adapted Prompt-RAG top-10 remaining 95-request full run at commit a818428, reusing five trace records only where request hashes match exactly; using claude-haiku-4-5-20251001, frozen BM25 top-10 candidates, fixed-key schema, temperature 0, 512 maximum output tokens, zero retries, no fallback or replacement, separate full-run outputs, and cumulative top-10 hard cap $2.25 with $0.049936 already spent. Stop after 100-query ranking validation, metrics, and cost reporting. Do not run generation yet.",
+  "execution_config_sha256": "8d02d693b55bd9e0f60dbad350dc7cf0d3bcd623af6f2b3ebb1e1d09278d8f62",
+  "request_plan_sha256": "9298fd496ec98c4b9c1d9119925c39f95f4e218250912687e1c194794e454939",
+  "trace_summary_sha256": "e82a49ff8dcc6c15fcea914dd6652651cd79baf1ec481a4dd8ac5d62531d2021",
+  "remaining_request_n": 95,
+  "trace_reuse_n": 5,
+  "observed_trace_cost_usd": 0.049936,
+  "cumulative_hard_cap_usd": 2.25
+}

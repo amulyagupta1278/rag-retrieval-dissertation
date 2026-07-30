@@ -1,0 +1,31 @@
+{
+  "status": "trace_complete_stopped_before_full_run",
+  "approved_commit": "8f9a9707c0808258caeefdd9729a96aa2eab756b",
+  "request_n": 5,
+  "valid_n": 5,
+  "failure_n": 0,
+  "retry_n": 0,
+  "input_tokens": 211380,
+  "output_tokens": 2721,
+  "observed_cost_usd": 0.224985,
+  "hard_cap_usd": 0.62,
+  "average_observed_cost_per_request_usd": 0.044997,
+  "projected_100_request_observed_rate_cost_usd": 4.4997,
+  "projected_remaining_95_observed_rate_cost_usd": 4.274715,
+  "full_frozen_worst_case_cap_usd": 9.61,
+  "owner_reported_balance_before_trace_usd": 5.0,
+  "estimated_balance_after_trace_usd": 4.775015,
+  "estimated_headroom_after_same_design_full_run_usd": 0.5003,
+  "full_run_authorized": false,
+  "generation_authorized": false,
+  "recommended_cost_safe_redesign": {
+    "prompt_rag_candidate_depth": 10,
+    "prompt_rag_query_n": 100,
+    "generation_query_n": 20,
+    "generation_system_n": 5,
+    "generation_request_n": 100,
+    "sampling": "stratified whole-query panels fixed before generation",
+    "comparability_warning": "Top-10 Prompt-RAG is a Phase 8 cost-adapted variant, not exact replication of pilot top-50 reranker."
+  },
+  "next_action": "Freeze separate cost-safe amendment and obtain owner approval."
+}

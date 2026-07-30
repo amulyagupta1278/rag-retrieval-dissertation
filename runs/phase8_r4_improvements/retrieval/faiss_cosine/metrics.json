@@ -1,0 +1,22 @@
+{
+  "dev": {
+    "mrr@10": 0.491687,
+    "ndcg@10": 0.507381,
+    "recall@10": 0.658333
+  },
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "normalize_embeddings": true,
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "similarity": "cosine",
+  "status": "offline_automatic_candidate_pending_human_validation",
+  "synthesis_candidate_metrics": {
+    "mrr@10": 0.363889,
+    "ndcg@10": 0.304501,
+    "recall@10": 0.4
+  },
+  "test": {
+    "mrr@10": 0.411349,
+    "ndcg@10": 0.441349,
+    "recall@10": 0.6625
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "status": "invalidated_automated_candidate_preserved_as_checkpoint_only",
+  "benchmark_version": "v3_clean_exploratory_automated_r2",
+  "failure": "q_0064 failed strict answer-exactly-supported audit because sentence splitting corrupted M.Sc. and Ph.D. source text",
+  "contract_failures": 0,
+  "strict_support_failures": 1,
+  "api_calls": 0,
+  "retrieval_calls_completed": {
+    "bm25": 100,
+    "faiss": 100,
+    "graphrag": 100
+  },
+  "disposition": "Superseded by R3; bulky untracked R2 generated files removed after this checkpoint was written. No R2 result is valid for reporting."
+}

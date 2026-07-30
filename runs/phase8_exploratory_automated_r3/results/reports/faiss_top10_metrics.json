@@ -1,0 +1,208 @@
+{
+  "run_name": "faiss_top10",
+  "config": {
+    "retriever": "faiss",
+    "top_k": 10,
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "similarity_metric": "l2",
+    "normalize_embeddings": false,
+    "query_prefix": "",
+    "passage_prefix": "",
+    "split": "all"
+  },
+  "metrics": [
+    {
+      "retriever": "faiss",
+      "query_category": "all",
+      "num_queries": 100,
+      "mrr": 0.4662,
+      "mrr_at_k": {
+        "1": 0.37,
+        "3": 0.435,
+        "5": 0.4555,
+        "10": 0.4662
+      },
+      "recall_at_k": {
+        "1": 0.265,
+        "3": 0.425,
+        "5": 0.52,
+        "10": 0.61
+      },
+      "ndcg_at_k": {
+        "1": 0.37,
+        "3": 0.3909,
+        "5": 0.4328,
+        "10": 0.4637
+      },
+      "precision_at_k": {
+        "1": 0.37,
+        "3": 0.2067,
+        "5": 0.15,
+        "10": 0.086
+      },
+      "avg_latency_ms": 22.23,
+      "extra": {}
+    },
+    {
+      "retriever": "faiss",
+      "query_category": "exact_match",
+      "num_queries": 20,
+      "mrr": 0.6151,
+      "mrr_at_k": {
+        "1": 0.5,
+        "3": 0.5667,
+        "5": 0.6017,
+        "10": 0.6151
+      },
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.65,
+        "5": 0.8,
+        "10": 0.9
+      },
+      "ndcg_at_k": {
+        "1": 0.5,
+        "3": 0.5881,
+        "5": 0.6505,
+        "10": 0.6829
+      },
+      "precision_at_k": {
+        "1": 0.5,
+        "3": 0.2167,
+        "5": 0.16,
+        "10": 0.09
+      },
+      "avg_latency_ms": 64.48,
+      "extra": {}
+    },
+    {
+      "retriever": "faiss",
+      "query_category": "terminology_heavy",
+      "num_queries": 20,
+      "mrr": 0.195,
+      "mrr_at_k": {
+        "1": 0.15,
+        "3": 0.1667,
+        "5": 0.1867,
+        "10": 0.195
+      },
+      "recall_at_k": {
+        "1": 0.15,
+        "3": 0.2,
+        "5": 0.3,
+        "10": 0.35
+      },
+      "ndcg_at_k": {
+        "1": 0.15,
+        "3": 0.175,
+        "5": 0.2137,
+        "10": 0.2315
+      },
+      "precision_at_k": {
+        "1": 0.15,
+        "3": 0.0667,
+        "5": 0.06,
+        "10": 0.035
+      },
+      "avg_latency_ms": 7.24,
+      "extra": {}
+    },
+    {
+      "retriever": "faiss",
+      "query_category": "paraphrase",
+      "num_queries": 20,
+      "mrr": 0.2472,
+      "mrr_at_k": {
+        "1": 0.15,
+        "3": 0.2083,
+        "5": 0.2208,
+        "10": 0.2472
+      },
+      "recall_at_k": {
+        "1": 0.15,
+        "3": 0.3,
+        "5": 0.35,
+        "10": 0.55
+      },
+      "ndcg_at_k": {
+        "1": 0.15,
+        "3": 0.2315,
+        "5": 0.2531,
+        "10": 0.3175
+      },
+      "precision_at_k": {
+        "1": 0.15,
+        "3": 0.1,
+        "5": 0.07,
+        "10": 0.055
+      },
+      "avg_latency_ms": 9.66,
+      "extra": {}
+    },
+    {
+      "retriever": "faiss",
+      "query_category": "entity_relation",
+      "num_queries": 20,
+      "mrr": 0.5972,
+      "mrr_at_k": {
+        "1": 0.5,
+        "3": 0.5917,
+        "5": 0.5917,
+        "10": 0.5972
+      },
+      "recall_at_k": {
+        "1": 0.25,
+        "3": 0.475,
+        "5": 0.525,
+        "10": 0.575
+      },
+      "ndcg_at_k": {
+        "1": 0.5,
+        "3": 0.4686,
+        "5": 0.4923,
+        "10": 0.5125
+      },
+      "precision_at_k": {
+        "1": 0.5,
+        "3": 0.3167,
+        "5": 0.21,
+        "10": 0.115
+      },
+      "avg_latency_ms": 15.63,
+      "extra": {}
+    },
+    {
+      "retriever": "faiss",
+      "query_category": "multi_hop",
+      "num_queries": 20,
+      "mrr": 0.6767,
+      "mrr_at_k": {
+        "1": 0.55,
+        "3": 0.6417,
+        "5": 0.6767,
+        "10": 0.6767
+      },
+      "recall_at_k": {
+        "1": 0.275,
+        "3": 0.5,
+        "5": 0.625,
+        "10": 0.675
+      },
+      "ndcg_at_k": {
+        "1": 0.55,
+        "3": 0.4912,
+        "5": 0.5546,
+        "10": 0.574
+      },
+      "precision_at_k": {
+        "1": 0.55,
+        "3": 0.3333,
+        "5": 0.25,
+        "10": 0.135
+      },
+      "avg_latency_ms": 14.12,
+      "extra": {}
+    }
+  ]
+}

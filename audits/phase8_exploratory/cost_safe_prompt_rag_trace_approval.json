@@ -1,0 +1,9 @@
+{
+  "status": "owner_approved",
+  "approved_commit": "d4fe28d8f258c1a63ae343daee8928214bac2fd9",
+  "owner_statement": "Approve Phase 8 cost-adapted Prompt-RAG top-10 5-request trace at commit d4fe28d, using claude-haiku-4-5-20251001, frozen BM25 top-10 candidates, fixed-key schema, temperature 0, 512 maximum output tokens, zero retries, no fallback or replacement, separate outputs, and $0.15 hard cap including ambiguous-dispatch reserve. Stop after trace validation and cost reporting.",
+  "execution_config_sha256": "8d02d693b55bd9e0f60dbad350dc7cf0d3bcd623af6f2b3ebb1e1d09278d8f62",
+  "request_plan_sha256": "9298fd496ec98c4b9c1d9119925c39f95f4e218250912687e1c194794e454939",
+  "request_n": 5,
+  "hard_cap_usd": 0.15
+}

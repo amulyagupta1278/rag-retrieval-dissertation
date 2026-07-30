@@ -1,0 +1,1 @@
+{"attempt_n":5,"automatic_retries":0,"completed_query_ids":["q_0097","q_0066","q_0071","q_0062","q_0041"],"hard_cap_usd":0.15,"input_tokens":47201,"latency_seconds":28.572374,"observed_cost_usd":0.049936,"output_tokens":547,"planned_query_ids":["q_0097","q_0066","q_0071","q_0062","q_0041"],"status":"complete"}

@@ -1,0 +1,24 @@
+{
+  "ai_evaluation_authorized": false,
+  "dimensions": [
+    "correctness",
+    "faithfulness",
+    "completeness",
+    "citation_accuracy",
+    "unsupported_claim_severity",
+    "abstention_quality"
+  ],
+  "human_validation_complete": false,
+  "no_composite_score": true,
+  "quality_scale": {
+    "0": "poor",
+    "1": "partial",
+    "2": "good"
+  },
+  "status": "frozen_before_outputs",
+  "unsupported_claim_severity_scale": {
+    "0": "none",
+    "1": "minor",
+    "2": "central"
+  }
+}

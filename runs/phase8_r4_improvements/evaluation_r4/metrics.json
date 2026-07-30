@@ -1,0 +1,331 @@
+{
+  "primary_scope": "40-query locked test",
+  "qrel_status": "automatic crosswalk pending human validation",
+  "status": "automated_candidate_pending_human_validation",
+  "systems": {
+    "bm25": {
+      "all_100_descriptive": {
+        "hit@10": 0.88,
+        "mrr@10": 0.610095238095238,
+        "ndcg@10": 0.6397203939082013,
+        "precision@10": 0.12,
+        "recall@10": 0.84
+      },
+      "development": {
+        "hit@10": 0.8666666666666667,
+        "mrr@10": 0.6121031746031745,
+        "ndcg@10": 0.6387488684631571,
+        "precision@10": 0.12000000000000001,
+        "recall@10": 0.8333333333333334
+      },
+      "latency": {
+        "reason": "No trustworthy measured query latency; stored zeros are not interpreted as zero latency.",
+        "status": "unavailable"
+      },
+      "locked_test": {
+        "hit@10": 0.9,
+        "mrr@10": 0.6070833333333334,
+        "ndcg@10": 0.6411776820757676,
+        "precision@10": 0.12000000000000002,
+        "recall@10": 0.85
+      },
+      "locked_test_by_category": {
+        "entity_relation": {
+          "hit@10": 1.0,
+          "mrr@10": 0.7916666666666666,
+          "ndcg@10": 0.7576255283823534,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "exact_match": {
+          "hit@10": 1.0,
+          "mrr@10": 0.9166666666666666,
+          "ndcg@10": 0.9375,
+          "precision@10": 0.1,
+          "recall@10": 1.0
+        },
+        "multi_hop": {
+          "hit@10": 1.0,
+          "mrr@10": 0.74375,
+          "ndcg@10": 0.703817919308817,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "paraphrase": {
+          "hit@10": 0.625,
+          "mrr@10": 0.2125,
+          "ndcg@10": 0.3147228201007499,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "terminology_heavy": {
+          "hit@10": 0.875,
+          "mrr@10": 0.37083333333333335,
+          "ndcg@10": 0.4922221425869181,
+          "precision@10": 0.08750000000000001,
+          "recall@10": 0.875
+        }
+      }
+    },
+    "faiss_cosine": {
+      "all_100_descriptive": {
+        "hit@10": 0.75,
+        "mrr@10": 0.4595515873015873,
+        "ndcg@10": 0.4809683601360311,
+        "precision@10": 0.09600000000000002,
+        "recall@10": 0.66
+      },
+      "development": {
+        "hit@10": 0.75,
+        "mrr@10": 0.4916865079365079,
+        "ndcg@10": 0.5073809545760628,
+        "precision@10": 0.095,
+        "recall@10": 0.6583333333333333
+      },
+      "latency": {
+        "reason": "No trustworthy measured query latency; stored zeros are not interpreted as zero latency.",
+        "status": "unavailable"
+      },
+      "locked_test": {
+        "hit@10": 0.75,
+        "mrr@10": 0.4113492063492063,
+        "ndcg@10": 0.44134946847598366,
+        "precision@10": 0.0975,
+        "recall@10": 0.6625
+      },
+      "locked_test_by_category": {
+        "entity_relation": {
+          "hit@10": 1.0,
+          "mrr@10": 0.775,
+          "ndcg@10": 0.7422359404798506,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "exact_match": {
+          "hit@10": 1.0,
+          "mrr@10": 0.38125,
+          "ndcg@10": 0.528082610734595,
+          "precision@10": 0.1,
+          "recall@10": 1.0
+        },
+        "multi_hop": {
+          "hit@10": 1.0,
+          "mrr@10": 0.5763888888888888,
+          "ndcg@10": 0.5098385154424497,
+          "precision@10": 0.1375,
+          "recall@10": 0.6875
+        },
+        "paraphrase": {
+          "hit@10": 0.625,
+          "mrr@10": 0.30625,
+          "ndcg@10": 0.3849236090563562,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "terminology_heavy": {
+          "hit@10": 0.125,
+          "mrr@10": 0.017857142857142856,
+          "ndcg@10": 0.041666666666666664,
+          "precision@10": 0.0125,
+          "recall@10": 0.125
+        }
+      }
+    },
+    "graph_v4": {
+      "all_100_descriptive": {
+        "hit@10": 0.76,
+        "mrr@10": 0.4703055555555556,
+        "ndcg@10": 0.4822781217182046,
+        "precision@10": 0.10100000000000002,
+        "recall@10": 0.69
+      },
+      "development": {
+        "hit@10": 0.7666666666666667,
+        "mrr@10": 0.47856481481481483,
+        "ndcg@10": 0.49528327866072897,
+        "precision@10": 0.10500000000000001,
+        "recall@10": 0.7083333333333334
+      },
+      "latency": {
+        "reason": "No trustworthy measured query latency; stored zeros are not interpreted as zero latency.",
+        "status": "unavailable"
+      },
+      "locked_test": {
+        "hit@10": 0.75,
+        "mrr@10": 0.45791666666666664,
+        "ndcg@10": 0.462770386304418,
+        "precision@10": 0.095,
+        "recall@10": 0.6625
+      },
+      "locked_test_by_category": {
+        "entity_relation": {
+          "hit@10": 0.875,
+          "mrr@10": 0.65625,
+          "ndcg@10": 0.5001648127593403,
+          "precision@10": 0.1125,
+          "recall@10": 0.5625
+        },
+        "exact_match": {
+          "hit@10": 0.625,
+          "mrr@10": 0.3125,
+          "ndcg@10": 0.39040157791121266,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "multi_hop": {
+          "hit@10": 1.0,
+          "mrr@10": 0.64375,
+          "ndcg@10": 0.6056572755962154,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "paraphrase": {
+          "hit@10": 0.625,
+          "mrr@10": 0.3125,
+          "ndcg@10": 0.39040157791121266,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "terminology_heavy": {
+          "hit@10": 0.625,
+          "mrr@10": 0.3645833333333333,
+          "ndcg@10": 0.42722668734410907,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        }
+      }
+    },
+    "hybrid_r4": {
+      "all_100_descriptive": {
+        "hit@10": 0.89,
+        "mrr@10": 0.6111785714285713,
+        "ndcg@10": 0.643264453235679,
+        "precision@10": 0.12200000000000001,
+        "recall@10": 0.855
+      },
+      "development": {
+        "hit@10": 0.8833333333333333,
+        "mrr@10": 0.622797619047619,
+        "ndcg@10": 0.6557641425133135,
+        "precision@10": 0.12333333333333334,
+        "recall@10": 0.8583333333333333
+      },
+      "latency": {
+        "reason": "No trustworthy measured query latency; stored zeros are not interpreted as zero latency.",
+        "status": "unavailable"
+      },
+      "locked_test": {
+        "hit@10": 0.9,
+        "mrr@10": 0.59375,
+        "ndcg@10": 0.6245149193192273,
+        "precision@10": 0.12000000000000002,
+        "recall@10": 0.85
+      },
+      "locked_test_by_category": {
+        "entity_relation": {
+          "hit@10": 1.0,
+          "mrr@10": 0.875,
+          "ndcg@10": 0.7912255107999854,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "exact_match": {
+          "hit@10": 1.0,
+          "mrr@10": 0.7291666666666666,
+          "ndcg@10": 0.7990986575892965,
+          "precision@10": 0.1,
+          "recall@10": 1.0
+        },
+        "multi_hop": {
+          "hit@10": 1.0,
+          "mrr@10": 0.7375,
+          "ndcg@10": 0.6893178783722158,
+          "precision@10": 0.17500000000000002,
+          "recall@10": 0.875
+        },
+        "paraphrase": {
+          "hit@10": 0.625,
+          "mrr@10": 0.23958333333333331,
+          "ndcg@10": 0.3365670081520385,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "terminology_heavy": {
+          "hit@10": 0.875,
+          "mrr@10": 0.3875,
+          "ndcg@10": 0.5063655416826004,
+          "precision@10": 0.08750000000000001,
+          "recall@10": 0.875
+        }
+      }
+    },
+    "prompt_rag_claude": {
+      "all_100_descriptive": {
+        "hit@10": 0.88,
+        "mrr@10": 0.5887619047619047,
+        "ndcg@10": 0.6316885813327282,
+        "precision@10": 0.11900000000000001,
+        "recall@10": 0.84
+      },
+      "development": {
+        "hit@10": 0.85,
+        "mrr@10": 0.5918253968253968,
+        "ndcg@10": 0.6256063843392421,
+        "precision@10": 0.11666666666666667,
+        "recall@10": 0.8166666666666667
+      },
+      "latency": {
+        "mean": 16820.007129999998,
+        "median": 15803.551,
+        "n": 100,
+        "p95": 24253.972,
+        "status": "measured",
+        "unit": "ms"
+      },
+      "locked_test": {
+        "hit@10": 0.925,
+        "mrr@10": 0.5841666666666667,
+        "ndcg@10": 0.6408118768229574,
+        "precision@10": 0.12250000000000001,
+        "recall@10": 0.875
+      },
+      "locked_test_by_category": {
+        "entity_relation": {
+          "hit@10": 1.0,
+          "mrr@10": 0.7708333333333334,
+          "ndcg@10": 0.7815676567592121,
+          "precision@10": 0.1875,
+          "recall@10": 0.9375
+        },
+        "exact_match": {
+          "hit@10": 1.0,
+          "mrr@10": 0.5625,
+          "ndcg@10": 0.6740986575892965,
+          "precision@10": 0.1,
+          "recall@10": 1.0
+        },
+        "multi_hop": {
+          "hit@10": 1.0,
+          "mrr@10": 0.6833333333333333,
+          "ndcg@10": 0.6712618519842051,
+          "precision@10": 0.1625,
+          "recall@10": 0.8125
+        },
+        "paraphrase": {
+          "hit@10": 0.625,
+          "mrr@10": 0.3375,
+          "ndcg@10": 0.4053824992928205,
+          "precision@10": 0.0625,
+          "recall@10": 0.625
+        },
+        "terminology_heavy": {
+          "hit@10": 1.0,
+          "mrr@10": 0.5666666666666667,
+          "ndcg@10": 0.6717487184892527,
+          "precision@10": 0.1,
+          "recall@10": 1.0
+        }
+      }
+    }
+  }
+}

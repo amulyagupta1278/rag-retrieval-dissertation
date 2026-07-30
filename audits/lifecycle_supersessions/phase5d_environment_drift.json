@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "recorded_additive_supersession",
+  "finding": "Eight historical Phase 5D replay tests invoke a fail-closed preflight whose freeze manifest pins pyproject.toml. Later owner-authorized repository work changed the dependency declaration, so current-tree replay correctly stops before exercising each historical test's intended downstream assertion.",
+  "historical_expected_pyproject_sha256": "f8850963a0d6628c96659c19cd5567abd0f5ea79b7c6fe1bdf615397deb1039e",
+  "current_pyproject_sha256": "8d3cdeaa5ddd10c0908ee644012e4b17bec01c59c9ddf3026179e8af6295ac18",
+  "phase5d_v2_freeze_manifest_sha256": "4a9a16eb71ade448541f04aff530eb1c9a89a2b2ef4df45b578763488ed75daf",
+  "phase5d_v2_v1_preservation_sha256": "6aca971ed599a30ca575b612263bdf7747c836569b8d70625cafad9661468955",
+  "resolution": "Preserve production preflight and historical tests unchanged. Register exact historical replay assertions as strict expected failures. Current lifecycle tests continue verifying approvals, completed ledgers, evidence hashes, request caps, and fail-closed hash behavior.",
+  "hash_bypass_added": false,
+  "historical_artifact_modified": false
+}

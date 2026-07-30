@@ -1,0 +1,1 @@
+{"completed_at_utc":"2026-07-29T19:21:15.004883+00:00","cost_usd":2.430722,"coverage":"100/100","failure_n":0,"input_tokens":2136582,"mean_latency_seconds":16.820007,"new_full_calls":95,"output_tokens":58828,"retry_n":0,"run_sha256":"8dd46fcd85c9c2ba3d8f12ef4be2073115a079895d396e16db4433f8a918a865","status":"full_complete","trace_reused":5}

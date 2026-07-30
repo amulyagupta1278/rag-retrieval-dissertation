@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "owner_approved",
+  "approved_commit": "fcb995c",
+  "approval_scope": "Blanket owner approval for Phase 8 R4, including Prompt-RAG V2 trace and conditional full run, five-system metrics, statistics, generation, disclosed AI evaluation, H5, tests, reports, commits, and pushes.",
+  "model": "claude-haiku-4-5-20251001",
+  "max_output_tokens": 1024,
+  "candidate_rule": "BM25 top25 then unseen FAISS top25",
+  "candidate_text_rule": "first 300 whitespace-delimited words",
+  "execution_config_sha256": "2c7a64a13e599cd439522a786e30bb7af9c545c3db9e6bdfe61151555149de56",
+  "request_plan_sha256": "075ddea45c4e6bf780b4b13a620d8d7872ee7fbf057012d508a9056d92cad84c",
+  "retrieval_hard_cap_usd": 2.682260,
+  "generation_reserve_usd": 0.750000,
+  "total_additional_r4_hard_cap_usd": 3.700000,
+  "failure_policy": "zero retries, no fallback, no replacement; stop on first terminal gate failure",
+  "human_validation_policy": "AI labels remain AI labels; human validation must not be fabricated"
+}

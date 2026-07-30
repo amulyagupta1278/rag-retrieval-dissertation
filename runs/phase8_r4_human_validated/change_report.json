@@ -1,0 +1,43 @@
+{
+  "automated_source_preserved": true,
+  "generation_label_source_changed_from": "offline_ai_knn_transfer_from_phase7_owner26",
+  "generation_label_source_changed_to": "human_owner_phase8_r4",
+  "intentional_zero_grade_n": 1,
+  "locked_test_metric_deltas_owner_minus_automatic": {
+    "bm25": {
+      "hit@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.004835660090431904,
+      "precision@10": 0.0,
+      "recall@10": 0.012500000000000067
+    },
+    "faiss_cosine": {
+      "hit@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.003741377361631104,
+      "precision@10": 0.0,
+      "recall@10": 0.012500000000000067
+    },
+    "graph_v4": {
+      "hit@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.00967132018086353,
+      "precision@10": 0.0,
+      "recall@10": 0.012500000000000067
+    },
+    "hybrid_r4": {
+      "hit@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.006101923658422881,
+      "precision@10": 0.0,
+      "recall@10": 0.012500000000000067
+    },
+    "prompt_rag_claude": {
+      "hit@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.006101923658422881,
+      "precision@10": 0.0,
+      "recall@10": 0.012499999999999956
+    }
+  }
+}

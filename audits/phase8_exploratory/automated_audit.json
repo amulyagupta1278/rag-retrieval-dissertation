@@ -1,0 +1,225 @@
+{
+  "automated_integrity_result": "pass",
+  "benchmark_validity": {
+    "automatic_failures": {
+      "answer_exactly_supported": 0,
+      "category_contract_passes": 32,
+      "gold_ids_resolve": 0,
+      "question_intent_unique": 0,
+      "source_document_ids_resolve": 0,
+      "two_chunks_for_cross_scheme": 0
+    },
+    "flagged_question_count": 17,
+    "flagged_questions": [
+      {
+        "question_id": "q_0021",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0022",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0025",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0026",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0027",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0028",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0029",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0030",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0031",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0032",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0034",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0035",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0037",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0038",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0039",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0040",
+        "reasons": [
+          "reference_answer_under_5_words"
+        ],
+        "years": []
+      },
+      {
+        "question_id": "q_0066",
+        "reasons": [
+          "reference_answer_over_120_words"
+        ],
+        "years": []
+      }
+    ],
+    "pool_status": "diagnostic_only_until_rejected_questions_are_replaced",
+    "upstream_audit_status": "pending_human_review"
+  },
+  "claim_scope": {
+    "api_calls_performed": 0,
+    "automated_expansion_verified": true,
+    "final_dissertation_evidence": false,
+    "human_benchmark_review_complete": false,
+    "owner_approved": false
+  },
+  "coverage": {
+    "documents_without_publication_date": 120,
+    "qrel_grades": {
+      "1": 140
+    },
+    "question_categories": {
+      "entity_relation": 20,
+      "exact_match": 20,
+      "multi_hop": 20,
+      "paraphrase": 20,
+      "terminology_heavy": 20
+    },
+    "question_splits": {
+      "dev": 20,
+      "test": 80
+    },
+    "source_hosts": {
+      "missionshakti.wcd.gov.in": 2,
+      "socialjustice.gov.in": 9,
+      "www.myscheme.gov.in": 120,
+      "www.nhm.gov.in": 1
+    }
+  },
+  "exploratory_three_system_metrics": {
+    "bm25": {
+      "mrr_at_10": 0.5763,
+      "ndcg_at_10": 0.598,
+      "precision_at_10": 0.111,
+      "recall_at_10": 0.775
+    },
+    "faiss": {
+      "mrr_at_10": 0.4648,
+      "ndcg_at_10": 0.4604,
+      "precision_at_10": 0.085,
+      "recall_at_10": 0.6
+    },
+    "graphrag": {
+      "mrr_at_10": 0.1712,
+      "ndcg_at_10": 0.1832,
+      "precision_at_10": 0.041,
+      "recall_at_10": 0.295
+    }
+  },
+  "hard_integrity_failures": 0,
+  "integrity": {
+    "chunks_under_50_words": 7,
+    "chunks_with_missing_document": 0,
+    "duplicate_chunk_ids": 0,
+    "duplicate_document_ids": 0,
+    "duplicate_normalized_chunk_texts": 0,
+    "duplicate_normalized_questions": 0,
+    "duplicate_question_ids": 0,
+    "empty_chunks": 0,
+    "gold_pairs_missing_from_qrels": 0,
+    "invalid_qrel_references": 0,
+    "missing_gold_chunks": 0,
+    "missing_source_documents": 0,
+    "qrel_pairs_not_declared_as_gold": 0,
+    "reference_answers_not_exact_substrings_of_gold_evidence": 40,
+    "unique_chunk_ids": 856,
+    "unique_document_ids": 130,
+    "unique_question_ids": 100
+  },
+  "limitations": [
+    "Questions and qrels are generated artifacts without completed human review.",
+    "Existing audit reports 32 category-contract failures.",
+    "Only BM25, FAISS, and entity-co-occurrence graph retrieval are present; pilot five-system comparison was not rerun.",
+    "Metrics are diagnostic and cannot replace frozen Phase 1-7 pilot findings.",
+    "No Phase 7 answer generation or H5 analysis was run on expanded corpus."
+  ],
+  "release": {
+    "chunks": 856,
+    "documents": 130,
+    "manifest_sha256": "44ed3d503ef98120b7fb59ffc09dd875e733961390bdf2897dcbcf5a1504aa16",
+    "path": "releases/v3_clean",
+    "qrels": 140,
+    "questions": 100,
+    "source_catalog_entries": 132
+  },
+  "schema_version": 1,
+  "status": "exploratory_automated_only_pending_human_validation"
+}

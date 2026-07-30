@@ -1,0 +1,21 @@
+{
+  "status": "trace_complete_stopped_before_full_run",
+  "approved_commit": "d4fe28d8f258c1a63ae343daee8928214bac2fd9",
+  "request_n": 5,
+  "valid_n": 5,
+  "failure_n": 0,
+  "retry_n": 0,
+  "input_tokens": 47201,
+  "output_tokens": 547,
+  "observed_cost_usd": 0.049936,
+  "hard_cap_usd": 0.15,
+  "average_observed_cost_per_request_usd": 0.0099872,
+  "projected_100_request_observed_rate_cost_usd": 0.99872,
+  "projected_remaining_95_observed_rate_cost_usd": 0.948784,
+  "prior_top50_trace_cost_usd": 0.224985,
+  "cumulative_phase8_observed_cost_usd": 0.274921,
+  "estimated_balance_from_owner_reported_5_usd": 4.725079,
+  "full_run_authorized": false,
+  "generation_authorized": false,
+  "next_action": "Separate approval for 95 remaining top-10 requests with five trace records reused by exact request hash."
+}

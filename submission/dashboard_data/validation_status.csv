@@ -1,0 +1,6 @@
+dataset,row_count,human_rows,ai_rows,status,dashboard_badge,allowed_claim
+Pilot relevance judgments,755,755,0,human_validated_complete,CANONICAL,primary dissertation retrieval evidence
+Pilot generated answers,170,26,144,mixed_human_ai_disclosed,MIXED LABELS,exploratory generation evidence
+R4 gold crosswalk mappings,140,140,0,owner_review_complete,OWNER VALIDATED,human-owner-validated exploratory retrieval scaling
+R4 generated answers,100,100,0,owner_review_complete,OWNER VALIDATED,human-owner-evaluated exploratory answer-quality evidence
+R4 synthesis candidates,20,20,0,owner_review_complete_12_accept_4_revise_4_reject,REVIEWED · SEPARATE,owner-reviewed candidates; excluded from primary metrics

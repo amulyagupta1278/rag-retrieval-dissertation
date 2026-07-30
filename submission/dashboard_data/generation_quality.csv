@@ -1,0 +1,11 @@
+benchmark,claim_class,system_key,system,answer_n,abstention_n,correctness,faithfulness,completeness,citation_accuracy,unsupported_claim_severity,abstention_quality
+pilot_phase7,26_human_plus_144_disclosed_ai,bm25,BM25,34,6,1.6176470588235294,2.0,1.588235294117647,1.9705882352941178,0.029411764705882353,1.588235294117647
+pilot_phase7,26_human_plus_144_disclosed_ai,faiss_windowed_max,FAISS windowed-max,34,14,1.1764705882352942,2.0,1.1764705882352942,2.0,0.0,1.1764705882352942
+pilot_phase7,26_human_plus_144_disclosed_ai,graph_v3_2,Entity Graph v3.2,34,16,1.6470588235294117,1.9705882352941178,1.0588235294117647,1.9705882352941178,0.029411764705882353,1.6470588235294117
+pilot_phase7,26_human_plus_144_disclosed_ai,hybrid_rrf,Hybrid RRF,34,7,1.5588235294117647,2.0,1.5294117647058822,1.9705882352941178,0.029411764705882353,1.5294117647058822
+pilot_phase7,26_human_plus_144_disclosed_ai,prompt_rag_claude,Prompt-RAG Claude,34,5,1.7647058823529411,2.0,1.7058823529411764,2.0,0.0,1.7647058823529411
+phase8_r4,100_human_owner_reviewed,bm25,BM25,20,10,1.3,2.0,1.0,2.0,0.0,1.3
+phase8_r4,100_human_owner_reviewed,faiss_cosine,FAISS normalized-cosine,20,9,1.6,2.0,1.1,2.0,0.0,1.6
+phase8_r4,100_human_owner_reviewed,graph_v4,Entity Graph v4,20,9,1.8,2.0,1.1,2.0,0.0,1.8
+phase8_r4,100_human_owner_reviewed,hybrid_r4,Hybrid RRF (R4),20,10,1.4,2.0,1.0,2.0,0.0,1.4
+phase8_r4,100_human_owner_reviewed,prompt_rag_claude,Prompt-RAG Claude,20,8,1.5,2.0,1.2,2.0,0.0,1.5

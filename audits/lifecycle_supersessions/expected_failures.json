@@ -4,12 +4,12 @@
   "supersessions": {
     "tests/test_phase5a_prompt_rag.py::test_hypotheses_and_protected_phase4_checkpoint_are_unchanged": {
       "current_checkpoint_file_n": 532,
-      "current_checkpoint_sha256": "9e122c1365aeff3abfa5c3328431e6a7569d1daa310e212513ae5bf51c09b34b",
+      "current_checkpoint_sha256": "9783cbfbedad6be0ba9a720d70d529fdaaf24bfdb55d73e4ae82dfaf3afb2f1c",
       "evidence": {
         "archive/phase5_gemini_failed/manifest.json": "a8a163da7bfd428286ac52d55e880dbd68203683e6a7d37d5d5452d4dec7042c",
         "audits/phase4_hybrid/latency_disclosure_correction.json": "ba38c2b1cf8bdcfe21853fd794ea10a3169c49353b5f0a68e61ee3792d9a5b56"
       },
-      "reason": "Phase 4 latency disclosure correction, later audit repairs, lazy optional FAISS import, and failed Gemini archival were owner-authorized after protected Phase 4 HEAD. Historical aggregate assertion remains unchanged."
+      "reason": "Phase 4 latency disclosure correction, later audit repairs, lazy optional FAISS import, failed Gemini archival, owner-authorized evidence-status README correction, and canonical five-system discovery documentation were added after protected Phase 4 HEAD. Historical aggregate assertion remains unchanged; current checkpoint is explicitly re-frozen."
     },
     "tests/test_phase5d_v2_full_amendment.py::test_approval_is_pending_and_commit_bound": {
       "evidence": {
@@ -22,6 +22,24 @@
         "audits/phase5d_v2_full/full_execution_approval.json": "63cfc95965b87ab91c66f77555402c655b9dfd07018fbf69c99f54c58a2f6b62"
       },
       "reason": "Amendment made zero calls, then separately approved execution created full-run evidence."
+    },
+    "tests/test_phase5d_v2_full_amendment.py::test_preflight_rebuilds_same_requests_and_verifies_trace": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay preflight correctly fails closed after documented pyproject dependency drift; no hash bypass is permitted."
+    },
+    "tests/test_phase5d_v2_full_amendment.py::test_request_cap_blocks_attempt_27": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay cannot pass frozen environment preflight after documented pyproject drift; current lifecycle and runner tests preserve request-cap coverage."
+    },
+    "tests/test_phase5d_v2_full_failure_checkpoint.py::test_terminal_run_refuses_resume_before_client_creation": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay cannot pass frozen environment preflight after documented pyproject drift; completed and terminal ledgers remain hash-verified separately."
     },
     "tests/test_phase5d_v2_prompt_rag_claude.py::test_owner_approval_is_pending_and_exact_statement_is_commit_bound": {
       "evidence": {
@@ -36,6 +54,18 @@
       },
       "reason": "Offline freeze made zero calls, then separately approved trace created V2 evidence."
     },
+    "tests/test_phase5d_v2_prompt_rag_claude.py::test_offline_serialization_rebuilds_exact_34_requests": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay preflight correctly rejects current pyproject drift; frozen request and ranking artifacts remain manifest-verified."
+    },
+    "tests/test_phase5d_v3_recovery_checkpoint.py::test_terminal_complete_ledger_refuses_rerun_before_client_creation": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay cannot pass frozen environment preflight after documented pyproject drift; V3 complete ledger remains separately verified."
+    },
     "tests/test_phase5d_v3_transport_recovery.py::test_live_approval_is_pending_and_commit_bound": {
       "evidence": {
         "audits/phase5d_v3_recovery/live_execution_approval.json": "134be7257b606956cd65cba9fed951c53ed367f9b7016734b6acd2099f0a29b0"
@@ -48,6 +78,24 @@
         "runs/v2/phase5d_prompt_rag_claude_v3_recovery/full/control/ledger.json": "c5fa15f454df97b1fb7c53080e67f00a36b7e3b034944c12f30cd0809c6d703b"
       },
       "reason": "Offline V3 freeze made zero calls, then separately approved recovery created V3 evidence."
+    },
+    "tests/test_phase5d_v3_transport_recovery.py::test_preflight_rebuilds_unchanged_26_primary_payloads": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay preflight correctly rejects documented pyproject drift; preserved payload and ranking hashes remain authoritative."
+    },
+    "tests/test_phase5d_v3_transport_recovery.py::test_initial_projection_includes_ambiguous_reserve_and_recovery_maximum": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay cannot pass frozen environment preflight after documented pyproject drift; static budget-contract tests remain current."
+    },
+    "tests/test_phase5d_v3_transport_recovery.py::test_request_cap_refuses_attempt_27": {
+      "evidence": {
+        "audits/lifecycle_supersessions/phase5d_environment_drift.json": "1c19ca390e94384cfa06ea28796258e344a7e6ed0dad16180691bc1e662cde99"
+      },
+      "reason": "Historical replay cannot pass frozen environment preflight after documented pyproject drift; current runner contracts retain hard-cap behavior."
     },
     "tests/test_phase6_blind_judging_package.py::test_freeze_manifest_hashes_every_artifact": {
       "evidence": {

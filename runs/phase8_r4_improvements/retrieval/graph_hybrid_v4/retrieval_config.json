@@ -1,0 +1,13 @@
+{
+  "dual_entity_coverage": true,
+  "entity_model": "en_core_web_sm",
+  "hop_decay": 0.5,
+  "hub_penalty": true,
+  "lexical_fallback": true,
+  "max_hop": 2,
+  "max_seeds": 5,
+  "min_entity_freq": 2,
+  "relation_window": 2,
+  "seed_filtering": true,
+  "use_aliases": true
+}

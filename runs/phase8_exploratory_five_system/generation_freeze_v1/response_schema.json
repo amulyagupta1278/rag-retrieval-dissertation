@@ -1,0 +1,59 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "abstained": {
+      "type": "boolean"
+    },
+    "abstention_reason": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string"
+    },
+    "cited_evidence_ids": {
+      "items": {
+        "enum": [
+          "E01",
+          "E02",
+          "E03"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "claim_to_evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "enum": [
+                "E01",
+                "E02",
+                "E03"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim",
+          "evidence_ids"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "answer",
+    "cited_evidence_ids",
+    "abstained",
+    "abstention_reason"
+  ],
+  "type": "object"
+}

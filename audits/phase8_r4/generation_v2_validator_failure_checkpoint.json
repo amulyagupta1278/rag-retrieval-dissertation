@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "terminal_v2_validator_failure",
+  "runner_commit": "10408c6",
+  "blinded_request_id": "P8R4G0fb0ef5d959c",
+  "attempts": 1,
+  "valid_frozen_records": 0,
+  "retries": 0,
+  "returned_model": "claude-haiku-4-5-20251001",
+  "provider_stop_reason": "end_turn",
+  "provider_usage": {
+    "input_tokens": 2686,
+    "output_tokens": 670
+  },
+  "provider_cost_usd": 0.006036,
+  "validator_failure_class": "missing_usage",
+  "root_cause": "Inherited Phase 7 V2 validator hard-codes MAX_OUTPUT_TOKENS=512 and rejects valid 670-token output although frozen Phase 8 R4 V2 request cap is 1024.",
+  "failure_interpretation": "Offline contract implementation defect; provider response was not truncated and model matched.",
+  "prior_cumulative_r4_cost_usd": 2.476095,
+  "new_cumulative_r4_cost_usd": 2.482131,
+  "remaining_absolute_cap_usd": 1.217869,
+  "remaining_v2_requests_dispatched": 0,
+  "automatic_continuation_gate": "failed",
+  "human_validation_complete": false,
+  "recovery_policy": "Do not rerun or overwrite V2 attempt. Any offline revalidation and continuation requires corrected validator freeze plus owner approval."
+}

@@ -1,0 +1,30 @@
+{
+  "status": "full_complete_stopped_before_generation",
+  "approved_commit": "a81842892d67a43c7b6814ff5970f7443ee4e3eb",
+  "coverage_n": 100,
+  "trace_reuse_n": 5,
+  "new_request_n": 95,
+  "valid_n": 100,
+  "failure_n": 0,
+  "retry_n": 0,
+  "cumulative_input_tokens": 846508,
+  "cumulative_output_tokens": 11528,
+  "cumulative_top10_cost_usd": 0.904148,
+  "cumulative_top10_hard_cap_usd": 2.25,
+  "prior_top50_trace_cost_usd": 0.224985,
+  "cumulative_phase8_observed_cost_usd": 1.129133,
+  "estimated_balance_from_owner_reported_5_usd": 3.870867,
+  "metrics": {
+    "mrr@10": 0.5866,
+    "recall@10": 0.775,
+    "precision@10": 0.111,
+    "ndcg@10": 0.6176
+  },
+  "full_summary_sha256": "e05d38c23ea7418e2488d54df50daf563479e0b49002e938357362581257f7d6",
+  "run_sha256": "01f3e086d10054ad0844e27390780e442635e030027aed1e4c2ce4b69ef9e761",
+  "metrics_sha256": "5a937308a7936f9c476fceceb22fe7a1ed0c5a0a1071866695773b27e190ca5a",
+  "ledger_sha256": "b4f3705ee90d7a1d7ccbbbd92ce80a69c17ad232f93333e211b4dc0a44907a98",
+  "generation_calls": 0,
+  "generation_authorized": false,
+  "next_action": "Freeze a separate generation design and obtain separate owner approval."
+}

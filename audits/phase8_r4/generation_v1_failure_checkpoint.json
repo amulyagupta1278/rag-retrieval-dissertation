@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "terminal_generation_failure",
+  "frozen_runner_commit": "4655f35",
+  "blinded_request_id": "P8R4G0fb0ef5d959c",
+  "attempts_including_trace": 11,
+  "valid_responses": 10,
+  "failed_responses": 1,
+  "retries": 0,
+  "failure_class": "truncation",
+  "returned_model": "claude-haiku-4-5-20251001",
+  "stop_reason": "max_tokens",
+  "failed_response_usage": {
+    "input_tokens": 2686,
+    "output_tokens": 512
+  },
+  "generation_cost_including_failed_response_usd": 0.045373,
+  "prompt_rag_retrieval_cost_usd": 2.430722,
+  "cumulative_phase8_r4_api_cost_usd": 2.476095,
+  "remaining_total_cap_usd": 1.223905,
+  "remaining_generation_requests_dispatched": 0,
+  "automatic_continuation_gate": "failed",
+  "actions_not_performed": [
+    "remaining_89_generation_requests",
+    "disclosed_ai_evaluation",
+    "ai_owner_agreement",
+    "h5_analysis",
+    "phase8_r4_final_report"
+  ],
+  "human_validation_complete": false,
+  "rerun_policy": "Generation V1 must not be rerun, replaced, backfilled, or concealed. Any recovery requires separate frozen design and owner approval."
+}

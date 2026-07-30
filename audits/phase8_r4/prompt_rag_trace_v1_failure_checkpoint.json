@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "terminal_trace_failure",
+  "frozen_execution_commit": "9f30f6f",
+  "query_id": "q_0080",
+  "attempts": 1,
+  "valid_responses": 0,
+  "retries": 0,
+  "remaining_requests_dispatched": 0,
+  "failure_class": "truncation_or_refusal",
+  "sanitized_contract_error": "R4 response truncated/refused",
+  "observed_cost_usd": null,
+  "cost_note": "Provider returned a terminal invalid response, but V1 runner validated before persisting response usage. Cost is unknown and must not be reported as zero.",
+  "automatic_continuation_gate": "failed",
+  "actions_not_performed": [
+    "remaining_95_prompt_rag_requests",
+    "five_system_r4_metrics",
+    "statistical_tests",
+    "answer_generation",
+    "ai_evaluation",
+    "h5_analysis",
+    "final_r4_report"
+  ],
+  "rerun_policy": "V1 must not be rerun, replaced, backfilled, or concealed. Any recovery requires a separately frozen design and owner approval."
+}

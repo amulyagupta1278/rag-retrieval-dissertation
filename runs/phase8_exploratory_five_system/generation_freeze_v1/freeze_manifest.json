@@ -1,0 +1,31 @@
+{
+  "artifacts": {
+    "docs/PHASE8_GENERATION_PROTOCOL_V1.md": "191da42a0c97c08c59df135fb7982361754b1eff0a55edef56f777402d3b1d90",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/blinded/request_payloads.jsonl": "8c8a9adcbcfc4d8a0966013133bb507587ebdca746f8e4ee066cab3873415ccf",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/cost_plan.json": "a1181fa62a4c7a722f19e1d3cf89d7180ebf4d35127fbc912f0c4979a7aeb3d7",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/evaluation_rubric.json": "96ee0ca2fe3fcee51f03634cbac3b9ef1f5959109d5c5bc85a18080d0947dcf3",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/execution_config.json": "4b0b194cfe347fb8ca7ee491098f4953cc2d96d598e87e60fdf2cab3d4eff051",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/response_schema.json": "f5c59ecbaf68a3423e654aaff82d7f7957f0ad13c9ecb5fa17082e054c81a4dd",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/sealed/request_plan.jsonl": "c6fe221326ea43bf6cd2cd5e89f6347b1befcd3dc276b6b37683eb673d6ce7ef",
+    "runs/phase8_exploratory_five_system/generation_freeze_v1/sealed/trace_plan.json": "157bdb55220badadd212373b19077eb2b10dbd01e749cb85ef8a8082b55dd599"
+  },
+  "base_commit": "811c9a0b507f6ac154bb08542dd9ca37988c8e3f",
+  "code": {
+    "scripts/freeze_phase8_generation.py": "d2c86aaa7ba8069733ce2fba458e5688203cf575bc96f41ed5639c5f4c15cfab",
+    "scripts/run_phase8_generation_trace.py": "de1e0b43ebb30b8e28141678dc412a4701eac38f36b72f9678c58904f645c27c"
+  },
+  "execution_authorized": false,
+  "full_execution_authorized": false,
+  "inputs": {
+    "prompts/phase7_answer_generation_v1.txt": "90ef2de64eb650ccd3cc7e2c9273743d63c36c3d166971e36206ae427ee4a2db",
+    "releases/v3_clean/data/chunks/chunks_v3_clean.jsonl": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "runs/phase8_exploratory_automated_r3/benchmark/qa_dataset.jsonl": "cb53efc28941b67ca513d37c08494e457ee79c77935b9f49fec27ac16c9fae80",
+    "runs/phase8_exploratory_automated_r3/results/retrieval/faiss_run.jsonl": "3c049ccc3f4dbfbedd0ad835e41110c95ae27f07192d028c9c4cacff1386f77b",
+    "runs/phase8_exploratory_five_system/bm25_top50/retrieval/bm25_run.jsonl": "762962a7ce098ec8a71ab5ff11a4bb5b7376a96b21b979e4ee0e424f16ee8666",
+    "runs/phase8_exploratory_five_system/graph_top50/retrieval/graphrag_run.jsonl": "e38c0d30191a1f1405b1db8ee100521db3595d91fa66a30d10a52f335bdc39b9",
+    "runs/phase8_exploratory_five_system/hybrid_rrf/retrieval/hybrid_rrf_run.jsonl": "8414d52d2ffb24e05baad45fd891faf0cc5279d805d5ac1d7004af94bdabe86c",
+    "runs/phase8_exploratory_five_system/prompt_rag_top10_full/retrieval/prompt_rag_top10_run.jsonl": "01f3e086d10054ad0844e27390780e442635e030027aed1e4c2ce4b69ef9e761"
+  },
+  "live_api_calls_n": 0,
+  "status": "phase8_generation_v1_offline_freeze"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "owner_approved",
+  "approved_commit": "fc88fc3",
+  "reused_valid_n": 50,
+  "v3_dispatch_n": 50,
+  "trace_n": 5,
+  "full_after_trace_n": 45,
+  "model": "claude-haiku-4-5-20251001",
+  "max_output_tokens": 1024,
+  "zero_retries": true,
+  "fallback": null,
+  "replacement": null,
+  "v3_hard_cap_usd": 0.561712,
+  "remaining_cumulative_cap_usd": 1.056900,
+  "absolute_r4_cap_usd": 3.7,
+  "execution_config_sha256": "38de4964af05977d6b454062d4cf1fd83d5c8b3051a651ccb5e9fa5350f78239",
+  "freeze_manifest_sha256": "8c72f9349a19ea50a80680bcb7fb427b0b68d11bfe6cc9c8059e282ec9379676",
+  "request_plan_sha256": "01e7f699017ab0621798beedcabd82a16eb2f0dedf6e33cf03bcb83304c786f3",
+  "post_success_scope": "disclosed AI evaluation, H5, tests, final report, commits, and push"
+}

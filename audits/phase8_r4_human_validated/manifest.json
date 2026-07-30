@@ -1,0 +1,28 @@
+{
+  "api_calls": 0,
+  "approved_zip": {
+    "path": "/Users/amulyagupta/Downloads/files.zip",
+    "sha256": "cd757251a7fb60370ba08795d7fdc6529f5d7b962760eeee55ec2e6c3f4f9ac1"
+  },
+  "artifacts": {
+    "audits/phase8_r4_human_validated/owner_approval.json": "b5b612cf2ecb77c049bb7cc898781510a1fc9cdfe527a2dbf468e13b6dbdc157",
+    "runs/phase8_r4_human_validated/change_report.json": "c016c3334f40395cec32318b24c97243ba71435c2f53382c278fcfa9bc6d36ee",
+    "runs/phase8_r4_human_validated/generation_evaluation/h5_joined_100.jsonl": "a607a19abb128ff3c2c81409982b90f3543b0fdc686af41fd7a953684528fd05",
+    "runs/phase8_r4_human_validated/generation_evaluation/h5_results.json": "e9b2f7a0d80aa74d106330cdab8d3720b6be5860ca58568b8b08c955bb393267",
+    "runs/phase8_r4_human_validated/generation_evaluation/human_quality_labels_100.jsonl": "74054ec1feab5345ccceb7143d297a203508437ba37c54014b5e60d5d36ac692",
+    "runs/phase8_r4_human_validated/generation_evaluation/owner_ai_agreement.json": "fdf93716930767ec96afff918c6f9d907912c98cdfa3dfb76fc6c2391dcb3a81",
+    "runs/phase8_r4_human_validated/owner_inputs/phase8_r4_generation_human_review_100_COMPLETED.csv": "fd865518823df31e2e87954b7c1042577b288901489bed252e7f53d2d62e1101",
+    "runs/phase8_r4_human_validated/owner_inputs/phase8_r4_gold_mapping_review_140_COMPLETED.csv": "96480df69eb7096d83556b0300a417a3c9077d19adc1d45d82df543440370d9e",
+    "runs/phase8_r4_human_validated/owner_inputs/phase8_r4_synthesis_candidate_review_20_COMPLETED.csv": "29e36a242eacb8b156cd4e4010cf3badd94ff61158d7f29b6b6545d184e596be",
+    "runs/phase8_r4_human_validated/qrels/owner_qrels_140.jsonl": "f354c0cfefe1221c144189d2105dc2d037c0555e2b1d3c5e1b96495eb0122627",
+    "runs/phase8_r4_human_validated/qrels/owner_qrels_140.tsv": "98a67ddc0d94646bfbbc365c971469493fd0cf7b72aa1c031510b29f362bab54",
+    "runs/phase8_r4_human_validated/retrieval_evaluation/exploratory_statistics.json": "aa59719e844eb6e1815e5e8a24e692149f3be1370affa94ee5821307d3784f7c",
+    "runs/phase8_r4_human_validated/retrieval_evaluation/metrics.json": "4d3bef5a6691eee2ee0a8cced705db0718fa117c9d57cc81d127e5686d4eea4a",
+    "runs/phase8_r4_human_validated/retrieval_evaluation/per_query.json": "48e1d2011efb286ae91324aa418bcca44e24c7ae1f64d428a883fdb4d8e1903e",
+    "runs/phase8_r4_human_validated/synthesis_review/owner_dispositions_20.jsonl": "cd64054ab9bc1e142f278d9bcbf0e237973c705d86df862a8ccd7b3ad22588ba",
+    "runs/phase8_r4_human_validated/synthesis_review/summary.json": "510cbf75811a8cd3242afebd2ecabd0b3c5934a3f2d122a183ac2ba24298277a"
+  },
+  "protected_automated_artifacts_modified": 0,
+  "schema_version": 1,
+  "status": "frozen_phase8_r4_human_validation"
+}

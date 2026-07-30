@@ -1,0 +1,41 @@
+{
+  "aggregate": {
+    "avg_latency_ms": 52.46,
+    "extra": {},
+    "mrr": 0.4306,
+    "mrr_at_k": {
+      "1": 0.28,
+      "10": 0.4177,
+      "3": 0.38,
+      "5": 0.4005
+    },
+    "ndcg_at_k": {
+      "1": 0.28,
+      "10": 0.4209,
+      "3": 0.3363,
+      "5": 0.3723
+    },
+    "num_queries": 100,
+    "precision_at_k": {
+      "1": 0.28,
+      "10": 0.084,
+      "3": 0.1733,
+      "5": 0.126
+    },
+    "query_category": "all",
+    "recall_at_k": {
+      "1": 0.195,
+      "10": 0.61,
+      "3": 0.39,
+      "5": 0.47
+    },
+    "retriever": "hybrid_rrf"
+  },
+  "configuration_selected_on_phase8": false,
+  "human_qrels": false,
+  "input_depth": 50,
+  "output_depth": 50,
+  "questions": 100,
+  "rrf_k": 60,
+  "status": "complete_exploratory_automated_qrels"
+}
