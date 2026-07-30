@@ -5,14 +5,15 @@ dashboard. It does not contain layout, styling, or UI code.
 
 ## Required framing
 
-Dashboard must open on human-validated V2 pilot. Phase 8 R4 must appear as separate exploratory
-scaling view. Never merge pilot and R4 metrics into one leaderboard.
+Dashboard must open on human-validated V2 pilot. Phase 8 R4 must appear as separate human-owner-
+validated exploratory scaling view. Never merge pilot and R4 metrics into one leaderboard.
 
 - **Pilot:** 22 documents, 140 chunks, 34 questions, 755 human relevance labels.
-- **R4:** 130 documents, 954 chunks, 100 primary questions, 140 automatic crosswalk mappings.
-- **R4 synthesis:** 20 automated candidates, excluded from primary five-category metrics.
+- **R4:** 130 documents, 954 chunks, 100 primary questions, 140 owner-reviewed mappings.
+- **R4 synthesis:** 20 owner-reviewed candidates (12 accept, 4 revise, 4 reject), excluded from
+  primary five-category metrics.
 - **Pilot generation:** 26 human-owner labels plus 144 disclosed AI labels.
-- **R4 generation:** 100 AI-assigned labels and zero owner-labelled overlap.
+- **R4 generation:** 100 owner-reviewed labels; prior AI labels preserved only for comparison.
 
 ## Files
 
@@ -42,11 +43,11 @@ scaling view. Never merge pilot and R4 metrics into one leaderboard.
 
 ## Hard UI rules
 
-- Show claim-class badge beside every chart: `CANONICAL`, `MIXED LABELS`, `AUTOMATED`, or
+- Show claim-class badge beside every chart: `CANONICAL`, `MIXED LABELS`, `OWNER VALIDATED`, or
   `EXPLORATORY`.
 - Default to locked-test R4 metrics when R4 selected; label all-100 and development values clearly.
 - Never show missing latency as zero.
-- Never call R4 human validated until `validation_status.csv` changes through frozen owner review.
+- R4 is owner validated but remains exploratory because design/statistics were not preregistered.
 - Never include 20 synthesis candidates in primary R4 five-category totals.
 - Never present R4 pairwise tests as preregistered H1–H4 confirmation.
 

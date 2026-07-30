@@ -1,0 +1,72 @@
+{
+  "dimensions": {
+    "abstention_quality": {
+      "cohen_kappa": 0.5569620253164558,
+      "exact_agreement": 0.79,
+      "owner_distribution": {
+        "0": 24,
+        "2": 76
+      },
+      "prior_ai_distribution": {
+        "0": 45,
+        "2": 55
+      }
+    },
+    "citation_accuracy": {
+      "cohen_kappa": null,
+      "exact_agreement": 1.0,
+      "owner_distribution": {
+        "2": 100
+      },
+      "prior_ai_distribution": {
+        "2": 100
+      }
+    },
+    "completeness": {
+      "cohen_kappa": 0.9798387096774194,
+      "exact_agreement": 0.99,
+      "owner_distribution": {
+        "0": 46,
+        "2": 54
+      },
+      "prior_ai_distribution": {
+        "0": 45,
+        "2": 55
+      }
+    },
+    "correctness": {
+      "cohen_kappa": 0.5569620253164558,
+      "exact_agreement": 0.79,
+      "owner_distribution": {
+        "0": 24,
+        "2": 76
+      },
+      "prior_ai_distribution": {
+        "0": 45,
+        "2": 55
+      }
+    },
+    "faithfulness": {
+      "cohen_kappa": null,
+      "exact_agreement": 1.0,
+      "owner_distribution": {
+        "2": 100
+      },
+      "prior_ai_distribution": {
+        "2": 100
+      }
+    },
+    "unsupported_claim_severity": {
+      "cohen_kappa": null,
+      "exact_agreement": 1.0,
+      "owner_distribution": {
+        "0": 100
+      },
+      "prior_ai_distribution": {
+        "0": 100
+      }
+    }
+  },
+  "record_n": 100,
+  "status": "owner_vs_prior_ai_same_rows"
+}

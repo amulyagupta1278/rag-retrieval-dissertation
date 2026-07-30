@@ -50,17 +50,18 @@ def system_label(system: str) -> str:
 OUT.mkdir(parents=True, exist_ok=True)
 
 pilot_metrics_path = "runs/v2/phase6_seed42_final/metrics/balanced_metrics.json"
-r4_metrics_path = "runs/phase8_r4_improvements/evaluation_r4/metrics.json"
+r4_metrics_path = "runs/phase8_r4_human_validated/retrieval_evaluation/metrics.json"
 pilot_h5_path = "runs/v2/phase7_generation_claude_top3_v2/evaluation_v2_ai/h5_results.json"
-r4_h5_path = "runs/phase8_r4_improvements/evaluation_ai_h5/h5_results.json"
-r4_stats_path = "runs/phase8_r4_improvements/evaluation_r4/exploratory_statistics.json"
+r4_h5_path = "runs/phase8_r4_human_validated/generation_evaluation/h5_results.json"
+r4_stats_path = "runs/phase8_r4_human_validated/retrieval_evaluation/exploratory_statistics.json"
 pilot_stats_path = "runs/v2/phase6_seed42_final/statistics/preregistered_h1_h4_results.json"
-r4_status_path = "audits/phase8_r4/canonical_status.json"
+r4_status_path = "audits/phase8_r4_human_validated/canonical_status.json"
+r4_operational_status_path = "audits/phase8_r4/canonical_status.json"
 phase7_cost_path = "audits/phase7_generation/v2/full_v2_success_checkpoint.json"
 r4_retrieval_path = "runs/phase8_r4_improvements/prompt_rag_r4_v2_full/summary.json"
 r4_generation_path = "runs/phase8_r4_improvements/generation_r4_v3_full/summary.json"
 pilot_per_query_path = "runs/v2/phase6_seed42_final/metrics/final_pooled_per_query.jsonl"
-r4_per_query_path = "runs/phase8_r4_improvements/evaluation_r4/per_query.json"
+r4_per_query_path = "runs/phase8_r4_human_validated/retrieval_evaluation/per_query.json"
 pilot_questions_path = "data/v2/pilot/qa/pilot-qa-v2-owner-approved-20260724-r5.jsonl"
 r4_questions_path = "runs/phase8_r4_improvements/benchmark/qa_dev_test.jsonl"
 
@@ -70,6 +71,7 @@ pilot_h5 = load_json(pilot_h5_path)
 r4_h5 = load_json(r4_h5_path)
 r4_stats = load_json(r4_stats_path)
 r4_status = load_json(r4_status_path)
+r4_operational_status = load_json(r4_operational_status_path)
 phase7_cost = load_json(phase7_cost_path)
 r4_retrieval = load_json(r4_retrieval_path)
 r4_generation = load_json(r4_generation_path)
@@ -88,12 +90,14 @@ scope_rows = [
     },
     {
         "benchmark": "Phase 8 R4 expansion",
-        "claim_class": "exploratory automated scaling evidence",
+        "claim_class": "human-owner-validated exploratory scaling evidence",
         "documents": r4_status["documents"],
         "chunks": r4_status["chunks"],
         "primary_questions": r4_status["primary_questions"],
         "categories": 5,
-        "synthesis_questions": r4_status["synthesis_candidates"],
+        "synthesis_questions": r4_status.get(
+            "synthesis_candidates", r4_status["owner_reviewed_synthesis_rows"]
+        ),
         "relevance_pairs": 140,
         "human_validation_complete": r4_status["human_validation_complete"],
     },
@@ -125,7 +129,7 @@ for system, record in r4["systems"].items():
         retrieval_rows.append(
             {
                 "benchmark": "phase8_r4",
-                "claim_class": "exploratory_automated",
+                "claim_class": "owner_validated_exploratory",
                 "split": split,
                 "system_key": system,
                 "system": system_label(system),
@@ -166,7 +170,7 @@ for system, record in r4["systems"].items():
         category_rows.append(
             {
                 "benchmark": "phase8_r4",
-                "claim_class": "exploratory_automated",
+                "claim_class": "owner_validated_exploratory",
                 "split": "locked_test",
                 "system_key": system,
                 "system": system_label(system),
@@ -232,7 +236,7 @@ for system, rows in r4_per_query.items():
         query_rows.append(
             {
                 "benchmark": "phase8_r4",
-                "claim_class": "exploratory_automated",
+                "claim_class": "owner_validated_exploratory",
                 "split": row["split"],
                 "query_id": row["query_id"],
                 "category": row["category"],
@@ -253,7 +257,7 @@ write_csv("query_metrics.csv", query_rows)
 generation_rows: list[dict[str, Any]] = []
 for benchmark, payload, claim_class in (
     ("pilot_phase7", pilot_h5, "26_human_plus_144_disclosed_ai"),
-    ("phase8_r4", r4_h5, "100_disclosed_ai_zero_human_overlap"),
+    ("phase8_r4", r4_h5, "100_human_owner_reviewed"),
 ):
     for system, summary in payload["system_summaries"].items():
         dims = summary["dimension_means"]
@@ -332,7 +336,7 @@ operations_rows = [
         "failures": r4_retrieval["failure_n"],
         "retries": r4_retrieval["retry_n"],
         "cost_usd": r4_retrieval["cost_usd"],
-        "hard_cap_usd": r4_status["absolute_hard_cap_usd"],
+        "hard_cap_usd": r4_operational_status["absolute_hard_cap_usd"],
         "mean_latency_seconds": r4_retrieval["mean_latency_seconds"],
     },
     {
@@ -341,8 +345,8 @@ operations_rows = [
         "valid_records": 100,
         "failures": r4_generation["failure_n"],
         "retries": r4_generation["retry_n"],
-        "cost_usd": r4_status["total_generation_cost_usd"],
-        "hard_cap_usd": r4_status["absolute_hard_cap_usd"],
+        "cost_usd": r4_operational_status["total_generation_cost_usd"],
+        "hard_cap_usd": r4_operational_status["absolute_hard_cap_usd"],
         "mean_latency_seconds": r4_generation["mean_latency_seconds"],
     },
     {
@@ -350,9 +354,9 @@ operations_rows = [
         "operation": "retrieval plus generation",
         "valid_records": 200,
         "failures": 0,
-        "retries": r4_status["retries"],
-        "cost_usd": r4_status["cumulative_r4_api_cost_usd"],
-        "hard_cap_usd": r4_status["absolute_hard_cap_usd"],
+        "retries": r4_operational_status["retries"],
+        "cost_usd": r4_operational_status["cumulative_r4_api_cost_usd"],
+        "hard_cap_usd": r4_operational_status["absolute_hard_cap_usd"],
         "mean_latency_seconds": "",
     },
 ]
@@ -380,29 +384,29 @@ validation_rows = [
     {
         "dataset": "R4 gold crosswalk mappings",
         "row_count": 140,
-        "human_rows": 0,
-        "ai_rows": 140,
-        "status": "pending_human_validation",
-        "dashboard_badge": "AUTOMATED",
-        "allowed_claim": "exploratory retrieval scaling only",
+        "human_rows": 140,
+        "ai_rows": 0,
+        "status": "owner_review_complete",
+        "dashboard_badge": "OWNER VALIDATED",
+        "allowed_claim": "human-owner-validated exploratory retrieval scaling",
     },
     {
         "dataset": "R4 generated answers",
         "row_count": 100,
-        "human_rows": 0,
-        "ai_rows": 100,
-        "status": "pending_human_audit",
-        "dashboard_badge": "AI LABELS",
-        "allowed_claim": "exploratory automated answer-quality signal",
+        "human_rows": 100,
+        "ai_rows": 0,
+        "status": "owner_review_complete",
+        "dashboard_badge": "OWNER VALIDATED",
+        "allowed_claim": "human-owner-evaluated exploratory answer-quality evidence",
     },
     {
         "dataset": "R4 synthesis candidates",
         "row_count": 20,
-        "human_rows": 0,
-        "ai_rows": 20,
-        "status": "automated_candidate_pending_human_validation",
-        "dashboard_badge": "SEPARATE",
-        "allowed_claim": "none in primary five-category metrics",
+        "human_rows": 20,
+        "ai_rows": 0,
+        "status": "owner_review_complete_12_accept_4_revise_4_reject",
+        "dashboard_badge": "REVIEWED · SEPARATE",
+        "allowed_claim": "owner-reviewed candidates; excluded from primary metrics",
     },
 ]
 write_csv("validation_status.csv", validation_rows)
@@ -415,6 +419,7 @@ source_paths = [
     r4_stats_path,
     r4_h5_path,
     r4_status_path,
+    r4_operational_status_path,
     phase7_cost_path,
     r4_retrieval_path,
     r4_generation_path,
@@ -430,8 +435,8 @@ payload = {
     "purpose": "frontend-neutral dissertation dashboard data handoff",
     "default_view": "pilot",
     "required_disclosure": (
-        "Pilot is canonical human-validated evidence. Phase 8 R4 is exploratory automated "
-        "scaling evidence pending human validation."
+        "Pilot is canonical confirmatory evidence. Phase 8 R4 is human-owner-validated "
+        "exploratory scaling evidence and remains non-preregistered."
     ),
     "scope": scope_rows,
     "retrieval_metrics": retrieval_rows,

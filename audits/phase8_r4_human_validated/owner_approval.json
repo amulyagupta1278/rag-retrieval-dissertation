@@ -1,0 +1,21 @@
+{
+  "approval_scope": "Phase 8 R4 human-validation freeze",
+  "approved_actions": [
+    "validate and preserve 260 completed owner-review rows",
+    "freeze 140 mapping judgments, 100 generation judgments, and 20 synthesis decisions",
+    "rebuild owner-validated qrels, retrieval metrics, exploratory statistics, and H5",
+    "update dissertation and dashboard handoff",
+    "commit and push"
+  ],
+  "approved_source": "/Users/amulyagupta/Downloads/files.zip",
+  "approved_source_sha256": "cd757251a7fb60370ba08795d7fdc6529f5d7b962760eeee55ec2e6c3f4f9ac1",
+  "base_commit": "5ed1193",
+  "intentional_exception": "one valid mapping has relevance_grade=0",
+  "owner_approved": true,
+  "schema_version": 1,
+  "synthesis_dispositions": {
+    "accept": 12,
+    "reject": 4,
+    "revise": 4
+  }
+}

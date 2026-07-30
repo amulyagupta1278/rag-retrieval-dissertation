@@ -1,0 +1,20 @@
+{
+  "dispositions": {
+    "accept": 12,
+    "reject": 4,
+    "revise": 4
+  },
+  "primary_metrics_included": 0,
+  "revision_required_ids": [
+    "r4_syn_006",
+    "r4_syn_008",
+    "r4_syn_009",
+    "r4_syn_012",
+    "r4_syn_014",
+    "r4_syn_017",
+    "r4_syn_019",
+    "r4_syn_020"
+  ],
+  "status": "owner_review_complete_pending_revision_work",
+  "total": 20
+}

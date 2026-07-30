@@ -52,7 +52,7 @@ Research framing — non-negotiable
 =================================
 
 - Human-validated V2 pilot remains canonical dissertation evidence.
-- Phase 8 R4 remains exploratory automated scaling evidence pending human validation.
+- Phase 8 R4 is human-owner-validated exploratory scaling evidence. It remains non-preregistered.
 - Never merge pilot and R4 into one unlabeled leaderboard.
 - Never describe R4 labels, mappings, or synthesis questions as human validated.
 - Never include 20 synthesis candidates in primary five-category R4 metrics.
@@ -67,8 +67,8 @@ Required badges
 
 - CANONICAL — human-validated pilot retrieval evidence.
 - MIXED LABELS — pilot generation: 26 owner labels + 144 disclosed AI labels.
-- AUTOMATED — R4 gold crosswalks pending human review.
-- AI LABELS — R4 generation: 100 AI labels, zero owner-labelled overlap.
+- OWNER VALIDATED — R4 gold crosswalks and generation labels completed by owner.
+- PRIOR AI LABELS — preserved only for owner–AI comparison, not final R4 scoring.
 - EXPLORATORY — R4 statistics and scaling conclusions.
 - SEPARATE — 20 synthesis candidates outside primary metrics.
 
@@ -137,11 +137,12 @@ Use one persistent top navigation with these views:
    - Explain API cost versus offline methods.
 
 8. Validation and provenance
-   - Show 260-row human-review status:
+   - Show completed 260-row human-review status:
        * 140 R4 gold mappings
        * 100 R4 generated answers
        * 20 synthesis candidates
-   - Current state remains pending unless completed files prove otherwise.
+   - Current state: 260/260 owner reviewed; mappings 139 grade-2 and one grade-0; synthesis
+     12 accept, 4 revise, 4 reject.
    - Link/download three review CSV packages from:
      /Users/amulyagupta/Desktop/rag-retrieval-dissertation/submission/human_review/phase8_r4
    - Show source artifact paths and SHA-256 values from manifest.json.
@@ -205,17 +206,17 @@ Export tables as CSV and print-ready HTML. Never round source files; round displ
 260-row human-review integration
 ================================
 
-Do not block initial build while review is ongoing. Build explicit pending-state ingestion:
+Owner review is frozen. Load final status from `audits/phase8_r4_human_validated/` and final data from
+`runs/phase8_r4_human_validated/`:
 
-- Expected completed files:
+- Frozen completed files:
   phase8_r4_gold_mapping_review_140_COMPLETED.csv
-  phase8_r4_generation_human_review_100_BLINDED_COMPLETED.csv
+  phase8_r4_generation_human_review_100_COMPLETED.csv
   phase8_r4_synthesis_candidate_review_20_COMPLETED.csv
 - Validate exact row counts, unique IDs, allowed grades/decisions, blanks, and protected columns.
 - Never overwrite automated source files.
-- Do not recalculate R4 canonical metrics merely because completed files exist.
-- Recalculation requires separate frozen adjudication protocol and owner approval.
-- Until that process finishes, dashboard badge remains “PENDING HUMAN VALIDATION”.
+- Use recalculated owner-validated metrics from dashboard payload; do not recompute in frontend.
+- Keep synthesis separate despite completed review: 12 accepted, 4 revise, 4 reject.
 
 Engineering structure
 =====================
@@ -246,7 +247,7 @@ UI tests:
 
 - Every navigation route renders.
 - Pilot is default.
-- R4 charts show EXPLORATORY/AUTOMATED badges.
+- R4 charts show OWNER VALIDATED and EXPLORATORY badges.
 - Toggle and filters update chart, table, caption, and URL state together.
 - Query explorer returns correct five-system panel.
 - Keyboard-only navigation works.

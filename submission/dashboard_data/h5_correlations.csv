@@ -4,6 +4,6 @@ pilot_phase7,exploratory_descriptive_only,mrr_at_10,correctness,0.17532174176924
 pilot_phase7,exploratory_descriptive_only,graded_ndcg_at_10,correctness,0.2699549435770029,0.1361572850752657,0.38476078714613426,34,170,estimated
 pilot_phase7,exploratory_descriptive_only,complete_evidence_recall_at_10,completeness,0.3395352861284314,0.15810944462381812,0.5066903645163756,34,170,estimated
 phase8_r4,exploratory_descriptive_only,mrr@10,faithfulness,,,,20,100,not_estimable_constant_dimension
-phase8_r4,exploratory_descriptive_only,mrr@10,correctness,-0.05596940572817384,-0.34471171122938654,0.254113556766641,20,100,estimated
-phase8_r4,exploratory_descriptive_only,ndcg@10,correctness,0.07899092276387924,-0.22987346351105564,0.38663323463816596,20,100,estimated
-phase8_r4,exploratory_descriptive_only,recall@10,completeness,0.07786955844637654,-0.2563664908966656,0.43369063014605697,20,100,estimated
+phase8_r4,exploratory_descriptive_only,mrr@10,correctness,-0.18877226019794444,-0.4008665592509723,0.06977315797184735,20,100,estimated
+phase8_r4,exploratory_descriptive_only,ndcg@10,correctness,-0.16587218360459277,-0.3956249643286338,0.08801145805067936,20,100,estimated
+phase8_r4,exploratory_descriptive_only,recall@10,completeness,0.06506475279105337,-0.27460246729320054,0.42321265929035146,20,100,estimated
