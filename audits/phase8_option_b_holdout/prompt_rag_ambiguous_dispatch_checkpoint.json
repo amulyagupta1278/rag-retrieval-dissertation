@@ -1,0 +1,20 @@
+{
+  "attempt_n": 2,
+  "completed_query_ids": [
+    "holdout_001"
+  ],
+  "execution_config_sha256": "f5af6ad7895b89c6fe472fcbf305ed6be8d5de8d25fffbf26c27e2fa5f19217d",
+  "failed_query_id": "holdout_008",
+  "failure_class": "ambiguous_dispatch_process_termination",
+  "first_completed_ranking_sha256": "22f044f5387edb6902483c84276acdeb58f259819de731ab6d5719c7b59993c6",
+  "first_completed_raw_sha256": "8347077013cf9102fcbbd663902810391962e10886288cda89103cd85e2a15de",
+  "known_observed_cost_usd": 0.025966,
+  "known_usage": {
+    "input_tokens": 22946,
+    "output_tokens": 604
+  },
+  "note": "Second attempt was counted before dispatch. No response artifact was persisted. Whether provider received or billed that request is unknown. Zero-retry contract forbids rerun and stops remaining requests.",
+  "request_plan_sha256": "8d33719845d59f8d498b86a8e3cded3ced716cc389eed54ff17213d532de72ad",
+  "status": "terminal_checkpoint_no_retry",
+  "zero_retries": true
+}

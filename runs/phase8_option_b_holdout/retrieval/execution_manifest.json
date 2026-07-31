@@ -1,0 +1,29 @@
+{
+  "benchmark": "phase8_option_b_holdout_v1",
+  "frozen_inputs": {
+    "chunks": "bf6e040548cc5b236a79af993d8a2c2bf3556a559719fdbb3b4920855e6d6d45",
+    "freeze_manifest": "771522b845f4eacf193885bc8fd1e4ae2c33c7c0c58118a65acd3dfacb0e8701",
+    "qa": "cd1ae86d254e3a70e1fc22cffc39c173bd175e9c838533dad248516a3ff5cc0e",
+    "qrels": "e6b7b995ebb084063821acce5370fcee3c23b9e7664aa94c91dc88c2bcd1940d"
+  },
+  "hybrid_config": {
+    "bm25_weight": 1.0,
+    "faiss_weight": 0.25,
+    "graph_only_factor": 0.0,
+    "graph_weight": 0.1,
+    "k": 10
+  },
+  "outputs_before_manifest": {
+    "runs/phase8_option_b_holdout/retrieval/bm25/index/bm25_r4_holdout.pkl": "e4ba269048dbfb675094224913f127012bdd685106400b729c98fa408c5c6c42",
+    "runs/phase8_option_b_holdout/retrieval/bm25/index/bm25_r4_holdout.pkl.config.json": "38d91fe058a927232ae0491be69108a6153b316ef77bb2cd66ce701f282a9df1",
+    "runs/phase8_option_b_holdout/retrieval/bm25/run.jsonl": "afc4a6aca29ef23a9cb4a50c9c300698aaaa42ffa7fd1edbd07e1618d0229f2e",
+    "runs/phase8_option_b_holdout/retrieval/faiss_cosine/query_embeddings.npy": "baf7ca626634fc97a32b1e5aa8ffe6a1d7063d9ad80907ed3ba70a5013ff89ef",
+    "runs/phase8_option_b_holdout/retrieval/faiss_cosine/query_embeddings_manifest.json": "e01ab2dab00eed8f4dc683ae43fd81830991c019b31d94584eea3a07e32f0b17",
+    "runs/phase8_option_b_holdout/retrieval/faiss_cosine/run.jsonl": "7ca04379eff0933853c527396d3ba5d3d08642f114a26fb7fa7a2fd46441ce63",
+    "runs/phase8_option_b_holdout/retrieval/graph_v4/run.jsonl": "1927b29c280eb7c90736e819508c063ac1e007ce918c9f0aa7a6f6ae3827d210",
+    "runs/phase8_option_b_holdout/retrieval/hybrid_r4/run.jsonl": "27674c0bf8ab5e4eff300e76662c7969b7832ee32d60254d827a5b341e749ca2",
+    "runs/phase8_option_b_holdout/retrieval/metrics.json": "e470f901b15c0aca6b45f8076ca6b103391ca439fd946265e01b3a95f3b3b672",
+    "runs/phase8_option_b_holdout/retrieval/per_query.jsonl": "9754037d86161d77bc11e9a5e8d7a378a73e39bbaea54e617158f5af10e01aa0"
+  },
+  "status": "four_local_systems_complete_prompt_rag_pending"
+}

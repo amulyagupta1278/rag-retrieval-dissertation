@@ -1,6 +1,10 @@
 # Phase 8 Final-Scale Decision Memo
 
-Status: `owner_decision_required_no_option_selected`
+Status: `owner_selected_option_b_holdout_design_in_progress`
+
+Owner selected Option B on 2026-08-01. Candidate construction and owner-review preparation may
+proceed, but no holdout system execution is authorized before row-level review, deterministic
+validation, and freeze.
 
 Current pilot contains 22 committed documents, 140 chunks, and 34 questions across
 six categories. Category counts are exact lookup 6, terminology 6, paraphrase 6,
@@ -46,9 +50,11 @@ holdout separately; do not merge it silently into pilot results.
 | Dissertation strength | Stronger independence claim, narrower corpus generalization |
 | Reproducibility | Strong with sealed holdout version and one preregistered run |
 
-## Required owner decision
+## Recorded owner decision
 
-Choose A, B, or a separately specified design. Decision must set document/question
-scope, source policy, owner-review workload, schedule, monetary cap, and whether
-Phase 7 generation applies to pilot, holdout, or both. This memo makes no choice.
-
+Option B is selected with a 12-question target, two questions in each of the six categories.
+The existing R4 corpus is retained. Candidate questions must use source documents not previously
+used as gold sources in the 100-question R4 benchmark. Owner review covers question validity,
+answer validity, evidence completeness, leakage/duplication, and accept/revise/reject disposition.
+Retrieval execution is a single post-freeze run. Monetary cap and optional generation scope remain
+to be fixed before system execution; neither is needed for candidate review.

@@ -1,0 +1,22 @@
+{
+  "benchmark": "phase8_option_b_holdout_v1",
+  "category_counts": {
+    "exact_match": 2,
+    "terminology_heavy": 2,
+    "paraphrase": 2,
+    "entity_relation": 2,
+    "multi_hop": 2,
+    "synthesis": 2
+  },
+  "freeze_manifest_sha256": "771522b845f4eacf193885bc8fd1e4ae2c33c7c0c58118a65acd3dfacb0e8701",
+  "owner_reviewed_question_n": 12,
+  "descriptive_analysis_status": "complete_10000_query_bootstrap_seed42_small_n",
+  "local_systems_complete": [
+    "bm25",
+    "faiss_cosine",
+    "graph_v4",
+    "hybrid_r4"
+  ],
+  "prompt_rag_status": "failed_ambiguous_dispatch_after_1_of_12_complete_zero_retry_stop",
+  "status": "four_local_systems_complete_prompt_rag_incomplete"
+}

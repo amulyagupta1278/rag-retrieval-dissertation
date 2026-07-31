@@ -1,0 +1,30 @@
+{
+  "candidate_rule": "BM25 top25 then unseen FAISS top25, deduplicated by chunk_id",
+  "candidate_text_rule": "first 300 whitespace-delimited words",
+  "input_price_usd_per_million": 1.0,
+  "input_token_count_method": "Anthropic messages.count_tokens; envelope adds 8 tokens per request",
+  "input_token_envelope": 264361,
+  "inputs": {
+    "prompts/prompt_rag_retrieval_v1.txt": "64be8830d92ecbfa378e6259aa65670675ff3bf1aa9e19b9934c08f1f19373d9",
+    "runs/phase8_option_b_holdout/freeze/qa_holdout_12.jsonl": "cd1ae86d254e3a70e1fc22cffc39c173bd175e9c838533dad248516a3ff5cc0e",
+    "runs/phase8_option_b_holdout/freeze/qrels_holdout_12.tsv": "e6b7b995ebb084063821acce5370fcee3c23b9e7664aa94c91dc88c2bcd1940d",
+    "runs/phase8_option_b_holdout/retrieval/bm25/run.jsonl": "afc4a6aca29ef23a9cb4a50c9c300698aaaa42ffa7fd1edbd07e1618d0229f2e",
+    "runs/phase8_option_b_holdout/retrieval/faiss_cosine/run.jsonl": "7ca04379eff0933853c527396d3ba5d3d08642f114a26fb7fa7a2fd46441ce63",
+    "runs/phase8_r4_improvements/corpus/chunks_section_aware_450w.jsonl": "bf6e040548cc5b236a79af993d8a2c2bf3556a559719fdbb3b4920855e6d6d45"
+  },
+  "max_output_tokens": 1024,
+  "model": "claude-haiku-4-5-20251001",
+  "output_price_usd_per_million": 5.0,
+  "query_n": 12,
+  "request_plan_sha256": "8d33719845d59f8d498b86a8e3cded3ced716cc389eed54ff17213d532de72ad",
+  "retrieval_hard_cap_usd": 0.355854,
+  "retrieval_worst_case_usd": 0.325801,
+  "schema_version": 1,
+  "status": "owner_approved_by_explicit_2026_08_01_instruction",
+  "temperature": 0,
+  "trace_query_ids": [
+    "holdout_001",
+    "holdout_008"
+  ],
+  "zero_retries": true
+}

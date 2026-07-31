@@ -1,0 +1,8 @@
+{
+  "approval_scope": "Phase 8 Option B 12-question Prompt-RAG holdout, exact frozen plan, zero retries",
+  "authorization_source": "User instruction on 2026-08-01: Send 12 holdout questions and up to 50 corpus excerpts per question to Anthropic Claude Haiku for Prompt-RAG reranking, with zero retries and frozen cost cap.",
+  "execution_config_sha256": "f5af6ad7895b89c6fe472fcbf305ed6be8d5de8d25fffbf26c27e2fa5f19217d",
+  "hard_cap_usd": 0.355854,
+  "request_plan_sha256": "8d33719845d59f8d498b86a8e3cded3ced716cc389eed54ff17213d532de72ad",
+  "status": "owner_approved"
+}
