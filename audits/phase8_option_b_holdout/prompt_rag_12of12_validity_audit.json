@@ -1,0 +1,41 @@
+{
+  "artifact": "runs/phase8_option_b_holdout/prompt_rag",
+  "audit_status": "complete",
+  "canonical_admissibility": "excluded_protocol_violation",
+  "cost_audit": {
+    "frozen_hard_cap_usd": 0.355854,
+    "observed_completed_cost_usd": 0.30076,
+    "potential_ambiguous_dispatch_reserve_usd": 0.022611,
+    "worst_observed_plus_ambiguous_usd": 0.323371,
+    "within_frozen_hard_cap": true
+  },
+  "evidence": {
+    "ambiguous_checkpoint_attempt_n": 2,
+    "ambiguous_checkpoint_completed_query_ids": [
+      "holdout_001"
+    ],
+    "ambiguous_checkpoint_failed_query_id": "holdout_008",
+    "ambiguous_checkpoint_status": "terminal_checkpoint_no_retry",
+    "completed_run_attempt_n": 12,
+    "completed_run_coverage": "12/12",
+    "completed_run_retry_n_claim": 0,
+    "completed_run_status": "complete",
+    "current_holdout_001_ranking_matches_checkpoint_sha256": true,
+    "current_holdout_001_raw_matches_checkpoint_sha256": true,
+    "frozen_request_plan_matches_checkpoint_sha256": true,
+    "frozen_request_plan_matches_completed_execution_config": true,
+    "zero_retries_frozen": true
+  },
+  "exploratory_metrics_only": {
+    "hit@10": 1.0,
+    "mrr@10": 0.5555555555555556,
+    "ndcg@10": 0.6685840923359513,
+    "precision@10": 0.16666666666666666,
+    "recall@10": 0.9722222222222222
+  },
+  "finding": "The later 12/12 execution reused the frozen request plan and remained within the monetary cap, but it dispatched holdout_008 after that query had already reached an ambiguous terminal attempt. This contradicts the frozen zero-retry contract and the terminal checkpoint. Its retry_n=0 claim counts only persisted completed responses and omits the prior ambiguous attempt.",
+  "permitted_use": "exploratory_sensitivity_analysis_with_protocol_violation_disclosed",
+  "prohibited_use": "canonical_five_system_holdout_or_confirmatory_hypothesis_evidence",
+  "recommended_canonical_state": "four_local_systems_complete_prompt_rag_incomplete_1_of_12",
+  "schema_version": 1
+}
