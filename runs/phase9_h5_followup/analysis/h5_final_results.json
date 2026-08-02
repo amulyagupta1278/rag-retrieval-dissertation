@@ -1,0 +1,50 @@
+{
+  "aggregate_claim_weighted_faithfulness": 0.9983388704318937,
+  "answer_n": 81,
+  "bootstrap_samples": 10000,
+  "bootstrap_valid_n": 6471,
+  "ci95": [
+    0.1188680510251403,
+    0.25629746921848834
+  ],
+  "claim_bearing_question_n": 21,
+  "claim_counts": {
+    "contradicted": 0,
+    "fully_supported": 300,
+    "partially_supported": 1,
+    "total": 301,
+    "unsupported": 0
+  },
+  "decision": "not_estimable",
+  "excluded_no_verifiable_claims_n": 69,
+  "faithfulness_distinct_n": 2,
+  "faithfulness_sd": 0.011111111111111105,
+  "hypothesis": "H5",
+  "primary_score": "(fully_supported + 0.5*partially_supported) / total_verifiable_claims",
+  "question_n": 30,
+  "seed": 42,
+  "sensitivity": {
+    "partial_support_zero_credit": {
+      "answer_n": 81,
+      "distinct_n": 2,
+      "sd": 0.022222222222222227,
+      "spearman_rho": 0.1487392237464868
+    },
+    "prompt_version": {
+      "legacy_v1_v2_contract": {
+        "answer_n": 30,
+        "distinct_n": 2,
+        "sd": 0.01825741858350553,
+        "spearman_rho": 0.2435351401903054
+      },
+      "v3_semantic_contract": {
+        "answer_n": 51,
+        "distinct_n": 1,
+        "sd": 0.0,
+        "spearman_rho": null
+      }
+    },
+    "reviewer_A_equals_reviewer_B_all_150_rows": true
+  },
+  "spearman_rho": 0.1487392237464868
+}

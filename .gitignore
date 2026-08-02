@@ -5,6 +5,8 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+node_modules/
+tmp/
 .env
 .venv/
 venv/
@@ -34,3 +36,9 @@ runs/v2/**/zi[0-9A-Za-z]*
 
 **/.DS_Store
 .DS_Store
+
+# Provider request/response bodies stay local. Commit only manifests,
+# summaries, ledgers, schemas, and aggregate analysis artifacts.
+**/request_payloads.jsonl
+**/raw/
+**/validated/
