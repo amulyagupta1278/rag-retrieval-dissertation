@@ -1,0 +1,16 @@
+{
+  "status": "failed_ambiguous_dispatch",
+  "coverage_valid": "7/60",
+  "attempt_n": 8,
+  "retry_n": 0,
+  "failure_class": "APITimeoutError",
+  "failed_blinded_request_id": "H5C3318dc2c487a61",
+  "input_tokens_observed": 13184,
+  "output_tokens_observed": 929,
+  "observed_cost_usd": 0.017829,
+  "ambiguous_dispatch_reserve_usd": 0.013578,
+  "maximum_accounted_exposure_usd": 0.031407,
+  "generation_hard_cap_usd": 0.600855,
+  "confirmatory_panel_usable": false,
+  "reason": "Provider timeout produced no response receipt. Frozen zero-retry protocol prohibits resubmission and stops remaining dispatch."
+}

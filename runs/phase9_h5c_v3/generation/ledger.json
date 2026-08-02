@@ -1,0 +1,1 @@
+{"active":"H5C3318dc2c487a61","attempt_n":8,"completed":["H5C301ae2e41eaade","H5C30ca5bcb841ebf","H5C31940740d7af82","H5C31a48d18a314e0","H5C323b45f4e9bc01","H5C32b43ce92025c3","H5C32fd7cf495fba2"],"failure":{"type":"APITimeoutError"},"input_tokens":13184,"observed_cost_usd":0.017829,"output_tokens":929,"retry_n":0,"status":"failed_ambiguous_dispatch"}

@@ -1,0 +1,647 @@
+{
+  "benchmark": "phase8_option_b_holdout_v1",
+  "bootstrap": {
+    "samples": 10000,
+    "seed": 42,
+    "unit": "whole query preserving four-system panel"
+  },
+  "category_metrics": {
+    "bm25": {
+      "entity_relation": {
+        "hit@10": 1.0,
+        "mrr@10": 0.5,
+        "ndcg@10": 0.6860943165387234,
+        "precision@10": 0.25,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "exact_match": {
+        "hit@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "multi_hop": {
+        "hit@10": 1.0,
+        "mrr@10": 0.5833333333333334,
+        "ndcg@10": 0.5087526802504785,
+        "precision@10": 0.15000000000000002,
+        "query_n": 2,
+        "recall@10": 0.6666666666666666
+      },
+      "paraphrase": {
+        "hit@10": 1.0,
+        "mrr@10": 0.6666666666666666,
+        "ndcg@10": 0.75,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "synthesis": {
+        "hit@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 0.9025903353598375,
+        "precision@10": 0.25,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "terminology_heavy": {
+        "hit@10": 0.5,
+        "mrr@10": 0.25,
+        "ndcg@10": 0.31546487678572877,
+        "precision@10": 0.05,
+        "query_n": 2,
+        "recall@10": 0.5
+      }
+    },
+    "faiss_cosine": {
+      "entity_relation": {
+        "hit@10": 1.0,
+        "mrr@10": 0.75,
+        "ndcg@10": 0.6947055784962297,
+        "precision@10": 0.2,
+        "query_n": 2,
+        "recall@10": 0.8333333333333333
+      },
+      "exact_match": {
+        "hit@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "multi_hop": {
+        "hit@10": 0.5,
+        "mrr@10": 0.25,
+        "ndcg@10": 0.2820460470092947,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 0.5
+      },
+      "paraphrase": {
+        "hit@10": 0.5,
+        "mrr@10": 0.5,
+        "ndcg@10": 0.5,
+        "precision@10": 0.05,
+        "query_n": 2,
+        "recall@10": 0.5
+      },
+      "synthesis": {
+        "hit@10": 1.0,
+        "mrr@10": 0.35,
+        "ndcg@10": 0.3688310106618238,
+        "precision@10": 0.15000000000000002,
+        "query_n": 2,
+        "recall@10": 0.6666666666666666
+      },
+      "terminology_heavy": {
+        "hit@10": 1.0,
+        "mrr@10": 0.41666666666666663,
+        "ndcg@10": 0.5654648767857288,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      }
+    },
+    "graph_v4": {
+      "entity_relation": {
+        "hit@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 0.8559041402840628,
+        "precision@10": 0.25,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "exact_match": {
+        "hit@10": 1.0,
+        "mrr@10": 0.75,
+        "ndcg@10": 0.8154648767857288,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "multi_hop": {
+        "hit@10": 1.0,
+        "mrr@10": 0.6666666666666666,
+        "ndcg@10": 0.49011735999698586,
+        "precision@10": 0.15000000000000002,
+        "query_n": 2,
+        "recall@10": 0.6666666666666666
+      },
+      "paraphrase": {
+        "hit@10": 0.0,
+        "mrr@10": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0,
+        "query_n": 2,
+        "recall@10": 0.0
+      },
+      "synthesis": {
+        "hit@10": 0.5,
+        "mrr@10": 0.125,
+        "ndcg@10": 0.13203406128629544,
+        "precision@10": 0.05,
+        "query_n": 2,
+        "recall@10": 0.25
+      },
+      "terminology_heavy": {
+        "hit@10": 1.0,
+        "mrr@10": 0.5555555555555556,
+        "ndcg@10": 0.6505149978319906,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      }
+    },
+    "hybrid_r4": {
+      "entity_relation": {
+        "hit@10": 1.0,
+        "mrr@10": 0.75,
+        "ndcg@10": 0.7606193590740802,
+        "precision@10": 0.25,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "exact_match": {
+        "hit@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "multi_hop": {
+        "hit@10": 1.0,
+        "mrr@10": 0.5833333333333334,
+        "ndcg@10": 0.5087526802504785,
+        "precision@10": 0.15000000000000002,
+        "query_n": 2,
+        "recall@10": 0.6666666666666666
+      },
+      "paraphrase": {
+        "hit@10": 1.0,
+        "mrr@10": 0.625,
+        "ndcg@10": 0.7153382790366966,
+        "precision@10": 0.1,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "synthesis": {
+        "hit@10": 1.0,
+        "mrr@10": 0.75,
+        "ndcg@10": 0.8129737477860474,
+        "precision@10": 0.25,
+        "query_n": 2,
+        "recall@10": 1.0
+      },
+      "terminology_heavy": {
+        "hit@10": 0.5,
+        "mrr@10": 0.25,
+        "ndcg@10": 0.31546487678572877,
+        "precision@10": 0.05,
+        "query_n": 2,
+        "recall@10": 0.5
+      }
+    }
+  },
+  "confidence_intervals": {
+    "bm25": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.75,
+          1.0
+        ],
+        "mean": 0.9166666666666666,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.4583333333333333,
+          0.875
+        ],
+        "mean": 0.6666666666666666,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.5060106965274617,
+          0.8596622971276737
+        ],
+        "mean": 0.6938170348224615,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.10000000000000002,
+          0.19999999999999998
+        ],
+        "mean": 0.15,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.6666666666666666,
+          1.0
+        ],
+        "mean": 0.8611111111111112,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "faiss_cosine": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.5833333333333334,
+          1.0
+        ],
+        "mean": 0.8333333333333334,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.33888888888888885,
+          0.75
+        ],
+        "mean": 0.5444444444444444,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.37902086502960664,
+          0.7514662787524697
+        ],
+        "mean": 0.5685079188255128,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.075,
+          0.15833333333333333
+        ],
+        "mean": 0.11666666666666668,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.5277777777777778,
+          0.9444444444444443
+        ],
+        "mean": 0.75,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "graph_v4": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.5,
+          1.0
+        ],
+        "mean": 0.75,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.27309027777777783,
+          0.7569444444444445
+        ],
+        "mean": 0.5162037037037036,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.2854449593261888,
+          0.692353221288014
+        ],
+        "mean": 0.4906725726975107,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.05833333333333334,
+          0.15833333333333335
+        ],
+        "mean": 0.10833333333333335,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.40277777777777773,
+          0.875
+        ],
+        "mean": 0.6527777777777778,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "hybrid_r4": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.75,
+          1.0
+        ],
+        "mean": 0.9166666666666666,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.45138888888888884,
+          0.8541666666666666
+        ],
+        "mean": 0.6597222222222222,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.4969515520885447,
+          0.8503399470224442
+        ],
+        "mean": 0.685524823822172,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.10000000000000002,
+          0.20000000000000004
+        ],
+        "mean": 0.15,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.6666666666666666,
+          1.0
+        ],
+        "mean": 0.8611111111111112,
+        "method": "whole-query nonparametric bootstrap percentile interval"
+      }
+    }
+  },
+  "input_sha256": "9754037d86161d77bc11e9a5e8d7a378a73e39bbaea54e617158f5af10e01aa0",
+  "interpretation": "descriptive_independent_holdout_small_n_no_decisive_hypothesis_claim",
+  "paired_differences": {
+    "bm25_minus_faiss_cosine": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "effect_left_minus_right": 0.08333333333333333,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.0722222222222222,
+          0.31388888888888894
+        ],
+        "effect_left_minus_right": 0.12222222222222223,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.04601866702067676,
+          0.29000527407105375
+        ],
+        "effect_left_minus_right": 0.12530911599694852,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.008333333333333333,
+          0.075
+        ],
+        "effect_left_minus_right": 0.03333333333333333,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.1388888888888889,
+          0.36111111111111116
+        ],
+        "effect_left_minus_right": 0.11111111111111112,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "bm25_minus_graph_v4": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.16666666666666666,
+          0.5
+        ],
+        "effect_left_minus_right": 0.16666666666666666,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.19444444444444445,
+          0.5
+        ],
+        "effect_left_minus_right": 0.15046296296296294,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.054717853926903995,
+          0.4701056228006575
+        ],
+        "effect_left_minus_right": 0.20314446212495074,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.008333333333333333,
+          0.10000000000000002
+        ],
+        "effect_left_minus_right": 0.041666666666666664,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.08333333333333333,
+          0.5
+        ],
+        "effect_left_minus_right": 0.20833333333333334,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "bm25_minus_hybrid_r4": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "effect_left_minus_right": 0.0,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.11805555555555557,
+          0.125
+        ],
+        "effect_left_minus_right": 0.006944444444444443,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.03540733530573915,
+          0.059088853889134756
+        ],
+        "effect_left_minus_right": 0.00829221100028948,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "effect_left_minus_right": 0.0,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "effect_left_minus_right": 0.0,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "hybrid_r4_minus_faiss_cosine": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "effect_left_minus_right": 0.08333333333333333,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.013888888888888886,
+          0.24586805555555508
+        ],
+        "effect_left_minus_right": 0.1152777777777778,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.036625827404116094,
+          0.26622242661482814
+        ],
+        "effect_left_minus_right": 0.11701690499665905,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.008333333333333333,
+          0.075
+        ],
+        "effect_left_minus_right": 0.03333333333333333,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.16666666666666666,
+          0.36111111111111116
+        ],
+        "effect_left_minus_right": 0.11111111111111112,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      }
+    },
+    "hybrid_r4_minus_graph_v4": {
+      "hit@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.16666666666666666,
+          0.5
+        ],
+        "effect_left_minus_right": 0.16666666666666666,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "mrr@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.17366898148148147,
+          0.46296296296296297
+        ],
+        "effect_left_minus_right": 0.14351851851851852,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "ndcg@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.05468926042815437,
+          0.4495925818927742
+        ],
+        "effect_left_minus_right": 0.19485225112466129,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "precision@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.008333333333333333,
+          0.10000000000000002
+        ],
+        "effect_left_minus_right": 0.041666666666666664,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      },
+      "recall@10": {
+        "bootstrap_samples": 10000,
+        "ci95": [
+          -0.08333333333333333,
+          0.5416666666666666
+        ],
+        "effect_left_minus_right": 0.20833333333333334,
+        "method": "paired whole-query nonparametric bootstrap percentile interval"
+      }
+    }
+  },
+  "prompt_rag": "excluded_incomplete_1_of_12_after_ambiguous_dispatch_zero_retry_stop",
+  "query_n": 12,
+  "systems": [
+    "bm25",
+    "faiss_cosine",
+    "graph_v4",
+    "hybrid_r4"
+  ]
+}

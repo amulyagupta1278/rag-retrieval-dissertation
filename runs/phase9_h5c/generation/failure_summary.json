@@ -1,0 +1,15 @@
+{
+  "status": "failed_terminal_validation",
+  "coverage_valid": "5/60",
+  "attempt_n": 6,
+  "retry_n": 0,
+  "failure_class": "truncation",
+  "failed_blinded_request_id": "H5C15c1c0806478b4",
+  "provider_stop_reason": "max_tokens",
+  "input_tokens_billed": 13421,
+  "output_tokens_billed": 1005,
+  "observed_cost_usd": 0.018446,
+  "generation_hard_cap_usd": 0.441062,
+  "confirmatory_panel_usable": false,
+  "reason": "Frozen zero-retry protocol prohibits resubmission or replacement after terminal truncation."
+}

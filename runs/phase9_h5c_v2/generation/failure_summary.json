@@ -1,0 +1,15 @@
+{
+  "status": "failed_terminal_validation",
+  "coverage_valid": "18/60",
+  "attempt_n": 19,
+  "retry_n": 0,
+  "failure_class": "schema_violation",
+  "failed_blinded_request_id": "H5C2614c77099165b",
+  "provider_stop_reason": "end_turn",
+  "input_tokens_billed": 37757,
+  "output_tokens_billed": 3958,
+  "observed_cost_usd": 0.057547,
+  "generation_hard_cap_usd": 0.597256,
+  "confirmatory_panel_usable": false,
+  "reason": "Response used combined inline citation syntax [E01, E02, E03]; frozen validator requires adjacent tags [E01][E02][E03]. Zero-retry protocol prohibits replacement."
+}

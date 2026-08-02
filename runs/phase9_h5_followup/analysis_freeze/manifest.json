@@ -1,0 +1,17 @@
+{
+  "answer_n": 150,
+  "inputs": {
+    "runs/phase8_r4_improvements/evaluation_r4/per_query.json": "f9a62076537f680125927584ac7283d42c385e5a39eaa29db424a153641ccc2b",
+    "runs/phase8_r4_improvements/generation_r4_freeze/request_plan.jsonl": "7ef4a42f48eb21b439dbf848c1a982e5ea6a27922ff518dd0cd3ad0d934c6ed7",
+    "runs/phase8_r4_improvements/generation_r4_v3_full/combined_100_record_index.jsonl": "991af07c5565d88011a860e6cd6686ac3b6a29050beb8921c7a165f7ded49af7",
+    "runs/phase9_h5_followup/generation_freeze/request_plan.jsonl": "a631dd1fbf706303e37b30c3fe708d942c411d8b3bd2f5cde78e328f28ae62ff"
+  },
+  "mapping_sha256": "d8e36b789c40133a1b006292ddfabddda51e492b7427fb05f08ad5ca02daa2ee",
+  "prompt_version_counts": {
+    "legacy_v1_v2_contract": 50,
+    "v3_semantic_contract": 100
+  },
+  "question_n": 30,
+  "status": "frozen",
+  "workbook_sha256": "3e77d5551779fd0a3a523bc3bde37f30a339b55806afd418527260df56163458"
+}
