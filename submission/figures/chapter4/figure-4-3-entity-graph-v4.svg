@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+<title id="title">Entity Graph v4 construction and retrieval</title>
+<desc id="desc">Offline graph construction and online two-hop query traversal with seed filtering, hub penalty, dual-entity coverage, and lexical fallback.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#476172"/></marker>
+  <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2F6B9A"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#17324D" flood-opacity="0.12"/></filter>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; fill: #17324D; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #587083; }
+    .stage { font-size: 14px; font-weight: 700; letter-spacing: 1.4px; fill: #2F6B9A; }
+    .box-title { font-size: 18px; font-weight: 700; }
+    .body { font-size: 15px; }
+    .small { font-size: 13px; fill: #587083; }
+    .tiny { font-size: 12px; fill: #587083; }
+    .metric { font-size: 16px; font-weight: 700; fill: #2A706B; }
+    .mono { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+  </style>
+</defs>
+<rect width="1400" height="850" fill="#FFFFFF"/>
+<text x="60" y="52" class="title">Entity Graph v4: construction and query-time retrieval</text>
+<text x="60" y="78" class="subtitle">Custom spaCy + NetworkX entity–chunk graph; not Microsoft GraphRAG</text>
+<line x1="60" y1="96" x2="1340" y2="96" stroke="#D6E0E7" stroke-width="2"/>
+<rect x="55" y="125" width="635" height="655" rx="18" fill="#F7FAFC" stroke="#BFCED8" stroke-width="1.5"/>
+<rect x="710" y="125" width="635" height="655" rx="18" fill="#F7FAFC" stroke="#BFCED8" stroke-width="1.5"/>
+<text x="85" y="160" class="stage" text-anchor="start"><tspan x="85" dy="0">OFFLINE INDEX CONSTRUCTION</tspan></text>
+<text x="740" y="160" class="stage" text-anchor="start"><tspan x="740" dy="0">ONLINE QUERY RETRIEVAL</tspan></text>
+<rect x="90" y="195" width="220" height="90" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="90" y="195" width="7" height="90" rx="3" fill="#2F6B9A"/>
+<text x="200.0" y="226" class="box-title" text-anchor="middle"><tspan x="200.0" dy="0">954 chunks</tspan></text>
+<text x="200.0" y="252" class="small" text-anchor="middle"><tspan x="200.0" dy="0">text + metadata</tspan><tspan x="200.0" dy="19">stable chunk IDs</tspan></text>
+<rect x="405" y="195" width="220" height="90" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="405" y="195" width="7" height="90" rx="3" fill="#2A8C82"/>
+<text x="515.0" y="226" class="box-title" text-anchor="middle"><tspan x="515.0" dy="0">Entity extraction</tspan></text>
+<text x="515.0" y="252" class="small" text-anchor="middle"><tspan x="515.0" dy="0">spaCy NER</tspan><tspan x="515.0" dy="19">regex fallback if unavailable</tspan></text>
+<path d="M 310 240 L 405 240" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="90" y="345" width="220" height="95" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<text x="200.0" y="376" class="box-title" text-anchor="middle"><tspan x="200.0" dy="0">Frequency filter</tspan></text>
+<text x="200.0" y="402" class="small" text-anchor="middle"><tspan x="200.0" dy="0">min_entity_freq = 2</tspan><tspan x="200.0" dy="19">co-occurrence window = 2</tspan></text>
+<rect x="405" y="345" width="220" height="95" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="405" y="345" width="7" height="95" rx="3" fill="#2A8C82"/>
+<text x="515.0" y="376" class="box-title" text-anchor="middle"><tspan x="515.0" dy="0">Entity–chunk graph</tspan></text>
+<text x="515.0" y="402" class="small" text-anchor="middle"><tspan x="515.0" dy="0">contains + co_occurs edges</tspan><tspan x="515.0" dy="19">undirected NetworkX graph</tspan></text>
+<path d="M 515 285 L 515 345" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 310 392 L 405 392" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="215" y="510" width="300" height="100" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="215" y="510" width="7" height="100" rx="3" fill="#D99B2B"/>
+<text x="365.0" y="541" class="box-title" text-anchor="middle"><tspan x="365.0" dy="0">Frozen graph artefacts</tspan></text>
+<text x="365.0" y="567" class="small" text-anchor="middle"><tspan x="365.0" dy="0">3,781 nodes · 26,430 edges</tspan><tspan x="365.0" dy="19">graph.gpickle · nodes/edges JSONL</tspan></text>
+<path d="M 515 440 C 455 440, 425 510, 365 510" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="125" cy="680" r="28" fill="#FFFFFF" stroke="#2A8C82" stroke-width="3"/>
+<text x="125" y="684" class="tiny" text-anchor="middle"><tspan x="125" dy="0">entity A</tspan></text>
+<circle cx="260" cy="650" r="28" fill="#FFFFFF" stroke="#2F6B9A" stroke-width="3"/>
+<text x="260" y="654" class="tiny" text-anchor="middle"><tspan x="260" dy="0">chunk 1</tspan></text>
+<circle cx="260" cy="720" r="28" fill="#FFFFFF" stroke="#2F6B9A" stroke-width="3"/>
+<text x="260" y="724" class="tiny" text-anchor="middle"><tspan x="260" dy="0">chunk 2</tspan></text>
+<circle cx="395" cy="680" r="28" fill="#FFFFFF" stroke="#2A8C82" stroke-width="3"/>
+<text x="395" y="684" class="tiny" text-anchor="middle"><tspan x="395" dy="0">entity B</tspan></text>
+<circle cx="530" cy="650" r="28" fill="#FFFFFF" stroke="#2F6B9A" stroke-width="3"/>
+<text x="530" y="654" class="tiny" text-anchor="middle"><tspan x="530" dy="0">chunk 3</tspan></text>
+<line x1="153" y1="680" x2="232" y2="650" stroke="#8AA0AF" stroke-width="2"/>
+<line x1="153" y1="680" x2="232" y2="720" stroke="#8AA0AF" stroke-width="2"/>
+<line x1="288" y1="650" x2="367" y2="680" stroke="#8AA0AF" stroke-width="2"/>
+<line x1="423" y1="680" x2="502" y2="650" stroke="#8AA0AF" stroke-width="2"/>
+<rect x="745" y="195" width="215" height="90" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="745" y="195" width="7" height="90" rx="3" fill="#2F6B9A"/>
+<text x="852.5" y="226" class="box-title" text-anchor="middle"><tspan x="852.5" dy="0">Query text</tspan></text>
+<text x="852.5" y="252" class="small" text-anchor="middle"><tspan x="852.5" dy="0">same entity extractor</tspan><tspan x="852.5" dy="19">normalised seed labels</tspan></text>
+<rect x="1055" y="195" width="245" height="90" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="1055" y="195" width="7" height="90" rx="3" fill="#2A8C82"/>
+<text x="1177.5" y="226" class="box-title" text-anchor="middle"><tspan x="1177.5" dy="0">Seed controls</tspan></text>
+<text x="1177.5" y="252" class="small" text-anchor="middle"><tspan x="1177.5" dy="0">aliases · generic-seed filter</tspan><tspan x="1177.5" dy="19">max 5 query seeds</tspan></text>
+<path d="M 960 240 L 1055 240" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<polygon points="1040,345 1175,410 1040,475 905,410" fill="#FFF7E5" stroke="#D99B2B" stroke-width="1.7"/>
+<text x="1040" y="402" class="box-title" text-anchor="middle"><tspan x="1040" dy="0">valid graph</tspan><tspan x="1040" dy="21">seed found?</tspan></text>
+<path d="M 1175 410 L 1285 410" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1230.0" y="402.0" class="tiny" text-anchor="middle"><tspan x="1230.0" dy="0">no</tspan></text>
+<rect x="1180" y="495" width="130" height="82" rx="12" fill="#FCEEEE" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="1180" y="495" width="7" height="82" rx="3" fill="#B85C5C"/>
+<text x="1245.0" y="526" class="box-title" text-anchor="middle"><tspan x="1245.0" dy="0">BM25 fallback</tspan></text>
+<text x="1245.0" y="552" class="small" text-anchor="middle"><tspan x="1245.0" dy="0">lexical results</tspan></text>
+<path d="M 1285 410 C 1250 410, 1280 495, 1245 495" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1040 475 L 1040 535" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1040.0" y="497.0" class="tiny" text-anchor="middle"><tspan x="1040.0" dy="0">yes</tspan></text>
+<rect x="810" y="535" width="460" height="105" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="810" y="535" width="7" height="105" rx="3" fill="#2A8C82"/>
+<text x="1040.0" y="566" class="box-title" text-anchor="middle"><tspan x="1040.0" dy="0">Two-hop traversal + scoring</tspan></text>
+<text x="1040.0" y="592" class="small" text-anchor="middle"><tspan x="1040.0" dy="0">hop decay 0.5 · hub penalty</tspan><tspan x="1040.0" dy="19">dual-entity coverage · matched-entity evidence</tspan></text>
+<rect x="865" y="690" width="350" height="65" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="865" y="690" width="7" height="65" rx="3" fill="#2F6B9A"/>
+<text x="1040.0" y="721" class="box-title" text-anchor="middle"><tspan x="1040.0" dy="0">Ranked top-50 chunks</tspan></text>
+<text x="1040.0" y="747" class="small" text-anchor="middle"><tspan x="1040.0" dy="0">trace logs seeds, hops, fallback</tspan></text>
+<path d="M 1040 640 L 1040 690" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1245 577 C 1205 577, 1255 722, 1215 722" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+</svg>

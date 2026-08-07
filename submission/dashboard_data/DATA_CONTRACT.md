@@ -1,58 +1,45 @@
-# Dashboard data handoff
+# Final dissertation dashboard data contract
 
-This directory contains frontend-neutral, evidence-backed data for rebuilding dissertation
-dashboard. It does not contain layout, styling, or UI code.
+Dashboard presents three retrieval evidence tiers plus Phase 9 generation evidence. It must not
+merge tiers into one leaderboard or promote exploratory results to confirmatory claims.
 
-## Required framing
+## Evidence hierarchy
 
-Dashboard must open on human-validated V2 pilot. Phase 8 R4 must appear as separate human-owner-
-validated exploratory scaling view. Never merge pilot and R4 metrics into one leaderboard.
+1. **R4 main benchmark:** 130 documents, 954 chunks, 100 questions (60 development, 40 locked).
+   Dashboard opens on locked-test results. Prompt-RAG appears here because its complete R4 run is
+   valid for benchmark comparison.
+2. **Independent holdout:** 12 frozen questions and 21 relevance judgements. This is canonical for
+   final H1–H4 verdicts. Prompt-RAG is excluded because the zero-retry execution contract was not
+   completed.
+3. **Legacy pilot:** 22 documents, 140 chunks, 34 questions. Retain only as development provenance;
+   never use it as the default leaderboard or final hypothesis evidence.
+4. **Phase 9 H5 panel:** 150 answers, 301 scored claims, and 69 abstentions. H5 is **not estimable**
+   because faithfulness SD (0.0111) failed the preregistered 0.10 variation gate.
 
-- **Pilot:** 22 documents, 140 chunks, 34 questions, 755 human relevance labels.
-- **R4:** 130 documents, 954 chunks, 100 primary questions, 140 owner-reviewed mappings.
-- **R4 synthesis:** 20 owner-reviewed candidates (12 accept, 4 revise, 4 reject), excluded from
-  primary five-category metrics.
-- **Pilot generation:** 26 human-owner labels plus 144 disclosed AI labels.
-- **R4 generation:** 100 owner-reviewed labels; prior AI labels preserved only for comparison.
+## Final dashboard files
 
-## Files
-
-| File | Dashboard use |
+| File | Purpose |
 |---|---|
-| `dashboard_payload_v2.json` | Single-load payload containing all normalized summaries |
-| `scope_comparison.csv` | Pilot-versus-R4 scale cards |
-| `retrieval_metrics.csv` | Aggregate leaderboards and metric selectors |
-| `category_metrics.csv` | Category heatmaps and system profiles |
-| `query_metrics.csv` | 670 query-system rows for drill-down and failure analysis |
-| `generation_quality.csv` | Six-dimension answer-quality comparison |
-| `h5_correlations.csv` | Retrieval-to-generation association panel |
-| `r4_pairwise_statistics.csv` | Exploratory R4 forest/table view |
-| `operations_cost_latency.csv` | Cost, validity, retry, and latency cards |
-| `validation_status.csv` | Mandatory human/AI provenance badges |
-| `manifest.json` | Source and generated-file SHA-256 hashes |
+| `../dashboard/index.html` | Standalone responsive interface |
+| `../dashboard/data.js` | Browser-ready payload generated only from frozen artifacts |
+| `../../scripts/build_final_dashboard_data.py` | Deterministic payload builder |
 
-## Recommended screens
-
-1. **Overview:** scope, validation badges, core finding, pilot/R4 toggle.
-2. **Retrieval:** aggregate leaderboard, metric selector, category heatmap.
-3. **Hypotheses:** pilot H1–H4 outcomes and separate R4 exploratory comparisons.
-4. **Generation:** correctness, faithfulness, completeness, citations, unsupported claims,
-   abstention.
-5. **Operations:** latency, cost, failures, retries, model disclosure.
-6. **Evidence:** source paths, hashes, limitations, downloadable human-review packages.
-
-## Hard UI rules
-
-- Show claim-class badge beside every chart: `CANONICAL`, `MIXED LABELS`, `OWNER VALIDATED`, or
-  `EXPLORATORY`.
-- Default to locked-test R4 metrics when R4 selected; label all-100 and development values clearly.
-- Never show missing latency as zero.
-- R4 is owner validated but remains exploratory because design/statistics were not preregistered.
-- Never include 20 synthesis candidates in primary R4 five-category totals.
-- Never present R4 pairwise tests as preregistered H1–H4 confirmation.
-
-Rebuild with:
+Rebuild from repository root:
 
 ```bash
-python scripts/build_dashboard_data_handoff.py
+python scripts/build_final_dashboard_data.py
 ```
+
+## Required presentation rules
+
+- Label locked test `n=40` and holdout `n=12` at point of use.
+- State directional or inconclusive verdicts exactly; do not convert them into confirmations.
+- Show Prompt-RAG in R4 and mark it excluded in holdout.
+- Do not interpret H5's correlation after its variation gate failed.
+- Show abstention as dominant generation failure mode; do not describe it as hallucination.
+- Preserve exact FAISS description: normalized 384-dimensional embeddings with `IndexFlatIP`,
+  equivalent to exact cosine search.
+- Expose source artifact paths and repository commit in evidence view.
+
+Files elsewhere in `submission/dashboard_data/` are historical handoff artifacts. They remain for
+provenance but do not override this final contract or `submission/dashboard/data.js`.
