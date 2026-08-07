@@ -1,11 +1,23 @@
 {
-  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "configuration_hash": "e7800874c9f8ce807c9f84cb87ceff69ff1830356552bfe24476d9877e234ba6",
   "embedding_dim": 384,
-  "num_chunks": 856,
   "index_type": "IndexFlatL2",
-  "similarity_metric": "l2",
+  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
   "normalize_embeddings": false,
-  "query_prefix": "",
+  "num_chunks": 856,
+  "package_versions": {
+    "faiss-cpu": "1.14.3",
+    "numpy": "2.4.6",
+    "sentence-transformers": "5.6.0"
+  },
   "passage_prefix": "",
-  "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  "provenance": {
+    "chunks_file_sha256": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "corpus_content_sha256": "c68110de01404c2d4a80cfa2e5c389ce00d27931941ca28563b61bd2250bdf18",
+    "num_chunks": 856,
+    "ordered_chunk_ids_sha256": "f3f263fb07ac3ef59d64290bfed29b8b7a4601d1096c3b33693249b6dae6284f"
+  },
+  "query_prefix": "",
+  "similarity_metric": "l2"
 }

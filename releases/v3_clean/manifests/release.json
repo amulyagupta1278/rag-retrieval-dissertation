@@ -16,7 +16,7 @@
   "graph_nodes": 3666,
   "human_graph_name": "Entity-Co-occurrence Graph Retrieval",
   "legacy_graph_key": "graphrag",
-  "qa_sha256": "588de4621ed1428aa252d7a1f4925ee816ec477f9316c5c23ed85b3f29655c21",
+  "qa_sha256": "3de1354be8774d7231b9c52b156576b27307ee00b3d218cb0fb5c9a9c645c685",
   "qrels": 140,
   "qrels_sha256": "9029571778ea22eef1fa3864ec12d1bb41d54f66e624cfa82fa47626c1ec06d4",
   "queries": 100,

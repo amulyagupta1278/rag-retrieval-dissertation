@@ -27,3 +27,11 @@ graphrag:  # legacy machine key: Entity-Co-occurrence Graph Retrieval, not Micro
   graph_path: "indexes/graphrag/graph.gpickle"
   nodes_path: "indexes/graphrag/nodes.jsonl"
   edges_path: "indexes/graphrag/edges.jsonl"
+  # G0 historical behavior. G1-G5 enable these only in versioned model-selection runs.
+  seed_filtering: false
+  use_aliases: false
+  hub_penalty: false
+  dual_entity_coverage: false
+  lexical_fallback: false
+  max_seeds: 5
+  hop_decay: 0.5
