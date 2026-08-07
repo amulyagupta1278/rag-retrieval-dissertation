@@ -1,0 +1,213 @@
+{
+  "latency_seconds": 14.142927,
+  "query_id": "holdout_012",
+  "request_sha256": "5954a5e340ff95f45709e09dd64a69a83269ecd4cb31b9518f41ed599415727a",
+  "results": [
+    {
+      "chunk_id": "r4chunk_8f6ba9951c7e",
+      "rank": 1,
+      "score": 3
+    },
+    {
+      "chunk_id": "r4chunk_eff90d218b78",
+      "rank": 2,
+      "score": 3
+    },
+    {
+      "chunk_id": "r4chunk_906fa61815bd",
+      "rank": 3,
+      "score": 2
+    },
+    {
+      "chunk_id": "r4chunk_a0900cbfdc60",
+      "rank": 4,
+      "score": 2
+    },
+    {
+      "chunk_id": "r4chunk_387eddbba0b4",
+      "rank": 5,
+      "score": 1
+    },
+    {
+      "chunk_id": "r4chunk_028379ec7dea",
+      "rank": 6,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_078a27b45d75",
+      "rank": 7,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_0889961e8643",
+      "rank": 8,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_0ab7135cbda5",
+      "rank": 9,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_0c45fda89660",
+      "rank": 10,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_0e1ab4dd4ee2",
+      "rank": 11,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_1380ce56c853",
+      "rank": 12,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_167ab6155c9c",
+      "rank": 13,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_16bffa4b8a75",
+      "rank": 14,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_1cb80fe5a6a8",
+      "rank": 15,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_2a610c6635a8",
+      "rank": 16,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_2b40f1a0d960",
+      "rank": 17,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_36d562c0b61a",
+      "rank": 18,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_3e67e99a8124",
+      "rank": 19,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_424b2d053e57",
+      "rank": 20,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_50dd73312f6a",
+      "rank": 21,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_5a432f966c19",
+      "rank": 22,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_5c6f3cb600c9",
+      "rank": 23,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_5fde8f454955",
+      "rank": 24,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_79818ac3f5f8",
+      "rank": 25,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_7f796034d336",
+      "rank": 26,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_846475871808",
+      "rank": 27,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_85a3b08e7b17",
+      "rank": 28,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_93f290b4c076",
+      "rank": 29,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_9893e0de5772",
+      "rank": 30,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_9aa3758f45fd",
+      "rank": 31,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_bdef36958205",
+      "rank": 32,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_be06a5d0c086",
+      "rank": 33,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_c164761dee8c",
+      "rank": 34,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_c3702a74777e",
+      "rank": 35,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_e4d2d2eb7836",
+      "rank": 36,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_eaf049682fbc",
+      "rank": 37,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_eb4fb57e4e76",
+      "rank": 38,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_f36a38e777ed",
+      "rank": 39,
+      "score": 0
+    },
+    {
+      "chunk_id": "r4chunk_f84cebd0691e",
+      "rank": 40,
+      "score": 0
+    }
+  ],
+  "retriever": "prompt_rag_claude",
+  "top_k": 40,
+  "usage": {
+    "input_tokens": 20351,
+    "output_tokens": 657
+  }
+}

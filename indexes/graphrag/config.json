@@ -1,0 +1,21 @@
+{
+  "configuration_hash": "7146c6a9a06d0d5f4c699691918403019b8b4d6a4c008e66f8b102fb418c9b5b",
+  "edges": 25127,
+  "entity_model": "en_core_web_sm",
+  "human_name": "Entity-Co-occurrence Graph Retrieval",
+  "max_hop": 2,
+  "min_entity_freq": 2,
+  "nodes": 3666,
+  "package_versions": {
+    "networkx": "3.6.1",
+    "spacy": "3.8.14"
+  },
+  "provenance": {
+    "chunks_file_sha256": "b14fe2acf00e9d946f01043e8a3264c56965df87d84825ad920330f0b6bebe3d",
+    "corpus_content_sha256": "c68110de01404c2d4a80cfa2e5c389ce00d27931941ca28563b61bd2250bdf18",
+    "num_chunks": 856,
+    "ordered_chunk_ids_sha256": "f3f263fb07ac3ef59d64290bfed29b8b7a4601d1096c3b33693249b6dae6284f"
+  },
+  "relation_window": 2,
+  "retriever": "graphrag"
+}
