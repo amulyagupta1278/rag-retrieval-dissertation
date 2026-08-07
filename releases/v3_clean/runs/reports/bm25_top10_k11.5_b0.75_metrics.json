@@ -37,7 +37,7 @@
         "5": 0.196,
         "10": 0.111
       },
-      "avg_latency_ms": 1.1,
+      "avg_latency_ms": 1.65,
       "extra": {}
     },
     {
@@ -69,7 +69,7 @@
         "5": 0.19,
         "10": 0.1
       },
-      "avg_latency_ms": 0.72,
+      "avg_latency_ms": 1.2,
       "extra": {}
     },
     {
@@ -101,7 +101,7 @@
         "5": 0.11,
         "10": 0.075
       },
-      "avg_latency_ms": 0.4,
+      "avg_latency_ms": 0.53,
       "extra": {}
     },
     {
@@ -133,7 +133,7 @@
         "5": 0.08,
         "10": 0.045
       },
-      "avg_latency_ms": 1.14,
+      "avg_latency_ms": 1.49,
       "extra": {}
     },
     {
@@ -165,7 +165,7 @@
         "5": 0.26,
         "10": 0.155
       },
-      "avg_latency_ms": 1.72,
+      "avg_latency_ms": 2.63,
       "extra": {}
     },
     {
@@ -197,7 +197,7 @@
         "5": 0.34,
         "10": 0.18
       },
-      "avg_latency_ms": 1.5,
+      "avg_latency_ms": 2.39,
       "extra": {}
     }
   ]

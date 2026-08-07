@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+<title id="title">Component and deployment view</title>
+<desc id="desc">Single-host research deployment with persistent artefacts, in-process retrieval and evaluation modules, and external Claude API.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#476172"/></marker>
+  <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2F6B9A"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#17324D" flood-opacity="0.12"/></filter>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; fill: #17324D; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #587083; }
+    .stage { font-size: 14px; font-weight: 700; letter-spacing: 1.4px; fill: #2F6B9A; }
+    .box-title { font-size: 18px; font-weight: 700; }
+    .body { font-size: 15px; }
+    .small { font-size: 13px; fill: #587083; }
+    .tiny { font-size: 12px; fill: #587083; }
+    .metric { font-size: 16px; font-weight: 700; fill: #2A706B; }
+    .mono { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+  </style>
+</defs>
+<rect width="1400" height="850" fill="#FFFFFF"/>
+<text x="60" y="52" class="title">Component and deployment view</text>
+<text x="60" y="78" class="subtitle">Research deployment boundary and production-scaling substitutions</text>
+<line x1="60" y1="96" x2="1340" y2="96" stroke="#D6E0E7" stroke-width="2"/>
+<rect x="55" y="125" width="1015" height="650" rx="22" fill="#F8FBFD" stroke="#2F6B9A" stroke-width="2"/>
+<text x="85" y="160" class="stage" text-anchor="start"><tspan x="85" dy="0">SINGLE RESEARCH HOST</tspan></text>
+<rect x="85" y="190" width="360" height="535" rx="16" fill="#FFFFFF" stroke="#BFCED8" stroke-width="1.5"/>
+<text x="115" y="225" class="stage" text-anchor="start"><tspan x="115" dy="0">PERSISTENT ARTEFACTS</tspan></text>
+<rect x="115" y="255" width="300" height="78" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="115" y="255" width="7" height="78" rx="3" fill="#2F6B9A"/>
+<text x="265.0" y="286" class="box-title" text-anchor="middle"><tspan x="265.0" dy="0">Chunk manifest</tspan></text>
+<text x="265.0" y="312" class="small" text-anchor="middle"><tspan x="265.0" dy="0">954-row JSONL</tspan><tspan x="265.0" dy="19">provenance hashes</tspan></text>
+<rect x="115" y="355" width="300" height="78" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="115" y="355" width="7" height="78" rx="3" fill="#2F6B9A"/>
+<text x="265.0" y="386" class="box-title" text-anchor="middle"><tspan x="265.0" dy="0">BM25 index</tspan></text>
+<text x="265.0" y="412" class="small" text-anchor="middle"><tspan x="265.0" dy="0">pickled rank-bm25</tspan><tspan x="265.0" dy="19">k1 1.2 · b 0.75</tspan></text>
+<rect x="115" y="455" width="300" height="78" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="115" y="455" width="7" height="78" rx="3" fill="#2F6B9A"/>
+<text x="265.0" y="486" class="box-title" text-anchor="middle"><tspan x="265.0" dy="0">FAISS index</tspan></text>
+<text x="265.0" y="512" class="small" text-anchor="middle"><tspan x="265.0" dy="0">IndexFlatIP + vectors</tspan><tspan x="265.0" dy="19">normalised cosine</tspan></text>
+<rect x="115" y="555" width="300" height="78" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="115" y="555" width="7" height="78" rx="3" fill="#2F6B9A"/>
+<text x="265.0" y="586" class="box-title" text-anchor="middle"><tspan x="265.0" dy="0">Graph store</tspan></text>
+<text x="265.0" y="612" class="small" text-anchor="middle"><tspan x="265.0" dy="0">NetworkX pickle</tspan><tspan x="265.0" dy="19">3,781 nodes · 26,430 edges</tspan></text>
+<rect x="115" y="655" width="300" height="78" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="115" y="655" width="7" height="78" rx="3" fill="#2F6B9A"/>
+<text x="265.0" y="686" class="box-title" text-anchor="middle"><tspan x="265.0" dy="0">Experiment records</tspan></text>
+<text x="265.0" y="712" class="small" text-anchor="middle"><tspan x="265.0" dy="0">configs · rankings · traces · metrics</tspan></text>
+<rect x="480" y="190" width="550" height="535" rx="16" fill="#FFFFFF" stroke="#BFCED8" stroke-width="1.5"/>
+<text x="510" y="225" class="stage" text-anchor="start"><tspan x="510" dy="0">IN-PROCESS COMPONENTS</tspan></text>
+<rect x="520" y="265" width="210" height="90" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="520" y="265" width="7" height="90" rx="3" fill="#2F6B9A"/>
+<text x="625.0" y="296" class="box-title" text-anchor="middle"><tspan x="625.0" dy="0">Retrievers</tspan></text>
+<text x="625.0" y="322" class="small" text-anchor="middle"><tspan x="625.0" dy="0">BM25 · FAISS</tspan><tspan x="625.0" dy="19">Entity Graph v4</tspan></text>
+<rect x="790" y="265" width="200" height="90" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="790" y="265" width="7" height="90" rx="3" fill="#D99B2B"/>
+<text x="890.0" y="296" class="box-title" text-anchor="middle"><tspan x="890.0" dy="0">Second stage</tspan></text>
+<text x="890.0" y="322" class="small" text-anchor="middle"><tspan x="890.0" dy="0">weighted hybrid</tspan><tspan x="890.0" dy="19">Prompt-RAG client</tspan></text>
+<rect x="520" y="425" width="210" height="90" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="520" y="425" width="7" height="90" rx="3" fill="#2A8C82"/>
+<text x="625.0" y="456" class="box-title" text-anchor="middle"><tspan x="625.0" dy="0">Experiment runner</tspan></text>
+<text x="625.0" y="482" class="small" text-anchor="middle"><tspan x="625.0" dy="0">frozen query tiers</tspan><tspan x="625.0" dy="19">zero-retry controls</tspan></text>
+<rect x="790" y="425" width="200" height="90" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="790" y="425" width="7" height="90" rx="3" fill="#2A8C82"/>
+<text x="890.0" y="456" class="box-title" text-anchor="middle"><tspan x="890.0" dy="0">Metrics + statistics</tspan></text>
+<text x="890.0" y="482" class="small" text-anchor="middle"><tspan x="890.0" dy="0">IR metrics</tspan><tspan x="890.0" dy="19">bootstrap analysis</tspan></text>
+<rect x="650" y="590" width="220" height="82" rx="12" fill="#F6EEF8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="650" y="590" width="7" height="82" rx="3" fill="#8B5E9C"/>
+<text x="760.0" y="621" class="box-title" text-anchor="middle"><tspan x="760.0" dy="0">Generation client</tspan></text>
+<text x="760.0" y="647" class="small" text-anchor="middle"><tspan x="760.0" dy="0">H5 answer requests</tspan><tspan x="760.0" dy="19">schema validation</tspan></text>
+<path d="M 730 310 L 790 310" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 625 355 L 625 425" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 730 470 L 790 470" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 890 515 C 870 515, 850 590, 830 590" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 415 294 L 520 310" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 415 394 L 520 310" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 415 494 L 520 310" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 415 594 L 520 310" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 415 694 L 520 470" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<rect x="1120" y="200" width="225" height="170" rx="16" fill="#F6EEF8" stroke="#8B5E9C" stroke-width="1.7"/>
+<text x="1232" y="238" class="stage" text-anchor="middle"><tspan x="1232" dy="0">EXTERNAL SERVICE</tspan></text>
+<text x="1232" y="282" class="box-title" text-anchor="middle"><tspan x="1232" dy="0">Anthropic Claude API</tspan></text>
+<text x="1232" y="315" class="small" text-anchor="middle"><tspan x="1232" dy="0">Prompt-RAG reranking</tspan><tspan x="1232" dy="21">H5 answer generation</tspan></text>
+<path d="M 990 310 L 1120 285" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)" stroke-dasharray="7 6"/>
+<path d="M 870 630 C 960 630, 1030 325, 1120 325" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)" stroke-dasharray="7 6"/>
+<rect x="1120" y="430" width="225" height="295" rx="16" fill="#FFF9E8" stroke="#D99B2B" stroke-width="1.7" stroke-dasharray="8 6"/>
+<text x="1232" y="468" class="stage" text-anchor="middle"><tspan x="1232" dy="0">PRODUCTION SCALE</tspan></text>
+<text x="1145" y="515" class="body" text-anchor="start"><tspan x="1145" dy="0">① IndexFlatIP</tspan><tspan x="1145" dy="23">→ exact vector index</tspan><tspan x="1145" dy="23"></tspan><tspan x="1145" dy="23">② NetworkX pickle</tspan><tspan x="1145" dy="23">→ persistent graph store</tspan><tspan x="1145" dy="23"></tspan><tspan x="1145" dy="23">③ direct API calls</tspan><tspan x="1145" dy="23">→ cache + batch queue</tspan></text>
+<rect x="1130" y="665" width="205" height="63" rx="9" fill="#FFF9E8" stroke="#D99B2B" stroke-width="1.2"/>
+<circle cx="1148" cy="685" r="6" fill="#D99B2B"/>
+<text x="1164" y="686" class="tiny" text-anchor="start"><tspan x="1164" dy="0">Scaling changes throughput</tspan><tspan x="1164" dy="18">not reported comparisons.</tspan></text>
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+<title id="title">Generation and H5 faithfulness evaluation</title>
+<desc id="desc">Five retrieval systems supply top-three evidence for 150 generated answers, blinded claim review, adjudication, and gated H5 bootstrap analysis.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#476172"/></marker>
+  <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2F6B9A"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#17324D" flood-opacity="0.12"/></filter>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; fill: #17324D; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #587083; }
+    .stage { font-size: 14px; font-weight: 700; letter-spacing: 1.4px; fill: #2F6B9A; }
+    .box-title { font-size: 18px; font-weight: 700; }
+    .body { font-size: 15px; }
+    .small { font-size: 13px; fill: #587083; }
+    .tiny { font-size: 12px; fill: #587083; }
+    .metric { font-size: 16px; font-weight: 700; fill: #2A706B; }
+    .mono { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+  </style>
+</defs>
+<rect width="1400" height="850" fill="#FFFFFF"/>
+<text x="60" y="52" class="title">Generation layer and H5 faithfulness evaluation</text>
+<text x="60" y="78" class="subtitle">Claim-level grounding study; abstention recorded separately from unfaithfulness</text>
+<line x1="60" y1="96" x2="1340" y2="96" stroke="#D6E0E7" stroke-width="2"/>
+<rect x="55" y="160" width="205" height="125" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="55" y="160" width="7" height="125" rx="3" fill="#2F6B9A"/>
+<text x="157.5" y="191" class="box-title" text-anchor="middle"><tspan x="157.5" dy="0">Retrieval panel</tspan></text>
+<text x="157.5" y="217" class="small" text-anchor="middle"><tspan x="157.5" dy="0">30 questions × 5 systems</tspan><tspan x="157.5" dy="19">top-10 rankings retained</tspan><tspan x="157.5" dy="19">top-3 chunks supplied</tspan></text>
+<rect x="325" y="160" width="220" height="125" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="325" y="160" width="7" height="125" rx="3" fill="#D99B2B"/>
+<text x="435.0" y="191" class="box-title" text-anchor="middle"><tspan x="435.0" dy="0">Prompt assembler</tspan></text>
+<text x="435.0" y="217" class="small" text-anchor="middle"><tspan x="435.0" dy="0">question + evidence E01–E03</tspan><tspan x="435.0" dy="19">answer only from evidence</tspan><tspan x="435.0" dy="19">explicit abstention allowed</tspan></text>
+<rect x="610" y="160" width="220" height="125" rx="12" fill="#F6EEF8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="610" y="160" width="7" height="125" rx="3" fill="#8B5E9C"/>
+<text x="720.0" y="191" class="box-title" text-anchor="middle"><tspan x="720.0" dy="0">Claude generation</tspan></text>
+<text x="720.0" y="217" class="small" text-anchor="middle"><tspan x="720.0" dy="0">Haiku 4.5 · temperature 0</tspan><tspan x="720.0" dy="19">fixed decoding per stratum</tspan><tspan x="720.0" dy="19">zero retries</tspan></text>
+<rect x="850" y="145" width="220" height="155" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="850" y="145" width="7" height="155" rx="3" fill="#2A8C82"/>
+<text x="960.0" y="176" class="box-title" text-anchor="middle"><tspan x="960.0" dy="0">150 frozen outputs</tspan></text>
+<text x="960.0" y="202" class="small" text-anchor="middle"><tspan x="960.0" dy="0">100 V3 records</tspan><tspan x="960.0" dy="19">50 legacy-contract records</tspan><tspan x="960.0" dy="19">prompt strata disclosed</tspan><tspan x="960.0" dy="19">answer + evidence IDs</tspan></text>
+<path d="M 260 222 L 325 222" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<path d="M 545 222 L 610 222" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<path d="M 830 222 L 850 222" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<polygon points="1210,160 1325,222 1210,284 1095,222" fill="#FFF7E5" stroke="#D99B2B" stroke-width="1.7"/>
+<text x="1210" y="215" class="box-title" text-anchor="middle"><tspan x="1210" dy="0">verifiable</tspan><tspan x="1210" dy="21">claim?</tspan></text>
+<path d="M 1070 222 L 1095 222" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1065" y="365" width="260" height="90" rx="12" fill="#F4F7FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="1065" y="365" width="7" height="90" rx="3" fill="#7A8994"/>
+<text x="1195.0" y="396" class="box-title" text-anchor="middle"><tspan x="1195.0" dy="0">69 abstentions</tspan></text>
+<text x="1195.0" y="422" class="small" text-anchor="middle"><tspan x="1195.0" dy="0">no verifiable claim</tspan><tspan x="1195.0" dy="19">excluded from faithfulness score</tspan></text>
+<path d="M 1210 284 L 1195 365" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="790" y="365" width="215" height="90" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="790" y="365" width="7" height="90" rx="3" fill="#2A8C82"/>
+<text x="897.5" y="396" class="box-title" text-anchor="middle"><tspan x="897.5" dy="0">81 claim-bearing answers</tspan></text>
+<text x="897.5" y="422" class="small" text-anchor="middle"><tspan x="897.5" dy="0">301 verifiable claims</tspan></text>
+<path d="M 1095 222 C 1045 222, 948 365, 898 365" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="480" y="350" width="230" height="120" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="480" y="350" width="7" height="120" rx="3" fill="#2F6B9A"/>
+<text x="595.0" y="381" class="box-title" text-anchor="middle"><tspan x="595.0" dy="0">Blinded Reviewer A</tspan></text>
+<text x="595.0" y="407" class="small" text-anchor="middle"><tspan x="595.0" dy="0">fully supported</tspan><tspan x="595.0" dy="19">partially supported</tspan><tspan x="595.0" dy="19">unsupported · contradicted</tspan></text>
+<rect x="480" y="515" width="230" height="120" rx="12" fill="#EEF0FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="480" y="515" width="7" height="120" rx="3" fill="#5966A8"/>
+<text x="595.0" y="546" class="box-title" text-anchor="middle"><tspan x="595.0" dy="0">Blinded Reviewer B</tspan></text>
+<text x="595.0" y="572" class="small" text-anchor="middle"><tspan x="595.0" dy="0">same claim-level rubric</tspan><tspan x="595.0" dy="19">independent review record</tspan></text>
+<path d="M 790 405 L 710 410" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 790 430 C 750 430, 750 575, 710 575" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="785" y="515" width="230" height="120" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="785" y="515" width="7" height="120" rx="3" fill="#D99B2B"/>
+<text x="900.0" y="546" class="box-title" text-anchor="middle"><tspan x="900.0" dy="0">Adjudication + seal</tspan></text>
+<text x="900.0" y="572" class="small" text-anchor="middle"><tspan x="900.0" dy="0">final claim counts</tspan><tspan x="900.0" dy="19">answer slot → system map</tspan><tspan x="900.0" dy="19">retrieval metrics joined last</tspan></text>
+<path d="M 710 410 C 750 410, 745 555, 785 555" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 710 575 L 785 595" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1090" y="520" width="235" height="130" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="1090" y="520" width="7" height="130" rx="3" fill="#2A8C82"/>
+<text x="1207.5" y="551" class="box-title" text-anchor="middle"><tspan x="1207.5" dy="0">H5 bootstrap analysis</tspan></text>
+<text x="1207.5" y="577" class="small" text-anchor="middle"><tspan x="1207.5" dy="0">faithfulness = (full + .5 partial)/claims</tspan><tspan x="1207.5" dy="19">Spearman ρ vs retrieval metrics</tspan><tspan x="1207.5" dy="19">10,000 question-cluster samples</tspan></text>
+<path d="M 1015 575 L 1090 585" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<rect x="60" y="540" width="350" height="63" rx="9" fill="#FFF9E8" stroke="#D99B2B" stroke-width="1.2"/>
+<circle cx="78" cy="560" r="6" fill="#D99B2B"/>
+<text x="94" y="561" class="tiny" text-anchor="start"><tspan x="94" dy="0">Estimability gates</tspan><tspan x="94" dy="18">coverage ≥ 0.80 · SD ≥ 0.10 · ≥3 values</tspan></text>
+<rect x="65" y="685" width="235" height="30" rx="15" fill="#E7F2F1"/>
+<text x="182.5" y="705" text-anchor="middle" style="font: 700 13px Arial; fill:#2A706B">300 full · 1 partial</text>
+<rect x="325" y="685" width="210" height="30" rx="15" fill="#E7F2F1"/>
+<text x="430.0" y="705" text-anchor="middle" style="font: 700 13px Arial; fill:#2A706B">0 unsupported</text>
+<rect x="560" y="685" width="210" height="30" rx="15" fill="#E7F2F1"/>
+<text x="665.0" y="705" text-anchor="middle" style="font: 700 13px Arial; fill:#2A706B">0 contradicted</text>
+<rect x="795" y="685" width="220" height="30" rx="15" fill="#E7F2F1"/>
+<text x="905.0" y="705" text-anchor="middle" style="font: 700 13px Arial; fill:#2A706B">faithfulness SD 0.0111</text>
+<rect x="1040" y="680" width="285" height="56" rx="12" fill="#FCEEEE" stroke="#B85C5C" stroke-width="1.5"/>
+<text x="1182" y="705" class="body" text-anchor="middle"><tspan x="1182" dy="0">H5 verdict: NOT ESTIMABLE</tspan><tspan x="1182" dy="21">range-restriction gate failed</tspan></text>
+</svg>

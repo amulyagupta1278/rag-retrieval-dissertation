@@ -12,3 +12,18 @@ evaluation:
   qrels_path: "data/qrels/qrels.tsv"
   qa_dataset_path: "data/queries/qa_dataset.jsonl"
   query_categories_path: "data/queries/query_categories.json"
+  primary_metric: ndcg_at_10
+  relevance_scale: binary_0_1
+  paired_bootstrap_samples: 10000
+  randomization_samples: 10000
+  random_seed: 42
+  holm_alpha: 0.05
+  development_folds: 5
+  latency:
+    warmup_queries: 5
+    repetitions: 5
+  hypothesis_contract:
+    h1_noninferiority_margin: 0.03
+    h2_min_ndcg_gain: 0.01
+    h3_min_ndcg_gain: 0.01
+    mixed_when_direction_positive_but_inconclusive: true

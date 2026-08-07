@@ -1,0 +1,166 @@
+{
+  "abstention_n": 69,
+  "answer_n": 81,
+  "bootstrap": {
+    "samples": 10000,
+    "seed": 42,
+    "unit": "whole question preserving five-system panel"
+  },
+  "by_category": {
+    "entity_relation": {
+      "abstention_rate": 0.9,
+      "answer_n": 3,
+      "answer_rate": 0.1,
+      "n": 30
+    },
+    "exact_match": {
+      "abstention_rate": 0.06666666666666665,
+      "answer_n": 28,
+      "answer_rate": 0.9333333333333333,
+      "n": 30
+    },
+    "multi_hop": {
+      "abstention_rate": 0.8333333333333334,
+      "answer_n": 5,
+      "answer_rate": 0.16666666666666666,
+      "n": 30
+    },
+    "paraphrase": {
+      "abstention_rate": 0.06666666666666665,
+      "answer_n": 28,
+      "answer_rate": 0.9333333333333333,
+      "n": 30
+    },
+    "terminology_heavy": {
+      "abstention_rate": 0.43333333333333335,
+      "answer_n": 17,
+      "answer_rate": 0.5666666666666667,
+      "n": 30
+    }
+  },
+  "by_prompt_version": {
+    "legacy_v1_v2_contract": {
+      "abstention_rate": 0.4,
+      "answer_n": 30,
+      "answer_rate": 0.6,
+      "n": 50
+    },
+    "v3_semantic_contract": {
+      "abstention_rate": 0.49,
+      "answer_n": 51,
+      "answer_rate": 0.51,
+      "n": 100
+    }
+  },
+  "by_system": {
+    "bm25": {
+      "abstention_rate": 0.5,
+      "answer_n": 15,
+      "answer_rate": 0.5,
+      "n": 30
+    },
+    "faiss_cosine": {
+      "abstention_rate": 0.4666666666666667,
+      "answer_n": 16,
+      "answer_rate": 0.5333333333333333,
+      "n": 30
+    },
+    "graph_v4": {
+      "abstention_rate": 0.4666666666666667,
+      "answer_n": 16,
+      "answer_rate": 0.5333333333333333,
+      "n": 30
+    },
+    "hybrid_r4": {
+      "abstention_rate": 0.5,
+      "answer_n": 15,
+      "answer_rate": 0.5,
+      "n": 30
+    },
+    "prompt_rag_claude": {
+      "abstention_rate": 0.3666666666666667,
+      "answer_n": 19,
+      "answer_rate": 0.6333333333333333,
+      "n": 30
+    }
+  },
+  "confirmatory_use": "prohibited; H5b was formulated after observing H5 ceiling effect",
+  "hypothesis": "H5b: retrieval quality affects answer coverage/abstention more strongly than faithfulness",
+  "metric_associations": {
+    "mrr@10": {
+      "high_minus_low_answer_rate": -0.12385919165580184,
+      "high_minus_low_answer_rate_bootstrap_valid_n": 10000,
+      "high_minus_low_answer_rate_ci95": [
+        -0.40429791994036546,
+        0.21105144855144842
+      ],
+      "high_quartile_answer_rate": 0.4915254237288136,
+      "low_quartile_answer_rate": 0.6153846153846154,
+      "mean_difference_answered_minus_abstained": -0.07491501162998748,
+      "mean_difference_answered_minus_abstained_bootstrap_valid_n": 10000,
+      "mean_difference_answered_minus_abstained_ci95": [
+        -0.27268804112554107,
+        0.13093564108366734
+      ],
+      "mean_metric_abstained": 0.5751207729468599,
+      "mean_metric_answered": 0.5002057613168724,
+      "spearman_rho_answered": -0.09067406853125483,
+      "spearman_rho_answered_bootstrap_valid_n": 10000,
+      "spearman_rho_answered_ci95": [
+        -0.3301993249502645,
+        0.1658571377506218
+      ]
+    },
+    "ndcg@10": {
+      "high_minus_low_answer_rate": 0.11336032388663964,
+      "high_minus_low_answer_rate_bootstrap_valid_n": 10000,
+      "high_minus_low_answer_rate_ci95": [
+        -0.2620400992145515,
+        0.44999999999999996
+      ],
+      "high_quartile_answer_rate": 0.6923076923076923,
+      "low_quartile_answer_rate": 0.5789473684210527,
+      "mean_difference_answered_minus_abstained": 0.018424110581428677,
+      "mean_difference_answered_minus_abstained_bootstrap_valid_n": 10000,
+      "mean_difference_answered_minus_abstained_ci95": [
+        -0.17036705556883605,
+        0.21297419337124984
+      ],
+      "mean_metric_abstained": 0.5373697816071136,
+      "mean_metric_answered": 0.5557938921885422,
+      "spearman_rho_answered": 0.061845289453011675,
+      "spearman_rho_answered_bootstrap_valid_n": 10000,
+      "spearman_rho_answered_ci95": [
+        -0.198119954355446,
+        0.3225803135645918
+      ]
+    },
+    "recall@10": {
+      "high_minus_low_answer_rate": 0.2210526315789474,
+      "high_minus_low_answer_rate_bootstrap_valid_n": 10000,
+      "high_minus_low_answer_rate_ci95": [
+        -0.2263258098429595,
+        0.49892336437147744
+      ],
+      "high_quartile_answer_rate": 0.6210526315789474,
+      "low_quartile_answer_rate": 0.4,
+      "mean_difference_answered_minus_abstained": 0.07514761137949544,
+      "mean_difference_answered_minus_abstained_bootstrap_valid_n": 10000,
+      "mean_difference_answered_minus_abstained_ci95": [
+        -0.1538974945280344,
+        0.30144078139256436
+      ],
+      "mean_metric_abstained": 0.6594202898550725,
+      "mean_metric_answered": 0.7345679012345679,
+      "spearman_rho_answered": 0.13911288546985737,
+      "spearman_rho_answered_bootstrap_valid_n": 10000,
+      "spearman_rho_answered_ci95": [
+        -0.13973367598966313,
+        0.4313460666377175
+      ]
+    }
+  },
+  "question_n": 30,
+  "record_n": 150,
+  "status": "complete_exploratory_post_hoc"
+}

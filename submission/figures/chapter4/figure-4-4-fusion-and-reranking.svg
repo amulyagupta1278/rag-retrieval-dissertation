@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+<title id="title">Hybrid fusion and Prompt-RAG reranking</title>
+<desc id="desc">Parallel comparison of development-selected weighted rank fusion and Claude relevance reranking over a BM25–FAISS candidate union.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#476172"/></marker>
+  <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2F6B9A"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#17324D" flood-opacity="0.12"/></filter>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; fill: #17324D; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #587083; }
+    .stage { font-size: 14px; font-weight: 700; letter-spacing: 1.4px; fill: #2F6B9A; }
+    .box-title { font-size: 18px; font-weight: 700; }
+    .body { font-size: 15px; }
+    .small { font-size: 13px; fill: #587083; }
+    .tiny { font-size: 12px; fill: #587083; }
+    .metric { font-size: 16px; font-weight: 700; fill: #2A706B; }
+    .mono { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+  </style>
+</defs>
+<rect width="1400" height="850" fill="#FFFFFF"/>
+<text x="60" y="52" class="title">Hybrid fusion and Prompt-RAG reranking</text>
+<text x="60" y="78" class="subtitle">Two distinct second-stage methods: rank fusion versus model-based relevance judgment</text>
+<line x1="60" y1="96" x2="1340" y2="96" stroke="#D6E0E7" stroke-width="2"/>
+<rect x="55" y="125" width="1290" height="300" rx="18" fill="#F8FBFD" stroke="#BFCED8" stroke-width="1.5"/>
+<text x="85" y="160" class="stage" text-anchor="start"><tspan x="85" dy="0">A · WEIGHTED HYBRID RRF</tspan></text>
+<rect x="95" y="205" width="190" height="83" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="95" y="205" width="7" height="83" rx="3" fill="#2F6B9A"/>
+<text x="190.0" y="236" class="box-title" text-anchor="middle"><tspan x="190.0" dy="0">BM25 top-50</tspan></text>
+<text x="190.0" y="262" class="small" text-anchor="middle"><tspan x="190.0" dy="0">weight 1.00</tspan></text>
+<rect x="95" y="310" width="190" height="83" rx="12" fill="#EEF0FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="95" y="310" width="7" height="83" rx="3" fill="#5966A8"/>
+<text x="190.0" y="341" class="box-title" text-anchor="middle"><tspan x="190.0" dy="0">FAISS top-50</tspan></text>
+<text x="190.0" y="367" class="small" text-anchor="middle"><tspan x="190.0" dy="0">weight 0.25</tspan></text>
+<rect x="360" y="205" width="190" height="83" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="360" y="205" width="7" height="83" rx="3" fill="#2A8C82"/>
+<text x="455.0" y="236" class="box-title" text-anchor="middle"><tspan x="455.0" dy="0">Graph v4 top-50</tspan></text>
+<text x="455.0" y="262" class="small" text-anchor="middle"><tspan x="455.0" dy="0">weight 0.10</tspan></text>
+<rect x="640" y="220" width="290" height="145" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="640" y="220" width="7" height="145" rx="3" fill="#D99B2B"/>
+<text x="785.0" y="251" class="box-title" text-anchor="middle"><tspan x="785.0" dy="0">Weighted reciprocal-rank fusion</tspan></text>
+<text x="785.0" y="277" class="small" text-anchor="middle"><tspan x="785.0" dy="0">score(c) = Σ wᵢ/(10 + rankᵢ)</tspan><tspan x="785.0" dy="19">graph-only factor = 0.0</tspan><tspan x="785.0" dy="19">score desc → chunk ID tie-break</tspan></text>
+<path d="M 285 246 C 345 246, 580 292, 640 292" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 285 351 C 345 351, 580 292, 640 292" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 550 246 C 610 246, 580 292, 640 292" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1030" y="240" width="245" height="105" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="1030" y="240" width="7" height="105" rx="3" fill="#2F6B9A"/>
+<text x="1152.5" y="271" class="box-title" text-anchor="middle"><tspan x="1152.5" dy="0">Hybrid ranked output</tspan></text>
+<text x="1152.5" y="297" class="small" text-anchor="middle"><tspan x="1152.5" dy="0">top-50 audit trace</tspan><tspan x="1152.5" dy="19">development-selected weights</tspan><tspan x="1152.5" dy="19">locked before test/holdout</tspan></text>
+<path d="M 930 292 L 1030 292" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<rect x="1040" y="370" width="225" height="30" rx="15" fill="#E7F2F1"/>
+<text x="1152.5" y="390" text-anchor="middle" style="font: 700 13px Arial; fill:#2A706B">local · deterministic · no API</text>
+<rect x="55" y="450" width="1290" height="335" rx="18" fill="#FCFAFD" stroke="#CDBFD3" stroke-width="1.5"/>
+<text x="85" y="485" class="stage" text-anchor="start"><tspan x="85" dy="0">B · PROMPT-RAG RELEVANCE RERANKER</tspan></text>
+<rect x="90" y="530" width="180" height="75" rx="12" fill="#EAF2F8" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="90" y="530" width="7" height="75" rx="3" fill="#2F6B9A"/>
+<text x="180.0" y="561" class="box-title" text-anchor="middle"><tspan x="180.0" dy="0">BM25 top-25</tspan></text>
+<text x="180.0" y="587" class="small" text-anchor="middle"><tspan x="180.0" dy="0">lexical pool</tspan></text>
+<rect x="90" y="650" width="180" height="75" rx="12" fill="#EEF0FA" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="90" y="650" width="7" height="75" rx="3" fill="#5966A8"/>
+<text x="180.0" y="681" class="box-title" text-anchor="middle"><tspan x="180.0" dy="0">FAISS top-25</tspan></text>
+<text x="180.0" y="707" class="small" text-anchor="middle"><tspan x="180.0" dy="0">semantic pool</tspan></text>
+<rect x="345" y="565" width="220" height="125" rx="12" fill="#FFF7E5" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="345" y="565" width="7" height="125" rx="3" fill="#D99B2B"/>
+<text x="455.0" y="596" class="box-title" text-anchor="middle"><tspan x="455.0" dy="0">Deduplicated union</tspan></text>
+<text x="455.0" y="622" class="small" text-anchor="middle"><tspan x="455.0" dy="0">≤50 candidates</tspan><tspan x="455.0" dy="19">candidate recall@25 = 0.880</tspan><tspan x="455.0" dy="19">stable candidate IDs</tspan></text>
+<path d="M 270 568 L 345 600" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 270 687 L 345 650" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="645" y="545" width="250" height="165" rx="12" fill="#F6EEF8" stroke="#AFC0CC" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="645" y="545" width="7" height="165" rx="3" fill="#8B5E9C"/>
+<text x="770.0" y="576" class="box-title" text-anchor="middle"><tspan x="770.0" dy="0">Claude Haiku 4.5</tspan></text>
+<text x="770.0" y="602" class="small" text-anchor="middle"><tspan x="770.0" dy="0">temperature 0</tspan><tspan x="770.0" dy="19">score every candidate 0–3</tspan><tspan x="770.0" dy="19">JSON schema contract</tspan><tspan x="770.0" dy="19">max output 1,024 tokens</tspan></text>
+<path d="M 565 627 L 645 627" fill="none" stroke="#2F6B9A" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<rect x="975" y="555" width="285" height="145" rx="12" fill="#EDF6F4" stroke="#AFC0CC" stroke-width="1.5"/>
+<rect x="975" y="555" width="7" height="145" rx="3" fill="#2A8C82"/>
+<text x="1117.5" y="586" class="box-title" text-anchor="middle"><tspan x="1117.5" dy="0">Validate and rerank</tspan></text>
+<text x="1117.5" y="612" class="small" text-anchor="middle"><tspan x="1117.5" dy="0">all candidate IDs required</tspan><tspan x="1117.5" dy="19">integer score range enforced</tspan><tspan x="1117.5" dy="19">score desc → chunk ID tie-break</tspan><tspan x="1117.5" dy="19">malformed response = failure</tspan></text>
+<path d="M 895 627 L 975 627" fill="none" stroke="#476172" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="985" y="720" width="265" height="63" rx="9" fill="#FFF9E8" stroke="#D99B2B" stroke-width="1.2"/>
+<circle cx="1003" cy="740" r="6" fill="#D99B2B"/>
+<text x="1019" y="741" class="tiny" text-anchor="start"><tspan x="1019" dy="0">zero retries</tspan><tspan x="1019" dy="18">observed: $2.430722 / 100 queries</tspan></text>
+</svg>

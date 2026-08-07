@@ -1,0 +1,7 @@
+{
+  "status": "owner_approved",
+  "authorization": "User instruction: I approve Anthropic payload egress and the corrected $0.597256 H5c-v2 cap.",
+  "scope": "Fresh Phase 9 H5c-v2 frozen 60-request panel; 1024 output tokens; zero retries",
+  "hard_cap_usd": 0.597256,
+  "manifest_sha256": "8a03aacb5b64aeec77865197ec3b7d4bcbbe748c8a20f053bbfb142aeafee48d"
+}

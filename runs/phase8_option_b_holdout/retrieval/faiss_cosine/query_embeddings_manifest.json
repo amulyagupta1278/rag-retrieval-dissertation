@@ -1,0 +1,24 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "normalize_embeddings": true,
+  "qa_sha256": "cd1ae86d254e3a70e1fc22cffc39c173bd175e9c838533dad248516a3ff5cc0e",
+  "query_ids": [
+    "holdout_001",
+    "holdout_002",
+    "holdout_003",
+    "holdout_004",
+    "holdout_005",
+    "holdout_006",
+    "holdout_007",
+    "holdout_008",
+    "holdout_009",
+    "holdout_010",
+    "holdout_011",
+    "holdout_012"
+  ],
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "shape": [
+    12,
+    384
+  ]
+}

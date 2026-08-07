@@ -1,0 +1,32 @@
+{
+  "benchmark": "phase8_option_b_holdout_v1",
+  "category_counts": {
+    "exact_match": 2,
+    "terminology_heavy": 2,
+    "paraphrase": 2,
+    "entity_relation": 2,
+    "multi_hop": 2,
+    "synthesis": 2
+  },
+  "correction_log": [
+    "holdout_004 uses owner-supplied revised expansion ending in Yojana",
+    "holdout_008 adds r4chunk_9f73fb5e650f and resolves answer/evidence/leakage checks",
+    "holdout_010 and holdout_011 resolve distractor-only exposure as pass under unused-gold-source rule",
+    "row completion formula now blocks uncertainty and incomplete revisions"
+  ],
+  "frozen_at": "2026-08-01",
+  "inputs": {
+    "completed_source_workbook_sha256": "71c75e4550f237b09a0d680588a2d954582b2053c9490670a0d2b9f7b2f976d4",
+    "corpus_sha256": "bf6e040548cc5b236a79af993d8a2c2bf3556a559719fdbb3b4920855e6d6d45",
+    "prior_r4_qa_sha256": "550dc70d2d4ce4b998241ec4f40284183e693a39d0f254c146c53297545cd3ea"
+  },
+  "outputs": {
+    "corrected_workbook_sha256": "d809153e46c16cb667317949b67283eb02ae74c39e3b6c42389c0aaf00a1779c",
+    "freeze_workbook_sha256": "d809153e46c16cb667317949b67283eb02ae74c39e3b6c42389c0aaf00a1779c",
+    "qa_holdout_sha256": "cd1ae86d254e3a70e1fc22cffc39c173bd175e9c838533dad248516a3ff5cc0e",
+    "qrels_holdout_sha256": "e6b7b995ebb084063821acce5370fcee3c23b9e7664aa94c91dc88c2bcd1940d"
+  },
+  "question_n": 12,
+  "qrel_n": 21,
+  "status": "owner_approved_frozen_ready_for_single_execution"
+}

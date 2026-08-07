@@ -1,0 +1,22 @@
+{
+  "attempt_n": 12,
+  "completed_query_ids": [
+    "holdout_001",
+    "holdout_008",
+    "holdout_002",
+    "holdout_003",
+    "holdout_004",
+    "holdout_005",
+    "holdout_006",
+    "holdout_007",
+    "holdout_009",
+    "holdout_010",
+    "holdout_011",
+    "holdout_012"
+  ],
+  "input_tokens": 264265,
+  "observed_cost_usd": 0.30076,
+  "output_tokens": 7299,
+  "status": "complete",
+  "zero_retries": true
+}

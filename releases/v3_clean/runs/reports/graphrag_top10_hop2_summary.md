@@ -10,7 +10,14 @@
   "entity_model": "en_core_web_sm",
   "relation_window": 2,
   "min_entity_freq": 2,
-  "split": "all"
+  "split": "all",
+  "seed_filtering": false,
+  "use_aliases": false,
+  "hub_penalty": false,
+  "dual_entity_coverage": false,
+  "lexical_fallback": false,
+  "max_seeds": 5,
+  "hop_decay": 0.5
 }
 ```
 
@@ -18,31 +25,31 @@
 
 | Retriever | N | MRR | MRR@1 | MRR@3 | MRR@5 | MRR@10 | R@1 | R@3 | R@5 | R@10 | nDCG@1 | nDCG@3 | nDCG@5 | nDCG@10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 100 | 0.1712 | 0.0700 | 0.1383 | 0.1553 | 0.1712 | 0.0600 | 0.1550 | 0.2050 | 0.2950 | 0.0700 | 0.1273 | 0.1513 | 0.1832 |
+| Entity-Co-occurrence Graph Retrieval | 100 | 0.1517 | 0.0500 | 0.1200 | 0.1365 | 0.1517 | 0.0450 | 0.1500 | 0.2050 | 0.2950 | 0.0500 | 0.1149 | 0.1403 | 0.1717 |
 
 ### Category: `entity_relation`
 
 | Retriever | N | MRR | MRR@1 | MRR@3 | MRR@5 | MRR@10 | R@1 | R@3 | R@5 | R@10 | nDCG@1 | nDCG@3 | nDCG@5 | nDCG@10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 20 | 0.1847 | 0.0000 | 0.1250 | 0.1625 | 0.1847 | 0.0000 | 0.1250 | 0.2250 | 0.3250 | 0.0000 | 0.0967 | 0.1495 | 0.1895 |
+| Entity-Co-occurrence Graph Retrieval | 20 | 0.1535 | 0.0000 | 0.1083 | 0.1333 | 0.1535 | 0.0000 | 0.1250 | 0.1750 | 0.2750 | 0.0000 | 0.0887 | 0.1151 | 0.1538 |
 
 ### Category: `exact_match`
 
 | Retriever | N | MRR | MRR@1 | MRR@3 | MRR@5 | MRR@10 | R@1 | R@3 | R@5 | R@10 | nDCG@1 | nDCG@3 | nDCG@5 | nDCG@10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 20 | 0.1500 | 0.1000 | 0.1500 | 0.1500 | 0.1500 | 0.1000 | 0.2000 | 0.2000 | 0.2000 | 0.1000 | 0.1631 | 0.1631 | 0.1631 |
+| Entity-Co-occurrence Graph Retrieval | 20 | 0.1625 | 0.1000 | 0.1500 | 0.1625 | 0.1625 | 0.1000 | 0.2000 | 0.2500 | 0.2500 | 0.1000 | 0.1631 | 0.1846 | 0.1846 |
 
 ### Category: `multi_hop`
 
 | Retriever | N | MRR | MRR@1 | MRR@3 | MRR@5 | MRR@10 | R@1 | R@3 | R@5 | R@10 | nDCG@1 | nDCG@3 | nDCG@5 | nDCG@10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 20 | 0.2405 | 0.1000 | 0.2000 | 0.2250 | 0.2405 | 0.0500 | 0.1500 | 0.2000 | 0.2500 | 0.1000 | 0.1387 | 0.1651 | 0.1862 |
+| Entity-Co-occurrence Graph Retrieval | 20 | 0.2142 | 0.0500 | 0.1750 | 0.1975 | 0.2142 | 0.0250 | 0.1750 | 0.2500 | 0.3000 | 0.0500 | 0.1347 | 0.1729 | 0.1948 |
 
 ### Category: `paraphrase`
 
 | Retriever | N | MRR | MRR@1 | MRR@3 | MRR@5 | MRR@10 | R@1 | R@3 | R@5 | R@10 | nDCG@1 | nDCG@3 | nDCG@5 | nDCG@10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 20 | 0.1113 | 0.0500 | 0.0750 | 0.0875 | 0.1113 | 0.0500 | 0.1000 | 0.1500 | 0.3000 | 0.0500 | 0.0815 | 0.1031 | 0.1554 |
+| Entity-Co-occurrence Graph Retrieval | 20 | 0.0592 | 0.0000 | 0.0250 | 0.0375 | 0.0592 | 0.0000 | 0.0500 | 0.1000 | 0.2500 | 0.0000 | 0.0315 | 0.0531 | 0.1033 |
 
 ### Category: `terminology_heavy`
 
@@ -54,4 +61,4 @@
 
 | Retriever | Avg Latency (ms) |
 | --- | --- |
-| Entity-Co-occurrence Graph Retrieval | 18.22 |
+| Entity-Co-occurrence Graph Retrieval | 64.38 |

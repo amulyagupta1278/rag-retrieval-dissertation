@@ -1,0 +1,17 @@
+{
+  "b": 0.75,
+  "backend": "rank_bm25",
+  "configuration_hash": "c40678da942bcd66b38efe750432b0f5c584e916d94120efcadc4592796671f7",
+  "k1": 1.2,
+  "package_versions": {
+    "numpy": "2.4.6",
+    "rank-bm25": "0.2.2"
+  },
+  "provenance": {
+    "chunks_file_sha256": "bf6e040548cc5b236a79af993d8a2c2bf3556a559719fdbb3b4920855e6d6d45",
+    "corpus_content_sha256": "73e8964152038f45c20dd3595d8ca1788360d1cedbacc4e1d0041b4d102b297f",
+    "num_chunks": 954,
+    "ordered_chunk_ids_sha256": "65fef1eb5cfb391081cfebd826f0c6cbd5d7973e33800a34a441ca05d774076a"
+  },
+  "retriever": "bm25"
+}

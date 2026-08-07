@@ -1,0 +1,22 @@
+{
+  "benchmark": "pilot-qa-v2-owner-approved-20260724-r5",
+  "canonicalization": "Unicode NFC, casefold, collapsed whitespace",
+  "cooccurrence": "all canonical entities explicitly mentioned in same chunk",
+  "edge_types": ["MENTIONED_IN", "CO_OCCURS_WITH"],
+  "entity_extractors": [
+    "frozen document title/ministry/department metadata",
+    "R5 graph-path entities and declared aliases",
+    "uppercase acronym regex: [A-Z][A-Z0-9-]{1,}",
+    "capitalized phrase regex: 2-6 tokens with internal of/and/the"
+  ],
+  "fallback": "none",
+  "maximum_traversal_edges_to_chunk": 2,
+  "query_seed_matching": "exact canonical entity or declared alias substring",
+  "score": "sum over unique query seeds of 1/(1+shortest edge distance)",
+  "tie_break": "score descending then chunk ID ascending",
+  "top_k_saved": 50,
+  "pool_depth": 10,
+  "seed": 42,
+  "status": "frozen_before_graph_results",
+  "tuning_after_results": false
+}

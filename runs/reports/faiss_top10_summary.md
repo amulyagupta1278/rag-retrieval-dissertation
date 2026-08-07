@@ -55,4 +55,4 @@
 
 | Retriever | Avg Latency (ms) |
 | --- | --- |
-| faiss | 18.90 |
+| faiss | 33.69 |

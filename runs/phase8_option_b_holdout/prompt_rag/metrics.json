@@ -1,0 +1,119 @@
+{
+  "metrics": {
+    "hit@10": 1.0,
+    "mrr@10": 0.5555555555555556,
+    "ndcg@10": 0.6685840923359513,
+    "precision@10": 0.16666666666666666,
+    "recall@10": 0.9722222222222222
+  },
+  "per_query": [
+    {
+      "hit@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 1.0,
+      "precision@10": 0.1,
+      "query_id": "holdout_001",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.5,
+      "precision@10": 0.1,
+      "query_id": "holdout_002",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.6309297535714575,
+      "precision@10": 0.1,
+      "query_id": "holdout_003",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.6309297535714575,
+      "precision@10": 0.1,
+      "query_id": "holdout_004",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.6309297535714575,
+      "precision@10": 0.1,
+      "query_id": "holdout_005",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.5,
+      "precision@10": 0.1,
+      "query_id": "holdout_006",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.5706417189553201,
+      "precision@10": 0.2,
+      "query_id": "holdout_007",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.9325210919548239,
+      "precision@10": 0.3,
+      "query_id": "holdout_008",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.5706417189553201,
+      "precision@10": 0.2,
+      "query_id": "holdout_009",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.4632423659320675,
+      "precision@10": 0.2,
+      "query_id": "holdout_010",
+      "recall@10": 0.6666666666666666,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.5931729515195112,
+      "precision@10": 0.3,
+      "query_id": "holdout_011",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    },
+    {
+      "hit@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 1.0,
+      "precision@10": 0.2,
+      "query_id": "holdout_012",
+      "recall@10": 1.0,
+      "system": "prompt_rag_claude"
+    }
+  ]
+}
