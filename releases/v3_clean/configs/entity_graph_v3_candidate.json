@@ -1,0 +1,121 @@
+{
+  "allowed_entity_types": [
+    "scheme",
+    "scheme_alias",
+    "ministry",
+    "department",
+    "implementing_agency",
+    "beneficiary_group",
+    "law_or_policy",
+    "delivery_institution",
+    "controlled_acronym"
+  ],
+  "banned_entity_labels": [
+    "ID",
+    "PM",
+    "IN",
+    "IT",
+    "AS",
+    "OF",
+    "ON",
+    "TO",
+    "AM",
+    "NA",
+    "IV",
+    "VI",
+    "UT",
+    "FY",
+    "OTP",
+    "URL",
+    "YES",
+    "NO"
+  ],
+  "build_inputs": [
+    "frozen V2 corpus chunks",
+    "extracted document metadata and text",
+    "source manifest and structured source metadata",
+    "this frozen Graph configuration"
+  ],
+  "cooccurrence": {
+    "scope": "same chunk only",
+    "symmetric_duplicates": false,
+    "support": "sorted unique supporting chunk IDs"
+  },
+  "expected_inputs": {
+    "chunk_count": 140,
+    "chunks_sha256": "70c1e3b8b0380809adea000654333a5921132ab7608ff328a9fa7934e8f43aa6",
+    "document_count": 22,
+    "documents_sha256": "a3a3ceeba8f62cf4d387f7fe8f16ad5a6e167d05259ecb1c50afbaaa42d36773",
+    "source_manifest_count": 22,
+    "source_manifest_sha256": "48d4c224353a50faf7ef8662d3a9abf89ee68e65e7b699ed761d8ff57c50b4bd"
+  },
+  "extraction_priority": [
+    "structured document metadata",
+    "scheme titles and official source short titles",
+    "ministry and department fields",
+    "explicit source implementing-agency fields",
+    "explicit source target-beneficiary fields",
+    "acronyms paired with long forms in corpus text",
+    "strict explicit law/policy phrases"
+  ],
+  "fallback": "none",
+  "generic_entity_labels": [
+    "scheme",
+    "ministry",
+    "department",
+    "government",
+    "programme",
+    "program",
+    "application",
+    "form",
+    "user",
+    "state",
+    "district",
+    "beneficiary",
+    "income",
+    "individual",
+    "family",
+    "all",
+    "industries",
+    "bank",
+    "banks"
+  ],
+  "graph_version": "entity-graph-v3-candidate",
+  "matching": {
+    "alias_resolution": "longest exact normalized token sequence first",
+    "canonical_seed_count": "once per query",
+    "normalization": "Unicode NFKC, casefold, punctuation to spaces, collapse whitespace",
+    "raw_substring_matching": false
+  },
+  "registry_version": "entity-registry-v3-candidate",
+  "scoring": {
+    "edge_path_weight": 1.0,
+    "hop_decay": 0.5,
+    "independent_traversal_per_seed": true,
+    "maximum_path_length_to_chunk": 2,
+    "seed_weight": "log((N_chunks + 1) / (document_frequency + 1)) + 1",
+    "shortest_path_once_per_seed_chunk": true,
+    "tie_break": "score descending, chunk ID ascending",
+    "zero_score_padding": false
+  },
+  "seed": 42,
+  "status": "candidate_frozen_pre_run",
+  "stopwords": [
+    "a",
+    "an",
+    "and",
+    "as",
+    "at",
+    "by",
+    "for",
+    "from",
+    "in",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "with"
+  ],
+  "tuning_after_results": false
+}

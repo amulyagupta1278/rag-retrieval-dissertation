@@ -11,6 +11,9 @@ tmp/
 .venv/
 venv/
 *.pkl
+!indexes/bm25/bm25_index.pkl
+!indexes/baselines/**/*.pkl
+!releases/**/*.pkl
 indexes/faiss/*.index
 indexes/faiss/*.jsonl
 indexes/graphrag/*.gpickle
@@ -27,9 +30,10 @@ indexes/graphrag/*.gpickle
 outputs/
 .claude/
 
-# Large binary indexes
-indexes/baselines/
-releases/
+# indexes/baselines/ and releases/ are frozen, hash-manifested deliverable
+# bundles and are intentionally tracked (see releases/*/manifests/SHA256SUMS).
+# Do not blanket-ignore them here; use the request_payloads/raw/validated
+# rules below to exclude scratch artifacts within them instead.
 
 # stray zip temp artifacts (sandbox cannot unlink)
 runs/v2/**/zi[0-9A-Za-z]*
