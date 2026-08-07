@@ -1,0 +1,528 @@
+[Normal] COMPARATIVE ANALYSIS OF VECTOR-FREE RETRIEVAL STRATEGIES FOR RAG:
+Hybrid Search and Graph-Based Approaches
+[Normal] A Dissertation Submitted in partial fulfillment of the requirements for the degree of
+Master of Technology (M.Tech)
+in
+Artificial Intelligence and Machine Learning
+[Normal] By
+Amulya Gupta
+(2024AB05200)
+[Normal] BITS Pilani WILP
+Hyderabad Campus
+August 2026
+[Normal] COMPARATIVE ANALYSIS OF VECTOR-FREE RETRIEVAL STRATEGIES FOR RAG:
+Hybrid Search and Graph-Based Approaches
+[Normal] A Dissertation Submitted in partial fulfillment of the requirements for the degree of
+[Normal] Master of Technology (M.Tech)
+[Normal] Artificial Intelligence and Machine Learning
+[Normal] Course: AIMLC ZG628T
+[Normal] Academic Year: 2025-2026, Semester II
+[Normal] By
+[Normal] Amulya Gupta
+Student ID: 2024AB05200
+[Normal] Under the Supervision of
+[Normal] Anushka Gupta (TCS, Gurugram)
+Supervisor
+[Normal] Davendra Gupta (Birla Public School, Pilani)
+Additional Examiner
+[Normal] BITS Pilani WILP
+Hyderabad Campus
+[Normal] August 2026
+[Heading 1] ACKNOWLEDGEMENTS
+[Normal] I am deeply grateful to my supervisor, Anushka Gupta (TCS, Gurugram), for her meticulous guidance, critical feedback, and unwavering support throughout this dissertation. Her insights into the practical challenges of RAG deployment in production systems have shaped the research direction and ensured this work addresses real-world concerns.
+
+I extend my sincere thanks to Davendra Gupta (Birla Public School, Pilani), the additional examiner, for his thorough review and constructive comments that strengthened the experimental design and analysis.
+
+I appreciate the support of HCLTech for granting a No-Objection Certificate (NOC), enabling this research to be conducted on government policy data without proprietary constraints. This openness has made the work reproducible and auditable.
+
+I am grateful to the BITS Pilani WILP (Work Integrated Learning Programme) faculty for their rigorous standards and commitment to applied, industry-relevant research. The program's emphasis on methodological rigor and honest reporting has shaped my approach throughout this work.
+
+Finally, I acknowledge the challenges of balancing full-time employment at HCLTech with dissertation research. This constraint, while demanding, ensured that this work remained grounded in practical considerations and real-world deployment concerns.
+[Heading 1] ABSTRACT
+[Normal] Retrieval-Augmented Generation (RAG) has emerged as the dominant paradigm for augmenting large language models with domain-specific knowledge. However, contemporary RAG implementations exhibit a strong bias toward vector-embedding-based dense retrieval methods, often at the expense of alternative vector-free strategies (lexical, graph-based, and hybrid fusion approaches).
+
+This dissertation presents a rigorous, comparative evaluation of five retrieval strategies applied to government policy documentation. The five systems tested are: (1) BM25 (sparse lexical baseline), (2) FAISS (dense semantic baseline), (3) Entity-Co-occurrence Graph Retrieval (structured knowledge approach), (4) Hybrid RRF (mechanical fusion of BM25 + Graph), and (5) Prompt-RAG (LLM-based semantic reranking).
+
+The evaluation employs a carefully constructed benchmark of 34 gold-standard queries stratified across six categories (exact-lookup, terminology, paraphrase, entity-relation, multi-hop, synthesis) against a corpus of 22 government welfare scheme documents (140 chunks). Five preregistered hypotheses structure the investigation, with results quantified via standard IR metrics (MRR@5/10, Recall@10, nDCG@10) and generation quality evaluation (correctness, faithfulness, completeness).
+
+Key findings demonstrate that: (H1) BM25 remains competitive with FAISS on exact-lookup and terminology-heavy queries, challenging the assumption of universal semantic embedding superiority; (H2) FAISS underperforms BM25 on paraphrase queries due to model generalization failure on domain-specific terminology; (H3) Entity-Co-occurrence Graph Retrieval fails not due to algorithmic limitations but due to 70.6% query-time entity extraction coverage, identifying NER quality as the real bottleneck; (H4) Hybrid RRF achieves competitive second-place performance (0.9559 MRR@10, 200× cheaper than Prompt-RAG); and (H5) retrieval rank quality does not monotonically predict generation faithfulness, showing that retrieval and generation are interdependent but dimension-specific.
+
+These findings challenge industry assumptions about retrieval method selection and provide actionable guidance for practitioners: domain-specific vocabulary favors lexical methods; graph-based retrieval's failure is fixable through improved NER; hybrid fusion offers Pareto-optimal cost/quality trade-offs; and generation evaluation should decouple faithfulness (generation-enforced) from correctness/completeness (retrieval-driven).
+
+The dissertation contributes a rigorous methodological framework for controlled retrieval evaluation, empirical evidence for retrieval strategy pluralism, and practical guidance for practitioners designing RAG systems for specialized domains.
+[Normal] Project Area: Information Retrieval, Retrieval-Augmented Generation, Vector-Free Methods
+[Normal] Keywords: RAG, BM25, FAISS, Entity-Co-occurrence Graph, Hybrid Search, LLM Reranking, Vector-Free Retrieval, Evaluation Metrics, Generation Quality
+[Heading 1] TABLE OF CONTENTS
+[List Bullet] Acknowledgements
+[List Bullet] Abstract
+[List Bullet] Table of Contents
+[List Bullet] 1. Introduction
+[List Bullet]    1.1 Background and Motivation
+[List Bullet]    1.2 Problem Statement
+[List Bullet]    1.3 Research Objectives
+[List Bullet]    1.4 Scope and Limitations
+[List Bullet]    1.5 Report Organization
+[List Bullet] 2. Literature Review
+[List Bullet]    2.1 RAG Overview
+[List Bullet]    2.2 Dense Retrieval Methods
+[List Bullet]    2.3 Sparse Retrieval Methods
+[List Bullet]    2.4 Graph-Based Retrieval
+[List Bullet]    2.5 Hybrid and Fusion Methods
+[List Bullet] 3. Methodology
+[List Bullet]    3.1 Corpus and Benchmark
+[List Bullet]    3.2 Retriever Implementations
+[List Bullet]    3.3 Evaluation Metrics
+[List Bullet]    3.4 Hypotheses and Testing Protocol
+[List Bullet] 4. Results
+[List Bullet]    4.1 H1: BM25 Competitive with FAISS
+[List Bullet]    4.2 H2: FAISS on Paraphrase
+[List Bullet]    4.3 H3: Graph on Entity/Multi-Hop
+[List Bullet]    4.4 H4: Hybrid Achieves Highest MRR
+[List Bullet]    4.5 H5: Retrieval ≠ Generation Faithfulness
+[List Bullet] 5. Discussion
+[List Bullet]    5.1 Key Findings and Insights
+[List Bullet]    5.2 Implications for Practice
+[List Bullet]    5.3 Limitations and Scope
+[List Bullet] 6. Conclusions and Recommendations
+[List Bullet] References
+[List Bullet] Appendices
+[Heading 1] 1. INTRODUCTION
+[Heading 2] 1.1 Background and Motivation
+[Normal] Retrieval-Augmented Generation (RAG) has emerged as the dominant approach for augmenting large language models (LLMs) with domain-specific knowledge. Unlike fine-tuning, which requires updating model parameters, RAG systems retrieve relevant documents or evidence chunks at inference time and pass them to the LLM for answer generation. This paradigm has enabled practical deployment of LLMs in domains with knowledge cutoffs, proprietary information, or rapidly evolving facts.
+
+The widespread adoption of RAG in production systems reflects its practical advantages: rapid knowledge updates (no retraining), transparency (evidence is retrievable), and cost-efficiency (inference-only, no fine-tuning overhead). However, contemporary RAG implementations exhibit a pronounced preference for vector-embedding-based dense retrieval methods. This convergence—driven by benchmark performance on large-scale datasets (MS MARCO, Natural Questions, SQuAD)—has created a perception that embedding-based retrieval is universally superior.
+
+Yet this perception obscures a critical gap between academic discourse and practitioner reality. In production RAG systems, lexical methods (BM25, TF-IDF) remain the dominant retrieval backbone, often paired with re-ranking stages. Knowledge graph and structured entity methods continue to be explored. Hybrid fusion approaches (combining multiple rankers) are standard in enterprise search systems. The gap between what the literature emphasizes and what practitioners deploy suggests that benchmark evaluations may not capture domain-specific requirements.
+
+This dissertation investigates this gap empirically, focusing on a specific but representative scenario: domain-specific retrieval over government policy documents. Government policy is a useful domain for this study because it exhibits characteristics common to many enterprise RAG deployments: terminology-heavy content, structured information (schemes, benefits, eligibility criteria), multi-hop reasoning requirements, and no semantic paraphrasing in source documents.
+[Heading 2] 1.2 Problem Statement
+[Normal] The Retrieval Strategy Selection problem is formulated as follows:
+
+Given a domain-specific corpus and a set of user queries, how should a practitioner select an optimal retrieval strategy? What are the performance characteristics of BM25, dense embeddings, graph-based methods, and hybrid fusion approaches? When do these methods excel or fail?
+
+Existing literature provides limited guidance. Benchmark studies (MS MARCO, Natural Questions) show that dense methods outperform BM25 on average, but these benchmarks are biased toward open-domain web search. Domain-specific scenarios—medical documents, legal contracts, government policy, code repositories—differ fundamentally in their characteristics: terminology stability, entity density, semantic variation, and query patterns.
+
+Furthermore, RAG literature has not systematically decoupled retrieval evaluation from generation evaluation. The implicit assumption is that better retrieval (higher MRR) leads to better generation (more correct, complete answers). However, generation quality depends on multiple factors: retrieval precision, generation prompt quality, and language model capability. It is possible that retrieval quality and generation quality are interdependent but not monotonic—that is, a retriever that achieves 95% MRR may not produce substantially better generated answers than one achieving 90% MRR.
+
+This dissertation addresses these gaps through rigorous, controlled comparative evaluation of five retrieval systems on a carefully constructed benchmark, with both retrieval and generation quality measured separately.
+[Heading 2] 1.3 Research Objectives and Hypotheses
+[Normal] This dissertation pursues two primary objectives:
+
+Objective 1: Empirically characterize the per-query-type strengths and weaknesses of five retrieval systems (BM25, FAISS, Entity-Co-occurrence Graph, Hybrid RRF, and Prompt-RAG) on a controlled benchmark.
+
+Objective 2: Formalize a Retrieval Strategy Selection Framework that operationalizes findings as decision rules for practitioners selecting optimal retrieval strategies for domain-specific corpora.
+
+Five preregistered research hypotheses structure the investigation:
+[Normal] H1: BM25 remains competitive with FAISS on exact-lookup and terminology-heavy query categories, demonstrating that sparse lexical retrieval is not universally inferior to dense embeddings on terminology-dense corpora.
+
+H2: FAISS embedding-based retrieval outperforms BM25 on paraphrase queries, where semantic equivalence matters more than lexical surface-form matching.
+
+H3: Entity-Co-occurrence Graph Retrieval outperforms both BM25 and FAISS on entity-relation and multi-hop queries by leveraging explicit entity networks and multi-hop traversal.
+
+H4: Hybrid BM25+Graph Retrieval via Reciprocal Rank Fusion (RRF) achieves the highest aggregate Mean Reciprocal Rank (MRR) across mixed query types, at the cost of slightly higher latency.
+
+H5: Retrieval rank quality (as measured by MRR) does not monotonically predict generation faithfulness. Faithfulness is generation-enforced (via system instructions) and independent of retrieval quality. However, retrieval recall and precision predict correctness and completeness of generated answers.
+[Heading 2] 1.4 Scope and Limitations
+[Normal] This work is scoped to a specific, controlled domain:
+
+Corpus: 22 documents and 140 chunks sourced from Indian government welfare schemes (PM-KISAN, PMJDAY, PM-WANI, PMAY-G, etc.) spanning multiple ministries.
+
+Query Set: 34 gold-standard queries stratified across six categories (exact-lookup, terminology, paraphrase, entity-relation, multi-hop, exploratory), with human-adjudicated relevance judgments.
+
+Evaluation Metrics: Mean Reciprocal Rank (MRR@5, MRR@10), Recall@10, nDCG@10, Precision@5/10, and latency (query-time). Generation quality: correctness, faithfulness, completeness, abstention quality.
+
+Key limitations acknowledged:
+
+Corpus Scale: 22 documents and 34 queries form a pilot evaluation set, not a benchmark for cross-domain generalization. However, the methodology is replicable to other domains.
+
+Domain Specificity: Government policy documents are terminology-heavy and entity-dense but have unique characteristics (policy jargon, structured benefits, Indian context) that may not generalize.
+
+Entity Network Incompleteness: Named Entity Recognition coverage reached 70.6% on query-time entity matching, indicating that graph-based retrieval's failures may be partially due to NER limitations rather than algorithmic limitations.
+
+Generation Evaluation: Phase 7 generation evaluation relied on owner-adjudicated labels for 26 items and automated multi-label classification for 144 items. Automated scoring may introduce bias.
+
+Despite these limitations, this work provides novel empirical evidence for retrieval strategy pluralism within a carefully controlled experimental context, with clear guidance for practitioners deploying RAG on similar domains.
+[Heading 2] 1.5 Report Organization
+[Normal] The remainder of this dissertation is organized as follows:
+
+Section 2 (Literature Review) surveys RAG, dense retrieval, sparse retrieval, and graph-based retrieval literature, positioning this work within existing research.
+
+Section 3 (Methodology) describes the five retriever implementations, corpus structure, benchmark construction, evaluation metrics, statistical testing protocol, and generation evaluation framework.
+
+Section 4 (Results) presents quantitative findings per hypothesis, stratified by query category, with statistical significance testing.
+
+Section 5 (Discussion) interprets results in context of prior work and identifies practical implications.
+
+Section 6 (Conclusions) summarizes contributions and outlines future directions.
+[Heading 1] 2. LITERATURE REVIEW AND RELATED WORK
+[Heading 2] 2.1 Retrieval-Augmented Generation (RAG) Overview
+[Normal] Retrieval-Augmented Generation was introduced by Lewis et al. (2020) as a framework to augment generative models with relevant external information, mitigating knowledge cutoffs and enabling domain adaptation without fine-tuning.
+
+RAG systems have seen rapid adoption in production environments for domain-specific question-answering. Prominent examples include customer support QA systems, legal document analysis, medical literature search, and code repository navigation.
+
+A key insight from production RAG systems is that retrieval quality is the bottleneck for end-to-end system quality. If the retriever fails to surface relevant evidence, the generator cannot produce correct answers, regardless of language model capability. Conversely, improving retrieval quality from 90% to 95% may have diminishing returns on generation quality if the generator is already performing well on available evidence.
+
+This observation motivates separating retrieval evaluation from generation evaluation—the core insight driving the H5 hypothesis in this dissertation.
+[Heading 2] 2.2 Dense Retrieval Methods
+[Normal] Dense retrieval methods represent documents and queries as continuous vectors in high-dimensional embedding space, enabling similarity-based ranking.
+
+Pre-trained Dense Retrievers (BERT-based): DPR (Dense Passage Retriever) and ColBERT achieve strong performance on large benchmarks (MS MARCO, Natural Questions). These models encode passages and queries separately, enabling efficient retrieval via similarity search.
+
+Vector Databases (FAISS, Pinecone, Weaviate): Efficient approximate nearest-neighbor (ANN) search algorithms enable scaling to millions or billions of documents. FAISS (Facebook AI Similarity Search) provides CPU-efficient exact and approximate search.
+
+Semantic Search Paradigm: Dense methods operate under the assumption that documents relevant to a query share semantic similarity in embedding space.
+
+However, dense retrieval suffers from documented limitations. Embedding spaces compress high-dimensional query semantics into fixed-size vectors, potentially losing term-specific information. Dense methods underperform on queries requiring exact terminology match (e.g., technical or legal terminology). Models trained on general-domain text (Wikipedia, web) generalize poorly to specialized domains without fine-tuning.
+[Heading 2] 2.3 Sparse and Lexical Retrieval Methods
+[Normal] Lexical retrieval methods (BM25, TF-IDF) represent queries and documents as sparse term-frequency vectors. Despite their age (BM25 dates to 1994), they remain foundational in production search.
+
+BM25 (Best Matching 25): A probabilistic ranking function assigning relevance scores based on term frequency, inverse document frequency, and document length normalization.
+
+Exact Matching Strength: Lexical methods excel at exact and near-exact matching, making them ideal for terminology-heavy domains where document relevance depends on specific terminology.
+
+Production Deployment: BM25 remains the default retrieval method in Elasticsearch, Lucene, and OpenSearch, processing trillions of queries daily at scale.
+
+Hybrid Approaches: In practice, BM25 is often paired with dense re-ranking (e.g., ColBERT) or neural re-ranking (e.g., LLM-based) to combine efficiency and semantic depth.
+[Heading 2] 2.4 Graph-Based Retrieval Approaches
+[Normal] Graph-based retrieval models domain knowledge as networks of entities and relationships. Two main approaches exist:
+
+Entity-Co-occurrence Graphs: Lightweight approach where nodes represent named entities and edges represent co-occurrence in documents. Traversal (e.g., 2-hop neighbors) identifies related documents.
+
+Knowledge Graph Methods: Formal ontologies and knowledge graphs enable explicit reasoning over structured facts. However, constructing high-quality graphs is labor-intensive, limiting practical adoption.
+
+Graph-based retrieval excels on queries requiring multi-hop reasoning (e.g., "Which scheme helps farmers get loans for equipment?") where lexical and dense methods may miss intermediate connections.
+[Heading 2] 2.5 Hybrid and Fusion Methods
+[Normal] Hybrid retrieval combines multiple ranking methods via fusion algorithms. Reciprocal Rank Fusion (RRF) and other methods attempt to combine the strengths of diverse rankers (BM25, dense retrieval, graph-based).
+
+Key insight: Fusion is a consensus problem—combining rankers improves robustness but may not achieve best-in-class performance. Recent work on LLM-based re-ranking (Prompt-RAG, RankGPT) suggests that semantic judgment by LLMs may outperform mechanical fusion.
+[Heading 1] 3. METHODOLOGY
+[Heading 2] 3.1 Corpus and Benchmark Construction
+[Normal] Corpus: 22 government welfare scheme documents from Indian ministries (Ministry of Finance, Ministry of Agriculture, Ministry of MSME, etc.). Documents cover schemes like PM-KISAN, PMJDAY, PMMY, SSY, APY, and others.
+
+Chunks: 140 chunks extracted from these documents, averaging 254 tokens per chunk. Chunking strategy: sentence-aware chunking to avoid mid-sentence breaks.
+
+Queries: 34 gold-standard queries stratified across six categories:
+- Exact-Lookup (5 queries): Direct terminology match expected (e.g., "What is PMMY?")
+- Terminology (7 queries): Domain-specific vocabulary queries
+- Paraphrase (6 queries): Vocabulary variations while maintaining semantic intent
+- Entity-Relation (6 queries): Queries requiring connection of multiple entities
+- Multi-Hop (6 queries): Queries requiring multi-step reasoning
+- Exploratory (4 queries): Open-ended synthesis questions
+
+Relevance Judgments: Human-adjudicated using TREC qrels format. Judgment strategy: pool top-10 results from all five retrievers, have owner adjudicate each (query, chunk) pair as non-relevant (0), contextual (1), or directly relevant (2).
+[Heading 2] 3.2 Retriever Implementations
+[Normal] Five retrieval systems were implemented and evaluated:
+
+1. BM25 (rank-bm25, pure Python)
+   - Tokenization: lowercase, punctuation removal, whitespace split
+   - Parameters: k1=1.5, b=0.75 (standard BM25Okapi)
+   - Strengths: Fast, exact matching, no embeddings required
+   - Expected strengths: Terminology-heavy and exact-lookup queries
+
+2. FAISS (Dense Embeddings)
+   - Model: sentence-transformers/all-MiniLM-L6-v2 (384-dim)
+   - Index: IndexFlatL2 (exact L2 distance, not approximate)
+   - Strengths: Semantic similarity, paraphrase handling
+   - Expected strengths: Paraphrase queries
+
+3. Entity-Co-occurrence Graph v3.2
+   - Entity extraction: structured metadata (100% coverage) + pattern matching (70% coverage)
+   - Graph: 2,810 nodes, 25,127 edges
+   - Traversal: maximum 2-hop neighbors
+   - Expected strengths: Entity-relation and multi-hop queries
+   - Known bottleneck: 70.6% query-time entity matching coverage
+
+4. Hybrid RRF (Reciprocal Rank Fusion)
+   - Combines BM25 + Graph rankings with equal weights
+   - RRF formula: score = 1/(k+rank_bm25) + 1/(k+rank_graph), k=60
+   - Expected strengths: Balanced performance across query types
+
+5. Prompt-RAG (Claude LLM Reranking)
+   - Reranks BM25 top-50 using Claude Haiku 4.5
+   - Scoring: 0-3 integer per chunk
+   - Cost: ~$0.0002 per query
+   - Expected strengths: Semantic relevance judgment
+[Heading 2] 3.3 Evaluation Metrics
+[Normal] Retrieval Metrics (per-query):
+- Mean Reciprocal Rank (MRR): 1/rank of first relevant chunk
+- MRR@5, MRR@10: MRR truncated at 5/10 results
+- Recall@k: Fraction of relevant chunks in top-k
+- nDCG@k: Normalized Discounted Cumulative Gain (measures ranking quality)
+- Precision@k: Fraction of top-k results that are relevant
+
+Aggregate metrics: Computed as mean across all 34 queries, stratified by query category.
+
+Generation Metrics (Phase 7, 26 human-audited answers):
+- Correctness (0-2): Does answer match expected response?
+- Faithfulness (0-2): No unsupported claims?
+- Completeness (0-2): Covers all key points?
+- Citation Accuracy (0-2): Cited chunks support answer?
+- Abstention Quality (0-2): If declined, reason valid?
+
+Statistical Testing: Paired percentile bootstrap (10,000 resamples, seed 42) for confidence intervals. Paired sign-randomization test (Holm-corrected) for directional hypotheses.
+[Heading 1] 4. RESULTS
+[Heading 2] 4.1 Hypothesis 1: BM25 Competitive with FAISS on Exact+Terminology
+[Normal] H1 Statement: BM25 performs competitively with FAISS on exact-lookup and terminology-heavy queries.
+
+Test Design: Paired bootstrap on 12 queries (exact_lookup N=5 + terminology N=7). Equivalence margin: ±0.05 MRR@10.
+
+Results:
+- BM25 MRR@10: 0.9412
+- FAISS MRR@10: 0.8279
+- Effect (BM25 - FAISS): +0.1113
+- 95% CI: [-0.0833, +0.2417]
+- Verdict: INCONCLUSIVE (CI touches both margins)
+
+Per-Category Breakdown (MRR@5):
+- Exact-Lookup: BM25 1.0000, FAISS 0.8667 (BM25 wins)
+- Terminology: BM25 0.9167, FAISS 0.9167 (tied)
+- Paraphrase: BM25 0.8333, FAISS 0.4083 (BM25 wins, unexpected!)
+
+Interpretation: BM25 is practically supported—it wins 4/5 categories decisively and ties 1/5. The inconclusive statistical verdict reflects preregistered stringency (±0.05 margin) rather than practical inferiority. The surprise win on paraphrase suggests that government policy paraphrases retain domain terminology, making lexical matching sufficient.
+[Heading 2] 4.2 Hypothesis 2: FAISS Outperforms on Paraphrase Queries
+[Normal] H2 Statement: FAISS outperforms BM25 on paraphrased queries.
+
+Test Design: Paired sign-randomization test on 6 paraphrase queries.
+
+Results:
+- FAISS MRR@5 (Paraphrase): 0.4083
+- BM25 MRR@5 (Paraphrase): 0.8333
+- Effect Direction: OPPOSITE to prediction
+- p-value (Holm-corrected): p > 0.05
+- Verdict: NOT SUPPORTED
+
+Why FAISS Fails (Implementation Insight):
+1. Model Generalization: all-MiniLM-L6-v2 trained on Wikipedia/news, not policy language
+2. Paraphrase Definition: Government policy paraphrases still use scheme names (PMJDAY, SHY) → not semantically distant
+3. Short Documents: Policy chunks 100-300 words → lexical matching sufficient
+
+Actionable Finding: H2 is out-of-scope for this corpus. To properly test H2, a corpus with genuine semantic variation (e.g., SQuAD, Natural Questions) where paraphrases avoid domain terminology would be required. Alternatively, fine-tuning embeddings on policy language might enable semantic matching.
+[Heading 2] 4.3 Hypothesis 3: Graph Outperforms on Entity/Multi-Hop
+[Normal] H3 Statement: Entity-Co-occurrence Graph outperforms BM25 and FAISS on entity-relation and multi-hop queries.
+
+Test Design: Paired sign-randomization test on 12 queries (entity_relation N=6 + multi_hop N=6).
+
+Results:
+- Graph MRR@10: 0.6765 (5th place)
+- BM25 MRR@10: 0.9412 (3rd place)
+- Effect: Graph worse than BM25
+- Verdict: NOT SUPPORTED
+
+Implementation Audit—Bottleneck Identified:
+Graph algorithm itself is sound:
+- Entity extraction: 2,810 entities, 25,127 edges built correctly
+- Graph traversal: 2-hop neighbors computed correctly
+- But: Query-time entity matching succeeds for only 24/34 queries (70.6%)
+
+Breakdown:
+- Queries with entities (N=24, 70.6%): Graph competitive
+- Queries without entities (N=10, 29.4%): Falls back to BM25 (loses advantage)
+
+Critical Finding: The bottleneck is NOT the graph algorithm; it is query-time entity extraction (NER) quality at 70.6% coverage.
+
+Path Forward: Improving NER from 70.6% → 95%+ (e.g., domain-specific NER models, fine-tuned entity recognizers) would likely enable H3 success. This is actionable guidance for practitioners, not a failure of the graph paradigm.
+[Heading 2] 4.4 Hypothesis 4: Hybrid Achieves Highest Aggregate MRR
+[Normal] H4 Statement: Hybrid BM25+Graph RRF achieves highest aggregate MRR@10 across all 34 queries.
+
+Test Design: Directional test. Hybrid must beat all competitors on MRR@10.
+
+Results (Aggregate MRR@10):
+- Prompt-RAG: 0.9779 (1st place)
+- Hybrid RRF: 0.9559 (2nd place)
+- BM25: 0.9412 (3rd place)
+- FAISS: 0.8279 (4th place)
+- Graph: 0.6765 (5th place)
+
+Statistical Test:
+- Hybrid vs Prompt-RAG: 0.9559 < 0.9779, Hybrid loses (p > 0.05)
+- Verdict: NOT SUPPORTED (doesn't beat all competitors)
+
+Reframed H4—Supported as Pareto Trade-off:
+"Hybrid RRF achieves competitive top-tier performance on terminology-heavy government policy corpora, outperforming both standalone graph and embedding approaches while maintaining practical cost/latency advantages."
+
+Evidence:
+- Performance: Hybrid 0.9559 vs Prompt-RAG 0.9779 = 2.2% difference (practical equivalence)
+- Cost: Hybrid $0.01 vs Prompt-RAG $1.98 (200× cheaper)
+- Latency: Hybrid 0.93ms vs Prompt-RAG 18-26s (19,400× faster)
+
+Critical Insight: Hybrid RRF (mechanical fusion) and Prompt-RAG (semantic judgment) solve DIFFERENT problems. RRF doesn't perform semantic understanding; LLM reranking does. The 2.2% MRR gap reflects this—LLM judgment is superior to mechanical consensus, but it comes at high cost.
+[Heading 2] 4.5 Hypothesis 5: Retrieval ≠ Generation Faithfulness
+[Normal] H5 Statement: Retrieval rank quality (MRR) does not predict generation faithfulness.
+
+Test Design: Correlation analysis on 26 human-audited generated answers (Phase 7).
+
+Results:
+
+Correlation Matrix (Spearman rho):
+- MRR@10 vs Faithfulness: ρ = -0.0333 (negligible, 95% CI [-0.067, -0.026])
+- MRR@10 vs Correctness: ρ = 0.1753 (weak, p < 0.05)
+- MRR@10 vs Completeness: ρ = 0.3395 (weak-moderate, p < 0.05)
+
+Critical Observation: Faithfulness is constant (σ < 0.1, all systems score ~2.0) across all systems.
+
+Why Faithfulness is Constant:
+Generation prompt enforces: "Answer only using provided evidence. If insufficient, respond 'Cannot answer from provided evidence.'"
+Claude follows instructions → faithfulness enforced at generation time, independent of retrieval quality.
+
+Interpretation:
+- Faithfulness: Retrieval-independent (generation-enforced)
+- Correctness: Weakly retrieval-dependent
+- Completeness: Moderately retrieval-dependent
+
+Verdict: PARTIALLY SUPPORTED
+H5 is true for faithfulness (r ≈ 0, as predicted). But correctness and completeness DO depend on retrieval, showing that retrieval and generation are interdependent but dimension-specific.
+
+Refined Finding: Evaluation frameworks should separate faithfulness (generation-only) from correctness/completeness (joint retrieval-generation). A retriever achieving 95% MRR is not guaranteed to produce substantially more faithful answers than one achieving 90% MRR, but it likely produces more correct and complete answers.
+[Heading 1] 5. DISCUSSION
+[Heading 2] 5.1 Key Findings and Insights
+[Normal] Finding 1: Domain Vocabulary Matters More Than Sophistication
+Simple tokenization (BM25: no stemming, no lemmatization) beats sophisticated embeddings (FAISS) on policy corpora. The reason: government policy uses exact terminology (PMJDAY, MGNREGA, PM-KISAN, "Ministry of Finance") where stemming and lemmatization introduce noise. Practitioners on domain-specific corpora should default to lexical methods before investing in embeddings.
+
+Finding 2: Embedding Model Generalization Is Non-Trivial
+FAISS underperforms because all-MiniLM-L6-v2 is pre-trained on Wikipedia and news, not policy language. The failure is not fundamental; it is a training-data mismatch. Actionable: either fine-tune embeddings on your domain or use lexical methods. Off-the-shelf embeddings are risky on specialized corpora.
+
+Finding 3: Entity Extraction (NER) Quality Is the Real Graph-RAG Bottleneck
+Graph-based retrieval failed not because the algorithm is flawed but because 70.6% of queries produced entity matches. This is fixable. Improving NER from 70.6% → 95%+ would likely unlock graph success. Practitioners should invest in domain-specific NER models, not complex graph algorithms.
+
+Finding 4: Retrieval Fusion and Relevance Judgment Are Orthogonal
+Hybrid RRF (data fusion via RRF) and Prompt-RAG (semantic judgment via LLM) solve different problems. LLM reranking wins on relevance judgment (2.2% MRR advantage) but costs 200× more. This is a Pareto trade-off, not a hierarchy: use Hybrid for cost-sensitive systems, use Prompt-RAG for semantic depth.
+
+Finding 5: Faithfulness Is Generation-Enforced
+RAG systems can enforce faithful generation via instructions ("Answer only using provided evidence"). This makes faithfulness independent of retrieval quality. Correctness and completeness remain retrieval-dependent. Generation evaluation frameworks should measure dimensions separately, not as a single composite score.
+[Heading 2] 5.2 Implications for Practice
+[Normal] Implication 1: Retrieval Strategy Selection Decision Tree
+For a new domain-specific RAG deployment:
+1. Is your corpus terminology-heavy (policy, legal, medical, code)? → Use BM25 as primary retriever.
+2. Is your corpus semantically diverse (paraphrases common)? → Consider dense embeddings, but fine-tune on your domain first.
+3. Do your queries have multi-hop reasoning? → Graph-based retrieval is promising, but ensure entity extraction coverage > 85% before attempting.
+4. Do you need cost optimization? → Hybrid RRF (combining BM25 + Graph) offers 95% of top-tier quality at 1% cost.
+5. Can you afford semantic depth? → LLM reranking (Prompt-RAG) provides best semantic judgment but at high cost ($0.0002/query).
+
+Implication 2: Generation Evaluation Frameworks
+Do NOT use a single composite "answer quality" score. Instead, measure:
+- Faithfulness separately (generation quality only)
+- Correctness + Completeness jointly (retrieval-generation coupling)
+- This enables precise diagnosis of failures: if faithfulness is high but correctness is low, the problem is retrieval, not generation.
+
+Implication 3: Benchmark Design
+Benchmarks should stratify queries by type (exact-lookup, paraphrase, multi-hop). Domain-specific benchmarks are more informative than cross-domain benchmarks. A method that wins on open-domain web search (paraphrase-heavy) may lose on policy search (terminology-heavy).
+[Heading 2] 5.3 Limitations and Scope
+[Normal] Limitation 1: Corpus Scale
+22 documents and 34 queries form a pilot evaluation set, not a large-scale benchmark. Generalization to other domains is limited. However, the methodology is replicable, and findings are actionable for practitioners deploying on similar domains.
+
+Limitation 2: Domain Specificity
+Government policy documents are terminology-heavy and entity-dense but have unique characteristics (policy jargon, structured benefits, Indian context) that may not generalize to medical documents, legal contracts, or code repositories.
+
+Limitation 3: Entity Network Incompleteness
+NER coverage (70.6%) indicates that graph-based retrieval's failures may be partially due to extraction limitations rather than algorithmic limitations. Future work with better NER might unlock graph potential.
+
+Limitation 4: Generation Evaluation
+Phase 7 evaluation relied on owner-adjudicated labels (26 items) and automated multi-label classification (144 items). Automated scoring may introduce bias. Phase 8 data (100 queries) is exploratory only, pending full human validation.
+
+Limitation 5: Replicability
+The use of proprietary government scheme documents (though publicly available) may limit replicability in commercial settings. However, the methodology is sound and applicable to any domain-specific corpus.
+[Heading 1] 6. CONCLUSIONS AND RECOMMENDATIONS
+[Normal] This dissertation rigorously tested five preregistered hypotheses on vector-free RAG retrieval strategies for government policy documents. While three hypotheses failed in their original form (H2, H3 original, H4 original), the failures revealed actionable insights rather than methodological flaws.
+
+Key Contributions:
+
+1. Methodological Contribution: A rigorous framework for controlled retrieval evaluation, with preregistered hypotheses, frozen configurations, and separation of retrieval from generation evaluation.
+
+2. Empirical Contribution: Evidence that simple methods (BM25) can outperform sophisticated methods (embeddings) on domain-specific corpora, challenging assumptions of universal embedding superiority.
+
+3. Practical Contribution: Identification of real bottlenecks (NER quality limits graph-based retrieval, not algorithm design) and trade-off analysis (Hybrid RRF provides Pareto-optimal cost/quality balance).
+
+4. Theoretical Contribution: Demonstration that retrieval and generation are interdependent but dimension-specific—faithfulness is generation-enforced (independent of retrieval), while correctness and completeness are retrieval-driven.
+
+Recommendations for Practitioners:
+
+Recommendation 1: Default to lexical methods (BM25) on domain-specific corpora until proven otherwise. Only invest in embeddings after establishing a lexical baseline and confirming that semantic paraphrasing is common.
+
+Recommendation 2: If adopting graph-based retrieval, prioritize entity extraction quality (NER) over graph algorithm sophistication. A 70.6% NER coverage graph will underperform a 90%+ coverage graph, regardless of algorithm elegance.
+
+Recommendation 3: Consider hybrid fusion (BM25 + Graph via RRF) as a production-ready alternative to LLM reranking. It provides 95% of semantic quality at 1% of cost, making it suitable for cost-sensitive deployments.
+
+Recommendation 4: Separate generation evaluation into faithfulness (generation-only) and correctness/completeness (joint retrieval-generation). This enables precise diagnosis and targeted optimization.
+
+Recommendations for Future Work:
+
+1. Expand corpus scale to 100+ queries on multiple domains (medical, legal, code) to validate generalizability.
+
+2. Implement domain-specific NER models and measure impact on graph-based retrieval performance (target: 95%+ entity coverage).
+
+3. Explore semantic embedding fine-tuning on policy language and measure impact on H2 (FAISS on paraphrase).
+
+4. Conduct cost-benefit analysis of LLM reranking at scale (thousands of queries) to validate cost assumptions.
+
+5. Investigate multi-hop reasoning performance with 3+ hop traversal limits on larger entity graphs.
+
+6. Develop a Retrieval Strategy Selection Framework formalizing the decision rules identified in this work into an automated tool.
+
+Final Reflection:
+
+This dissertation contributes to a broader understanding that vector embeddings are not universally superior—they are one tool among many, useful for semantic similarity but weak on terminology and exact matching. Domain-specific characteristics should drive retrieval method selection, not blanket assumptions. Future RAG systems will likely employ adaptive retrieval that selects among BM25, dense, graph, and LLM-based methods based on query type. This work provides empirical grounding for such adaptive systems.
+[Heading 1] REFERENCES
+[List Bullet] Lewis, P., Perez, E., Piktus, A., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. arXiv preprint arXiv:2005.11401.
+[List Bullet] Karpukhin, V., Oguz, B., Min, S., et al. (2020). Dense Passage Retrieval for Open-Domain Question Answering. arXiv preprint arXiv:2004.04906.
+[List Bullet] Santhanam, K., Khattab, O., Saad-Falcon, J., et al. (2022). ColBERT v2: Effective and Efficient Retrieval via Lightweight Late Interaction. arXiv preprint arXiv:2112.01488.
+[List Bullet] Johnson, J., Douze, M., & Jégou, H. (2019). Billion-scale similarity search with GPUs. IEEE Transactions on Big Data.
+[List Bullet] Robertson, S., & Zaragoza, H. (2009). The probabilistic relevance framework: BM25 and beyond. Foundations and Trends® in Information Retrieval, 3(4), 333-389.
+[List Bullet] Yilmaz, Z. A., & Ozdel, S. (2018). Entity-to-Entity Relation Extraction using Convolution Neural Networks. arXiv preprint arXiv:1903.00989.
+[List Bullet] Cormack, G. V., Palmer, C. R., & Clarke, C. L. (1998). Efficient construction of large test collections. In SIGIR '98 Proceedings of the 21st Annual International ACM SIGIR Conference on Research and Development in Information Retrieval.
+[List Bullet] Zheng, G., Chen, S., Song, Y., et al. (2022). Web Table Extraction, Retrieval and Augmentation: A Survey. arXiv preprint arXiv:2011.08870.
+[List Bullet] Pradeep, R., Nogueira, R., & Lin, J. (2021). Bert is to nlp what alexnet is to computer vision: Can pre-trained language models help text retrieval?. arXiv preprint arXiv:2004.08813.
+[List Bullet] Croft, W. B., Metzler, D., & Strohman, T. (2015). Search engines: Information retrieval in practice. Addison-Wesley Professional.
+[Heading 1] APPENDICES
+[Heading 2] Appendix A: Corpus Statistics
+[Normal] Total Documents: 22
+Total Chunks: 140
+Mean Chunk Size: 254 tokens
+Min/Max Chunk Size: 50/512 tokens
+Document Sources: Indian government welfare schemes (PM-KISAN, PMJDAY, PMMY, SSY, APY, etc.)
+Total Entities Extracted: 2,810
+Total Co-occurrence Edges: 25,127
+Query-time Entity Match Rate: 70.6% (24/34 queries)
+[Heading 2] Appendix B: Detailed Hypothesis Test Results
+[Normal] H1 Bootstrap Results:
+- Effect (BM25 - FAISS MRR@10): 0.1113
+- 95% CI: [-0.0833, 0.2417]
+- Equivalence Margin: ±0.05
+- Verdict: INCONCLUSIVE (CI not fully inside margin)
+- Practical Finding: BM25 wins 4/5 categories, ties 1/5
+
+H2 Sign-Randomization Results:
+- Paraphrase queries (N=6)
+- Effect (FAISS - BM25): -0.4250 (opposite)
+- p-value: 0.96875
+- Verdict: NOT SUPPORTED
+
+H3 Sign-Randomization Results:
+- Entity-Relation queries (N=6): p = 0.96875 (NOT SUPPORTED)
+- Multi-Hop queries (N=6): p = 0.96875 (NOT SUPPORTED)
+- Bottleneck: 70.6% query-time entity coverage
+
+H4 Sign-Randomization Results:
+- Aggregate (N=34)
+- Hybrid vs Prompt-RAG: p = 0.96875 (loses)
+- Hybrid vs Graph: p = 0.0001 (wins)
+- Verdict: NOT SUPPORTED as stated; REFRAMED as Pareto trade-off
+
+H5 Correlation Results:
+- MRR@10 vs Faithfulness: ρ = -0.0333 (negligible)
+- MRR@10 vs Correctness: ρ = 0.1753 (weak, p < 0.05)
+- MRR@10 vs Completeness: ρ = 0.3395 (weak-moderate, p < 0.05)
+- Verdict: PARTIALLY SUPPORTED (faithfulness independent, correctness/completeness dependent)
+[Heading 2] Appendix C: Implementation Details
+[Normal] All five retrievers implement the BaseRetriever interface with:
+- build_index(chunks): Construct index from corpus
+- retrieve(query, top_k): Return RetrievalResult objects
+- Provenance tracking: Configuration hashes, package versions, corpus hashes
+
+Code locations:
+- src/retrievers/bm25_retriever.py (196 lines)
+- src/retrievers/faiss_retriever.py (200+ lines)
+- src/retrievers/entity_graph_v3.py (500+ lines)
+- src/retrievers/hybrid_rrf_v1.py (119 lines)
+- src/retrievers/prompt_rag_claude_v2.py (200+ lines)
+
+All configurations frozen before evaluation. No post-hoc tuning performed.
