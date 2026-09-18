@@ -1,5 +1,7 @@
 # RAG Retrieval Dissertation
 
+[![CI](https://github.com/amulyagupta1278/rag-retrieval-dissertation/actions/workflows/ci.yml/badge.svg)](https://github.com/amulyagupta1278/rag-retrieval-dissertation/actions/workflows/ci.yml)
+
 **Comparative Analysis of Vector-Free Retrieval Strategies for RAG: Hybrid Search and Graph-Based Approaches**
 
 | | |
